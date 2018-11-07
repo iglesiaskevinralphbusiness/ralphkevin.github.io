@@ -1,0 +1,136 @@
+.bg-triangle .tri-001:before {content: "1";}
+.bg-triangle .tri-002:before {content: "2";}
+.bg-triangle .tri-003:before {content: "3";}
+.bg-triangle .tri-004:before {content: "4";}
+.bg-triangle .tri-005:before {content: "5";}
+.bg-triangle .tri-006:before {content: "6";}
+.bg-triangle .tri-007:before {content: "7";}
+.bg-triangle .tri-008:before {content: "8";}
+.bg-triangle .tri-009:before {content: "9";}
+.bg-triangle .tri-010:before {content: "10";}
+.bg-triangle .tri-011:before {content: "11";}
+.bg-triangle .tri-012:before {content: "12";}
+.bg-triangle .tri-013:before {content: "13";}
+.bg-triangle .tri-014:before {content: "14";}
+.bg-triangle .tri-015:before {content: "15";}
+.bg-triangle .tri-016:before {content: "16";}
+.bg-triangle .tri-017:before {content: "17";}
+.bg-triangle .tri-018:before {content: "18";}
+.bg-triangle .tri-019:before {content: "19";}
+.bg-triangle .tri-020:before {content: "20";}
+.bg-triangle .tri-021:before {content: "21";}
+.bg-triangle .tri-022:before {content: "22";}
+.bg-triangle .tri-023:before {content: "23";}
+.bg-triangle .tri-024:before {content: "24";}
+.bg-triangle .tri-025:before {content: "25";}
+
+
+
+/* layer 1 */
+.layer-1 .bg-triangle p {
+	top: 48%;
+	left: 48%;
+}
+.layer-1 .bg-triangle .tri-001 {
+	width: 3%;
+}
+.layer-1 .bg-triangle .tri-002 {
+	width: 2.5%;
+}
+.layer-1 .bg-triangle .tri-003 {
+	width: 2%;
+}
+.layer-1 .bg-triangle .tri-004 {
+	width: 1.6%;
+}
+.layer-1 .bg-triangle .tri-005 {
+	width: 3.2%;
+}
+.layer-1 .bg-triangle .tri-006 {
+	width: 2.1%;
+}
+.layer-1 .bg-triangle .tri-007 {
+	width: 1.1%;
+}
+.layer-1 .bg-triangle .tri-008 {
+	width: 1.6%;
+}
+.layer-1 .bg-triangle .tri-009 {
+    width: 4.2%;
+}
+.layer-1 bg-triangle .tri-010 {
+    width: 6.2%;
+}
+.layer-1 .bg-triangle .tri-011 {
+    width: 1.8%;
+}
+.layer-1 .bg-triangle .tri-012 {
+    width: 2.1%;
+}
+.layer-1 .bg-triangle .tri-012 {
+    width: 2.1%;
+}
+.layer-1 .bg-triangle .tri-013 {
+    width: 1.4%;
+}
+.layer-1 .bg-triangle .tri-014 {
+    width: 3.4%;
+}
+.layer-1 .bg-triangle .tri-015 {
+    width: 4.4%;
+}
+.layer-1 .bg-triangle .tri-016 {
+    width: 2.8%;
+}
+.layer-1 .bg-triangle .tri-017 {
+    width: 2.8%;
+}
+.layer-1 .bg-triangle .tri-018 {
+    width: 2.8%;
+}
+.layer-1 .bg-triangle .tri-019 {
+    width: 2.8%;
+}
+.layer-1 .bg-triangle .tri-020 {
+    width: 3%;
+}
+.layer-1 .bg-triangle .tri-021 {
+    width: 3%;
+}
+.layer-1 .bg-triangle .tri-022 {
+    width: 1.3%;
+}
+.layer-1 .bg-triangle .tri-023 {
+    width: 7.3%;
+}
+
+
+
+
+
+
+
+/* layer2 */
+.layer-2 .bg-triangle {
+	z-index: 3;
+}
+.layer-2 .bg-triangle .tri-001 {
+	top: 5%;
+    left: 22%;
+}
+.layer-2 .bg-triangle .tri-002 {
+	top: 71%;
+    left:70%;
+}
+.layer-2 .bg-triangle .tri-003 {
+	top: 80%;
+    left: 73%;
+}
+.layer-2 .bg-triangle .tri-004 {
+	top: 20%;
+    left: 10%;
+}
+.layer-2 .bg-triangle .tri-005 {
+	top: 30%;
+    left: 14%;
+}
