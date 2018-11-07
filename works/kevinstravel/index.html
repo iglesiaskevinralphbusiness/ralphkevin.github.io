@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Travel Agency</title>
+	
+	<meta charset="utf-8">
+	<meta name="description" content="Travel Agency"/>
+	<meta name="keywords" content="Travel Agency"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	
+	<link href="common/css/reset.css" rel="stylesheet" type="text/css" media="all">
+	<link href="common/css/common.css" rel="stylesheet" type="text/css" media="all">
+	
+	<script type="text/javascript" src="common/js/jquery.js"></script>
+	<script type="text/javascript" src="common/js/header_menu.js"></script>
+	<script type="text/javascript" src="common/js/smooth_scrolling.js"></script>
+</head>
+<body>
+	<header>
+		<div class="headerNavScrollMobile">
+			<div class="headerNavScrollMobileBtn">
+				<a href="javascript:void(0);"><img src="common/images/headerNavScrollMobileBnt.png" width="37" height="34" alt="menu"></a>
+			</div>
+			<div class="headerNavScrollMobileContent">
+				<ul>
+					<li class="active"><a href="#home">HOME</a></li>
+					<li><a href="#">ABOUT US</a></li>
+					<li><a href="#">DESTINATIONS</a></li>
+					<li><a href="#">PACKAGES</a></li>
+					<li><a href="#">REVIEWS</a></li>
+					<li><a href="#">PAYMENT</a></li>
+					<li><a href="#">CONTACT US</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="headerNavScroll">
+			<div class="wrap">
+				<div class="headerNavScrollLogo"></div>
+				<div class="listL">
+					<ul>
+						<li class="active"><a href="#"><img src="common/images/headerNavScrollListLHome02.gif" width="25" height="24" alt="##"></a></li>
+						<li><a href="#">ABOUT US</a></li>
+						<li><a href="#">DESTINATIONS</a>
+							<ul>
+								<li><a href="#">Destination 1</a></li>
+								<li><a href="#">Destination 2</a></li>
+								<li><a href="#">Destination 3</a></li>
+							</ul>
+						</li>
+						<li><a href="#">PACKAGES</a></li>
+					</ul>
+				</div>
+				<div class="listR">
+					<ul>
+						<li><a href="#">REVIEWS</a></li>
+						<li><a href="#">PAYMENT</a></li>
+						<li><a href="#">CONTACT US</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="headerArea" id="home">
+			<div class="headerFade">
+				<!--<ul class="sliderNav">
+					<li class="prev"><a href="#"><img src="common/images/headerSliderPrev.png" width="48" height="48" alt="Prev"></a></li>
+					<li class="next"><a href="#"><img src="common/images/headerSliderNext.png" width="48" height="48" alt="Prev"></a></li>
+				</ul>-->
+				<div class="wrap">
+					<div class="headerNavContainer">
+						<ul class="headerNav">
+							<li class="active"><a href="#">HOME</a></li>
+							<li><a href="#">ABOUT US</a></li>
+							<li><a href="#">DESTINATIONS</a>
+								<ul>
+									<li><a href="#">Destination 1</a></li>
+									<li><a href="#">Destination 2</a></li>
+									<li><a href="#">Destination 3</a></li>
+								</ul>
+							</li>
+							<li><a href="#">PACKAGES</a></li>
+							<li><a href="#">REVIEWS</a></li>
+							<li><a href="#">PAYMENT</a></li>
+							<li><a href="#">CONTACT US</a></li>
+						</ul>
+					</div>
+					<div class="headerContent">
+						<div class="headerContentContainer">
+							<p>Explore with Us</p>
+							<div class="headerLogoHolder">
+								<div class="headerLogoContainer">
+									<h1>KEVIN'S <span>AGENCY</span></h1>
+									<div class="pContainer">
+										<p>Your passion is exploring the world.</p>
+									</div>
+								</div>
+							</div>
+							<div class="headerForm">
+								<form method="post" action="#">
+									<dl>
+										<dt>FIND THE TOUR</dt>
+										<dd>
+											<select name="destination">
+												<option value="">Destination</option>
+											</select>
+										</dd>
+										<dd>
+											<select name="destination">
+												<option value="">Check In</option>
+											</select>
+										</dd>
+										<dd>
+											<select name="budget">
+												<option value="">Budget</option>
+											</select>
+										</dd>
+										<dd>
+											<select name="destination">
+												<option value="">Check Out</option>
+											</select>
+										</dd>
+										<dd></dd>
+										<dd>
+											<input type="submit" name="submit" value="">
+										</dd>
+									</dl>
+								</form>
+							</div>
+						</div><!-- .headerContentContainer-->
+						<ul class="headerMenu">
+							<li>
+								<p><span>Travels</span></p>
+								<a href="#destinations" class="headerMenuDisk">
+									<div class="headerMenuContainer">
+										<img src="common/images/headerMenuLi01.png" width="108" height="216" alt="Travels">
+									</div>
+								</a>
+							</li>
+							<li>
+								<p><span>Hotels</span></p>
+								<a href="#hotels" class="headerMenuDisk">
+									<div class="headerMenuContainer">
+										<img src="common/images/headerMenuLi02.png" width="108" height="216" alt="Hotels">
+									</div>
+								</a>
+							</li>
+							<li>
+								<p><span>Transportation</span></p>
+								<a href="#transportation" class="headerMenuDisk">
+									<div class="headerMenuContainer">
+										<img src="common/images/headerMenuLi03.png" width="108" height="216" alt="Transportation">
+									</div>
+								</a>
+							</li>
+							<li>
+								<p><span>Restaurants</span></p>
+								<a href="#restaurants" class="headerMenuDisk">
+									<div class="headerMenuContainer">
+										<img src="common/images/headerMenuLi04.png" width="108" height="216" alt="Restaurants">
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div><!-- .headerContent-->
+					<p class="headerDesc">TRAVEL TO BALI, JOIN THE BEST AND UNIQUE TOURS<br>WE WILL TAKE YOU, SHOW YOU, MAKE YOU FALL IN LOVE.</p>
+					<ul class="headerDescBtn">
+						<li><a href="#"><img src="common/images/headerDescBnt01.gif" width="191" height="50" alt="Contact Us"></a></li>
+						<li><a href="#"><img src="common/images/headerDescBnt02.gif" width="191" height="50" alt="Register"></a></li>
+					</ul>
+				</div><!-- .wrap-->
+			</div><!-- .headerFade-->
+		</div><!-- .headerArea-->
+	</header>
+
+	<main>
+		<section class="destinationArea">
+			<div class="wrap">
+				<div class="headLine" id="destinations">
+					<img src="common/images/headLine_destinations.png" width="61" height="64" alt="">
+					<h2>TRAVELERS <span>DESTINATIONS</span></h2>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 15000s</p>
+				</div>
+				<ul class="destinationSection01">
+					<li class="active"><a href="#">All</a></li>
+					<li><a href="#">Asia</a></li>
+					<li><a href="#">Africa</a></li>
+					<li><a href="#">Oceania</a></li>
+					<li><a href="#">Europe</a></li>
+					<li><a href="#">America</a></li>
+				</ul>
+				<ul class="destinationSection02">
+					<li>
+						<div class="destinationSe02Block">
+							<h3 class="title01">ASIA TRAVELS</h3>
+							<div class="contentTravel">
+								<a href="#" class="contentThumbnail">
+									<div class="contentThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon02.png" width="30" height="33" alt="####">
+									</div>
+									<img src="common/images/thumbnails/1.jpg" width="283" height="199" alt="####">
+								</a>
+								<a href="#" class="contentTitle">Siam Paragon, Bangkok</a>
+								<p class="contentDesc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+								<div class="details">
+									<ul>
+										<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									</ul>
+									<a class="reviews" href="">24 reviews</a>
+									<a class="more" href="#">more</a>
+								</div>
+							</div>
+						</div>
+						<div class="destinationSe02Block">
+							<h3 class="title02">HOTEL LIST</h3>
+							<div class="contentHotel">
+								<a href="#" class="contentHotelThumbnail">
+									<div class="contentHotelThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon.png" width="" height="" alt="&gt;">
+									</div>
+									<img src="common/images/thumbnails/destinationHotelList02.jpg" width="70" height="70" alt="####">
+								</a>
+								<a href="#" class="contentHotelTitle">HOTEL NAME HERE</a>
+								<p class="contentHotelPrice">P1,300<span>/Night</span></p>
+								<a href="#" class="book">Book</a>
+							</div>
+							<div class="contentHotel">
+								<a href="#" class="contentHotelThumbnail">
+									<div class="contentHotelThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon.png" width="" height="" alt="&gt;">
+									</div>
+									<img src="common/images/thumbnails/destinationHotelList01.jpg" width="70" height="70" alt="####">
+								</a>
+								<a href="#" class="contentHotelTitle">HOTEL NAME HERE</a>
+								<p class="contentHotelPrice">P1,300<span>/Night</span></p>
+								<a href="#" class="book">Book</a>
+							</div>
+							<div class="contentHotel">
+								<a href="#" class="contentHotelThumbnail">
+									<div class="contentHotelThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon.png" width="" height="" alt="&gt;">
+									</div>
+									<img src="common/images/thumbnails/destinationHotelList03.jpg" width="70" height="70" alt="####">
+								</a>
+								<a href="#" class="contentHotelTitle">HOTEL NAME HERE</a>
+								<p class="contentHotelPrice">P1,300<span>/Night</span></p>
+								<a href="#" class="book">Book</a>
+							</div>
+							<a href="#" class="contentMore">Load More Hotels</a>
+						</div>
+					</li>
+					<li>
+						<div class="destinationSe02Block">
+							<h3 class="title01">EUROPE TRAVELS</h3>
+							<div class="contentTravel">
+								<a href="#" class="contentThumbnail">
+									<div class="contentThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon02.png" width="30" height="33" alt="####">
+									</div>
+									<img src="common/images/thumbnails/1.jpg" width="283" height="199" alt="####">
+								</a>
+								<a href="#" class="contentTitle">Siam Paragon, Bangkok</a>
+								<p class="contentDesc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+								<div class="details">
+									<ul>
+										<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									</ul>
+									<a class="reviews" href="">24 reviews</a>
+									<a class="more" href="#">more</a>
+								</div>
+							</div>
+						</div>
+						<div class="destinationSe02Block">
+							<h3 class="title02">HOTEL LIST</h3>
+							<div class="contentHotel">
+								<a href="#" class="contentHotelThumbnail">
+									<div class="contentHotelThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon.png" width="" height="" alt="&gt;">
+									</div>
+									<img src="common/images/thumbnails/destinationHotelList02.jpg" width="70" height="70" alt="####">
+								</a>
+								<a href="#" class="contentHotelTitle">HOTEL NAME HERE</a>
+								<p class="contentHotelPrice">P1,300<span>/Night</span></p>
+								<a href="#" class="book">Book</a>
+							</div>
+							<div class="contentHotel">
+								<a href="#" class="contentHotelThumbnail">
+									<div class="contentHotelThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon.png" width="" height="" alt="&gt;">
+									</div>
+									<img src="common/images/thumbnails/destinationHotelList01.jpg" width="70" height="70" alt="####">
+								</a>
+								<a href="#" class="contentHotelTitle">HOTEL NAME HERE</a>
+								<p class="contentHotelPrice">P1,300<span>/Night</span></p>
+								<a href="#" class="book">Book</a>
+							</div>
+							<div class="contentHotel">
+								<a href="#" class="contentHotelThumbnail">
+									<div class="contentHotelThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon.png" width="" height="" alt="&gt;">
+									</div>
+									<img src="common/images/thumbnails/destinationHotelList03.jpg" width="70" height="70" alt="####">
+								</a>
+								<a href="#" class="contentHotelTitle">HOTEL NAME HERE</a>
+								<p class="contentHotelPrice">P1,300<span>/Night</span></p>
+								<a href="#" class="book">Book</a>
+							</div>
+							<a href="#" class="contentMore">Load More Hotels</a>
+						</div>
+					</li>
+					<li>
+						<div class="destinationSe02Block">
+							<h3 class="title01">OCEANIA TRAVELS</h3>
+							<div class="contentTravel">
+								<a href="#" class="contentThumbnail">
+									<div class="contentThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon02.png" width="30" height="33" alt="####">
+									</div>
+									<img src="common/images/thumbnails/1.jpg" width="283" height="199" alt="####">
+								</a>
+								<a href="#" class="contentTitle">Siam Paragon, Bangkok</a>
+								<p class="contentDesc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+								<div class="details">
+									<ul>
+										<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									</ul>
+									<a class="reviews" href="">24 reviews</a>
+									<a class="more" href="#">more</a>
+								</div>
+							</div>
+						</div>
+						<div class="destinationSe02Block">
+							<h3 class="title02">HOTEL LIST</h3>
+							<div class="contentHotel">
+								<a href="#" class="contentHotelThumbnail">
+									<div class="contentHotelThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon.png" width="" height="" alt="&gt;">
+									</div>
+									<img src="common/images/thumbnails/destinationHotelList02.jpg" width="70" height="70" alt="####">
+								</a>
+								<a href="#" class="contentHotelTitle">HOTEL NAME HERE</a>
+								<p class="contentHotelPrice">P1,300<span>/Night</span></p>
+								<a href="#" class="book">Book</a>
+							</div>
+							<div class="contentHotel">
+								<a href="#" class="contentHotelThumbnail">
+									<div class="contentHotelThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon.png" width="" height="" alt="&gt;">
+									</div>
+									<img src="common/images/thumbnails/destinationHotelList01.jpg" width="70" height="70" alt="####">
+								</a>
+								<a href="#" class="contentHotelTitle">HOTEL NAME HERE</a>
+								<p class="contentHotelPrice">P1,300<span>/Night</span></p>
+								<a href="#" class="book">Book</a>
+							</div>
+							<div class="contentHotel">
+								<a href="#" class="contentHotelThumbnail">
+									<div class="contentHotelThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon.png" width="" height="" alt="&gt;">
+									</div>
+									<img src="common/images/thumbnails/destinationHotelList03.jpg" width="70" height="70" alt="####">
+								</a>
+								<a href="#" class="contentHotelTitle">HOTEL NAME HERE</a>
+								<p class="contentHotelPrice">P1,300<span>/Night</span></p>
+								<a href="#" class="book">Book</a>
+							</div>
+							<a href="#" class="contentMore">Load More Hotels</a>
+						</div>
+					</li>
+					<li>
+						<div class="destinationSe02Block">
+							<h3 class="title01">AMERICA TRAVELS</h3>
+							<div class="contentTravel">
+								<a href="#" class="contentThumbnail">
+									<div class="contentThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon02.png" width="30" height="33" alt="####">
+									</div>
+									<img src="common/images/thumbnails/1.jpg" width="283" height="199" alt="####">
+								</a>
+								<a href="#" class="contentTitle">Siam Paragon, Bangkok</a>
+								<p class="contentDesc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+								<div class="details">
+									<ul>
+										<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+										<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									</ul>
+									<a class="reviews" href="">24 reviews</a>
+									<a class="more" href="#">more</a>
+								</div>
+							</div>
+						</div>
+						<div class="destinationSe02Block">
+							<h3 class="title02">HOTEL LIST</h3>
+							<div class="contentHotel">
+								<a href="#" class="contentHotelThumbnail">
+									<div class="contentHotelThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon.png" width="" height="" alt="&gt;">
+									</div>
+									<img src="common/images/thumbnails/destinationHotelList02.jpg" width="70" height="70" alt="####">
+								</a>
+								<a href="#" class="contentHotelTitle">HOTEL NAME HERE</a>
+								<p class="contentHotelPrice">P1,300<span>/Night</span></p>
+								<a href="#" class="book">Book</a>
+							</div>
+							<div class="contentHotel">
+								<a href="#" class="contentHotelThumbnail">
+									<div class="contentHotelThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon.png" width="" height="" alt="&gt;">
+									</div>
+									<img src="common/images/thumbnails/destinationHotelList01.jpg" width="70" height="70" alt="####">
+								</a>
+								<a href="#" class="contentHotelTitle">HOTEL NAME HERE</a>
+								<p class="contentHotelPrice">P1,300<span>/Night</span></p>
+								<a href="#" class="book">Book</a>
+							</div>
+							<div class="contentHotel">
+								<a href="#" class="contentHotelThumbnail">
+									<div class="contentHotelThumbnailHover">
+										<img src="common/images/contentHotelThumbnailHoverIcon.png" width="" height="" alt="&gt;">
+									</div>
+									<img src="common/images/thumbnails/destinationHotelList03.jpg" width="70" height="70" alt="####">
+								</a>
+								<a href="#" class="contentHotelTitle">HOTEL NAME HERE</a>
+								<p class="contentHotelPrice">P1,300<span>/Night</span></p>
+								<a href="#" class="book">Book</a>
+							</div>
+							<a href="#" class="contentMore">Load More Hotels</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section><!-- .destinationArea-->
+		
+		<section class="hotelsArea">
+			<div class="wrap">
+				<div class="headLine" id="hotels">
+					<img src="common/images/headLine_hotels.png" width="74" height="64" alt="">
+					<h2>TRAVELERS <span>HOTELS</span></h2>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 15000s</p>
+				</div>
+				<div class="hotelsSection01">
+					<h3 class="title01">HOTEL LIST</h3>
+					<form method="post" action="#">
+						<dl>
+							<dt>Hotel Search</dt>
+							<dd><input type="text" name="text01" value="" placeholder="" class="txtSearch"></dd>
+							<dd class="txtOthers01">Check in date</dd>
+							<dd class="txtOthers02">Check out date</dd>
+							<dd class="txtOthers01"><input type="text" name="text02" value="" placeholder="" class="txtOthers01"></dd>
+							<dd class="txtOthers02"><input type="text" name="text02" value="" placeholder="" class="txtOthers01"></dd>
+							<dd class="txtOthers01">Adult</dd>
+							<dd class="txtOthers02">Children</dd>
+							<dd class="txtOthers01"><input type="text" name="text02" value="" placeholder="" class="txtOthers01"></dd>
+							<dd class="txtOthers02"><input type="text" name="text02" value="" placeholder="" class="txtOthers01"></dd>
+							<dd><input type="submit" name="submit" value="Search"></dd>
+						</dl>
+						
+						<dl>
+							<dt class="starRatingsDt">Star Rating</dt>
+							<dd class="starRatings">
+								<input type="checkbox" name="check01">
+								<ul>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+								</ul>
+								<span>1 Star</span>
+							</dd>
+							<dd class="starRatings">
+								<input type="checkbox" name="check01">
+								<ul>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+								</ul>
+								<span>2 Star</span>
+							</dd>
+							<dd class="starRatings">
+								<input type="checkbox" name="check01">
+								<ul>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+								</ul>
+								<span>3 Star</span>
+							</dd>
+							<dd class="starRatings">
+								<input type="checkbox" name="check01">
+								<ul>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+								</ul>
+								<span>4 Star</span>
+							</dd>
+							<dd class="starRatings">
+								<input type="checkbox" name="check01">
+								<ul>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+								</ul>
+								<span>5 Star</span>
+							</dd>
+						</dl>
+						
+						<dl>
+							<dt class="starRatingsDt">Price Filter</dt>
+							<dd>
+								
+							</dd>
+						</dl>
+						
+						<dl>
+							<dt class="starRatingsDt">Type</dt>
+							<dd class="starRatings">
+								<input type="checkbox" name="check01" checked="checked">
+								<span>All</span>
+							</dd>
+							<dd class="starRatings">
+								<input type="checkbox" name="check02">
+								<span>Hotel</span>
+							</dd>
+							<dd class="starRatings">
+								<input type="checkbox" name="check02">
+								<span>Resort</span>
+							</dd>
+							<dd class="starRatings">
+								<input type="checkbox" name="check03">
+								<span>Bed and Breakfast</span>
+							</dd>
+							<dd class="starRatings">
+								<input type="checkbox" name="check04">
+								<span>Appartment</span>
+							</dd>
+							<dd class="starRatings">
+								<input type="checkbox" name="check05">
+								<span>Motel</span>
+							</dd>
+						</dl>
+					</form>
+				</div>
+				<div class="hotelsSection02">
+					<div class="title02">
+						<form method="post" action="#">
+							<dl>
+								<dt>Sort by</dt>
+								<dd>
+									<select name="select01">
+										<option>Hotel name</option>
+									</select>
+								</dd>
+								<dd>
+									<select name="select02">
+										<option>Price</option>
+									</select>
+								</dd>
+								<dd>
+									<select name="select03">
+										<option>Guest Rating</option>
+									</select>
+								</dd>
+								<dd>
+									<select name="select03">
+										<option>Reviews</option>
+									</select>
+								</dd>
+								<dd>
+									<select name="select03">
+										<option>Most popular</option>
+									</select>
+								</dd>
+								<dd>
+									<input type="submit" name="submit" value="">
+								</dd>
+							</dl>
+						</form>
+					</div>
+					<ul class="hotelsSec02Content01">
+						<li>
+							<a href="#" class="contentThumbnail">
+								<div class="contentThumbnailHover">
+									<img src="common/images/contentHotelThumbnailHoverIcon02.png" width="30" height="33" alt="####">
+								</div>
+								<img src="common/images/thumbnails/hotelList01.jpg" width="258" height="192" alt="####">
+							</a>
+							<a href="#" class="title">Hotel Name Here</a>
+							<p class="price">P1,300<span>/Night</span></p>
+							<p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.  Lorem Ipsum has been Lorem Ipsum has been. dummy text.</p>
+							<div class="details">
+								<ul>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+								</ul>
+								<a class="reviews" href="">24 reviews</a>
+								<a class="more" href="#">more</a>
+							</div>
+						</li>
+						<li>
+							<a href="#" class="contentThumbnail">
+								<div class="contentThumbnailHover">
+									<img src="common/images/contentHotelThumbnailHoverIcon02.png" width="30" height="33" alt="####">
+								</div>
+								<img src="common/images/thumbnails/hotelList02.jpg" width="258" height="192" alt="####">
+							</a>
+							<a href="#" class="title">Hotel Name Here</a>
+							<p class="price">P1,300<span>/Night</span></p>
+							<p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.  Lorem Ipsum has been Lorem Ipsum has been. dummy text.</p>
+							<div class="details">
+								<ul>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+								</ul>
+								<a class="reviews" href="">24 reviews</a>
+								<a class="more" href="#">more</a>
+							</div>
+						</li>
+						<li>
+							<a href="#" class="contentThumbnail">
+								<div class="contentThumbnailHover">
+									<img src="common/images/contentHotelThumbnailHoverIcon02.png" width="30" height="33" alt="####">
+								</div>
+								<img src="common/images/thumbnails/hotelList03.jpg" width="258" height="192" alt="####">
+							</a>
+							<a href="#" class="title">Hotel Name Here</a>
+							<p class="price">P1,300<span>/Night</span></p>
+							<p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.  Lorem Ipsum has been Lorem Ipsum has been. dummy text.</p>
+							<div class="details">
+								<ul>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+								</ul>
+								<a class="reviews" href="">24 reviews</a>
+								<a class="more" href="#">more</a>
+							</div>
+						</li>
+						
+						<li>
+							<a href="#" class="contentThumbnail">
+								<div class="contentThumbnailHover">
+									<img src="common/images/contentHotelThumbnailHoverIcon02.png" width="30" height="33" alt="####">
+								</div>
+								<img src="common/images/thumbnails/hotelList01.jpg" width="258" height="192" alt="####">
+							</a>
+							<a href="#" class="title">Hotel Name Here</a>
+							<p class="price">P1,300<span>/Night</span></p>
+							<p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.  Lorem Ipsum has been Lorem Ipsum has been. dummy text.</p>
+							<div class="details">
+								<ul>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+								</ul>
+								<a class="reviews" href="">24 reviews</a>
+								<a class="more" href="#">more</a>
+							</div>
+						</li>
+						<li>
+							<a href="#" class="contentThumbnail">
+								<div class="contentThumbnailHover">
+									<img src="common/images/contentHotelThumbnailHoverIcon02.png" width="30" height="33" alt="####">
+								</div>
+								<img src="common/images/thumbnails/hotelList02.jpg" width="258" height="192" alt="####">
+							</a>
+							<a href="#" class="title">Hotel Name Here</a>
+							<p class="price">P1,300<span>/Night</span></p>
+							<p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.  Lorem Ipsum has been Lorem Ipsum has been. dummy text.</p>
+							<div class="details">
+								<ul>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+								</ul>
+								<a class="reviews" href="">24 reviews</a>
+								<a class="more" href="#">more</a>
+							</div>
+						</li>
+						<li>
+							<a href="#" class="contentThumbnail">
+								<div class="contentThumbnailHover">
+									<img src="common/images/contentHotelThumbnailHoverIcon02.png" width="30" height="33" alt="####">
+								</div>
+								<img src="common/images/thumbnails/hotelList03.jpg" width="258" height="192" alt="####">
+							</a>
+							<a href="#" class="title">Hotel Name Here</a>
+							<p class="price">P1,300<span>/Night</span></p>
+							<p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.  Lorem Ipsum has been Lorem Ipsum has been. dummy text.</p>
+							<div class="details">
+								<ul>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars01.gif" width="13" height="14" alt="####"></li>
+									<li><img src="common/images/destinationSe02BlockStars02.gif" width="13" height="14" alt="####"></li>
+								</ul>
+								<a class="reviews" href="">24 reviews</a>
+								<a class="more" href="#">more</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section><!-- .hotelsArea-->
+
+		
+		
+		<div class="advertArea">
+			<div class="wrap">
+				<ul>
+					<li>
+						<a href="#"><img src="common/images/thumbnails/advert01.jpg" width="290" height="277" class="thumbnail" alt="####"></a>
+						<div class="content">
+							<p class="head">TOP</p>
+							<p class="desc">RECOMENDED<br>RESTAURANTS</p>
+							<img src="common/images/advertAreaArrow.png" width="27" height="16" alt="####">
+						</div>
+					</li>
+					<li>
+						<a href="#"><img src="common/images/thumbnails/advert02.jpg" width="290" height="277" class="thumbnail" alt="####"></a>
+						<div class="content">
+							<p class="desc">THE WORLD'S</p>
+							<p class="head">BEST</p>
+							<p class="desc">HOTELS</p>
+							<img src="common/images/advertAreaArrow.png" width="27" height="16" alt="####">
+						</div>
+					</li>
+					<li>
+						<a href="#"><img src="common/images/thumbnails/advert03.jpg" width="290" height="278" class="thumbnail" alt="####"></a>
+						<div class="content">
+							<p class="desc">TRAVELERS</p>
+							<p class="head">TOP</p>
+							<p class="desc">BEACHES</p>
+							<img src="common/images/advertAreaArrow.png" width="27" height="16" alt="####">
+						</div>
+					</li>
+					<li>
+						<a href="#"><img src="common/images/thumbnails/advert04.jpg" width="290" height="277" class="thumbnail" alt="####"></a>
+						<div class="content">
+							<p class="desc">TOP</p>
+							<p class="head">25</p>
+							<p class="desc">DESTINATIONS</p>
+							<img src="common/images/advertAreaArrow.png" width="27" height="16" alt="####">
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div><!-- .advertArea-->
+	</main>
+	
+	<footer>
+		<section class="footerArea">
+			<div class="wrap">
+				<ul>
+					<li class="footerBlock01">
+						<h2>DISCOVER</h2>
+						<ul>
+							<li><a href="#">Safety</a></li>
+							<li><a href="#">Forums</a></li>
+							<li><a href="#">Travels Pick</a></li>
+							<li><a href="#">Latest Jobs</a></li>
+							<li><a href="#">Mobile Apps</a></li>
+							<li><a href="#">Press Release</a></li>
+							<li><a href="#">Why Choose Us</a></li>
+							<li><a href="#">Blog Post</a></li>
+							<li><a href="#">Social Connect</a></li>
+							<li><a href="#">Help Topics</a></li>
+							<li><a href="#">Policies</a></li>
+							<li><a href="#">Site Map</a></li>
+						</ul>
+					</li>
+					<li class="footerBlock02">
+						<h2>TRAVEL NEWS</h2>
+						<ul>
+							<li>
+								<a href="#"><img src="common/images/thumbnails/footerBlock02LiThumbnail.jpg" width="63" height="63" alt="####"></a>
+								<p class="title"><a href="#">Amazing Place</a></p>
+								<p class="desc">Lorem Ipsum is simply dummy text of the printing</p>
+								<p class="date">12 Nov, 2015</p>
+							</li>
+							<li>
+								<a href="#"><img src="common/images/thumbnails/footerBlock02LiThumbnail.jpg" width="63" height="63" alt="####"></a>
+								<p class="title"><a href="#">Amazing Place</a></p>
+								<p class="desc">Lorem Ipsum is simply dummy text of the printing</p>
+								<p class="date">12 Nov, 2015</p>
+							</li>
+						</ul>
+					</li>
+					<li class="footerBlock03">
+						<h2>MAILING LIST</h2>
+						<p class="desc01">Sign up for our mailing list to get latest updates and offers.</p>
+						<form method="post" action="#">
+							<input type="text" name="text" value="" placeholder="Your Email Address">
+							<input type="submit" name="submit" value="">
+						</form>
+						<p class="desc02">We respect your privacy</p>
+					</li>
+					<li class="footerBlock04">
+						<h2>ABOUT US</h2>
+						<p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+						</p>
+						<p class="contact">(075)000-00-00</p>
+						<ul>
+							<li><a href="#"><img src="common/images/footerBlockSocial01.gif" width="64" height="32" alt="####"></a></li>
+							<li><a href="#"><img src="common/images/footerBlockSocial02.gif" width="64" height="32" alt="####"></a></li>
+							<li><a href="#"><img src="common/images/footerBlockSocial03.png" width="64" height="32" alt="####"></a></li>
+							<li><a href="#"><img src="common/images/footerBlockSocial04.png" width="64" height="32" alt="####"></a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</section><!-- .footerArea-->
+		
+		<section class="footerAreaCopyright">
+			<div class="wrap">
+				<p class="footerLogo">KEVIN'S AGENCY</p>
+				<p class="cpy">&copy; Transcosmos Asia Philippines 2015</p>
+			</div>
+		</section>
+	</footer>
+</body>
+</html>
