@@ -476,6 +476,7 @@ Layer 2
 .layer-2 .img-block p {
 	display: block;
     position: absolute;
+    width: 50%;
     height: 70%;
     left: 11%;
     top: 25%;
