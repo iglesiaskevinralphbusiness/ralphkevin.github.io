@@ -455,7 +455,7 @@ Layer 2
 .layer-2 .img-block:after {
 	position: absolute;
     width: 45.1%;
-    height: 71%;
+    height: 73%;
     top: 24%;
     left: 25%;
     content: '';
@@ -476,7 +476,6 @@ Layer 2
 .layer-2 .img-block p {
 	display: block;
     position: absolute;
-    width: 50%;
     height: 70%;
     left: 11%;
     top: 25%;
@@ -915,4 +914,7 @@ footer .contact li a {
 	font-size: 12px;
 	text-decoration: none;
 	color: #fff;
+}
+footer .contact.move li a {
+	background: #ffffffbd;
 }
