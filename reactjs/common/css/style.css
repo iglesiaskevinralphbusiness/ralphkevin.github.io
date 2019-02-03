@@ -1,0 +1,178 @@
+body {
+  font-family: "Century Gothic";
+  font-size: 12px;
+  display: table;
+  width: 100%;
+}
+
+.sidebar {
+  display: table-cell;
+  width: 220px;
+  padding: 20px;
+  border-right: 1px solid #0000003d;
+}
+.sidebar ul.side-items {
+  position: fixed;
+  top: 0;
+  width: 240px;
+  height: 100%;
+  font-size: 14px;
+  overflow-y: scroll;
+}
+.sidebar ul.side-items li {
+  position: relative;
+  margin-bottom: 5px;
+}
+.sidebar ul.side-items li a {
+  text-decoration: none;
+  color: #2b7bf3;
+}
+.sidebar ul.side-items li a:active {
+  text-decoration: underline;
+}
+.sidebar ul.side-items li a:hover {
+  text-decoration: underline;
+}
+.sidebar ul.side-items li.primary {
+  padding-left: 15px;
+}
+.sidebar ul.side-items li.primary:before {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 6px;
+  height: 6px;
+  border: 1px solid #0000004f;
+  border-radius: 10px;
+  content: "";
+}
+.sidebar ul.side-items li.secondary {
+  padding-left: 30px;
+}
+.sidebar ul.side-items li.secondary:before {
+  position: absolute;
+  left: 15px;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  border-left: 1px solid #0000004f;
+  border-bottom: 1px solid #0000004f;
+  content: "";
+}
+.sidebar ul.side-items li.primary.active a {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.sidebar ul.side-items li.secondary.active a {
+  text-decoration: underline;
+}
+.content {
+  position: relative;
+  display: table-cell;
+  padding: 20px 20px 80px;
+  background: #00000014;
+}
+.footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #d6d6d6;
+  padding: 0.5px 40px;
+  text-align: right;
+}
+.footer p {
+  font-size: 11px;
+}
+.footer a {
+  color: #2b7bf3;
+  text-decoration: none;
+}
+dl {
+  position: relative;
+  margin-bottom: 30px;
+  padding: 10px;
+  border: 1px solid #0000003d;
+  background: #fff;
+}
+dl dt {
+  position: absolute;
+  padding: 0 10px;
+  color: #5c9dff;
+  top: -10px;
+  font-size: 15px;
+  background: #fff;
+}
+
+h1 {
+  background: #5c9dff;
+  margin: 5px 0 30px;
+  padding: 5px;
+  font-size: 25px;
+  text-align: center;
+  color: #fff;
+}
+h2 {
+  margin: 50px 0 10px;
+  padding-top: 5px;
+  padding-left: 40px;
+  background: url(../images/ttl_bg.png) no-repeat 0 0.2em;
+  font-size: 30px;
+}
+h2:first-child {
+  margin-top: 0;
+}
+h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+h3:before {
+  content: '';
+  display: inline-block;;
+  width: 13px;
+  height: 13px;
+  margin-right: 10px;
+  border-radius: 13px;
+  background: #5c9dff;
+}
+h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+p {
+  margin: 5px 0;
+  line-height: 1.5;
+  font-size: 14px;
+}
+.tCenter {
+  text-align: center;
+}
+.tRight {
+  text-align: right;
+}
+.imgBlock {
+  margin-bottom: 20px;
+}
+.imgBlock.full img {
+  width: 100%;
+}
+.imgBlock:last-child {
+  margin-bottom: 0;
+}
+.divBlock {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.codeBlock {
+  background: #000;
+  padding: 15px;
+  margin-bottom: 20px;
+  color: #fff;
+  font-size: 13px;
+}
+.codeBlock:last-child {
+  margin-bottom: 0;
+}
