@@ -68,6 +68,63 @@
         </div>
       </div>
       <!--/ First Content-->
+      
+      <!-- Class-->
+      <h2>Class</h2>
+      <div class="divBlock">
+        <xmp class="codeBlock">
+          class App extends React.Component {
+            render() {
+              variables here
+
+              return (
+                html codes here
+              );
+            }
+          }
+        </xmp>
+      </div>
+      <!--/ Class-->
+
+      <!-- Function-->
+      <h2>Functions</h2>
+      <div class="divBlock">
+        <h3>Arrow Function</h3>
+        <p>clearner and also automatic bind the state value to function</p>
+        <xmp class="codeBlock">
+          const functionName = () => {
+
+          }
+        </xmp>
+
+        <h3>Function Event</h3>
+        <xmp class="codeBlock">
+          handleClick = () => {
+            console.log('Clicked!')
+          }
+
+          render(){
+            return (
+              <button onClick={this.handleClick}>Click</button>
+            )
+          }
+        </xmp>
+
+        <h3>Function Event With Parameters</h3>
+        <xmp class="codeBlock">
+          handleClick = product => {
+            console.log(product)
+          }
+
+          render(){
+            const product = "Clicked!";
+            return (
+              <button onClick={() => this.handleClick(product)}>Click</button>
+            )
+          }
+        </xmp>
+      </div>
+      <!--/ Function-->
 
       <!--Arrays-->
       <h2>Arrays</h2>
@@ -224,6 +281,80 @@
 
       </div>
       <!--/ State-->
+      
+      <!-- Props-->
+      <h2>Props</h2>
+      <div class="divBlock">
+        <h3>Passing Props</h3>
+        <xmp class="codeBlock">
+          render() {
+            return (
+            <div>
+              <Product products = {this.state.products}/>
+            </div>
+            );
+          }
+          
+          
+          
+          class Product extends React.Component {
+            render() {
+              const products = this.props.products
+             
+              return (
+                
+              );
+            }
+          }
+          
+        </xmp>
+        
+        <h3>Props Validation</h3>
+        <xmp class="codeBlock">
+          import React from 'react';
+
+          class App extends React.Component {
+            render() {
+              return (
+                <div>
+                  <h3>Array: {this.props.propArray}</h3>
+                  <h3>Bool: {this.props.propBool ? "True..." : "False..."}</h3>
+                  <h3>Func: {this.props.propFunc(3)}</h3>
+                  <h3>Number: {this.props.propNumber}</h3>
+                  <h3>String: {this.props.propString}</h3>
+                  <h3>Object: {this.props.propObject.objectName1}</h3>
+                  <h3>Object: {this.props.propObject.objectName2}</h3>
+                  <h3>Object: {this.props.propObject.objectName3}</h3>
+                </div>
+              );
+            }
+          }
+
+          App.propTypes = {
+            propArray: React.PropTypes.array.isRequired,
+            propBool: React.PropTypes.bool.isRequired,
+            propFunc: React.PropTypes.func,
+            propNumber: React.PropTypes.number,
+            propString: React.PropTypes.string,
+            propObject: React.PropTypes.object
+          }
+
+          App.defaultProps = {
+            propArray: [1,2,3,4,5],
+            propBool: true,
+            propFunc: function(e){return e},
+            propNumber: 1,
+            propString: "String value...",
+
+            propObject: {
+              objectName1:"objectValue1",
+              objectName2: "objectValue2",
+              objectName3: "objectValue3"
+            }
+          }
+          export default App;
+        </xmp>
+      </div>
 
       <!-- If Statement-->
       <h2>If Statement</h2>
@@ -236,63 +367,6 @@
         </xmp>
       </div>
       <!--/ If Statement-->
-
-      <!-- Class-->
-      <h2>Class</h2>
-      <div class="divBlock">
-          <xmp class="codeBlock">
-            class App extends React.Component {
-              render() {
-                variables here
-
-                return (
-                  html codes here
-                );
-              }
-            }
-          </xmp>
-      </div>
-      <!--/ Class-->
-
-      <!-- Function-->
-      <h2>Functions</h2>
-      <div class="divBlock">
-        <h3>Arrow Function</h3>
-        <p>clearner and also automatic bind the state value to function</p>
-        <xmp class="codeBlock">
-          const functionName = () => {
-
-          }
-        </xmp>
-
-        <h3>Function Event</h3>
-        <xmp class="codeBlock">
-          handleClick = () => {
-            console.log('Clicked!')
-          }
-
-          render(){
-            return (
-              <button onClick={this.handleClick}>Click</button>
-            )
-          }
-        </xmp>
-
-        <h3>Function Event With Parameters</h3>
-        <xmp class="codeBlock">
-          handleClick = product => {
-            console.log(product)
-          }
-
-          render(){
-            const product = "Clicked!";
-            return (
-              <button onClick={() => this.handleClick(product)}>Click</button>
-            )
-          }
-        </xmp>
-      </div>
-      <!--/ Function-->
 
       <!-- Routing-->
       <h2>Routing</h2>
@@ -337,11 +411,32 @@
           }
 
           export default App;
-
         </xmp>
       </div>
       <!--/ Routing-->
-
+      
+      <!-- Find Dom Node-->
+      <h2>Find Dom Node</h2>
+      <div class="divBlock">
+        <xmp class="codeBlock">
+          class App extends React.Component {
+            findDomNodeHandler() {
+              var myDiv = document.getElementById('myDiv');
+              ReactDOM.findDOMNode(myDiv).style.color = 'green';
+            }
+            render() {
+              return (
+                <div>
+                  <button onClick = {this.findDomNodeHandler}>FIND DOME NODE</button>
+                  <div id = "myDiv">NODE</div>
+                </div>
+              );
+            }
+          }
+          export default App;
+        </xmp>
+      </div>
+      <!--/ Find Dom Node-->
 
 
       <!--/Write your content here-->
