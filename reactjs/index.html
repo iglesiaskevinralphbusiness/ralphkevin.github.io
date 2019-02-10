@@ -221,9 +221,18 @@
           <h3>Update State</h3>
           <p>Update single state value</p>
           <xmp class="codeBlock">
-            handleAgeUpdate = () = > {
-              this.setState({ age: this.state.age + 1 });
-            }
+            const data = [{id: 1, name: "kevin"}];
+            const name = "ralph";
+
+            <button onClick={() => this.handleUpdate(data,  "name")}>
+
+            handleUpdate = (data,  name) => {
+              const datas = [...this.state.datas];
+              const index = datas.indexOf(data);
+              datas[index].name = name;
+
+              this.setState({ datas: datas });
+            };
           </xmp>
 
           <h3>Call the state inside the html</h3>
