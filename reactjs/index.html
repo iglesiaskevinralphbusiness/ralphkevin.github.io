@@ -202,7 +202,7 @@
       <!-- State-->
       <h2>State</h2>
       <div class="divBlock">
-          <h3>Set State</h3>
+          <h3>Setup State</h3>
           <xmp class="codeBlock">
             import products from "./data/products";
             import sortList from "./data/sortList";
@@ -218,6 +218,20 @@
               }
             }
           </xmp>
+        
+          <h3>Add State</h3>
+          <xmp class="codeBlock">
+            handleAdd = () => {
+              const data = {
+                id: id,
+                value: "Kevin"
+              };
+            
+              const datas = [...this.state.datas, data];
+              this.setState({ datas });
+            }
+          </xmp>
+        
           <h3>Update State</h3>
           <p>Update single state value</p>
           <xmp class="codeBlock">
