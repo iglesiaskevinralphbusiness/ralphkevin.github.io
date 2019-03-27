@@ -1,0 +1,751 @@
+<html>
+
+<head>
+	<title>Template</title>
+	<link href="common/css/reset.css" rel="stylesheet" />
+	<link href="common/css/style.css" rel="stylesheet" />
+	<link href="common/css/media.css" rel="stylesheet" />
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+</head>
+
+<body>
+<div class="content" id="top">
+<!--Write your content here-->
+<h1>Wordpress Documentation</h1>
+
+<h2>Header and Footer</h2>
+<div class="divBlock">
+	<h3>To include header footer to Theme.</h3>
+	<xmp class="codeBlock">
+		<?php
+			get_header();
+		?>
+		<?php
+			get_footer();
+		?>
+	</xmp>
+
+	<h3>Content of header.php</h3>
+	<xmp class="codeBlock">
+		<!DOCTYPE html>
+		<html <?php language_attributes(); ?>>
+		<head>
+			<meta charset="<?php bloginfo('charset'); ?>">
+			<meta name="viewport" content="width=device-width">
+			<title><?php bloginfo('name'); ?></title>
+			<?php wp_head(); ?>
+		</head>
+		<body  <?php body_class(); ?>>
+
+		<header>
+			<h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
+			<h5><?php bloginfo('description'); ?>
+				</header>
+
+	</xmp>
+		
+	<h3>Content of footer.php</h3>
+	<xmp class="codeBlock">
+		<footer>
+			<p><?php bloginfo('name'); ?> - &copy; 2018
+		</footer>
+
+		<?php wp_footer(); ?>
+		</body>
+		</html>
+	</xmp>
+	
+	<h3>Import css to  header</h3>
+	<p>Edit the functions.php - The css will be imported using wp_head() to the page. </p>
+	<xmp class="codeBlock">
+		<?php
+			function learningwordpress_resources() {
+				wp_enqueue_style('style', get_stylesheet_uri());
+			}
+			add_action('wp_enqueue_scripts', 'learningwordpress_resources');
+		?>
+	</xmp>
+</div>
+
+<h2>Navigation</h2>
+<div class="divBlock">
+	<h3>To display menu in theme</h3>
+	<p>primary and footer are user define</p>
+	<p>Header</p>
+	<xmp class="codeBlock">
+		<nav>
+			<ul>
+				<?php
+					$args = array(
+						'theme_location' => 'primary'
+					);
+
+					wp_nav_menu($args);
+				?>
+			</ul>
+		</nav>
+
+	</xmp>
+	
+	<p>Footer</p>
+	<xmp class="codeBlock">
+		<nav>
+			<ul>
+				<?php
+					$args = array(
+						'theme_location' => 'footer'
+					);
+
+					wp_nav_menu($args);
+				?>
+			</ul>
+		</nav>
+	</xmp>
+	
+	<h3>Create List of Menu to Admin</h3>
+	<p>Create display location to functions.php</p>
+	<xmp class="codeBlock">
+		register_nav_menus(array(
+			'primary' => __('Primary Menus'),
+			'footer' => __('Footer Menus'),
+		));
+	</xmp>
+	
+	<p>Create list of menus in admin. Set display location as checkbox to where it will display the created list to the theme.</p>
+	<div class="imgBlock">
+		<img src="images/img01.jpg" alt="">
+	</div>
+	
+	<h3>Add navigation active css</h3>
+	<p>To add css active to the current menu item, use .current-menu-item</p>
+	<xmp class="codeBlock">
+		nav ul li.current-menu-item a
+	</xmp>
+	<p>to add css active if the child page is selected</p>
+	<xmp class="codeBlock">
+		nav ul li.current-page-ancestor a
+	</xmp>
+</div>
+	
+
+<h2>Home</h2>
+<div class="divBlock">
+	<p>Create a page with title HOME and publish. Also create BLOG and publish.</p>
+	<div class="imgBlock">
+		<img src="images/img18.jpg" alt="">
+	</div>
+	<p>In the setting > reading</p>
+	<p>1.)	change your Homepage value to Home. For the first load, your created page will automatically open as your home page.</p>
+	<p>2.)	change Post page value to Blog. The index.html will become as the Blog page.</p>
+	<div class="imgBlock">
+		<img src="images/img19.jpg" alt="">
+	</div>
+	
+	<p>Create a file <span class="highlight">front-page.php</span> , when the home page is open, the wordpress will automatically look for this file and load if it is existed.</p>
+	<p>Now you can modify the <span class="highlight">fron-page.php</span> into your own code.</p>
+	<xmp class="codeBlock">
+	<?php
+		if(have_posts()):
+			while (have_posts()) : the_post(); 
+				the_permalink();
+				the_title();
+				the_content();
+			endwhile;
+		else :
+			echo "<p>Page not found!</p>";
+		endif;
+	?>
+	</xmp>
+</div>
+	
+	
+	
+<h2>Post</h2>
+<div class="divBlock">
+	<h3>Display default post</h3>
+	<xmp class="codeBlock">
+	<?php
+		if(have_posts()):
+			while (have_posts()) : the_post(); 
+				the_permalink();
+				the_title();
+				the_content();
+			endwhile;
+		else :
+			echo "<p>No post found!</p>";
+		endif;
+	?>
+	</xmp>
+	
+	<h3>Date</h3>
+	<xmp class="codeBlock">
+		<?php the_time('m/d/y h:i:s a'); ?>
+	</xmp>
+	
+	<h3>Author</h3>
+	<xmp class="codeBlock">
+		<?php the_author(); ?>
+	</xmp>
+	
+	<h3>Anchor Link</h3>
+	<xmp class="codeBlock">
+		<a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">
+	</xmp>
+	
+	<h3>Category</h3>
+	<p>insert this code inside the while loop of post</p>
+	<xmp class="codeBlock">
+		<?php
+			$categories = get_the_category();
+			$separator = ", ";
+			$output = "";
+			if($categories){
+				foreach($categories as $category) {
+					$output .= '<a href="'.get_category_link($category->term_id).'">'.$category->cat_name.'</a>'.$separator;
+				}
+				echo trim($output, $separator);
+			}
+		?>
+	</xmp>
+		
+	<h3>Excerpt</h3>
+	<div>
+		<h4>First Way</h4>
+		<p>Using readmore button tag at wp post panel, automatical the page will add link for readmore.</p>
+		<div class="imgBlock">
+			<img src="images/img02.jpg" alt="">
+		</div>
+		<p>And add this code to page.</p>
+		<xmp class="codeBlock">
+			the_content('Readmore &raquo;');
+		</xmp>
+	</div>
+	<br><br>
+	<div>
+		<h4>Second Way</h4>
+		<p>Using excerpt tag to except all post within the page.</p>
+		<p>Activate the except features of wordpress.</p>
+		<div class="imgBlock">
+			<img src="images/img03.jpg" alt="">
+		</div>
+		
+		<p>After activating, a new field will show in the Add post page. That's the place where you put your short description in every post.</p>
+		<div class="imgBlock">
+			<img src="images/img04.jpg" alt="">
+		</div>
+		
+		<p>Change your code to your page from the_content() to the_excerpt</p>
+		<xmp class="codeBlock">
+			the_excerpt();
+		</xmp>
+		
+		<h4>Limit characters in except</h4>
+		<p>To limit the maximum char the_excerpt() can display, add this code to <span class="highlight">function.php</span></p>
+		<xmp class="codeBlock">
+			function custom_excerpt_length(){
+				return 25;
+			}
+			add_filter('excerpt_length','custom_excerpt_length');
+		</xmp>
+		
+		<p>To display excerpt text only if it has. And if not, display the full content.</p>
+		<xmp class="codeBlock">
+			<?php if($post->post_excerpt){ ?>
+				<p><?php echo get_the_excerpt(); ?></p>
+				<p><a href="<?php the_permalink(); ?>">Read more &raquo;</a></p>
+			<?php } else { ?>
+				<p><?php the_content(); ?></p>
+			<?php }  ?>
+		</xmp>
+	</div>
+		
+	<br><br>
+	<h3>Image</h3>
+	<p>To add image in post, add this code to <span class="highlight">function.php</span></p>
+	<xmp class="codeBlock">
+		function learningwordpress_setup(){
+			add_theme_support('post-thumbnails');
+		}
+		add_action('after_setup_theme','learningwordpress_setup');
+	</xmp>
+	<p>After adding the code, a new field will show in the Add post page.</p>
+	<div class="imgBlock">
+		<img src="images/img05.jpg" alt="">
+	</div>
+	<p>To display the image in page</p>
+	<xmp class="codeBlock">
+		<?php the_post_thumbnail();?>
+	</xmp>
+		
+	<h3>Image Aspect Ratio</h3>
+	<p>Used to crop and add size limit of the image to be shown in page.</p>
+	<p>Format: Add_image_size(‘custom-name’,  width, height, crop);</p>
+	<p>Add this code to <span class="highlight">function.php</span></p>
+	<xmp class="codeBlock">
+		function learningwordpress_setup(){
+			add_theme_support('post-thumbnails');
+			add_image_size('small-thumbnail', 180, 120, true); //width, height, croping
+			add_image_size('banner-image', 920, 210, array('left','top')); //crop position left top
+		}
+		add_action('after_setup_theme','learningwordpress_setup'); 
+	</xmp>
+	<p>To display the image to page</p>
+	<xmp class="codeBlock">
+		<?php the_post_thumbnail('small-thumbnail');?>
+	</xmp>
+	<p>To check if post have image</p>
+	<xmp class="codeBlock">
+		if ( has_post_thumbnail() ){ }
+	</xmp>
+</div>
+	
+<h2>Single Post Page</h2>
+<div class="divBlock">
+	<p><span class="highlight">Single.php</span> – page is used when you click readmore/permalink at post. Display the single post page.</p>
+	<p>Same code with post</p>
+	<xmp class="codeBlock">
+	<?php
+		if(have_posts()):
+			while (have_posts()) : the_post(); 
+				the_permalink();
+				the_title();
+				the_content();
+			endwhile;
+		else :
+			echo "<p>No post found!</p>";
+		endif;
+	?>
+	</xmp>
+</div>
+	
+
+<h2>Get Template Part</h2>
+<div class="divBlock">
+	<p>Use to repeat code, like post article.</p>
+	<p>get template part is like a function or include.</p>
+	<br>
+	<p>Example: Create a file name <span class="highlight">content-post.php</span> with code like this.</p>
+	<xmp class="codeBlock">
+	<?php
+		the_permalink();
+		the_title();
+		the_content();
+	?>
+	</xmp>
+	<p>To call this <span class="highlight">content-post.php</span></p>
+	<xmp class="codeBlock">
+	if(have_posts()):
+		while (have_posts()) : the_post(); 
+
+		get_template_part('content-post');
+
+		endwhile;
+		else :
+		echo "<p>No post found!</p>";
+	endif;
+	</xmp>
+</div>
+	
+
+<h2>Post Format</h2>
+<div class="divBlock">
+	<p>Post format – is formatting single post with different layout. Ex you loop post have single post that have video or a gallery images, or absolute link.</p>
+	<p class="tRed">Note: you should familiar on get template part method, if not please see the Get Template Part section.</p>
+	<br>
+	<p class="tBold">Standard list of 9 post format:</strong></p>
+	<ul class="list">
+		<li>Aside</li>
+		<li>Gallery</li>
+		<li>Link</li>
+		<li>Image</li>
+		<li>Quote</li>
+		<li>Status</li>
+		<li>Video</li>
+		<li>Audio</li>
+		<li>Chat</li>
+	</ul>
+	<br>
+	<p class="tBold">Step 1: enable the post format by adding this to <span class="highlight">functions.php</span></p>
+	<xmp class="codeBlock">
+	function learningwordpress_setup(){
+
+	//add post format support
+	add_theme_support('post-formats',array('aside','gallery','link'));
+	}
+	add_action('after_setup_theme','learningwordpress_setup');
+	</xmp>
+	<p>After saving, this post format will show in add new post in admin</p>
+	<div class="imgBlock">
+		<img src="images/img09.jpg" alt="">
+	</div>
+	<p class="tBold">Step 2: to use the post format. Example you created aside post.</p>
+	<xmp class="codeBlock">get_template_part('content-post', get_post_format());</xmp>
+	<p>This code will automatically get the format of post either general(default), aside, gallery, link, ect by using the slug of page.</p>
+	<br>
+	<p>Example create a page of <span class="highlight">content-post-aside.php</span></p>
+	<xmp class="codeBlock">
+	<article class="post post-aside">
+		<p class="mini-meta"><?php the_author(); ?> @ <?php the_time('F j, Y'); ?></p>
+		<?php the_content(); ?>
+	</article>
+	</xmp>
+	<p>Sample Output:</p>
+	<div class="imgBlock">
+		<img src="images/img10.jpg" alt="">
+	</div>
+	<div class="imgBlock">
+		<img src="images/img11.jpg" alt="">
+	</div>
+	
+	<br>
+	<p>Example create a page of <span class="highlight">content-post-aside.php</span></p>
+	<xmp class="codeBlock">
+	<article class="post post-link">
+	<a href="<?php echo get_the_content(); ?>" target="_blank"><?php the_title(); ?></a>
+	</article>
+	</xmp>
+	<p>Instead of using the_content(), better use echo get_the_content() to avoid text format entered in the admin like font size, underline, color, ect.</p>
+	<p>Sample Output:</p>
+	<div class="imgBlock">
+		<img src="images/img12.jpg" alt="">
+	</div>
+	<div class="imgBlock">
+		<img src="images/img13.jpg" alt="">
+	</div>
+	
+	<br>
+	<p>Example create a page of <span class="highlight">content-post-gallery.php</span></p>
+	<xmp class="codeBlock">
+	<article class="post post-gallery">
+		<h2><?php the_title(); ?></h2>
+		<?php the_content(); ?>
+	</article>
+	</xmp>
+	<p>How to add images:</p>
+	<div class="imgBlock">
+		<img src="images/img14.jpg" alt="">
+	</div>
+	<div class="imgBlock">
+		<img src="images/img15.jpg" alt="">
+	</div>
+	<div class="imgBlock">
+		<img src="images/img16.jpg" alt="">
+	</div>
+	<p>Sample Output:</p>
+	<div class="imgBlock">
+		<img src="images/img17.jpg" alt="">
+	</div>
+</div>
+	
+<h2>WP Query</h2>
+<div class="divBlock">
+	<p>Wp_query used as parameter of post to determine what kind or category of post.</p>
+	<p>To set the parameter. Set this code before loop.</p>
+	<xmp class="codeBlock">
+		$posts = new WP_Query('cat=4&post_per_page=2&order_by=title&order=ASC');
+	</xmp>
+	<ul class="list">
+		<li>cat – category of post. You can get category id by opening the category in admin page and look on url parameter ID.</li>
+		<li>Post_per_page – maximum number of post will be shown on page.</li>
+		<li>Order_by – title, rand</li>
+		<li>Order – ASC or DESC</li>
+	</ul>
+	<p>And set this code to end of the loop.</p>
+	<xmp class="codeBlock">
+		wp_reset_postdata();
+	</xmp>
+	<p>To use the parameter.</p>
+	<xmp class="codeBlock">
+	<?php
+		if ($posts->have_posts()) :
+			while ($posts->have_posts()) : $posts->the_post();
+	?>
+			<h2><?php the_title(); ?></h2>
+
+	<?php
+			endwhile;
+		else :
+			echo "<p>No content found!</p>";
+		endif;
+	?>
+	</xmp>
+</div>
+	
+	
+
+<h2>Pagination</h2>
+<div class="divBlock">
+	<p>First is limit the post to display by adjusting Settings > Reading > Blog pages show at most</p>
+	<div class="imgBlock">
+		<img src="images/img20.jpg" alt="">
+	</div>
+	<p>OR you can use WP_Query to limit the page per post.</p>
+	<xmp class="codeBlock">
+		$posts = new WP_Query('posts_per_page=2');
+	</xmp>
+	<h3>To display pagination on search result and blog page.</h3>
+	<p>This will not work on slug page or custom page because the next is for next page not next post.</p>
+	<p>paginate_links();</p>
+	<xmp class="codeBlock">
+	if(have_posts()):
+		while (have_posts()) : the_post(); 
+			…
+		endwhile;
+		echo paginate_links();
+	</xmp>
+	<br>
+	<h3>To display pagination on post inside custom page. Use get_query_var</h3>
+	<xmp class="codeBlock">
+		<?php
+			$paged = get_query_var('paged'); //most pages
+			$page = get_query_var('page');   //statis front page
+
+			$posts = new WP_Query(array(
+				'category_name' => 'about',
+				'posts_per_page' => '2',
+				'paged' => $paged,
+				'page' => $page,
+			));
+		
+			if($posts->have_posts()):
+				while ($posts->have_posts()) : $posts->the_post();
+		?>
+					<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+					<?php
+				endwhile;
+
+				echo paginate_links(array(
+					'total' => $posts->max_num_pages
+				));
+
+			else :
+				echo "<p>No post found!</p>";
+			endif;
+		?>
+	</xmp>
+</div>
+
+	
+<h2>Page</h2>
+<div class="divBlock">
+	<p><span class="highlight">Page.php</span> – default page display of pages.</p>
+	<p>Same code with post</p>
+	<xmp class="codeBlock">
+		<?php
+			if(have_posts()):
+				while (have_posts()) : the_post(); 
+					the_permalink();
+					the_title();
+					the_content();
+				endwhile;
+			else :
+				echo "<p>Page not found!</p>";
+			endif;
+		?>
+	</xmp>
+	
+	<p>Display pages</p>
+	<xmp class="codeBlock">
+		wp_list_pages();
+	</xmp>
+	
+	<h3>Conditional Logic – if (is_page())</h3>
+	<p>Template Page with matching by Slug or ID</p>
+	<p>• <span class="highlight">Page-[slug-name].php</span> – example page-portfolio.php - where portfolio is the slug. The portfolio page automaticaly render the page-portfolio.php</p>
+	<p>• <span class="highlight">Page-[page-id].php</span></p>
+	<xmp class="codeBlock">
+	<?php
+		if(is_page(14)){
+
+		}
+		if(is_page('portfolio')){
+
+		}
+	?>
+	</xmp>
+</div>
+	
+	
+<h2>Custom Template</h2>
+<div class="divBlock">
+	<p><span class="highlight">Any-page-name.php</span> - you can use any filename just declare the tag /* Template Name: Layout name here */ as comment inside the first line of the page.</p>
+	<xmp class="codeBlock">
+	< ?php
+		/*
+		Template Name: Layout name here
+		*/
+
+		get_header();
+	</xmp>
+</div>
+	
+
+<h2>Archive Page</h2>
+<div class="divBlock">
+	<p><span class="highlight">Archive.php</span> -  page to display the all post of specific category, author, date, month, day.</p>
+	<p>To view use url like</p>
+	<div class="imgBlock">
+		<img src="images/img06.jpg" alt="">
+	</div>
+	<div class="imgBlock">
+		<img src="images/img07.jpg" alt="">
+	</div>
+	<br>
+	<p>Code same as default post</p>
+	<xmp class="codeBlock">
+	?php
+		if(have_posts()):
+			while (have_posts()) : the_post(); 
+				//code here
+			endwhile;
+		else :
+			echo "<p>No post found!</p>";
+		endif;
+	?>
+	</xmp>
+	<br>
+	<p>To add header title if page is category, author, tag, month, day or year</p>
+	<xmp class="codeBlock">
+	<h2>
+		<?php
+			if(is_category()){
+				single_cat_title();
+			}
+			elseif(is_tag()){
+				single_tag_title();
+			}
+			elseif(is_author()){
+				the_post();
+				echo 'Author Archives:'.get_the_author();
+			rewind_posts();
+			}
+			elseif(is_day()){
+				echo 'Daily Archives:'.get_the_date();
+			}
+			elseif(is_month()){
+				echo 'Monthly Archives:'.get_the_date('F Y');
+			}
+			elseif(is_year()){
+				echo 'Year Archives:'.get_the_date('Y');
+			}
+			else {
+				echo 'Archives';
+			}
+		?>
+	</h2>
+	</xmp>
+</div>
+	
+<h2>Search</h2>
+<div class="divBlock">
+	<h3>Default Form</h3>
+	<p>Code for page (automatically create search form)</p>
+	<xmp class="codeBlock">
+	<?php get_search_form(); ?>
+	</xmp>
+	<p>Form will show to the page like this.</p>
+	<div class="imgBlock">
+		<img src="images/img08.jpg" alt="">
+	</div>
+	
+	<h3>Customize Form</h3>
+	<p>To customize the search form default code, create a file <span class="highlight">searchform.php</span> add enter this code. This form will loaded by page  when you use get_search_form() tag.</p>
+	<xmp class="codeBlock">
+	<form role="search" method="get" id="searchform" action="<?phg echo home_url('/');  ?>">
+		<div>
+			<label class="screen-reader-text" for="s">Search:</label>
+			<input type="text" value="" name="s" id="s" />
+			<input type="submit" id="searchsubmit" value="Search" />
+		</div>
+	</form>
+	</xmp>
+	
+	<h3>Search result</h3>
+	<p>To output the search results, create a file <span class="highlight">search.php</span></p>
+	<p>Use the_search_query() to get the value of search.</p>
+	<xmp class="codeBlock">
+	<?php
+		if(have_posts()):
+	?>
+		<h2>Search results for <?php the_search_query(); ?></h2>
+		<?php
+
+			while (have_posts()) : the_post();
+				the_permalink();
+				the_title();
+				the_excerpt();
+			endwhile;
+			else :
+				echo "<p>No post found!</p>";
+		endif;
+	?>
+	</xmp>
+	
+	<p>To add conditional if page is on search or not</p>
+	<xmp class="codeBlock">
+		if(is_search()){
+		
+		}
+	</xmp>
+</div>
+	
+	
+
+	
+
+	
+	
+<h2>Custom Functions</h2>
+<div class="divBlock">
+	<h3>Get Parent ID</h3>
+	<p>Custom function to get the parent id of the child page / code put in <span class="highlight">functions.php</span></p>
+	<xmp class="codeBlock">
+	function get_top_ancestor_id() {
+		global $post;
+
+		if($post->post_parent) {
+			$ancestor = array_reverse(get_post_ancestors($post->ID));
+			return $ancestor[0];
+		}
+		return $post->ID;
+	}
+	</xmp>
+	
+	<p>To use is like this</p>
+	<xmp class="codeBlock">
+	$args = array(
+		'child_of' => get_top_ancestor_id(),
+		'title_li' => ''
+	);
+
+	wp_list_pages($args);
+	</xmp>
+	or
+	<xmp class="codeBlock">
+	<?php  echo get_the_title(get_top_ancestor_id()); ?>
+	</xmp>
+	
+	<h3>Check if page have parent – return number of parent</h3>
+	<xmp class="codeBlock">
+	function has_children(){
+		global $post;
+
+		$pages = get_pages('child_of='.$post->ID);
+		return count($pages);
+	}
+	</xmp>
+
+	
+<!--/Write your content here-->
+</div>
+	
+	
+<p class="goTop"><a href="#top">TOP</a></p>
+</body>
+
+<script type="text/javascript" src="common/js/jquery.js"></script>
+<script type="text/javascript" src="common/js/script.js"></script>
+<script type="text/javascript" src="common/js/smooth_scrolling.js"></script>
+
+</html>
