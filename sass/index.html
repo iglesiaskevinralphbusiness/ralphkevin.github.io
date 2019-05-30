@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Sass Document</title>
+	<title>Sass</title>
 	<link href="common/css/reset.css" rel="stylesheet" />
 	<link href="common/css/style.css" rel="stylesheet" />
 	<link href="common/css/media.css" rel="stylesheet" />
@@ -19,8 +19,7 @@
 	
 <h2>Installation</h2>
 <div class="divBlock">
-	<p>Download <a href="https://prepros.io/" target="_blank">Prepros</a></p>
-	<iframe src="https://www.youtube.com/embed/b0d--jixRwg?list=PL4cUxeGkcC9iEwigam3gTjU_7IA3W2WZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<p>Download <a href="https://prepros.io/" target="_blank">prepros</a></p>
 </div>
 	
 	
@@ -64,6 +63,8 @@
 	<p>Syntax</p>
 	<pre>
 	<code class="language-css">.add-some {
+		font-size: 12px;
+		
 		&-red {
 			color: red;
 		}
@@ -72,7 +73,10 @@
 	
 	<p>Results</p>
 	<pre>
-	<code class="language-css">.add-some-red {
+	<code class="language-css">.add-some {
+		font-size: 12px;
+	}
+	.add-some .add-some-red {
 		color: red;
 	}</code>
 	</pre>
@@ -166,6 +170,66 @@
 	}</code>
 	</pre>
 </div>
+	
+	
+<h2>Colour</h2>
+<div class="divBlock">
+	<p>Built in functions of sass, <br>example: <span class="highlight">lighten(color,opacity)</span></p>
+	<pre>
+	<code class="language-css">a {
+		background: #032f3e;
+		&:hover {
+			background: lighten(#032f3e, 6)
+		}
+	}</code>
+	</pre>
+	<p>List of built-in functions <a href="https://sass-lang.com/documentation/functions#darken-instance_method" target="_blank">here</a></p>
+</div>
+
+<h2>Media Queries</h2>
+<div class="divBlock">
+	<pre>
+	<code class="language-css">@mixin mQ($arg...){
+		@if length($arg) == 1{
+			@media only screen and (min-width: nth($arg, 1)){
+				@content;
+			}
+		}
+		@if length($arg) == 2{
+			@media only screen and (min-width: nth($arg, 1)) and (max-width: nth($arg, 2)){
+				@content;
+			}
+		}
+	}</code>
+	</pre>
+	
+	<pre>
+	<code class="language-css">li {
+		float: left;
+		@include mQ(768px,991px){   /* @media screen and (min-width: 768px) and (max-width: 991px) */
+			float: none;
+		}
+		@include mQ(992px){          /* @media screen and (min-width: 992px) */
+			float: none;
+		}
+	}</code>
+	</pre>
+</div>
+	
+<h2>Media Breakpoints</h2>
+<div class="divBlock">
+	<pre>
+	<code class="language-css">@media only screen and (min-width: 320px) and (max-width: 479px){ ... }
+
+	@media only screen and (min-width: 480px) and (max-width: 767px){ ... }
+
+	@media only screen and (min-width: 768px) and (max-width: 991px){ ... }
+
+	@media only screen and (min-width: 992px){ ... }</code>
+	</pre>
+</div>
+
+	
 	
 	
 <p class="goTop"><a href="#top">TOP</a></p>
