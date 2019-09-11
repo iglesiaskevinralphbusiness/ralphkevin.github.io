@@ -34,7 +34,7 @@
 	<h3>Generate using CLI</h3>
 	<xmp class="codeBlock">ng generate component users</xmp>
 
-	<h3>Calling Component</h3>
+	<h3>Implementation Component</h3>
 	<div class="divBlock">
 		<h4>IN TS (users/users.component.ts)</h4>
 		<pre><code class="language-javascript">@Component({
@@ -44,7 +44,75 @@
 		<h4>IN HTML (any html)</h4>
 		<pre><code class="language-html">&lt;app-new-cmp>&lt;/app-new-cmp></code></pre>
 	</div>
+
+	<h3>Sample Componenting Modules</h3>
+	<div class="divBlock">
+		<p>Let's say we have the /includes folder contained generated components using CLI</p>
+		<ul>
+			<li>/header/  --> selector: 'app-header'</li>
+			<li>/sidebar/ --> selector: 'app-sidebar'</li>
+			<li>/footer/  --> selector: 'app-footer'</li>
+		</ul>
+		<div class="divBlock">
+			<h4>IN HTML (app.component.html)</h4>
+			<pre><code class="language-html">
+&lt;div>
+	&lt;header>
+		&lt;app-header>&lt;/app-header>
+	&lt;/header>
+	&lt;main>
+		&lt;app-sidebar>&lt;/app-sidebar>
+		&lt;div id="content">
+			&lt;router-outlet>&lt;/router-outlet> /* This is use for routing, always add this */
+		&lt;/div>
+	&lt;/main>
+	&lt;footer>
+		&lt;app-footer>&lt;/app-footer>
+	&lt;/footer>
+&lt;/div>
+			</code></pre>
+		</div>
+	</div>
+
+	<h3>Sample Sidebar with active state</h3>
+	<div class="divBlock">
+
+	</div>
+
 </div>
+
+
+<h2>Modules</h2>
+<div class="divBlock">
+	<h3>Generate using CLI</h3>
+	<xmp class="codeBlock">ng g module student</xmp>
+	
+	<h3>Generate Components inside Module using CLI</h3>
+	<xmp class="codeBlock">ng g c student/student
+ng g c student/student-list
+ng g c student/student-detail</xmp>
+
+	<h3>Import Module</h3>
+	<p>import this student.module.ts file inside the app.module.ts file. <br>So, all of our student components are registered to the angular application.</p>
+	<div class="divBlock">
+		<h4>IN TS (app.module.ts)</h4>
+		<pre><code class="language-javascript">...
+import { StudentModule } from './student/student.module';
+
+@NgModule({
+	...
+	imports: [
+		...
+		StudentModule
+	],
+	...
+})
+
+		</code></pre>
+	</div>
+</div>
+
+
 
 <h2>Binding Data</h2>
 <div class="divBlock">
@@ -133,6 +201,7 @@
 
 <h2>Routing</h2>
 <div class="divBlock">
+	<h3>Main Routing</h3>
 	<div class="divBlock">
 		<h4>IN HTML</h4>
 		<pre><code class="language-html">&lt;a routerLink="posts"></select></code></pre>
@@ -159,6 +228,37 @@ const routes: Routes = [
 	},
 ];</code></pre>
 	</div>
+
+	<h3>Sub Routing / Module Routing</h3>
+	<div class="divBlock">
+		<h4>IN TS (app/student/student-routing.module.ts</h4>
+		<div class="divBlock">
+			<pre><code class="language-javascript">...
+import { StudentComponent } from './student/student.component';
+import { StudentListComponent } from './student-list/student-list.component';
+import { StudentDetailComponent } from './student-detail/student-detail.component';
+
+const routes: Routes = [
+    {
+        path: 'student',
+        component: StudentComponent,
+        children: [
+            {
+                path: 'list',
+                component: StudentListComponent
+            },
+            {
+                path: 'detail',
+                component: StudentDetailComponent
+            }
+        ]
+    }
+];
+			</code></pre>
+		</div>
+	</div>
+
+
 </div>
 
 
@@ -267,8 +367,22 @@ getUser(userId) {
 		  }
 	}
 	</code></pre>
-		</div>
+	</div>
 
+	<h3>With Headers</h3>
+	<div class="divBlock">
+		<h4>IN TS - Request (data.service.ts)</h4>
+			<pre><code class="language-javascript">...
+getEmployeeList() {
+	return this.http.get('https://jsonplaceholder.typicode.com/sample/',{ 
+		headers: this.requestHeader()
+	});
+}
+private requestHeader() {
+	const headers = new HttpHeaders().set('Authorization', 'D86DC6E60B0632E30F2A78ABE922C238E913DD5C74F76DF6DC935F1EC73A5DF6');
+	return headers;
+}</code></pre>
+	</div>
 
 </div>
 
