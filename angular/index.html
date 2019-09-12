@@ -14,7 +14,7 @@
 <body>
 <div class="content" id="top">
 <!--Write your content here-->
-<h1>Web Socket</h1>
+<h1>Angular</h1>
 
 	
 <h2>Installation</h2>
@@ -27,6 +27,51 @@
 	<p><b>To run the app: </b> ng serve</p>
 	<p><b>To run the app with port: </b>ng serve --port 4205</p>
 </div>
+
+
+<h2>Folder Structuring Tips</h2>
+<div class="divBlock">
+<pre>
+|-- app
+   |-- modules
+      |-- home
+         |-- [+] components
+         |-- [+] pages
+         |-- home-routing.module.ts
+         |-- home.module.ts
+      |-- users
+         |-- [+] components
+         |-- [+] pages
+         |-- users-routing.module.ts
+         |-- users.module.ts
+   |-- core
+      |-- [+] authentication
+      |-- [+] footer
+      |-- [+] guards
+      |-- [+] http
+      |-- [+] interceptors
+      |-- [+] mocks
+      |-- [+] services
+      |-- [+] header
+      |-- core.module.ts
+      |-- ensureModuleLoadedOnceGuard.ts
+      |-- logger.service.ts
+   |-- shared
+      |-- [+] components
+      |-- [+] directives
+      |-- [+] pipes
+      |-- [+] models
+   |-- [+] configs
+
+|-- assets
+   |-- scss
+      |-- [+] partials
+      |-- _base.scss
+      |-- styles.scss
+</pre>
+
+</div>
+
 	
 	
 <h2>Component</h2>
@@ -387,6 +432,35 @@ private requestHeader() {
 </div>
 
 
+<h2>Importing data as TS file</h2>
+<div class="divBlock">
+	<div class="divBlock">
+		<h4>CREATE TS</h4>
+		<p>guest-settings.ts</p>
+		<pre><code class="language-javascript">export let settings = {
+	pager: {
+		perPage: 20
+	},
+	columns: {
+		firstName: { title: 'FIRSTNAME', filter: false },
+		lastName: { title: 'LASTNAME', filter: false },
+		mobilePhone: { title: 'PHONE', filter: false },
+		email: { title: 'EMAIL', filter: false },
+	},
+	noDataMessage: 'No data to display',77
+};
+		</code></pre>
+	</div>
+	<div class="divBlock">
+		<h4>IMPORT TS</h4>
+		<pre><code class="language-javascript">...
+import * as tableData from './guest-settings';
+...
+export class NameComponent implements OnInit {
+	settings: any = tableData.settings;
+		</code></pre>
+	</div>
+</div>
 
 
 	
