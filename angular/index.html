@@ -484,7 +484,36 @@ export class NameComponent implements OnInit {
 	<a href="https://www.javaguides.net/2019/02/angular-6-crud-app-example.html" target="_blank">Click Here</a>
 </div>
 
-
+<h2>Angular Bootstrap</h2>
+<div class="divBlock">
+	<h3>CLI</h3>
+	<div class="divBlock">
+		<pre><xmp class="codeBlock">npm install --save @ng-bootstrap/ng-bootstrap
+	npm install bootstrap@4.0.0-alpha.6</xmp></pre>
+</div>
+		
+	<h3>Setup</h3>
+	<div class="divBlock">
+		<h4>IN MODULE (app.module.ts)</h4>
+		<pre><code class="language-javascript">...
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+...
+@NgModule({
+	imports: [
+		...
+		FormsModule,
+		ReactiveFormsModule,
+		...
+	]
+})</code></pre>
+		<p>Then resart the ng serve or add this @import <span class="highlight">"~bootstrap/dist/css/bootstrap.css";</span> to <span class="highlight">style.css</span></p>
+	</div>
+	
+	<h3>Components List</h3>
+	<div class="divBlock">
+		<a href="https://ng-bootstrap.github.io/#/components/buttons/examples">Ng Bootstrap</a>
+	</div>
+</div>
 	
 	
 <p class="goTop"><a href="#top">TOP</a></p>
