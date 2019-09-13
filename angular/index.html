@@ -33,6 +33,10 @@
 <div class="divBlock">
 <pre>
 |-- app
+   |-- includes
+	  |-- [+] footer
+	  |-- [+] header
+	  |-- [+] sidebar
    |-- modules
       |-- home
          |-- [+] components
@@ -41,18 +45,18 @@
          |-- home.module.ts
       |-- users
          |-- [+] components
-         |-- [+] pages
+		 |-- pages
+			 |-- user-information
+			 |-- user-appointments
          |-- users-routing.module.ts
          |-- users.module.ts
    |-- core
       |-- [+] authentication
-      |-- [+] footer
       |-- [+] guards
       |-- [+] http
       |-- [+] interceptors
       |-- [+] mocks
       |-- [+] services
-      |-- [+] header
       |-- core.module.ts
       |-- ensureModuleLoadedOnceGuard.ts
       |-- logger.service.ts
