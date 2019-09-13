@@ -358,7 +358,11 @@ export class UsersComponent implements OnInit {
 
 	ngOnInit() {
 		this.data.getUsers().subscribe(
-			data => this.users$ = data
+			data => {
+				this.users$ = data;
+				console.log(data);
+			},
+			error => console.log(error)
 		)
 	}
 }
@@ -460,6 +464,11 @@ export class NameComponent implements OnInit {
 	settings: any = tableData.settings;
 		</code></pre>
 	</div>
+</div>
+
+<h2>CRUD Sample</h2>
+<div class="divBlock">
+	<a hre="https://www.javaguides.net/2019/02/angular-6-crud-app-example.html">Sample</a>
 </div>
 
 
