@@ -280,7 +280,7 @@ const routes: Routes = [
 
 	<h3>Sub Routing / Module Routing</h3>
 	<div class="divBlock">
-		<h4>IN TS (app/student/student-routing.module.ts</h4>
+		<h4>IN TS (app/student/student-routing.module.ts)</h4>
 		<div class="divBlock">
 			<pre><code class="language-javascript">...
 import { StudentComponent } from './student/student.component';
@@ -290,14 +290,17 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
 const routes: Routes = [
     {
         path: 'student',
-        component: StudentComponent,
-        children: [
+		children: [
+			{
+				path: '',
+                component: StudentComponent
+			}
             {
                 path: 'list',
                 component: StudentListComponent
             },
             {
-                path: 'detail',
+                path: 'detail/:id',
                 component: StudentDetailComponent
             }
         ]
