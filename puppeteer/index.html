@@ -80,6 +80,7 @@ describe('My first puppeteer', () => {
 	//Browser Context here / Interacting Page here
 });
 	</code></pre>
+	<p>Note: you can create multiple <span class="highlight">it</span> declaration.</p>
 </div>
 
 <h2>Browser Context</h2>
@@ -105,6 +106,9 @@ await newContext.close();</code></pre>
 	<h3>Navigate to URL</h3>
 	<pre><code class="language-javascript">await page.goto('https://dev.to/');</code></pre>
 
+	<h3>Reload the page</h3>
+	<pre><code class="language-javascript">await page.reload();</code></pre>
+
 	<h3>Wait Until Component is Rendered</h3>
 	<pre><code class="language-javascript">await page.waitForSelector('.sidebar');</code></pre>
 
@@ -124,17 +128,17 @@ document.querySelectorAll('.header .time').getAttribute('datetime');       //get
 
 await page.waitForSelector('#tc-main-content > div:nth-child(2) > div > div > div > article:nth-child(1)')
 const news = await page.evaluate(() => {
-const results = Array.from(document.querySelectorAll('#tc-main-content > div:nth-child(2) > div > div > div > article'));
-return results.map(result => {
-	return {
-		link: result.querySelector('a.post-block__title__link').href,
-		title: result.querySelector('.post-block__title a').textContent,
-		author: result.querySelector('.river-byline__authors a').textContent,
-		datetime: result.querySelector('.river-byline__time').getAttribute('datetime'),
-		shortcontent: result.querySelector('.post-block__content p').textContent
-	}
-});
-return results
+	const results = Array.from(document.querySelectorAll('#tc-main-content > div:nth-child(2) > div > div > div > article'));
+	return results.map(result => {
+		return {
+			link: result.querySelector('a.post-block__title__link').href,
+			title: result.querySelector('.post-block__title a').textContent,
+			author: result.querySelector('.river-byline__authors a').textContent,
+			datetime: result.querySelector('.river-byline__time').getAttribute('datetime'),
+			shortcontent: result.querySelector('.post-block__content p').textContent
+		}
+	});
+	return results
 });
 
 console.log(news)</code></pre>
@@ -220,6 +224,10 @@ await page.mouse.click(40, 150);</code></pre>
 		<br>
 		<h4>Mouse click by class or ID</h4>
 		<pre><code class="language-javascript">await page.click('#wpcf7-f97-p311-o1 > form > p:nth-child(5) > input')</code></pre>
+		<pre><code class="language-javascript">await page.click('#wpcf7-f97-p311-o1 > form > p:nth-child(5) > input', {
+			clickCount: 5,
+			delay: 100
+})</code></pre>
 		<br>
 		<h4>Drag and Drop</h4>
 		<pre><code class="language-javascript">await page.goto('https://pptr.dev');
@@ -451,8 +459,75 @@ fs.writeFile('page.html', html, _ => console.log('HTML saved'));
 
 </div>
 
+<h2>Using Config.js</h2>
+<div class="divBlock">
+	<p>Create <span class="highlight">/lib/config.js</span></p>
+	<pre><code class="language-javascript">module.exports = {
+	baseUrl: 'https://dev.to/',
+	isHeadless: true,
+	slowMo: 0,
+	isDevTools: false,
+	launchTimeout: 10000,
+	waitingTimeout: 10000,
+	viewportWidth: 800,
+	viewportHeight: 600,
+}</code></pre>
+
+<p>To apply in your JS.</p>
+<pre><code class="language-javascript">const config = require('../lib/config');
+...
+await page.goto(config.baseUrl);</code></pre>
+</div>
 
 
+<h2>Using Helpers.js</h2>
+<div class="divBlock">
+	<p>Create <span class="highlight">/lib/helpers.js</span></p>
+		<pre><code class="language-javascript">module.exports = {
+	click: async function(page, selector) {
+		try {
+			await page.waitForSelector(selector)
+			await page.click(selector)
+		}
+		catch (error) {
+			throw new Error(`Could not click on selector ${selector}`)
+		}
+	},
+}</code></pre>
+	
+	<p>To apply in your JS.</p>
+	<pre><code class="language-javascript">const config = require('../lib/helpers');
+...
+await helpers.click(page,'#write-link');</code></pre>
+</div>
+
+
+
+
+<h2>Jes Snapshot</h2>
+<div class="divBlock">
+	<h3>Installation</h3>
+	<p><b>Step 1:</b> install nodejs</p>
+	<p><b>Step 2:</b> npm i jest jest-image-snapshot --save</p>
+	<br>
+	<br>
+	<p><b>To run the app:</b></p>
+	
+	<p>set the package.json</p>
+	<pre><code class="language-javascript">
+
+
+	</code></pre>
+	<br>
+	<p><b>run in CLI</b></p>
+	<p>npm test</p>
+</div>
+
+
+
+
+
+</div>
 <p class="goTop"><a href="#top">TOP</a></p>
 </body>
 
