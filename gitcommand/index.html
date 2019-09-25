@@ -137,70 +137,63 @@
 
 <h2>Others</h2>
 <div class="divBlock">
-	<h3>REMOVE STAGING FILES</h3>
+	<h3>Remove staging files</h3>
 	<pre><code class="language-css">git reset HEAD</code></pre>
 
-	<h3>REMOVE STAGING FILES AND CHECKOUT </h3>
+	<h3>Remove staging file and checkout</h3>
 	<pre><code class="language-css">git reset --hard
 git merge branch_name  --no-ff</code></pre>
 
-	<h3>STASH</h3>
+	<h3>Stash</h3>
 	<pre><code class="language-css">git stash
 git stash show
 git stash pop
 git stash clear
 git stash drop</code></pre>
 
-	<h3>REMOVE LAST COMMIT LOCAL</h3>
+	<h3>Remove last commit local</h3>
 	<pre><code class="language-css">git reset --hard HEAD^</code></pre>
 
-	<h3>REMOVE ALL COMMIT LOCAL</h3>
+	<h3>Remove all commit local</h3>
 	<pre><code class="language-css">git reset --hard HEAD^2</code></pre>
 
-	<h3>SHOW DIFFERENCE BEFORE COMMIT</h3>
+	<h3>Show difference before commit</h3>
 	<pre><code class="language-css">git diff
 	git diff --staged</code></pre>
 
-	<h3>ABORT MERGING</h3>
+	<h3>Abort merging</h3>
 	<pre><code class="language-css">git merge --abort</code></pre>
 
-	<h3>RENAME BRANCH</h3>
+	<h3>Rename branch</h3>
 	<pre><code class="language-css">git branch -m new-name</code></pre>
 
-	<h3>SHOW ALL BRANCH HIDDEN</h3>
+	<h3>Show all branch hidden</h3>
 	<pre><code class="language-css">git branch -a</code></pre>
 
-	<h3>SQUASH ALL COMMIT INTO ONE COMMIT</h3>
+	<h3>Squash all commit into one commit</h3>
 	<pre><code class="language-css">git log --oneline
 git reset --soft &lt;#sha#>
 git status
 git commit --amend</code></pre>
 
-	<h3>PULL ALL BRANCH FROM REPO</h3>
+	<h3>Pull all branch from repo</h3>
 	<pre><code class="language-css">git pull --all</code></pre>
 
-	<h3>SHOW ALL BRANCH</h3>
-	<pre><code class="language-css">git branch -a</code></pre>
-
-	<h3>CHERRY PICK</h3>
+	<h3>Cherry pick</h3>
 	<pre><code class="language-css">git cherry-pick &lt;commit-hash></code></pre>
 
-	<h3>REBASE</h3>
+	<h3>Rebase</h3>
 	<pre><code class="language-css">git rebase branch_name</code></pre>
 
-	<h3>REVERTING REBASE</h3>
+	<h3>Reverting rebase</h3>
 	<pre><code class="language-css">git reflog
 git log "HEAD@{5}"
 git reset --hard "HEAD@{5}"</code></pre>
 
-	<h3>FEATURES BRANCH TO UPDATED</h3>
-	<pre><code class="language-css">git checkout feature/foo
-git pull --all</code></pre>
-
-	<h3>REMOVE BRANCHES NO LONGER EXIST IN REMOTE</h3>
+	<h3>Remove branches no longer exist in remote</h3>
 	<pre><code class="language-css">git fetch --prune</code></pre>
 
-	<h3>RENAME BRANCH LOCAL AND REMOTE</h3>
+	<h3>Rename branch local and repo</h3>
 	<pre><code class="language-css"># Rename the local branch to the new name
 git branch -m &lt;old_name> &lt;new_name>
 	
