@@ -188,6 +188,7 @@
 
 <h2>Media Queries</h2>
 <div class="divBlock">
+	<h3>Multi-purpose</h3>
 	<pre>
 	<code class="language-css">@mixin mQ($arg...){
 		@if length($arg) == 1{
@@ -214,6 +215,42 @@
 		}
 	}</code>
 	</pre>
+
+	<h3>Fixed</h3>
+	<pre>
+	<code class="language-css">@mixin bp($point) {
+		$bp-mobile: "(max-width: 580px)";
+		$bp-small: "(max-width: 767px)";
+		$bp-large: "(max-width: 1024px)";
+		$bp-screen: "(max-width: 1439px)";
+		$bp-wide: "(max-width: 1600px)";
+		
+		@if $point == wide {
+			@media #{$bp-wide} { @content; }
+		}
+			@else if $point ==  large {
+			@media #{$bp-large} { @content; }
+		}
+		@else if $point ==  small {
+			@media #{$bp-small} { @content; }
+		}
+		@else if $point ==  screen {
+			@media #{$bp-screen} { @content; }
+		}
+		@else if $point == mobile {
+			@media #{$bp-mobile}  { @content; }
+		}
+	}</code></pre>
+	<pre>
+	<code class="language-css">.tab-pane {
+		display: block;
+		@include bp(large){
+			height: 20px;
+		}
+		@include bp(small){
+			height: 30px;
+		}
+	}</code></pre>
 </div>
 	
 <h2>Media Breakpoints</h2>
@@ -229,6 +266,47 @@
 	</pre>
 </div>
 
+
+
+<h2>Templating</h2>
+<div class="divBlock">
+	<p><span class='highlight'>white</span> and <span class='highlight'>black</span> are reserved word so it needs to add qoute.</p>
+	<pre>
+	<code class="language-css">
+	$themes: (
+		_default: (
+			'white': #fff,
+			'black': #1b273e,
+		),
+		jxf: (
+			'white': #fff,
+			'black': #1b273e,
+			blue-980: #020f24,
+			blue-950: #131313,
+			news-icon: url(../../images/themes/jxf/icon-announcement.png)
+		)
+	);
+
+	@function themify($color, $tone: 'base') {
+		@return map-get(map-get($themes, $color), $tone);
+	}
+	</code>
+	</pre>
+
+	<pre>
+	<code class="language-css">
+	span {
+		color: themify(_default, 'white');
+	}
+	p {
+		color: themify(jxf, blue-980);
+	}
+	.news-icon {
+		background-color: themify(jxf, news-icon);
+	}
+	</code>
+	</pre>
+</div>
 	
 	
 	
