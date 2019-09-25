@@ -119,10 +119,10 @@ const title = await page.title();</code></pre>
 	<h3>Get page element values / Scrapping</h3>
 	<div class="divBlock">
 		<h4>Get single element value</h4>
-		<pre><code class="language-javascript">document.querySelectorAll('#nav-list > li a').textContent;                 //get text
-document.querySelectorAll('#nav-list > li a').href;                        //get link attribute
-document.querySelectorAll('.header .time').getAttribute('datetime');       //get data attribute</code></pre>
+		<pre><code class="language-javascript">const element = await page.$(".scrape");
+const text = await page.evaluate(element => element.textContent, element);</code></pre>
 		<br>
+
 		<h4>Loop element values</h4>
 		<pre><code class="language-javascript">await page.goto('https://techcrunch.com/');
 
@@ -144,6 +144,17 @@ const news = await page.evaluate(() => {
 console.log(news)</code></pre>
 	</div>
 
+	<h3>Expect Contains</h3>
+	<div class="divBlock">
+		<pre><code class="language-javascript">const expect = require('chai').expect;
+...
+
+const url = await page.url()
+const title = await page.title()
+
+expect(url).to.contain('dev') //check if the text contain dev
+expect(title).to.contains('Community') //check if the text contain Community</code></pre>
+</div>
 
 	<h3>Emulate an Iphone X</h3>
 	<pre><code class="language-javascript">const devices = require('puppeteer/DeviceDescriptors');
