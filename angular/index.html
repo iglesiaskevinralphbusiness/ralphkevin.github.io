@@ -16,7 +16,20 @@
 <!--Write your content here-->
 <h1>Angular</h1>
 
+<h2>Tools</h2>
+<div class="divBlock">
+	<h3>VSCode Extensions</h3>
+	<ul>
+		<li>Angular v5 Snippets by John papa</li>
+		<li>Brackets Pair Colorizer by CoenraadS</li>
+	</ul>
+	<h3>Chrome Extension</h3>
+	<ul>
+		<li>Augury</li>
+	</ul>
+</div>
 	
+
 <h2>Installation</h2>
 <div class="divBlock">
 	<p><b>Step 1:</b> install nodejs</p>
@@ -73,10 +86,59 @@
       |-- _base.scss
       |-- styles.scss
 </pre>
-
 </div>
 
-	
+<h2>CLI Commands List</h2>
+<div class="divBlock">
+<xmp class="codeBlock">ng g component my-new-component
+ng g directive my-new-directive
+ng g pipe my-new-pipe
+ng g service my-new-service
+ng g class my-new-class
+ng g guard my-new-guard
+ng g interface my-new-interface
+ng g enum my-new-enum
+ng g module my-module</xmp>
+</div>
+
+<h2>Variable Types and Declaration</h2>
+<div class="divBlock">
+	<h3>Types</h3>
+	<ul>
+		<li>string</li>
+		<li>number</li>
+		<li>boolean (true or false)</li>
+		<li>array</li>
+		<li>any</li>
+		<li>void (nothing)</li>
+		<li>null</li>
+		<li>tuple (ordered list or odered array)</li>
+	</ul>
+	<h3>Declaration</h3>
+	<pre><code class="language-javascript">age:number;
+msg:string = "Hello World"
+user: {
+	firstname: string,
+	lastname: string,
+	address: {
+		street: string,
+		city: string,
+		state: string
+	}
+}</code></pre>
+	<h3>Variable is Optional</h3>
+	<pre><code class="language-javascript">age?:number;
+msg?:string = "Hello World"
+user?: {
+	firstname?: string,
+	lastname?: string,
+	address?: {
+		street?: string,
+		city?: string,
+		state?: string
+	}
+}</code></pre>
+</div>
 	
 <h2>Component</h2>
 <div class="divBlock">
@@ -165,7 +227,7 @@ import { StudentModule } from './student/student.module';
 
 <h2>Binding Data</h2>
 <div class="divBlock">
-	<h3>Single Data</h3>
+	<h3>Single Data Binding</h3>
 	<div class="divBlock">
 		<h4>IN TS</h4>
 		<pre><code class="language-javascript">export class NewCmpComponent implements OnInit {
@@ -180,7 +242,7 @@ import { StudentModule } from './student/student.module';
 		<pre><code class="language-html">&lt;p>{{newcomponent}}&lt;p></code></pre>
 	</div>
 
-	<h3>Array Data</h3>
+	<h3>Array Data Binding</h3>
 	<div class="divBlock">
 		<h4>IN TS</h4>
 		<pre><code class="language-javascript">months = ["January", "Feburary", "March", "April", "May", 
@@ -192,6 +254,26 @@ import { StudentModule } from './student/student.module';
 		<pre><code class="language-html">&lt;select>
 	&lt;option *ngFor = "let i of months">{{i}}&lt;/option>
 &lt;/select></code></pre>
+	</div>
+
+	<h3>Property Data Binding</h3>
+	<div class="divBlock">
+		<h4>IN TS</h4>
+		<pre><code class="language-javascript">enableAdd:bolean = false;</code></pre>
+	</div>
+	<div class="divBlock">
+		<h4>IN HTML</h4>
+		<pre><code class="language-javascript">&lt;button [disabled]="!enableAdd">&lt;/button></code></pre>
+	</div>
+
+	<h3>Class Data Binding</h3>
+	<div class="divBlock">
+		<h4>IN TS</h4>
+		<pre><code class="language-javascript">isActive:bloean = false;</code></pre>
+	</div>
+	<div class="divBlock">
+		<h4>IN HTML</h4>
+		<pre><code class="language-javascript">&lt;div [class.bg-light]="isActive">&lt;/div></code></pre>
 	</div>
 
 	<h3>Conditional</h3>
@@ -214,7 +296,7 @@ import { StudentModule } from './student/student.module';
 </div>
 	
 
-<h2>Click Event</h2>
+<h2>Events</h2>
 <div class="divBlock">
 	<h3>Onclick Event</h3>
 	<div class="divBlock">
@@ -244,6 +326,17 @@ import { StudentModule } from './student/student.module';
 	<div class="divBlock">
 		<h4>IN HTML</h4>
 		<pre><code class="language-html">&lt;select (change) = "changemonths($event)"></select></code></pre>
+	</div>
+
+	<h3>Keyboard Event</h3>
+	<div class="divBlock">
+	<pre><code class="language-html">&lt;input (keydown)="handleKey($event)" type="text">
+&lt;input (keyup)="handleKey($event)" type="text">
+&lt;input (keypress)="handleKey($event)" type="text">
+&lt;input (blue)="handleKey($event)" type="text">
+&lt;input (cut)="handleKey($event)" type="text">
+&lt;input (paste)="handleKey($event)" type="text">
+&lt;input (copy)="handleKey($event)" type="text"></code></pre>
 	</div>
 </div>
 
@@ -322,8 +415,54 @@ const routes: Routes = [
 	</div>
 </div>
 
+<h2>Pipes</h2>
+<div class="divBlock">
+	<h3>Default Angular Pipes</h3>
+	<div class="divBlock">
+		<pre><code class="language-javascript">{{ user.firstName | uppercase }}                 //KEVIN
+{{ user.firstName | lowercase }}                 //kevin
+{{ user.balance | currency: "PHP":"symbol" }}    //PHP100.00
+{{ user.balance | currency: "PHP":"code" }}      //P100.00
+{{ new  Date() | date:"mm/dd/yyyy" }}
+{{ 5 | number:"1.2"  }}                          //5.00
+</code></pre>
+	</div>
+	<h3>Custom Pipes</h3>
+	<div class="divBlock">
 
-<h2>Services / End point</h2>
+
+	</div>
+</div>
+
+<h2>Models / Interface</h2>
+<div class="divBlock">
+	<p>Models are exporting variables with data types</p>
+	<div class="divBlock">
+		<h3>IN TS (/models/user.ts)</h3>
+			<pre><code class="language-javascript">export interface User {
+	firstName: string,
+	lastName: string,
+	age: number,
+	address:  {
+		street: string,
+		city: string,
+		state: string
+	}
+}
+</code></pre>
+	</div>
+	<div class="divBlock">
+		<h3>IN TS (/modules/user.component.ts)</h3>
+		<pre><code class="language-javascript">import { User } from  '../../models/User;
+...
+export class UserComponent {
+	user: User;
+</code></pre>
+	</div>
+	<span class="highlight">then restart the ng serve</span>
+</div>
+
+<h2>Services</h2>
 <div class="divBlock">
 	<h3>Generate using CLI</h3>
 	<xmp class="codeBlock">ng generate service data</xmp>
@@ -448,75 +587,58 @@ private requestHeader() {
 	return headers;
 }</code></pre>
 	</div>
-
 </div>
 
-
-<h2>Importing data as TS file</h2>
-<div class="divBlock">
-	<div class="divBlock">
-		<h4>CREATE TS</h4>
-		<p>guest-settings.ts</p>
-		<pre><code class="language-javascript">export let settings = {
-	pager: {
-		perPage: 20
-	},
-	columns: {
-		firstName: { title: 'FIRSTNAME', filter: false },
-		lastName: { title: 'LASTNAME', filter: false },
-		mobilePhone: { title: 'PHONE', filter: false },
-		email: { title: 'EMAIL', filter: false },
-	},
-	noDataMessage: 'No data to display',77
-};
-		</code></pre>
-	</div>
-	<div class="divBlock">
-		<h4>IMPORT TS</h4>
-		<pre><code class="language-javascript">...
-import * as tableData from './guest-settings';
-...
-export class NameComponent implements OnInit {
-	settings: any = tableData.settings;
-		</code></pre>
-	</div>
-</div>
 
 <h2>CRUD Sample</h2>
 <div class="divBlock">
 	<a href="https://www.javaguides.net/2019/02/angular-6-crud-app-example.html" target="_blank">Click Here</a>
 </div>
 
-<h2>Angular Bootstrap</h2>
+<h2>Installing Bootstrap</h2>
 <div class="divBlock">
-	<h3>CLI</h3>
 	<div class="divBlock">
-		<pre><xmp class="codeBlock">npm install --save @ng-bootstrap/ng-bootstrap
-	npm install bootstrap@4.0.0-alpha.6</xmp></pre>
-</div>
-		
-	<h3>Setup</h3>
-	<div class="divBlock">
-		<h4>IN MODULE (app.module.ts)</h4>
-		<pre><code class="language-javascript">...
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-...
-@NgModule({
-	imports: [
-		...
-		FormsModule,
-		ReactiveFormsModule,
-		...
-	]
-})</code></pre>
-		<p>Then resart the ng serve or add this @import <span class="highlight">"~bootstrap/dist/css/bootstrap.css";</span> to <span class="highlight">style.css</span></p>
+		<h3>CLI</h3>
+		<pre><xmp class="codeBlock">npm install bootstrap@4.0.0-beta.2 jquery popper.js</xmp></pre>
 	</div>
-	
-	<h3>Components List</h3>
 	<div class="divBlock">
-		<a href="https://ng-bootstrap.github.io/#/components/buttons/examples">Ng Bootstrap</a>
+		<h3>Package.json</h3>
+		<p>remove <span class="highlight">^</span> symbol to avoid auto update</p>
+		<p>"bootstrap": "4.0.0-beta.2",</p>
+	</div>
+	<div class="divBlock">
+		<h3>Angular.json</h3>
+	<pre><code class="language-javascript">"styles": [
+	"styles.css",
+	"../node_modules/bootstrap/dist/css/bootstrap.css"
+],
+"script": [
+	"../node_modules/jquery/dist/jquery.js",
+	"../node_modules/popper.js/dist/umd/popper.js",
+	"../node_modules/bootstrap/dist/js/bootstrap.js"
+]</code></pre>
+	<p>Then resart the ng serve</p>
 	</div>
 </div>
+
+<h2>Installing FontAwesome</h2>
+<div class="divBlock">
+	<div class="divBlock">
+		<h3>CLI</h3>
+		<pre><xmp class="codeBlock">npm install font-awesome --save</xmp></pre>
+	</div>
+	<div class="divBlock">
+		<h3>angular.json</h3>
+		<pre><code class="language-javascript">"styles": [
+	"styles.css",
+	"node_modules/font-awesome/css/font-awesome.css",
+	...</code></pre>
+	</div>
+	<span class="highlight">then restart the ng serve</span>
+</div>
+
+
+
 	
 	
 <p class="goTop"><a href="#top">TOP</a></p>
