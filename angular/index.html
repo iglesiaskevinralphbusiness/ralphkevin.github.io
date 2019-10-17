@@ -589,6 +589,56 @@ private requestHeader() {
 	</div>
 </div>
 
+<h2>Input / Outpur</h2>
+<div class="divBlock">
+	<div class="divBlock">
+		<h3>Output</h3>
+		<p>Change parent variable from children component</p>
+		<div class="divBlock">
+			<h4>IN PARENT COMPONENT</h4>
+			<pre><code class="language-javascript">export class AppComponent {
+	hide = false;
+	
+	changeHide(val: boolean) {
+		this.hide = val;
+	}
+}</code></pre>
+		</div>
+		<div class="divBlock">
+			<h4>IN CHILD COMPONENT</h4>
+			<pre><code class="language-javascript">import { Component } from '@angular/core';
+@Component({
+	selector: 'app-showoff',
+	template: `
+		<h2>Show Off</h2>
+		<div>Some contents...</div>
+	`
+})
+
+export class ShowOffComponent {
+	@Output() onHide = new EventEmitter<boolean>();
+	setHide(){
+		this.onHide.emit(true);
+	}
+}</code></pre>
+		</div>
+		<div class="divBlock">
+			<h4>IN PARENT HTML</h4>
+			<pre><code class="language-javascript"><app-showoff (onHide)="changeHide($event)"></app-showoff></code></pre>
+		</div>
+	</div>
+	<div class="divBlock">
+		<h3>Input - variable</h3>
+		<p>Pass variable from parent to child component</p>
+
+	</div>
+	<div class="divBlock">
+		<h3>Input - function</h3>
+		<p>Pass function from parent to child component</p>
+
+	</div>
+</div>
+
 
 <h2>CRUD Sample</h2>
 <div class="divBlock">
