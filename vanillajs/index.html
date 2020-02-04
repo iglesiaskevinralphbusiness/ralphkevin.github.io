@@ -261,6 +261,21 @@ class Bracket {
 
 </code></pre>
 
+
+<h2>Object Iteration</h2>
+<pre><code class="language-javascript">
+	const dictionary = {
+		"f7bae886-9c68-4c94-a88a-c30b5bf11eaf ": "Adeline Rapol",
+		"9b3cc337-9491-4567-a121-a1cb2a0f7fb3": "Porcelain Test"
+	}
+
+	for (var key in dictionary) {
+		if (dictionary.hasOwnProperty(key)) {           
+			console.log(key, dictionary[key]); //will print format f7bae886-9c68-4c94-a88a-c30b5bf11eaf Adeline Rapol
+		}
+	}
+</code></pre>
+
 </div>
 <p class="goTop"><a href="#top">TOP</a></p>
 </body>
