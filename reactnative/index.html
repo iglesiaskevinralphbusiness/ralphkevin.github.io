@@ -1,0 +1,451 @@
+<html>
+
+<head>
+	<title>React Native</title>
+	<link href="common/css/reset.css" rel="stylesheet" />
+	<link href="common/css/style.css" rel="stylesheet" />
+	<link href="common/css/media.css" rel="stylesheet" />
+	
+	<link rel="stylesheet" href="libs/tinymace/prism.css">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+</head>
+
+<body>
+<div class="content" id="top">
+<!--Write your content here-->
+<h1>React Native</h1>
+
+	
+<h2>Installation</h2>
+<div class="divBlock">
+	<p><b>Step 1:</b> npm install -g expo-cli</p>
+	<p><b>Step 2:</b> npm install create-react-native-app</p>
+	<p><b>Step 3:</b> create-react-native-app {project_name}</p>
+	<p><b>Step 4:</b> cd {project_name}</p>
+	<p><b>Step 5:</b> npm cache clean --force</p>
+	<p><b>Step 6:</b> npm install</p>
+	<br>
+	<br>
+	<p><b>To run the app:</b></p>
+	<p>npm start</p>
+	<br>
+	<br>
+	<a href="https://codeburst.io/setting-up-development-environment-using-react-native-on-windows-dd240e69f776" target="_bank">Setting up android emulator</a>
+</div>
+
+
+
+<h2>First Content</h2>
+<div class="divBlock">
+	<h3 id="h3-1">Class</h3>
+	<pre><code class="language-javascript">import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default class App extends React.Component {
+	render() {
+		return (
+			&lt;View style = {styles.container}>
+				&lt;Text&gt;Open up App.js to start working on your app!&lt;/Text&gt;
+				&lt;Text&gt;Changes you make will automatically reload.&lt;/Text&gt;
+				&lt;Text&gt;Shake your phone to open the developer menu.&lt;/Text&gt;
+			&lt;/View&gt;
+		);
+	}
+}
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+});</code></pre>
+	<h3 id="h3-1">Function</h3>
+	<pre><code class="language-javascript">import React from 'react'
+import List from './List.js'
+
+const App = () => {
+	return (
+		&lt;View style = {styles.container}>
+			&lt;Text>Open up App.js to start working on your app!&lt;/Text>
+			&lt;Text>Changes you make will automatically reload.&lt;/Text>
+			&lt;Text>Shake your phone to open the developer menu.&lt;/Text>
+		&lt;View>
+	)
+}
+export default App
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+});</code></pre>
+</div>
+
+<h2>State</h2>
+<div class="divBlock">
+	<h3 id="h3-1">State</h3>
+	<pre><code class="language-javascript">import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default class App extends React.Component {
+	state = {
+		myState: 'Lorem ipsum'
+	}
+	render() {
+		return (
+		&lt;View>
+			&lt;Text&gt; {this.state.myState} &lt;/Text&gt;
+		&lt;/View&gt;
+		);
+	}
+}</code></pre>
+
+	<h3 id="h3-1">UseState</h3>
+	<p>This state is use for functional component not class component.</p>
+	<p>Declairing variable as a state to watch the javascript if the variable changed,  the dom  will also  changed.</p>
+	<br><br>
+	<p class="tBold">Integer/String</span></p>
+	<pre><code class="language-javascript">import React, {useState } from 'react';
+		
+const Counter = () => {
+	const [counter, setCounter] = useState(0); //counter remaind value as 0, and setCounter is the variable that can be modified.
+	render() {
+		return (
+			&lt;Button title="+" onPress={() => {
+				setCounter(counter + 1)
+			}
+			&lt;Button>
+			&lt;Text>{{ setCounter }}&lt;/Text>
+		);
+	}
+}
+export default Counter</code></pre>
+
+	<p class="tBold">Array</span></p>
+	<pre><code class="language-javascript">import React, {useState } from 'react';
+		
+const ColorScreen = () => {
+	const [colors, setColors] = useState(0);
+	render() {
+		return (
+			&lt;Button title="Add color" onPress={() => {
+				setColors([...colors, 'rgb(0,0,0)']); //like push
+			}
+			&lt;/Button>
+			&lt;Text>{{ setCounter }}&lt;/Text>
+
+			&lt;FlatList
+				data={colors}
+				renderItem={({item}) => {
+					return &lt;View style="{ width: 50, height: 50, backgroundColor: item">&lt;/View>
+				}
+				keyExtractor={item => item}
+			}
+		);
+	}
+}
+export default ColorScreen</code></pre>
+
+</div>
+
+<h2>Props</h2>
+<div class="divBlock">
+	<h3 id="h3-1">Parent</h3>
+	<pre><code class="language-javascript">import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import PresentationalComponent from './PresentationalComponent'
+
+export default class App extends React.Component {
+	state = {
+		myState: 'Lorem ipsum'
+	}
+	updateState = () => {
+		this.setState({ myState: 'The state is updated' })
+	}
+	render() {
+		return (
+			&lt;View&gt;
+				&lt;PresentationalComponent myState = {this.state.myState} updateState = {this.updateState} age={this.state.age}/>
+			&lt;/View&gt;
+		);
+	}
+}</code></pre>
+
+	<h3 id="h3-1">Child</h3>
+	<pre><code class="language-javascript">import React, { Component } from 'react'
+import { Text, View } from 'react-native'
+
+const PresentationalComponent = (props) => {
+	return (
+		&lt;View>
+			&lt;Text onPress = {props.updateState}>
+				{props.myState}
+			&lt;/Text&gt;
+		&lt;/View&gt;
+	)
+}
+export default PresentationalComponent</code></pre>
+
+<h3 id="h3-1">Child with Props destructuring</h3>
+<pre><code class="language-javascript">import React, { Component } from 'react'
+import { Text, View } from 'react-native'
+
+const PresentationalComponent = ({updateState, myState}) => {
+return (
+	&lt;View>
+		&lt;Text onPress = {updateState}>
+			{myState}
+		&lt;/Text&gt;
+	&lt;/View&gt;
+)
+}
+export default PresentationalComponent</code></pre>
+</div>
+
+<h2>Styling</h2>
+<div class="divBlock">
+	<pre><code class="language-javascript">import React, { Component } from 'react'
+import { Text, View, StyleSheet } from 'react-native'
+
+const PresentationalComponent = (props) => {
+	return (
+		&lt;View>
+			&lt;Text style = {styles.myState}>
+				{props.myState}
+			&lt;/Text>
+		&lt;View>
+	)
+}
+export default PresentationalComponent
+
+const styles = StyleSheet.create ({
+	myState: {
+		marginTop: 20,
+		textAlign: 'center',
+		color: 'blue',
+		fontWeight: 'bold',
+		fontSize: 20
+	}
+})</code></pre>
+</div>
+
+<h2>List</h2>
+<div class="divBlock">
+	<h3 id="h3-1">FlatList</h3>
+	<pre><code class="language-javascript">import React, { Component } from 'react'
+import { Text, View, FlatList } from 'react-native'
+
+export default class App extends React.Component {
+	
+	const friends = [
+		{ name: "Kevin", key: "1" },
+		{ name: "Ralph", key: "2" },
+		{ name: "Emote", key: "3" }
+	]
+
+	render() {
+		return (
+			&lt;FlatList
+				horizontal //remove this you want to show the list in  vertical
+				showHorizontalScrollIndicator={false} //set this if you want to hide scroll in horizontal
+				data={friends}
+				renderItem={ ({item}) => {
+					return <Text>{item.name}</Text>
+				}}
+				keyExtractor={friend => friend.name}
+		);
+	}
+}
+	</code></pre>
+
+	<h3 id="h3-1">Using Map</h3>
+	<pre><code class="language-javascript">import React, { Component } from 'react'
+import { Text, View, FlatList } from 'react-native'
+
+export default class App extends React.Component {
+	
+	const friends = [
+		{ name: "Kevin", key: "1" },
+		{ name: "Ralph", key: "2" },
+		{ name: "Emote", key: "3" }
+	]
+
+	render() {
+		return (
+			this.friends.map((item, index) => (
+				&lt;Text key={item.id}>{item.name}&lt;Text>
+			));
+		);
+	}
+}
+	</code></pre>
+</div>
+
+<h2>Button</h2>
+<div class="divBlock">
+	<h3 id="h3-1">Button</h3>
+	<pre><code class="language-javascript">import React, { Component } from 'react'
+import { Button } from 'react-native'
+
+const App = () => {
+	const handlePress = () => false
+	return (
+		&lt;Button
+			onPress = {handlePress}
+			title = "Button!"
+		/>
+	)
+}
+export default App</code></pre>
+
+	<h3 id="h3-1">Touchable Opacity</h3>
+	<p>This element will change the opacity of an element when touched.</p>
+	<pre><code class="language-javascript">import React, { Component } from 'react'
+import { TouchableOpacity } from 'react-native'
+
+const App = () => {
+	const handlePress = () => false
+	return (
+		&lt;TouchableOpacity onPress = {handlePress}>
+			&lt;Text>
+				Button!
+			&lt;/Text>
+		&lt;/TouchableOpacity>
+	)
+}
+export default App</code></pre>
+
+	<h3 id="h3-1">Touchable Highlight</h3>
+	<p>When a user presses the element, it will get darker and the underlying color will show through.</p>
+	<pre><code class="language-javascript">import React, { Component } from 'react'
+import { TouchableHighlight } from 'react-native'
+
+const App = () => {
+	const handlePress = () => false
+	return (
+		&lt;TouchableHighlight onPress = {handlePress}>
+			&lt;Text>
+				Button!
+			&lt;/Text>
+		&lt;/TouchableHighlight>
+	)
+}
+export default App</code></pre>
+</div>
+
+<h2>Image</h2>
+<div class="divBlock">
+	<pre><code class="language-javascript">import React, { Component } from 'react'
+import { Image } from 'react-native'
+
+const ImagesExample = () => (
+	&lt;Image source = {require('C:/Users/Tutorialspoint/Desktop/NativeReactSample/logo.png')} /> //use '../../assets/' if you want to get image from assets folder
+)
+export default ImagesExample
+</code></pre>
+</div>
+
+<h2>Reducer</h2>
+<div class="divBlock">
+	<p>Assigning state with function</p>
+	<pre><code class="language-javascript">import React, { useReducer } from 'react';
+
+const reducerFunction = (action, value) => {
+	switch(action){
+		case 'red':
+			return {...state, red: state.red + value};
+		case 'green':
+			return {...state, green: state.green + value};
+		default
+			return state;
+	}
+}
+
+const SampleReducer = () => {
+	const [state, dispatch] = useReducer(reducerFunction, { red: 0, green: 0});
+
+	return (
+		&lt;View>
+			&lt;Button 
+				onPress = {() => dispatch('red', 10)} //increase value 10 every click
+				title = "Increase Red"
+			/>
+			&lt;Button 
+				onPress = {() => dispatch('green', -10)} //decrease value 10 every click
+				title = "Increase Green"
+			/>
+		&lt;/View>
+	)
+}</code></pre>
+</div>
+
+<h2>Input</h2>
+<div class="divBlock">
+
+	<h3 id="h3-4">State</h3>
+	<pre><code class="language-javascript">import React, { Component } from 'react'
+import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
+
+class Inputs extends Component {
+	state = {
+		email: '',
+		password: ''
+	}
+	handleEmail = (text) => {
+		this.setState({ email: text })
+	}
+	render() {
+		return (
+			&lt;View>
+			&lt;TextInput
+				underlineColorAndroid = "transparent"
+				placeholder = "Email"
+				placeholderTextColor = "#9a73ef"
+				autoCapitalize = "none"
+				autoCorrect={false}
+				onChangeText = {this.handleEmail}
+				value = "kevin"
+			/>
+		&lt;View>
+		)
+	}
+}
+export default Inputs</code></pre>
+
+	<h3 id="h3-4">UseState</h3>
+	<pre><code class="language-javascript">const TextScreen = () => {
+	const [name, setName] = useState('');
+
+	return (
+		&lt;View>
+			&lt;TextInput
+				autoCapitalize="none"
+				autoCorrect={false}
+				value={name}
+				onChangeText={newValue => setName(newValue)}
+			/>
+		&lt;View>
+	)
+}</code></pre>
+</div>
+
+
+
+
+</div>
+<p class="goTop"><a href="#top">TOP</a></p>
+</body>
+
+<script type="text/javascript" src="common/js/jquery.js"></script>
+<script type="text/javascript" src="common/js/script.js"></script>
+<script type="text/javascript" src="common/js/smooth_scrolling.js"></script>
+
+<script src="libs/tinymace/prism.js"></script>
+
+</html>
