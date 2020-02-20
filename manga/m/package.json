@@ -1,0 +1,19 @@
+{
+  "name": "m",
+  "version": "1.0.0",
+  "description": "m pupet",
+  "main": "index.js",
+  "scripts": {
+    "series": "node ./node_modules/mocha/bin/mocha --timeout=300000000 ./src/get-series.js",
+    "list": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-list.js",
+    "chapters": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-chapters.js",
+    "chapters-compiled": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-chapters-compiled.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.0.1",
+    "puppeteer": "^2.1.1"
+  }
+}
