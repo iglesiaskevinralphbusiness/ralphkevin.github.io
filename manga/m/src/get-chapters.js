@@ -57,59 +57,71 @@ describe('Handling Hooks', () => {
                 const chapter_name = chapters[j].name;
                 const chapter_url = chapters[j].link;
                 const chapter_release_date = chapters[j].release_date;
-                console.log(chapter_url);
-                await page.goto(chapter_url, { waitUntil: 'load', timeout: 0 });
-                await page.waitForSelector('#chapterMenu option', { waitUntil: 'load', timeout: 0 });
-
+                
                 const filter_exist = result_list.find(l => l.manga_url == manga_url && l.url == chapter_url);
                 if(!filter_exist){
 
-                    const episodes_list = await page.evaluate(() => {
-                        const episodes = Array.from(document.querySelectorAll('#chapterMenu option'));
-                        return episodes.map((e,index) => {
-                            return {
-                                order_id: index,
-                                name: e.textContent,
-                                link: 'http://www.mangareader.net' + e.getAttribute('value')
+                    const pageResult = await page.goto(chapter_url, { waitUntil: 'load', timeout: 0 });
+                    console.log(chapter_url + " -> response:" + pageResult._status);
+                    if(pageResult._status != '404'){
+                        await page.waitForSelector('#chapterMenu option', { waitUntil: 'load', timeout: 0 });
+
+                        const episodes_list = await page.evaluate(() => {
+                            const episodes = Array.from(document.querySelectorAll('#chapterMenu option'));
+                            return episodes.map((e,index) => {
+                                return {
+                                    order_id: index,
+                                    name: e.textContent,
+                                    link: 'http://www.mangareader.net' + e.getAttribute('value')
+                                }
+                            });
+                        });
+                        console.log('catch all episodes');
+                        
+                        let episodes_list_compiled = [];
+                        for (let k = 0; k < episodes_list.length; k++) {
+                            const episode_url = episodes_list[k].link;
+
+                            const pageResult = await page.goto(episode_url, { waitUntil: 'load', timeout: 0 });
+                            console.log('response: ' + pageResult._status);
+                            if(pageResult._status != '404'){
+                                await page.waitForSelector('#img', { waitUntil: 'load', timeout: 0 });
+                                const episodes_img = await page.evaluate(() => {
+                                    return document.querySelector('#img').src;
+                                });
+                                episodes_list_compiled.push({
+                                    order_id: episodes_list[k].order_id,
+                                    name: episodes_list[k].name,
+                                    url: episodes_list[k].link,
+                                    image: episodes_img
+                                });
+                                console.log(`catch image - ${k + 1} out of ${episodes_list.length}`);
                             }
-                        });
-                    });
-                    console.log('catch all episodes');
-                    
-                    let episodes_list_compiled = [];
-                    for (let k = 0; k < episodes_list.length; k++) {
-                        const episode_url = episodes_list[k].link;
+                            else {
+                                console.log(`404 image - ${k + 1} out of ${episodes_list.length}`);
+                            }
+                        }
 
-                        await page.goto(episode_url, { waitUntil: 'load', timeout: 0 });
-                        await page.waitForSelector('#img', { waitUntil: 'load', timeout: 0 });
-                        const episodes_img = await page.evaluate(() => {
-                            return document.querySelector('#img').src;
+                        let n = Date.now();
+                        result_list.push({
+                            order_id: n + '_' + chapter_order_id,
+                            name: chapter_name,
+                            release_date: chapter_release_date,
+                            url: chapter_url,
+                            manga_url: manga_url,
+                            episodes: episodes_list_compiled
                         });
-                        episodes_list_compiled.push({
-                            order_id: episodes_list[k].order_id,
-                            name: episodes_list[k].name,
-                            url: episodes_list[k].link,
-                            image: episodes_img
-                        });
-                        console.log(`catch image - ${k} out of ${episodes_list.length}`);
+
+                        fs.writeFileSync(`src/json/chapters.json`, JSON.stringify(result_list));
+                        fs.writeFileSync(`src/json/_chapters/chapters_${ today }.json`, JSON.stringify(result_list));
+                        console.log(`pushed - ${j} out of ${chapters.length}`);
                     }
-
-                    let n = Date.now();
-                    result_list.push({
-                        order_id: n + '_' + chapter_order_id,
-                        name: chapter_name,
-                        release_date: chapter_release_date,
-                        url: chapter_url,
-                        manga_url: manga_url,
-                        episodes: episodes_list_compiled
-                    });
-
-                    fs.writeFileSync(`src/json/chapters.json`, JSON.stringify(result_list));
-                    fs.writeFileSync(`src/json/_chapters/chapters_${ today }.json`, JSON.stringify(result_list));
-                    console.log(`pushed - ${j} out of ${chapters.length}`);
+                    else {
+                        console.log(chapter_name + ' - 404')
+                    }
                 }
                 else {
-                    console.log('chapter exist')
+                    console.log(chapter_name + ' - chapter exist')
                 }
             }
             
