@@ -1,0 +1,253 @@
+/* common
+------------------------------------*/
+html,
+body {
+	min-width: 320px;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	font-family: Calibri;
+	font-size: 12px;
+	color: #e50065;
+	background-color: #eaeaea;
+}
+
+p {
+	line-height: 1.5;
+}
+
+a, a:hover, a:visited {
+	text-decoration: none;
+}
+
+.wrap {
+	max-width: 1300px;
+	margin: 0 auto;
+}
+
+/* ----------------------------------
+HEADER
+------------------------------------*/
+/* block */
+header {
+	margin-bottom: 20px;
+}
+header .header-block {
+	height: 90px;
+}
+/* navigation */
+header .header-nav {
+	background-color: #ae2d2d;
+}
+header .header-nav .wrap {
+	display: flex;
+	justify-content: space-between;
+}
+header .header-nav ul {
+	
+	overflow: hidden;
+}
+header .header-nav ul li {
+	display: block;
+	float: left;
+}
+header .header-nav ul li a {
+	display: block;
+	color: #ffff;
+	text-decoration: none;
+	font-size: 17px;
+	padding: 12px 25px;
+}
+header .header-nav ul li a:hover {
+	background-color: #d23737;
+}
+header .header-nav .header-nav-search {
+	width: 225px;
+}
+header .header-nav .header-nav-search input {
+	font-size: 14px;
+    padding: 6px 12px;
+    margin: 7px 0;
+    border: none;
+    min-width: 200px;
+    border-radius: 3px;
+}
+
+/* ----------------------------------
+COMMON BODY
+------------------------------------*/
+.content-block {
+	display: block;
+}
+.content-block h2 {
+	margin-bottom: 15px;
+	border-bottom: 5px solid #ae2d2d
+}
+.content-block h2 span {
+	display: block;
+    width: 190px;
+    padding: 8px 10px 6px 25px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #ae2d2d
+}
+.body-column {
+	display: flex;
+	justify-content: space-between;
+}
+.body-column .body-content {
+    width: 100%;
+}
+.body-column .body-sidebar {
+	width: 500px;
+	margin-left: 20px;
+}
+
+
+/* ----------------------------------
+CUSTOM BODY
+------------------------------------*/
+/* home popular */
+.slide-block {
+	display: block;
+	width: 200px;
+	position: relative;
+}
+.slide-block img {
+	width: 100%;
+}
+.slide-block .desc {
+	position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #0000009c;
+    padding: 3px 17px;
+}
+.slide-block .desc .name {
+	color: #fff;
+    font-size: 16px;
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.slide-block .desc .chapter {
+	color: #fff;
+    font-size: 14px;
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* home latest release*/
+.latest {
+	padding: 15px;
+	background-color: #fff;
+	overflow: hidden;
+}
+.latest .latest-block {
+	float: left;
+	display: table;
+	width: 50%;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.latest .latest-block .cover {
+	display: table-cell;
+	width: 84px;
+}
+.latest .latest-block .cover a {
+	display: block;
+	width: 84px;
+    height: 108px;
+    overflow: hidden;
+	border: 1px solid #cecece;
+    padding: 5px;
+    background-color: #fff;
+}
+.latest .latest-block .cover img {
+	width: 100%;
+}
+.latest .latest-block .desc {
+	width: auto;
+	display: table-cell;
+}
+.latest .latest-block .desc p {
+	padding-left: 20px;
+    padding-right: 7%;
+}
+.latest .latest-block .desc p a {
+	color: #ae2d2d;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+	white-space: pre;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.latest .latest-block .desc p a:hover {
+	text-decoration: underline;
+}
+.latest .latest-block .desc ul {
+	margin-top: 2px;
+	padding-left: 20px;
+    padding-right: 7%;
+}
+.latest .latest-block .desc ul li {
+	display: flex;
+    justify-content: space-between;
+    padding: 7px 0px;
+}
+.latest .latest-block .desc ul li a {
+	display: block;
+	width: 100%;
+	font-size: 14px;
+	color: #333;
+	text-decoration: none;
+	white-space: pre;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.latest .latest-block .desc ul li a:hover {
+	text-decoration: underline;
+}
+.latest .latest-block .desc ul li span {
+	display: block;
+	width: 100px;
+	padding-top: 2px;
+    text-align: right;
+    color: #949494;
+}
+
+
+/* ----------------------------------
+CUSTOM SIDEBAR
+------------------------------------*/
+.categories {
+	padding: 15px;
+	background-color: #fff;
+	overflow: hidden;
+}
+.categories ul {
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+.categories ul li {
+	float: left;
+	width: 50%;
+}
+.categories ul li a {
+	color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 0;
+	display: block;
+	border-bottom: 1px dashed #d8d8d8;
+}
+.categories ul li a:hover {
+	text-decoration: underline;
+}
+.categories ul li a span {
+	color: #a0a0a0
+}
