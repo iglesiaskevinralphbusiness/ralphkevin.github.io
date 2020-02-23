@@ -84,11 +84,11 @@ describe('Handling Hooks', () => {
 							const episode_url = episodes_list[k].link;
 							console.log(`${episode_url}`);
 
-							const pageResult = await page.goto(episode_url, { waitUntil: 'load', timeout: 0 });
+							const pageResult = await page.goto(episode_url, { waitUntil: 'load', timeout: 20000 });
 							console.log('response: ' + pageResult._status);
 							if(pageResult._status == '200'){
 								console.log('await start');
-								const waiting = await page.waitForSelector('#img', { waitUntil: 'load', timeout: 0 });
+								const waiting = await page.waitForSelector('#img', { waitUntil: 'load', timeout: 20000 });
 								console.log('await finished: ' + waiting);
 								const episodes_img = await page.evaluate(() => {
 									return document.querySelector('#img').src;
