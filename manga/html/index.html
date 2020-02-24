@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title></title>
-	
+
 	<meta charset="utf-8">
-	<meta name="description" content=""/>
-	<meta name="keywords" content=""/>
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-	
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
 	<link href="common/css/reset.css" rel="stylesheet" type="text/css" media="all">
 	<link href="common/css/common.css" rel="stylesheet" type="text/css" media="all">
+	<link href="common/css/scheme.css" rel="stylesheet" type="text/css" media="all">
 
 	<link rel="stylesheet" type="text/css" href="common/market/slick-master/slick/slick.css">
-  	<link rel="stylesheet" type="text/css" href="common/market/slick-master/slick/slick-theme.css">
-	
+	<link rel="stylesheet" type="text/css" href="common/market/slick-master/slick/slick-theme.css">
+
 	<script type="text/javascript" src="common/js/jquery.js"></script>
 	<script type="text/javascript" src="common/js/smooth_scrolling.js"></script>
 </head>
+
 <body>
 	<header>
 		<div class="header-block">
@@ -39,7 +43,8 @@
 			</div>
 		</div>
 	</header>
-	<body>
+
+	<main>
 		<div class="wrap">
 			<section class="pupular content-block">
 				<h2><span>Popular Manga Updates</span></h2>
@@ -215,8 +220,29 @@
 				</div>
 				<div class="body-sidebar">
 					<div class="content-block">
-						<h2><span>Popular Manga</span></h2>
-
+						<h2><span>Most Popular Manga</span></h2>
+						<div class="side-popular">
+							<ul>
+								<li>
+									<div class="cover">
+										<a href=""><img src="common/images/dummy/1.png"></a>
+									</div>
+									<div class="desc">
+										<p class="title"><a href="">Immortal and Invincible</a></p>
+										<p class="chapter"><a href="">Chapter 50: The Beginning and The End</a></p>
+									</div>
+								</li>
+								<li>
+									<div class="cover">
+										<a href=""><img src="common/images/dummy/1.png"></a>
+									</div>
+									<div class="desc">
+										<p class="title"><a href="">Immortal and Invincible</a></p>
+										<p class="chapter"><a href="">Chapter 50: The Beginning and The End</a></p>
+									</div>
+								</li>
+							</ul>
+						</div>
 					</div>
 					<div class="content-block">
 						<h2><span>Categories</span></h2>
@@ -239,19 +265,37 @@
 				</div>
 			</section>
 		</div>
-	</body>
+	</main>
+
+	<footer>
+		<div class="footer-block">
+			<div class="wrap">
+				<div class="footer-links">
+					<ul>
+						<li><a href="">Sitemap</a></li>
+						<li><a href="">Privacy & Policy</a></li>
+						<li><a href="">Terms of Use</a></li>
+						<li><a href="">Contact Us</a></li>
+					</ul>
+				</div>
+				<!--<div class="footer-links"></div>-->
+			</div>
+		</div>
+		<p class="copyright">&copy; 2020 MangaBay.com</p>
+	</footer>
 
 	<script src="common/market/slick-master/slick/slick.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		$(document).on('ready', function() {
-		  $(".regular").slick({
-			dots: true,
-			infinite: true,
-			slidesToShow: 6,
-			slidesToScroll: 6
-		  });
+		$(document).on('ready', function () {
+			$(".regular").slick({
+				dots: true,
+				infinite: true,
+				slidesToShow: 6,
+				slidesToScroll: 6
+			});
 		});
 	</script>
-	
+
 </body>
+
 </html>
