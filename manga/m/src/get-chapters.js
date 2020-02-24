@@ -13,7 +13,10 @@ describe('Handling Hooks', () => {
 			headless: true,       //for debuging
 			slowMo: 0,             //delay beetween puppeteer actions
 			devtools: false,       //opens developer tools to browser
-			timeout: 10000         //max time of the browser to launch
+			timeout: 10000,         //max time of the browser to launch
+			args: ['--no-sandbox', '--disable-setuid-sandbox'],
+			ignoreHTTPSErrors: true,
+			dumpio: false
 		});
 		page = await browser.newPage();
 		await page.setViewport({
@@ -84,11 +87,11 @@ describe('Handling Hooks', () => {
 							const episode_url = episodes_list[k].link;
 							console.log(`${episode_url}`);
 
-							const pageResult = await page.goto(episode_url, { waitUntil: 'networkidle2', timeout: 20000 });
+							const pageResult = await page.goto(episode_url, { waitUntil: 'networkidle2', timeout: 60000 });
 							console.log('response: ' + pageResult._status);
 							if(pageResult._status == '200'){
 								console.log('await start');
-								const waiting = await page.waitForSelector('#img', { waitUntil: 'networkidle2', timeout: 20000 });
+								const waiting = await page.waitForSelector('#img', { waitUntil: 'networkidle2', timeout: 60000 });
 								console.log('await finished: ' + waiting);
 								const episodes_img = await page.evaluate(() => {
 									return document.querySelector('#img').src;
