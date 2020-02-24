@@ -8,7 +8,7 @@ describe('Handling Hooks', () => {
 	let page;
 
 	//hooks content here
-	before(async function(){
+	before(async function () {
 		browser = await puppeteer.launch({
 			headless: true,       //for debuging
 			slowMo: 0,             //delay beetween puppeteer actions
@@ -24,12 +24,20 @@ describe('Handling Hooks', () => {
 			height: 600
 		});
 
+		await page.setRequestInterception(true);
+		page.on('request', request => {
+			if (request.resourceType() === 'image' || request.resourceType() === 'stylesheet' || request.resourceType() === 'font')
+				request.abort();
+			else
+				request.continue();
+		});
+
 		m_series = [];
 		m_list = [];
 		m_chapters = [];
 	});
 
-	after(async function(){
+	after(async function () {
 		await browser.close();
 	});
 
@@ -62,16 +70,16 @@ describe('Handling Hooks', () => {
 				const chapter_release_date = chapters[j].release_date;
 
 				const filter_exist = result_list.find(l => l.manga_url == manga_url && l.url == chapter_url);
-				if(!filter_exist){
+				if (!filter_exist) {
 
 					const pageResult = await page.goto(chapter_url, { waitUntil: 'load', timeout: 0 });
 					console.log(chapter_url + " -> response:" + pageResult._status);
-					if(pageResult._status != '404'){
+					if (pageResult._status != '404') {
 						await page.waitForSelector('#chapterMenu option', { waitUntil: 'load', timeout: 0 });
 
 						const episodes_list = await page.evaluate(() => {
 							const episodes = Array.from(document.querySelectorAll('#chapterMenu option'));
-							return episodes.map((e,index) => {
+							return episodes.map((e, index) => {
 								return {
 									order_id: index,
 									name: e.textContent,
@@ -89,7 +97,7 @@ describe('Handling Hooks', () => {
 
 							const pageResult = await page.goto(episode_url, { waitUntil: 'networkidle2', timeout: 60000 });
 							console.log('response: ' + pageResult._status);
-							if(pageResult._status == '200'){
+							if (pageResult._status == '200') {
 								console.log('await start');
 								const waiting = await page.waitForSelector('#img', { waitUntil: 'networkidle2', timeout: 60000 });
 								console.log('await finished: ' + waiting);
@@ -104,11 +112,11 @@ describe('Handling Hooks', () => {
 								});
 								console.log(`catch image - ${k + 1} out of ${episodes_list.length}`);
 							}
-							else if(pageResult._status == '500'){
+							else if (pageResult._status == '500') {
 								console.log(`500 image - ${k + 1} out of ${episodes_list.length}`);
 								k--;
 							}
-							else if(pageResult._status == '404'){
+							else if (pageResult._status == '404') {
 								console.log(`404 image - ${k + 1} out of ${episodes_list.length}`);
 							}
 							else {
@@ -127,7 +135,7 @@ describe('Handling Hooks', () => {
 						});
 
 						fs.writeFileSync(`src/json/chapters.json`, JSON.stringify(result_list));
-						fs.writeFileSync(`src/json/_chapters/chapters_${ today }.json`, JSON.stringify(result_list));
+						fs.writeFileSync(`src/json/_chapters/chapters_${today}.json`, JSON.stringify(result_list));
 						console.log(`pushed - ${j} out of ${chapters.length}`);
 					}
 					else {
