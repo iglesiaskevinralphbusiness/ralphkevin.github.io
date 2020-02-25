@@ -10,10 +10,10 @@ describe('Handling Hooks', () => {
 	//hooks content here
 	before(async function () {
 		browser = await puppeteer.launch({
-			headless: true,       //for debuging
+			headless: false,       //for debuging
 			slowMo: 0,             //delay beetween puppeteer actions
 			devtools: false,       //opens developer tools to browser
-			timeout: 10000,         //max time of the browser to launch
+			timeout: 15000,         //max time of the browser to launch
 			args: ['--no-sandbox', '--disable-setuid-sandbox'],
 			ignoreHTTPSErrors: true,
 			dumpio: false

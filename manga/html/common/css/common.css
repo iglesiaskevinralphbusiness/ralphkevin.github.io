@@ -9,8 +9,10 @@ body {
 	overflow-x: hidden;
 	font-family: Calibri;
 	font-size: 12px;
-	color: #e50065;
+	color: #333;
 	background-color: #eaeaea;
+	background-image: url(../images/bg-body.png);
+	background-repeat: repeat;
 }
 
 p {
@@ -18,6 +20,7 @@ p {
 }
 
 a, a:hover, a:visited {
+	color: #1992ea;
 	text-decoration: none;
 }
 
@@ -32,6 +35,7 @@ HEADER
 /* block */
 header {
 	margin-bottom: 20px;
+	background-color: #eaeaea;
 }
 header .header-block {
 	height: 90px;
@@ -77,6 +81,9 @@ header .header-nav .header-nav-search input {
 /* ----------------------------------
 FOOTER
 ------------------------------------*/
+footer {
+	background-color: #eaeaea;
+}
 footer .wrap {
 	display: flex;
 	justify-content: space-between;
@@ -111,6 +118,36 @@ footer .copyright {
 /* ----------------------------------
 COMMON BODY
 ------------------------------------*/
+/* breadcrumbs */
+.breadcrumbs {
+	padding: 8px 10px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-top: 2px solid #ae2d2d;
+}
+.breadcrumbs ul {
+	overflow: hidden;
+}
+.breadcrumbs ul li {
+	float: left;
+	font-size: 14px;
+}
+.breadcrumbs ul li:after {
+	display: inline;
+	content: '»';
+	padding: 0 5px;
+}
+.breadcrumbs ul li:last-child:after {
+	display: none;
+}
+.breadcrumbs ul li a {
+	text-decoration: none;
+}
+.breadcrumbs ul li a:hover {
+	text-decoration: underline;
+}
+
+/* blocks */
 .content-block {
 	display: block;
 }
