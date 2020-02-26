@@ -75,10 +75,10 @@ describe('Handling Hooks', () => {
 					const pageResult = await page.goto(chapter_url, { waitUntil: 'load', timeout: 0 });
 					console.log(chapter_url + " -> response:" + pageResult._status);
 					if (pageResult._status != '404') {
-						await page.waitForSelector('#chapterMenu option', { waitUntil: 'load', timeout: 0 });
+						await page.waitForSelector('#pageMenu option', { waitUntil: 'load', timeout: 0 });
 
 						const episodes_list = await page.evaluate(() => {
-							const episodes = Array.from(document.querySelectorAll('#chapterMenu option'));
+							const episodes = Array.from(document.querySelectorAll('#pageMenu option'));
 							return episodes.map((e, index) => {
 								return {
 									order_id: index,
@@ -91,16 +91,13 @@ describe('Handling Hooks', () => {
 
 						let episodes_list_compiled = [];
 						for (let k = 0; k < episodes_list.length; k++) {
-							console.log(`${k} loop`);
 							const episode_url = episodes_list[k].link;
 							console.log(`${episode_url}`);
 
 							const pageResult = await page.goto(episode_url, { waitUntil: 'networkidle2', timeout: 60000 });
-							console.log('response: ' + pageResult._status);
+							//console.log('response: ' + pageResult._status);
 							if (pageResult._status == '200') {
-								console.log('await start');
 								const waiting = await page.waitForSelector('#img', { waitUntil: 'networkidle2', timeout: 60000 });
-								console.log('await finished: ' + waiting);
 								const episodes_img = await page.evaluate(() => {
 									return document.querySelector('#img').src;
 								});
