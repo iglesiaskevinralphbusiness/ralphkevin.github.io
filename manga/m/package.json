@@ -7,7 +7,9 @@
     "series": "node ./node_modules/mocha/bin/mocha --timeout=300000000 ./src/get-series.js",
     "list": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-list.js",
     "chapters": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-chapters.js",
-    "chapters-compiled": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-chapters-compiled.js"
+    "chapters-compiled": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-chapters-compiled.js",
+
+    "update": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/update-list.js"
   },
   "author": "",
   "license": "ISC",
