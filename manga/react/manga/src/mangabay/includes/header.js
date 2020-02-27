@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 class Header extends React.Component {
   render() {
     return (
@@ -11,19 +13,19 @@ class Header extends React.Component {
           <div className="wrap">
             <ul>
               <li>
-                <a href="/">HOME</a>
+                <Link to="/">HOME</Link>
               </li>
               <li>
-                <a href="/manga-list">MANGA LIST</a>
+                <Link to="/manga-list">MANGA LIST</Link>
               </li>
               <li>
-                <a href="/latest-release">LATEST RELEASE</a>
+                <Link to="/latest-release">LATEST RELEASE</Link>
               </li>
               <li>
-                <a href="/top-manga">TOP MANGA</a>
+                <Link to="/top-manga">TOP MANGA</Link>
               </li>
               <li>
-                <a href="/advance-search">ADVANCE SEARCH</a>
+                <Link to="/advance-search">ADVANCE SEARCH</Link>
               </li>
             </ul>
             <div className="header-nav-search"></div>
