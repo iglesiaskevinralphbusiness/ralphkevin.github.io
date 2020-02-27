@@ -11,19 +11,19 @@ class Header extends React.Component {
           <div className="wrap">
             <ul>
               <li>
-                <a href="">HOME</a>
+                <a href="/">HOME</a>
               </li>
               <li>
-                <a href="">MANGA LIST</a>
+                <a href="/manga-list">MANGA LIST</a>
               </li>
               <li>
-                <a href="">LATEST RELEASE</a>
+                <a href="/latest-release">LATEST RELEASE</a>
               </li>
               <li>
-                <a href="">TOP MANGA</a>
+                <a href="/top-manga">TOP MANGA</a>
               </li>
               <li>
-                <a href="">ADVANCE SEARCH</a>
+                <a href="/advance-search">ADVANCE SEARCH</a>
               </li>
             </ul>
             <div className="header-nav-search"></div>

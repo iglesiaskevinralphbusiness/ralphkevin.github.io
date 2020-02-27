@@ -13,6 +13,7 @@ import Footer from "./includes/footer";
 //pages
 import Home from "./pages/home/home";
 import Manga from "./pages/manga/manga";
+import MangaList from './pages/manga-list/mangaList'
 
 //styles
 import "./assets/css/reset.css";
@@ -45,6 +46,12 @@ class Index extends React.Component {
               path="/"
               exact
               render={props => <Home list={list} chapters={chapters} />}
+            ></Route>
+            <Route
+              path="/manga-list"
+              render={props => (
+                <MangaList list={list} chapters={chapters} />
+              )}
             ></Route>
             <Route
               path="/:name"

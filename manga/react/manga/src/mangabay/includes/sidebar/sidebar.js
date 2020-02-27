@@ -8,7 +8,7 @@ import _ from "lodash";
 
 class Sidebar extends React.Component {
   render() {
-    const { list, chapters } = this.props;
+    const { list } = this.props;
 
     const categories = this.getCategories(list);
 
@@ -22,31 +22,31 @@ class Sidebar extends React.Component {
             <ul>
               <li>
                 <div className="cover">
-                  <a href="">
+                  <a href="#">
                     <img src="/images/dummy/1.png" />
                   </a>
                 </div>
                 <div className="desc">
                   <p className="title">
-                    <a href="">Immortal and Invincible</a>
+                    <a href="#">Immortal and Invincible</a>
                   </p>
                   <p className="chapter">
-                    <a href="">Chapter 50: The Beginning and The End</a>
+                    <a href="#">Chapter 50: The Beginning and The End</a>
                   </p>
                 </div>
               </li>
               <li>
                 <div className="cover">
-                  <a href="">
+                  <a href="#">
                     <img src="/images/dummy/1.png" />
                   </a>
                 </div>
                 <div className="desc">
                   <p className="title">
-                    <a href="">Immortal and Invincible</a>
+                    <a href="#">Immortal and Invincible</a>
                   </p>
                   <p className="chapter">
-                    <a href="">Chapter 50: The Beginning and The End</a>
+                    <a href="#">Chapter 50: The Beginning and The End</a>
                   </p>
                 </div>
               </li>
@@ -60,13 +60,13 @@ class Sidebar extends React.Component {
           <div className="categories">
             <ul>
               <li>
-                <a href="">Newest</a>
+                <a href="/newest">Newest</a>
               </li>
               <li>
-                <a href="">Completed</a>
+                <a href="/completed">Completed</a>
               </li>
               <li>
-                <a href="">Ongoing</a>
+                <a href="/on-going">Ongoing</a>
               </li>
             </ul>
             <ul>
