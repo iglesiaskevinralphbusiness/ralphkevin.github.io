@@ -14,10 +14,10 @@
             $chapters = "./json/chapters.json";
         
             $myfile = fopen($list, "r") or die("Unable to open file!");
-            $response_list = fread($myfile,filesize($list));
+            $response_list = fread($myfile,filesize($chapters));
             fclose($myfile);
 
-            echo $response_list;
+            echo $response_list; 
         }
         else {
             header("WWW-Authenticate: Basic realm=\"Private Area\"");
