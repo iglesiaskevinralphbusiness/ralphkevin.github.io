@@ -31,6 +31,10 @@ a:visited {
   margin: 0 auto;
 }
 
+.hide {
+  display: none !important;
+}
+
 /* ----------------------------------
 HEADER
 ------------------------------------*/
@@ -83,6 +87,7 @@ header .header-nav .header-nav-search input {
 FOOTER
 ------------------------------------*/
 footer {
+  margin-top: 15px;
   background-color: #eaeaea;
 }
 footer .wrap {
@@ -292,6 +297,19 @@ CUSTOM BODY
   padding-top: 2px;
   text-align: right;
   color: #949494;
+}
+.view-more {
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 15px 30px;
+  font-size: 15px;
+  text-align: center;
+  color: #ae2d2d;
+  border-top: 1px solid #ebebeb;
+  cursor: pointer;
+}
+.view-more:hover {
+  background-color: #f7f7f7;
 }
 
 /* ----------------------------------

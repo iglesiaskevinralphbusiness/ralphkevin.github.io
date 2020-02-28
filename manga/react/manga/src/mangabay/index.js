@@ -5,6 +5,7 @@ import "./assets/css/reset.css";
 import "./assets/css/common.css";
 import "./assets/css/scheme.css";
 import "./assets/css/pages.css";
+import "./assets/css/responsive.css";
 
 //modules
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";

@@ -8,9 +8,14 @@ import LatestBlock from "./components/latestBlock";
 import Sidebar from "./../../includes/sidebar/sidebar";
 
 class Home extends React.Component {
+  state = {
+    maxItem: 12,
+    currentItem: 12,
+    viewMore: true
+  };
+
   render() {
     const { list, chapters } = this.props;
-
     const latestReleast = this.getLatestRelease(list, chapters);
 
     return (
@@ -22,9 +27,12 @@ class Home extends React.Component {
                 <span>Latest Release</span>
               </h2>
               <div className="latest">
-                {latestReleast.slice(0, 10).map(l => (
+                {latestReleast.slice(0, this.state.currentItem).map(l => (
                   <LatestBlock key={l.url} manga={l}></LatestBlock>
                 ))}
+              </div>
+              <div className={this.state.viewMore ? 'view-more' : 'view-more hide'} onClick={() => {this.viewMore(latestReleast)}}>
+                  <p>View More</p>
               </div>
             </div>
 
@@ -36,18 +44,8 @@ class Home extends React.Component {
   }
 
   getLatestRelease = (list, chapters) => {
-    //sort
-    //const lastest = chapters
-    //  .sort(
-    //    (a, b) =>
-    //      new Date(...a.release_date.split("/").reverse()) -
-    //      new Date(...b.release_date.split("/").reverse())
-    //  )
-    //  .reverse();
-
-    const lastest = chapters
-      .sort((a, b) => new Date(b.release_date) - new Date(a.release_date))
-      .reverse();
+    const copied = [...chapters];
+    const lastest = copied.sort((a, b) => new Date(a.release_date) - new Date(b.release_date)).reverse();
 
     //today and yesterday (not used yet)
     const today = this.getDateFormat(new Date());
@@ -103,6 +101,32 @@ class Home extends React.Component {
       "/" +
       date.getFullYear()
     );
+  }
+
+  viewMore(latestReleast){
+    const { maxItem, currentItem, viewMore } = this.state;
+    const total = latestReleast.length - 1;
+    const newItem = currentItem + 10;
+    let newMore = viewMore;
+    
+    if(currentItem + maxItem < total){
+      newMore = true;
+    }
+    else if(currentItem + maxItem  == total){
+      newMore = true;
+    }
+    else if(currentItem + maxItem > total){
+      newMore = false;
+    }
+
+    console.log(newMore);
+    console.log({
+      currentItem: currentItem,
+      nextItem: currentItem + 10,
+      total: total
+    })
+    this.setState({ currentItem: newItem, viewMore: newMore });
+
   }
 }
 
