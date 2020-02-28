@@ -53,6 +53,12 @@ class Index extends React.Component {
               render={props => <MangaList list={list} chapters={chapters} />}
             ></Route>
             <Route
+              path="/:name/:chapter/:episode"
+              render={props => (
+                <MangaPage list={list} chapters={chapters} {...props} />
+              )}
+            ></Route>
+            <Route
               path="/:name/:chapter"
               render={props => (
                 <MangaPage list={list} chapters={chapters} {...props} />
