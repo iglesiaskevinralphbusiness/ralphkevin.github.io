@@ -140,7 +140,8 @@ PAGE
   justify-content: space-between;
 }
 .manga-page .page-options .chapters {
-  width: 40%;
+  width: 30%;
+  min-width: 100px;
 }
 .manga-page .page-options .chapters select {
   width: 100%;
@@ -148,7 +149,17 @@ PAGE
   border: 1px solid #ccc;
   padding: 3px;
 }
-.manga-page .page-options .display {
+.manga-page .page-options .total {
+  max-width: 127px;
+  padding-left: 5px;
+}
+.manga-page .page-options .total select {
+  width: 100%;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  padding: 3px;
+}
+.manga-page .page-options .spacer {
   width: 30%;
 }
 .manga-page .page-options .buttons {
@@ -188,11 +199,12 @@ PAGE
 }
 
 .manga-page .image-containers {
-  margin: auto;
+  margin: 20px auto;
   padding: 20px 0;
 }
 .manga-page .image-containers.small-image {
-  width: 70%;
+  width: 100%;
+  max-width: 900px;
 }
 .manga-page .image-containers.large-image {
   width: 100%;

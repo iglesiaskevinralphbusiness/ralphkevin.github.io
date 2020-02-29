@@ -4,12 +4,41 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 //components
-import Sidebar from "./../../includes/sidebar/sidebar";
 import Breadcrumbs from "../../shared/components/breadcrumbs";
+import Options from './components/options';
 
 class MangaPage extends React.Component {
+
+  state = {
+    next: '',
+    prev: ''
+  }
+
+  constructor(props){
+    super(props);
+    this.handleBindKeyDown = this.handleBindKeyDown.bind(this);
+  }
+  componentDidMount(){
+    document.addEventListener("keydown", this.handleBindKeyDown, false);
+  }
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.handleBindKeyDown, false);
+  }
+  handleBindKeyDown(event){
+    if(event.keyCode === 39 && this.keyNext){
+      this.props.history.push(this.keyNext);
+    }
+    else if(event.keyCode === 37 && this.keyPrev){
+      this.props.history.push(this.keyPrev);
+    }
+  }
+
+  componentWillReceiveProps(){
+    window.scrollTo(0, 0);
+  }
+
   render() {
-    const { list, chapters } = this.props;
+    const { list, chapters, top } = this.props;
     const { name, chapter, episode } = this.props.match.params;
 
     //get manga details
@@ -52,7 +81,20 @@ class MangaPage extends React.Component {
     const prevPage = this.getPreviousPage(manga_chapter.episodes, episode_url);
     const nextPage = this.getNextPage(manga_chapter.episodes, episode_url);
     const nextPrevButtons = this.getButtonNextPreviousValue(prevChapter, nextChapter, prevPage, nextPage);
-    console.log(nextPrevButtons);
+    this.keyPrev = nextPrevButtons.prev;
+    this.keyNext = nextPrevButtons.next;
+
+    const optionSettings = {
+      chapters: {
+        list: manga.chapters,
+        active: manga_url
+      },
+      episodes: {
+        list:manga_chapter.episodes,
+        active: episode_url
+      },
+      buttons: nextPrevButtons
+    }
 
     const breadcrumbs = [
       {
@@ -72,13 +114,18 @@ class MangaPage extends React.Component {
     return (
       <main>
         <div className="wrap">
-          <section className="body-column">
-            <div className="body-content manga-info">
-              <Breadcrumbs data={breadcrumbs}></Breadcrumbs>
-              test
+          <Breadcrumbs data={breadcrumbs} />
+          <div className="manga-page">
+            <Options optionSettings={optionSettings}  history= {this.props.history}/>
+            <div className="image-containers small-image">
+              <ul>
+                <li>
+                  <img src={manga_episodes.image} alt={'Read manga ' + manga_episodes.name}/>
+                </li>
+              </ul>
             </div>
-            <Sidebar list={list} chapters={chapters}></Sidebar>
-          </section>
+            <Options optionSettings={optionSettings}  history= {this.props.history}/>
+          </div>
         </div>
       </main>
     );

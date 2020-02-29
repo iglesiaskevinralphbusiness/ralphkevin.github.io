@@ -185,13 +185,26 @@ COMMON BODY
 CUSTOM BODY
 ------------------------------------*/
 /* home popular */
+.pupular {
+  margin-bottom: 20px;
+}
 .slide-block {
   display: block;
-  width: 200px;
   position: relative;
+  height: 247px;
+  overflow: hidden;
+  background-color: #fff;
+  background-size: 100% auto;
+  background-position: top center;
+  margin: 0 9px;
+  transition: all 0.3s;
+}
+.slide-block:hover {
+  background-size: 110% auto;
 }
 .slide-block img {
-  width: 100%;
+  width: 0;
+  visibility: hidden;
 }
 .slide-block .desc {
   position: absolute;
@@ -240,16 +253,22 @@ CUSTOM BODY
   border: 1px solid #cecece;
   background-color: #fff;
   overflow: hidden;
+  vertical-align: top;
 }
 .latest .latest-block .cover a {
   display: block;
+  width: 100%;
+  height: 100%;
+  background-size: 100% auto;
 }
 .latest .latest-block .cover img {
-  width: 100%;
+  width: 0;
+  visibility: hidden;
 }
 .latest .latest-block .desc {
   width: 100%;
   display: table-cell;
+  vertical-align: top;
 }
 .latest .latest-block .desc p {
   padding-left: 20px;
@@ -313,6 +332,61 @@ CUSTOM BODY
 }
 
 /* ----------------------------------
+TOOL TIP
+------------------------------------*/
+.tool-tip-parent {
+  padding: 0px !important;
+}
+.data-tip-container {
+	width: 400px;
+	padding: 10px;
+}
+.data-tip-container .manga-details {
+	display: table;
+	width: 100%;
+}
+.data-tip-container .manga-details .details-image {
+	display: table-cell;
+	width: 80px;
+  vertical-align: top;
+  padding-right: 10px;
+}
+.data-tip-container .manga-details .details-image .img-container {
+	height: 100px;
+	background-color: #fff;
+  padding: 3px;
+  background-size: 100% auto;
+}
+.data-tip-container .manga-details .details-image img {
+	width: 0;
+	visibility: hidden;
+}
+.data-tip-container .manga-details .details-block {
+	display: table-cell;
+	width: auto;
+	padding-left: 8px;
+	vertical-align: top;
+}
+.data-tip-container .manga-details .details-block h2 {
+    font-size: 16px;
+	font-weight: bold;
+	font-size: 14px;
+}
+.data-tip-container .manga-details .details-block dl {
+	margin: 4px 2px;
+	font-size: 13px;
+	overflow: hidden;
+}
+.data-tip-container .manga-details .details-block dl dt {
+	float: left;
+	width: 35%;
+}
+.data-tip-container .manga-details .details-block dl dd {
+	float: left;
+	width: 65%;
+}
+
+/* ----------------------------------
 CUSTOM SIDEBAR
 ------------------------------------*/
 /* category */
@@ -362,12 +436,20 @@ CUSTOM SIDEBAR
   margin-bottom: 0;
 }
 .body-sidebar .side-popular ul li .cover {
-  width: 40px;
+  width: 45px;
+  height: 48px;
   padding: 3px;
   border: 1px solid #ccc;
 }
-.body-sidebar .side-popular ul li .cover img {
+.body-sidebar .side-popular ul li .cover a {
+  display: block;
   width: 100%;
+  height: 100%;
+  background-size: 100% auto;
+}
+.body-sidebar .side-popular ul li .cover img {
+  width: 0;
+  visibility: hidden;
 }
 .body-sidebar .side-popular ul li .desc {
   width: 100%;
@@ -396,3 +478,4 @@ CUSTOM SIDEBAR
 .body-sidebar .side-popular ul li .desc .chapter a:hover {
   text-decoration: underline;
 }
+

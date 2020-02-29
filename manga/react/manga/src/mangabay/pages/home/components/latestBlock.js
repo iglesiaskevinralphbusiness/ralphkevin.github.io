@@ -10,13 +10,13 @@ class LatestBlock extends React.Component {
     return (
       <div className="latest-block">
         <div className="cover">
-          <Link to={manga.url}>
-            <img src={manga.image} alt={manga.name} />
+          <Link to={manga.url} style={{ backgroundImage: "url(" + manga.image + ")" }} data-tip={manga.url}>
+            <img src={manga.image} alt={'Read manga ' + manga.name} />
           </Link>
         </div>
         <div className="desc">
           <p>
-            <Link to={manga.url}>{manga.name}</Link>
+            <Link to={manga.url}><span data-tip={manga.url}>{manga.name}</span></Link>
           </p>
           <ul>
             {manga.chapter.slice(0, 3).map(e => {

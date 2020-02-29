@@ -14,10 +14,10 @@ class MangaDetails extends React.Component {
             <img src={manga.image} />
           </p>
           <p className="link-bookmark">
-            <a href="">BOOKMARK</a>
+            <a href="#">BOOKMARK</a>
           </p>
           <p className="link-chapter">
-            <a href="">CHAPTER LIST</a>
+            <a href="#">CHAPTER LIST</a>
           </p>
         </div>
         <div className="details-block">

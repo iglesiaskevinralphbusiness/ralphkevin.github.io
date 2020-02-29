@@ -5,6 +5,7 @@ import "./assets/css/reset.css";
 import "./assets/css/common.css";
 import "./assets/css/scheme.css";
 import "./assets/css/pages.css";
+import "./assets/css/markets.css";
 import "./assets/css/responsive.css";
 
 //modules
@@ -26,18 +27,21 @@ import PageNotFound from "./shared/pages/pageNotFound";
 
 let m_list = require("../services/list.json");
 let m_chapters = require("../services/chapters.json");
+let m_top = require("../services/top.json");
 
 class Index extends React.Component {
   state = {
     list: this.cleanListUrl(m_list),
-    chapters: this.cleanCaptersUrl(m_chapters)
+    chapters: this.cleanCaptersUrl(m_chapters),
+    top: this.clearTopUrl(m_top, m_list)
   };
 
   render() {
-    const { list, chapters } = this.state;
+    const { list, chapters, top } = this.state;
 
     console.log(list, "m_list");
     console.log(chapters, "m_chapters");
+    console.log(top, "m_top");
 
     return (
       <React.Fragment>
@@ -47,28 +51,28 @@ class Index extends React.Component {
             <Route
               path="/"
               exact
-              render={props => <Home list={list} chapters={chapters} />}
+              render={props => <Home list={list} chapters={chapters} top={top} />}
             ></Route>
             <Route
               path="/manga-list"
-              render={props => <MangaList list={list} chapters={chapters} />}
+              render={props => <MangaList list={list} chapters={chapters} top={top} />}
             ></Route>
             <Route
               path="/:name/:chapter/:episode"
               render={props => (
-                <MangaPage list={list} chapters={chapters} {...props} />
+                <MangaPage list={list} chapters={chapters} top={top} {...props} />
               )}
             ></Route>
             <Route
               path="/:name/:chapter"
               render={props => (
-                <MangaPage list={list} chapters={chapters} {...props} />
+                <MangaPage list={list} chapters={chapters} top={top} {...props} />
               )}
             ></Route>
             <Route
               path="/:name"
               render={props => (
-                <Manga list={list} chapters={chapters} {...props} />
+                <Manga list={list} chapters={chapters} top={top} {...props} />
               )}
             ></Route>
 
@@ -107,6 +111,16 @@ class Index extends React.Component {
       });
       return c;
     });
+    return holder;
+  }
+
+  clearTopUrl(top, list){
+    const holder = top.map((t, index) => {
+      t.order_id = index;
+      t.url = this.replaceUrl(t.url);
+      t.details = list.find(l => l.url == t.url);
+      return t;
+    })
     return holder;
   }
 

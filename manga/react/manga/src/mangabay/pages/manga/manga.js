@@ -10,8 +10,10 @@ import ChapterList from "./components/chapterList";
 import Breadcrumbs from "../../shared/components/breadcrumbs";
 
 class Manga extends React.Component {
+
   render() {
-    const { list, chapters } = this.props;
+    window.scrollTo(0, 0);
+    const { list, chapters, top } = this.props;
     const { name } = this.props.match.params;
 
     const manga = list.find(l => l.url == "/" + name);
@@ -28,9 +30,9 @@ class Manga extends React.Component {
             <div className="body-content manga-info">
               <Breadcrumbs data={breadcrumbs}></Breadcrumbs>
               <MangaDetails manga={manga}></MangaDetails>
-              <ChapterList manga={manga}></ChapterList>
+              <ChapterList manga={manga} ></ChapterList>
             </div>
-            <Sidebar list={list} chapters={chapters}></Sidebar>
+            <Sidebar list={list} chapters={chapters} top={top}></Sidebar>
           </section>
         </div>
       </main>
@@ -49,6 +51,7 @@ class Manga extends React.Component {
       }
     ];
   }
+
 }
 
 export default Manga;

@@ -8,7 +8,7 @@ import _ from "lodash";
 
 class Sidebar extends React.Component {
   render() {
-    const { list } = this.props;
+    const { list, top } = this.props;
 
     const categories = this.getCategories(list);
 
@@ -20,36 +20,27 @@ class Sidebar extends React.Component {
           </h2>
           <div className="side-popular">
             <ul>
-              <li>
-                <div className="cover">
-                  <a href="#">
-                    <img src="/images/dummy/1.png" />
-                  </a>
-                </div>
-                <div className="desc">
-                  <p className="title">
-                    <a href="#">Immortal and Invincible</a>
-                  </p>
-                  <p className="chapter">
-                    <a href="#">Chapter 50: The Beginning and The End</a>
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div className="cover">
-                  <a href="#">
-                    <img src="/images/dummy/1.png" />
-                  </a>
-                </div>
-                <div className="desc">
-                  <p className="title">
-                    <a href="#">Immortal and Invincible</a>
-                  </p>
-                  <p className="chapter">
-                    <a href="#">Chapter 50: The Beginning and The End</a>
-                  </p>
-                </div>
-              </li>
+              {
+                top.slice(0,5).map(t => (
+                  <li key={t.url}>
+                    <div className="cover">
+                      <Link to={t.url} style={{ backgroundImage: "url(" + t.details.image + ")" }}>
+                        <img src={t.details.image} alt={'Read manga ' + t.details.name} />
+                      </Link>
+                    </div>
+                    <div className="desc">
+                      <p className="title">
+                        <Link to={t.url}>{t.details.name}</Link>
+                      </p>
+                      <p className="chapter">
+                        {t.details.chapters.slice(t.details.chapters.length - 1, t.details.chapters.length).map(c => (
+                          <Link key={c.link} to={c.link}>{c.name}</Link>
+                        ))}
+                      </p>
+                    </div>
+                  </li>
+                ))
+              }
             </ul>
           </div>
         </div>
