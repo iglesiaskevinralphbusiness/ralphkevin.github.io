@@ -8,89 +8,35 @@ import ReactTooltip from 'react-tooltip';
 //components
 import LatestBlock from "./components/latestBlock";
 import Sidebar from "./../../includes/sidebar/sidebar";
-
-//markets
-import Slider from 'react-slick';
+import SliderLatest from "../../shared/components/sliderLatest";
 
 
 class Home extends React.Component {
-  state = {
-    maxItem: 16,
-    currentItem: 16,
-    viewMore: true
-  };
 
   render() {
-    window.scrollTo(0, 0);
     const { list, chapters, top } = this.props;
     const popularUpdates = this.getPopularUpdates(list, chapters);
     const latestRelease = this.getLatestRelease(list);
-    
-
-    var slickSettings = {
-      dots: false,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 6,
-      slidesToScroll: 1,
-      autoplay: true,
-      speed: 500,
-      autoplaySpeed: 2000,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 1,
-          }
-        },
-        {
-          breakpoint: 414,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-          }
-        }
-      ]
-    };
 
     return (
       <main>
         <div className="wrap">
           <section className="pupular content-block">
-				    <h2><span>Popular Manga Updates</span></h2>
-            <Slider {...slickSettings}>
-              {
-                latestRelease.slice(0,20).map(l => (
-                  <div key={l.url}>
-                    <Link className="slide-block" to={l.url} style={{ backgroundImage: "url(" + l.image + ")" }}>
-                      <img src={l.image} alt={'Read manga ' +  l.name} />
-                      <div className="desc">
-                        <p className="name">{l.name}</p>
-                        <p className="chapter">
-                          { l.chapters.slice(l.chapters.length - 1,l.chapters.length).map(c => c.name)}
-                        </p>
-                      </div>
-                    </Link>
-                  </div>
-                ))
-              }
-            </Slider>
+				    <h2><span>Latest Manga Release</span></h2>
+            <SliderLatest latestRelease={latestRelease}></SliderLatest>
           </section>
 
           <section className="body-column">
             <div className="body-content content-block">
               <h2>
-                <span>Latest Release</span>
+                <span>Latest Manga Updates</span>
               </h2>
               <div className="latest">
-                {popularUpdates.slice(0, this.state.currentItem).map(l => (
+                {popularUpdates.slice(0, 20).map(l => (
                   <LatestBlock key={l.url} manga={l}></LatestBlock>
                 ))}
               </div>
-              <div className={this.state.viewMore ? 'view-more' : 'view-more hide'} onClick={() => {this.viewMore(popularUpdates)}}>
-                  <p>View More</p>
-              </div>
+              <Link to="/latest-release" className="view-more">View More</Link>
             </div>
 
             <Sidebar list={list} chapters={chapters} top={top}></Sidebar>
@@ -234,24 +180,6 @@ class Home extends React.Component {
       "/" +
       date.getFullYear()
     );
-  }
-
-  viewMore(popularUpdates){
-    const { maxItem, currentItem, viewMore } = this.state;
-    const total = popularUpdates.length - 1;
-    const newItem = currentItem + 10;
-    let newMore = viewMore;
-    
-    if(currentItem + maxItem < total){
-      newMore = true;
-    }
-    else if(currentItem + maxItem  == total){
-      newMore = true;
-    }
-    else if(currentItem + maxItem > total){
-      newMore = false;
-    }
-    this.setState({ currentItem: newItem, viewMore: newMore });
   }
 }
 

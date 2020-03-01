@@ -3,9 +3,15 @@ import React from "react";
 //modules
 import { Link } from "react-router-dom";
 
+//components
+import FacebookLike from "../../../shared/components/facebookLike";
+
 class MangaDetails extends React.Component {
   render() {
     const { manga } = this.props;
+    console.log(manga);
+
+    const fbCommentUrl = manga.url;
 
     return (
       <div className="manga-details">
@@ -58,6 +64,7 @@ class MangaDetails extends React.Component {
             <dt>Reading Direction:</dt>
             <dd>Right to Left</dd>
           </dl>
+          <FacebookLike url={fbCommentUrl}></FacebookLike>
         </div>
       </div>
     );

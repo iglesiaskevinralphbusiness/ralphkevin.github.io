@@ -43,6 +43,7 @@ class Sidebar extends React.Component {
               }
             </ul>
           </div>
+          <Link to="/top-manga" className="view-more">View More </Link>
         </div>
         <div className="content-block">
           <h2>
@@ -51,13 +52,13 @@ class Sidebar extends React.Component {
           <div className="categories">
             <ul>
               <li>
-                <a href="/newest">Newest</a>
+                <Link to="/latest-release">Newest</Link>
               </li>
               <li>
-                <a href="/completed">Completed</a>
+                <a href="/status/completed">Completed</a>
               </li>
               <li>
-                <a href="/on-going">Ongoing</a>
+                <a href="/status/on-going">Ongoing</a>
               </li>
             </ul>
             <ul>

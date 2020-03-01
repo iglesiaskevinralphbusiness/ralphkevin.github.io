@@ -68,10 +68,14 @@ header .header-nav ul li a {
   font-size: 17px;
   padding: 12px 25px;
 }
+header .header-nav ul li a.active {
+  background-color: #d23737;
+}
 header .header-nav ul li a:hover {
   background-color: #d23737;
 }
 header .header-nav .header-nav-search {
+  position: relative;
   width: 225px;
 }
 header .header-nav .header-nav-search input {
@@ -81,6 +85,38 @@ header .header-nav .header-nav-search input {
   border: none;
   min-width: 200px;
   border-radius: 3px;
+}
+header .header-nav .header-nav-search .auto-search-result {
+  position: absolute;
+  top: 37px;
+  width: 100%;
+  max-height: 300px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  z-index: 99;
+  overflow-x: auto;
+}
+header .header-nav .header-nav-search .auto-search-result ul li {
+  display: block;
+  width: 100%;
+}
+header .header-nav .header-nav-search .auto-search-result ul li a {
+  padding: 5px 10px;
+  border-bottom: 1px solid #ccc;
+}
+header .header-nav .header-nav-search .auto-search-result ul li a:last-child {
+  border-bottom: none;
+}
+header .header-nav .header-nav-search .auto-search-result ul li a .title {
+  display: block;
+  font-size: 15px;
+  color: #333;
+}
+header .header-nav .header-nav-search .auto-search-result ul li a .artist {
+  display: block;
+  font-size: 12px;
+  color: #a09d9d;
 }
 
 /* ----------------------------------
@@ -156,6 +192,7 @@ COMMON BODY
 /* blocks */
 .content-block {
   display: block;
+  width: 100%;
 }
 .content-block h2 {
   margin-bottom: 15px;
@@ -330,6 +367,21 @@ CUSTOM BODY
 .view-more:hover {
   background-color: #f7f7f7;
 }
+a.view-more {
+  display: block;
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 15px 30px;
+  font-size: 15px;
+  text-align: center;
+  color: #ae2d2d;
+  border-top: 1px solid #ebebeb;
+  cursor: pointer;
+  text-decoration: none;
+}
+a.view-more:hover {
+  background-color: #f7f7f7;
+}
 
 /* ----------------------------------
 TOOL TIP
@@ -420,7 +472,6 @@ CUSTOM SIDEBAR
 }
 /* popular */
 .body-sidebar .side-popular {
-  margin-bottom: 20px;
   padding: 15px;
   background-color: #fff;
   overflow: hidden;
@@ -478,4 +529,16 @@ CUSTOM SIDEBAR
 .body-sidebar .side-popular ul li .desc .chapter a:hover {
   text-decoration: underline;
 }
+.body-sidebar .view-more {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 15px;
+  text-align: center;
+  color: #ae2d2d;
+  text-decoration: none;
+}
 
+.fb-comments-holder {
+  background-color: #fff;
+  padding: 10px;
+}

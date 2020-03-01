@@ -13,6 +13,7 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 //packages
 import _ from "lodash";
+import axios from 'axios';
 
 //includes
 import Header from "./includes/header";
@@ -23,6 +24,9 @@ import Home from "./pages/home/home";
 import Manga from "./pages/manga/manga";
 import MangaList from "./pages/manga-list/mangaList";
 import MangaPage from "./pages/manga-page/mangaPage";
+import LatestManga from "./pages/latest-manga/latestManga";
+import TopManga from "./pages/top-manga/topManga";
+import Category from "./pages/category/category";
 import PageNotFound from "./shared/pages/pageNotFound";
 
 let m_list = require("../services/list.json");
@@ -36,6 +40,44 @@ class Index extends React.Component {
     top: this.clearTopUrl(m_top, m_list)
   };
 
+  componentDidMount() {
+    const enableApi = false;
+
+    if(enableApi){
+      const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+
+      const usernamePasswordBuffer = Buffer.from('mangabay' + ':' + 'mangabay');
+      const base64data = usernamePasswordBuffer.toString('base64');
+
+      axios.get(PROXY_URL + 'http://mangariot.com/php/get-list.php', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Basic ${base64data}`,
+        }
+      })
+      .then(res => {
+        const list = [...res.data];
+        console.log(list,'list from php')
+        //this.setState({ list });
+      });
+
+      axios.get(PROXY_URL + 'http://mangariot.com/php/get-chapters.php', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Basic ${base64data}`,
+        }
+      })
+      .then(res => {
+        const chapters = res.data
+        console.log(chapters,'chapters from php')
+        //this.setState({ chapters });
+      });
+
+    }
+
+
+  }
+
   render() {
     const { list, chapters, top } = this.state;
 
@@ -46,7 +88,7 @@ class Index extends React.Component {
     return (
       <React.Fragment>
         <BrowserRouter>
-          <Header></Header>
+          <Header list={list}></Header>
           <Switch>
             <Route
               path="/"
@@ -56,6 +98,18 @@ class Index extends React.Component {
             <Route
               path="/manga-list"
               render={props => <MangaList list={list} chapters={chapters} top={top} />}
+            ></Route>
+            <Route
+              path="/latest-release"
+              render={props => <LatestManga list={list} chapters={chapters} top={top} />}
+            ></Route>
+            <Route
+              path="/top-manga"
+              render={props => <TopManga list={list} chapters={chapters} top={top} />}
+            ></Route>
+            <Route
+              path="/popular/:category"
+              render={props => <Category list={list} chapters={chapters} top={top} {...props} />}
             ></Route>
             <Route
               path="/:name/:chapter/:episode"

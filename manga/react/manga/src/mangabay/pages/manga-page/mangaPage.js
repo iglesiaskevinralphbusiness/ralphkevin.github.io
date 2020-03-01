@@ -6,6 +6,8 @@ import { Redirect } from "react-router-dom";
 //components
 import Breadcrumbs from "../../shared/components/breadcrumbs";
 import Options from './components/options';
+import FacebookComments from "../../shared/components/facebookComments";
+import FacebookLike from "../../shared/components/facebookLike";
 
 class MangaPage extends React.Component {
 
@@ -111,6 +113,8 @@ class MangaPage extends React.Component {
       }
     ];
 
+    const fbCommentUrl = episode_url;
+
     return (
       <main>
         <div className="wrap">
@@ -126,6 +130,8 @@ class MangaPage extends React.Component {
             </div>
             <Options optionSettings={optionSettings}  history= {this.props.history}/>
           </div>
+          <FacebookLike url={fbCommentUrl}></FacebookLike>
+          <FacebookComments url={fbCommentUrl}></FacebookComments>
         </div>
       </main>
     );

@@ -124,7 +124,7 @@ INFORMATION
   border-bottom: 1px solid #8888881c;
 }
 .manga-info .manga-chapters .chapters-list li a:hover {
-  background-color: #ffe5e5;
+  background-color: #ebebeb;
 }
 
 /* ----------------------------------
@@ -211,4 +211,106 @@ PAGE
 }
 .manga-page .image-containers img {
   width: 100%;
+}
+
+.latest-block-all {
+  float: left;
+  width: 50%;
+  padding: 15px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f5f5f5;
+}
+.latest-block-all:nth-child(1n){
+  border-left: 1px solid #f5f5f5;
+}
+.latest-block-all .manga-details {
+	display: table;
+	width: 100%;
+}
+.latest-block-all .manga-details .details-image {
+	display: table-cell;
+  width: 80px;
+  min-width: 80px;
+  vertical-align: top;
+  padding-right: 10px;
+}
+.latest-block-all .manga-details .details-image .img-container {
+  display: block;
+	height: 125px;
+	background-color: #fff;
+  padding: 3px;
+  background-size: 100% auto;
+}
+.latest-block-all .manga-details .details-image img {
+	width: 0;
+	visibility: hidden;
+}
+.latest-block-all .manga-details .details-block {
+	display: table-cell;
+	width: auto;
+	padding-left: 8px;
+	vertical-align: top;
+}
+.latest-block-all .manga-details .details-block h2 {
+  border-bottom: none;
+}
+.latest-block-all .manga-details .details-block h2 a {
+  font-size: 16px;
+	font-weight: bold;
+  text-decoration: none;
+  color: #ae2d2d;
+}
+.latest-block-all .manga-details .details-block h2 a:hover {
+  text-decoration: underline;
+}
+.latest-block-all .manga-details .details-block dl {
+	margin: 4px 2px;
+	font-size: 13px;
+	overflow: hidden;
+}
+.latest-block-all .manga-details .details-block dl dt {
+	float: left;
+	width: 35%;
+}
+.latest-block-all .manga-details .details-block dl dd {
+	float: left;
+	width: 65%;
+}
+.latest-block-all .manga-details .details-block dl dd span:after {
+  content: ',';
+  padding: 0 2px;
+}
+.latest-block-all .manga-details .details-block dl dd span:last-child:after {
+  display: none;
+}
+
+.alphabetical {
+  overflow: hidden;
+}
+.alphabetical .alpha-block {
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+.alphabetical .alpha-container {
+  padding: 10px;
+  background-color: #fff;
+}
+.alphabetical .alpha-container h2 {
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 0;
+  margin-bottom: 5px;
+  color: #ae2d2d;
+}
+.alphabetical .alpha-container ul {
+  padding-left: 10px;
+}
+.alphabetical .alpha-container ul li {
+  font-size: 14px;
+}
+
+.category {
+  padding: 15px;
+  background-color: #fff;
+  overflow: hidden;
 }
