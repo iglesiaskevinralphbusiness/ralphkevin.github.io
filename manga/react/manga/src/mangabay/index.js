@@ -37,7 +37,8 @@ class Index extends React.Component {
   state = {
     list: this.cleanListUrl(m_list),
     chapters: this.cleanCaptersUrl(m_chapters),
-    top: this.clearTopUrl(m_top, m_list)
+    top: this.clearTopUrl(m_top, m_list),
+    bookmarks: localStorage.getItem('bookmarks') ? JSON.parse(localStorage.getItem('bookmarks')) : []
   };
 
   componentDidMount() {
@@ -81,14 +82,14 @@ class Index extends React.Component {
   render() {
     const { list, chapters, top } = this.state;
 
-    console.log(list, "m_list");
-    console.log(chapters, "m_chapters");
-    console.log(top, "m_top");
+    //console.log(list, "m_list");
+    //console.log(chapters, "m_chapters");
+    //console.log(top, "m_top");
 
     return (
       <React.Fragment>
         <BrowserRouter>
-          <Header list={list}></Header>
+          <Header list={list} bookmarks={this.state.bookmarks}></Header>
           <Switch>
             <Route
               path="/"
@@ -126,7 +127,7 @@ class Index extends React.Component {
             <Route
               path="/:name"
               render={props => (
-                <Manga list={list} chapters={chapters} top={top} {...props} />
+                <Manga list={list} chapters={chapters} top={top} bookmarks={this.state.bookmarks} addBookmark={this.addBookmark} {...props} />
               )}
             ></Route>
 
@@ -180,6 +181,20 @@ class Index extends React.Component {
 
   replaceUrl(url) {
     return url.replace("http://www.mangareader.net", "");
+  }
+
+  addBookmark = (url) => {
+    const find = this.state.bookmarks.find(b => b == url);
+    if(find){
+      const bookmarks = this.state.bookmarks.filter(b => b != url);
+      localStorage.setItem('bookmarks',JSON.stringify(bookmarks));
+      this.setState({bookmarks})
+    }
+    else {
+      const bookmarks = [...this.state.bookmarks, url];
+      localStorage.setItem('bookmarks',JSON.stringify(bookmarks));
+      this.setState({bookmarks})
+    }
   }
 }
 

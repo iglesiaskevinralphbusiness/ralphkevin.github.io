@@ -9,6 +9,11 @@ import Sidebar from "./../../includes/sidebar/sidebar";
 import FacebookComments from "../../shared/components/facebookComments";
 
 class MangaList extends React.Component {
+
+  componentDidMount() {
+    document.title = 'MangaRiot | Manga List';
+  }
+
   render() {
     const { list, chapters, top } = this.props;
     const alphabetical = this.getAlphabeticalOrder(list);

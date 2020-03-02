@@ -12,10 +12,23 @@ class Header extends React.Component {
 
   render() {
 
+    const { bookmarks } = this.props;
+    const myBookmarks = this.countBookmarks(bookmarks);
+
     return (
       <header>
         <div className="header-block">
-          <div className="wrap"></div>
+          <div className="wrap">
+            <div className="colL">
+              <Link to="/">
+                <img src="./images/logo-body.png" alt="MangaRiot"></img>
+              </Link>
+            </div>
+            <div className="colR">
+              <Link to="/bookmarks">Bookmarks ({myBookmarks})</Link>
+              <Link to="/contact-us">Contact Us</Link>
+            </div>
+          </div>
         </div>
         <div className="header-nav">
           <div className="wrap">
@@ -44,11 +57,19 @@ class Header extends React.Component {
                     this.state.searchResult.map(s => (
                       <li>
                         <Link to={s.url} onClick={this.handleSelected}>
-                          <span className="title">{s.name}</span>
-                          <span className="artist">{s.artist}</span>
+                          <div class="colL">
+                            <span style={{ backgroundImage: "url(" + s.image + ")" }}></span>
+                          </div>
+                          <div class="colR">
+                            <span className="title">{s.name}</span>
+                            <span className="artist">{s.artist}</span>
+                          </div>
                         </Link>
                       </li>
                     ))
+                  }
+                  {
+                    this.state.searchResult.length <= 0 && this.state.show?(<li className="no-found">No matches found. Try different search...</li>) : ''
                   }
                 </ul>
               </div>
@@ -79,6 +100,11 @@ class Header extends React.Component {
     const searchResult = [];
     const show = false;
     this.setState({searchResult,show});
+  }
+
+  countBookmarks = (bookmarks) => {
+    const total = bookmarks.length;
+    return total;
   }
 }
 

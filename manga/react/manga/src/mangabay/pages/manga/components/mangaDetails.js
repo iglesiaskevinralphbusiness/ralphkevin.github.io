@@ -8,10 +8,9 @@ import FacebookLike from "../../../shared/components/facebookLike";
 
 class MangaDetails extends React.Component {
   render() {
-    const { manga } = this.props;
-    console.log(manga);
-
+    const { manga, addBookmark } = this.props;
     const fbCommentUrl = manga.url;
+    const bookmarkStatus = this.getBookmarkActive(manga.url);
 
     return (
       <div className="manga-details">
@@ -19,8 +18,8 @@ class MangaDetails extends React.Component {
           <p className="img-container">
             <img src={manga.image} />
           </p>
-          <p className="link-bookmark">
-            <a href="#">BOOKMARK</a>
+          <p className={bookmarkStatus ? 'link-bookmark btn-add' : 'link-bookmark btn-remove'}>
+            <span onClick={() => addBookmark(manga.url)}>{ bookmarkStatus ? 'ADD BOOKMARK': 'REMOVE BOOKMARK'}</span>
           </p>
           <p className="link-chapter">
             <a href="#">CHAPTER LIST</a>
@@ -68,6 +67,15 @@ class MangaDetails extends React.Component {
         </div>
       </div>
     );
+  }
+
+  getBookmarkActive(url){
+    const { bookmarks } = this.props;
+    const find = bookmarks.find(b => b == url);
+    if(find){
+      return false;
+    }
+    return true;
   }
 }
 

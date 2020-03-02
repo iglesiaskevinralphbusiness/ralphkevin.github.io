@@ -13,6 +13,10 @@ import SliderLatest from "../../shared/components/sliderLatest";
 
 class Home extends React.Component {
 
+  componentDidMount() {
+    document.title = 'MangaRiot';
+  }
+
   render() {
     const { list, chapters, top } = this.props;
     const popularUpdates = this.getPopularUpdates(list, chapters);

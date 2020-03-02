@@ -14,7 +14,7 @@ class Manga extends React.Component {
 
   render() {
     window.scrollTo(0, 0);
-    const { list, chapters, top } = this.props;
+    const { list, chapters, top, bookmarks, addBookmark } = this.props;
     const { name } = this.props.match.params;
 
     const manga = list.find(l => l.url == "/" + name);
@@ -24,6 +24,7 @@ class Manga extends React.Component {
 
     const fbCommentUrl = manga.url;
     const breadcrumbs = this.createBreadcrumbs(manga.name);
+    document.title = 'MangaRiot | ' + manga.name;
 
     return (
       <main>
@@ -31,7 +32,7 @@ class Manga extends React.Component {
           <section className="body-column">
             <div className="body-content manga-info">
               <Breadcrumbs data={breadcrumbs}></Breadcrumbs>
-              <MangaDetails manga={manga}></MangaDetails>
+              <MangaDetails manga={manga} bookmarks={bookmarks} addBookmark={addBookmark}></MangaDetails>
               <ChapterList manga={manga} ></ChapterList>
               <FacebookComments url={fbCommentUrl}></FacebookComments>
             </div>

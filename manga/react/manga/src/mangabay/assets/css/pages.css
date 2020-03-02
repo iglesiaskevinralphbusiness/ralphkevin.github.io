@@ -21,7 +21,6 @@ INFORMATION
 }
 .manga-info .manga-details .details-image .link-bookmark {
   width: 100%;
-  padding: 10px 0;
   margin: 5px 0;
   position: relative;
   font-size: 14px;
@@ -34,9 +33,12 @@ INFORMATION
   background: #f39c12;
   border-bottom: 2px solid #e8930c;
 }
+.manga-info .manga-details .details-image .link-bookmark.btn-remove {
+  background: #afafaf;
+  border-bottom: 2px solid #696969;
+}
 .manga-info .manga-details .details-image .link-chapter {
   width: 100%;
-  padding: 10px 0;
   margin: 5px 0;
   position: relative;
   font-size: 14px;
@@ -50,9 +52,21 @@ INFORMATION
   border-bottom: 2px solid #26904b;
 }
 .manga-info .manga-details .details-image a {
+  display: block;
+  padding: 10px 0;
   color: #fff;
   font-size: 14px;
   text-decoration: none;
+}
+.manga-info .manga-details .details-image span {
+  display: block;
+  padding: 10px 0;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+}
+.manga-info .manga-details .details-image span.btn-remove {
+  border: 1px solid red;
 }
 .manga-info .manga-details .details-block {
   width: 100%;

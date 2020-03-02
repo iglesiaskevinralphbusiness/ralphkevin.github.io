@@ -114,6 +114,7 @@ class MangaPage extends React.Component {
     ];
 
     const fbCommentUrl = episode_url;
+    document.title = 'MangaRiot | ' + name + ' | ' + chapter;
 
     return (
       <main>

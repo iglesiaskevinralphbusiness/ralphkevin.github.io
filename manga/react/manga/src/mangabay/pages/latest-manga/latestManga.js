@@ -17,6 +17,10 @@ class LatestManga extends React.Component {
     viewMore: true
   };
 
+  componentDidMount() {
+    document.title = 'MangaRiot | Latest Release';
+  }
+
   render() {
     const { list, chapters, top } = this.props;
     const popularUpdates = this.getPopularUpdates(list, chapters);
