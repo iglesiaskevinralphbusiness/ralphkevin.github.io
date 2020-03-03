@@ -41,9 +41,13 @@ class MangaList extends React.Component {
                           <h2>{a.alphabet}</h2>
                           <ul>
                             {
-                              mangaList.map(m => (
-                                <li key={m.url}><Link to={m.url}>{m.name}</Link></li>
-                              ))
+                              mangaList.filter(m => {
+                                const find = chapters.find(c => c.manga_url == m.url);
+                                if(find){
+                                  return true;
+                                }
+                                return false;
+                              }).map(m => (<li key={m.url}><Link to={m.url}>{m.name}</Link></li>))
                             }
                           </ul>
                         </div>

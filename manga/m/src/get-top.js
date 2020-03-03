@@ -27,7 +27,13 @@ describe('Handling Hooks', () => {
             "http://www.mangareader.net/popular/30",
             "http://www.mangareader.net/popular/60",
             "http://www.mangareader.net/popular/90",
-            "http://www.mangareader.net/popular/120"
+            "http://www.mangareader.net/popular/120",
+            "http://www.mangareader.net/popular/150",
+            "http://www.mangareader.net/popular/180",
+            "http://www.mangareader.net/popular/210",
+            "http://www.mangareader.net/popular/240",
+            "http://www.mangareader.net/popular/270",
+            "http://www.mangareader.net/popular/300",
         ];
     });
 

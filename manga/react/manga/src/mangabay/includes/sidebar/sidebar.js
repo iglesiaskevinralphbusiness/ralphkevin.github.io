@@ -6,45 +6,18 @@ import { Link } from "react-router-dom";
 //packages
 import _ from "lodash";
 
+//components
+import SidebarTopManga from "../../shared/components/sidebarTopManga";
+
 class Sidebar extends React.Component {
   render() {
-    const { list, top } = this.props;
+    const { list, chapters, top } = this.props;
 
     const categories = this.getCategories(list);
 
     return (
       <div className="body-sidebar">
-        <div className="content-block">
-          <h2>
-            <span>Most Popular Manga</span>
-          </h2>
-          <div className="side-popular">
-            <ul>
-              {
-                top.slice(0,5).map(t => (
-                  <li key={t.url}>
-                    <div className="cover">
-                      <Link to={t.url} style={{ backgroundImage: "url(" + t.details.image + ")" }}>
-                        <img src={t.details.image} alt={'Read manga ' + t.details.name} />
-                      </Link>
-                    </div>
-                    <div className="desc">
-                      <p className="title">
-                        <Link to={t.url}>{t.details.name}</Link>
-                      </p>
-                      <p className="chapter">
-                        {t.details.chapters.slice(t.details.chapters.length - 1, t.details.chapters.length).map(c => (
-                          <Link key={c.link} to={c.link}>{c.name}</Link>
-                        ))}
-                      </p>
-                    </div>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-          <Link to="/top-manga" className="view-more">View More </Link>
-        </div>
+        <SidebarTopManga chapters={chapters} top={top} />
         <div className="content-block">
           <h2>
             <span>Categories</span>
