@@ -7,67 +7,79 @@ import { Link } from "react-router-dom";
 //components
 import Sidebar from "./../../includes/sidebar/sidebar";
 import FacebookComments from "../../shared/components/facebookComments";
+import Breadcrumbs from "../../shared/components/breadcrumbs";
 
 class MangaList extends React.Component {
-
   componentDidMount() {
-    document.title = 'MangaRiot | Manga List';
+    document.title = "MangaRiot | Manga List";
   }
 
   render() {
     const { list, chapters, top } = this.props;
     const alphabetical = this.getAlphabeticalOrder(list);
     const fbCommentUrl = "/manga-list";
+    const breadcrumbs = [
+      {
+        name: "Manga Online",
+        link: "/"
+      },
+      {
+        name: "Manga List",
+        link: null
+      }
+    ];
 
     return (
       <main>
         <div className="wrap">
           <section className="body-column">
             <div className="content-block">
+              <Breadcrumbs data={breadcrumbs}></Breadcrumbs>
               <section className="alphabetical">
-                {
-                  alphabetical.map(a =>  {
-                    let mangaList = [];
-                    if(a.manga.length){
-                      mangaList = [...a.manga];
-                    }
-                    else {
-                      mangaList = [a.manga]
-                    }
+                {alphabetical.map(a => {
+                  let mangaList = [];
+                  if (a.manga.length) {
+                    mangaList = [...a.manga];
+                  } else {
+                    mangaList = [a.manga];
+                  }
 
-                    return (
-                      <section className="alpha-block" key={a.alphabet}>
-                        <div className="alpha-container">
-                          <h2>{a.alphabet}</h2>
-                          <ul>
-                            {
-                              mangaList.filter(m => {
-                                const find = chapters.find(c => c.manga_url == m.url);
-                                if(find){
-                                  return true;
-                                }
-                                return false;
-                              }).map(m => (<li key={m.url}><Link to={m.url}>{m.name}</Link></li>))
-                            }
-                          </ul>
-                        </div>
-                      </section>
-                    )
-                  })
-                }
+                  return (
+                    <section className="alpha-block" key={a.alphabet}>
+                      <div className="alpha-container">
+                        <h2>{a.alphabet}</h2>
+                        <ul>
+                          {mangaList
+                            .filter(m => {
+                              const find = chapters.find(
+                                c => c.manga_url == m.url
+                              );
+                              if (find) {
+                                return true;
+                              }
+                              return false;
+                            })
+                            .map(m => (
+                              <li key={m.url}>
+                                <Link to={m.url}>{m.name}</Link>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                    </section>
+                  );
+                })}
               </section>
               <FacebookComments url={fbCommentUrl}></FacebookComments>
             </div>
             <Sidebar list={list} chapters={chapters} top={top}></Sidebar>
           </section>
-
-          
         </div>
       </main>
     );
   }
 
-  getAlphabeticalOrder(list){
+  getAlphabeticalOrder(list) {
     let organized = [];
     let reorganized = [];
 
@@ -75,11 +87,13 @@ class MangaList extends React.Component {
       const name = l.name;
       let letter = name.trim().charAt(0);
       letter = letter.toUpperCase();
-      organized[letter] = organized[letter] ? _.concat(organized[letter], l) : l;
+      organized[letter] = organized[letter]
+        ? _.concat(organized[letter], l)
+        : l;
     });
 
     for (var key in organized) {
-      if (organized.hasOwnProperty(key)) {   
+      if (organized.hasOwnProperty(key)) {
         const value = {
           alphabet: key,
           manga: organized[key]
@@ -88,10 +102,10 @@ class MangaList extends React.Component {
       }
     }
 
-    const sortItem = reorganized.sort(function(a, b){
+    const sortItem = reorganized.sort(function(a, b) {
       const textA = a.alphabet;
       const textB = b.alphabet;
-      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      return textA < textB ? -1 : textA > textB ? 1 : 0;
     });
 
     return sortItem;

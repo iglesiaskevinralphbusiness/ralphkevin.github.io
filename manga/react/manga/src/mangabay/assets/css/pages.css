@@ -234,15 +234,15 @@ PAGE
   box-sizing: border-box;
   border-bottom: 1px solid #f5f5f5;
 }
-.latest-block-all:nth-child(1n){
+.latest-block-all:nth-child(1n) {
   border-left: 1px solid #f5f5f5;
 }
 .latest-block-all .manga-details {
-	display: table;
-	width: 100%;
+  display: table;
+  width: 100%;
 }
 .latest-block-all .manga-details .details-image {
-	display: table-cell;
+  display: table-cell;
   width: 80px;
   min-width: 80px;
   vertical-align: top;
@@ -250,27 +250,29 @@ PAGE
 }
 .latest-block-all .manga-details .details-image .img-container {
   display: block;
-	height: 125px;
-	background-color: #fff;
+  height: 125px;
+  background-color: #fff;
   padding: 3px;
   background-size: 100% auto;
 }
 .latest-block-all .manga-details .details-image img {
-	width: 0;
-	visibility: hidden;
+  width: 0;
+  visibility: hidden;
 }
 .latest-block-all .manga-details .details-block {
-	display: table-cell;
-	width: auto;
-	padding-left: 8px;
-	vertical-align: top;
+  display: table-cell;
+  width: auto;
+  max-width: 300px !important;
+  min-width: 300px !important;
+  padding-left: 8px;
+  vertical-align: top;
 }
 .latest-block-all .manga-details .details-block h2 {
   border-bottom: none;
 }
 .latest-block-all .manga-details .details-block h2 a {
   font-size: 16px;
-	font-weight: bold;
+  font-weight: bold;
   text-decoration: none;
   color: #ae2d2d;
 }
@@ -278,20 +280,20 @@ PAGE
   text-decoration: underline;
 }
 .latest-block-all .manga-details .details-block dl {
-	margin: 4px 2px;
-	font-size: 13px;
-	overflow: hidden;
+  margin: 4px 2px;
+  font-size: 13px;
+  overflow: hidden;
 }
 .latest-block-all .manga-details .details-block dl dt {
-	float: left;
-	width: 35%;
+  float: left;
+  width: 35%;
 }
 .latest-block-all .manga-details .details-block dl dd {
-	float: left;
-	width: 65%;
+  float: left;
+  width: 65%;
 }
 .latest-block-all .manga-details .details-block dl dd span:after {
-  content: ',';
+  content: ",";
   padding: 0 2px;
 }
 .latest-block-all .manga-details .details-block dl dd span:last-child:after {

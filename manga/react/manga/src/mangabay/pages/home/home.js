@@ -3,18 +3,16 @@ import { Link } from "react-router-dom";
 
 //packages
 import _ from "lodash";
-import ReactTooltip from 'react-tooltip';
+import ReactTooltip from "react-tooltip";
 
 //components
 import LatestBlock from "./components/latestBlock";
 import Sidebar from "./../../includes/sidebar/sidebar";
 import SliderLatest from "../../shared/components/sliderLatest";
 
-
 class Home extends React.Component {
-
   componentDidMount() {
-    document.title = 'MangaRiot - Read Manga Online';
+    document.title = "MangaRiot - Read Manga Online";
   }
 
   render() {
@@ -22,11 +20,16 @@ class Home extends React.Component {
     const popularUpdates = this.getPopularUpdates(list, chapters);
     const latestRelease = this.getLatestRelease(list);
 
+    console.log(popularUpdates);
+    console.log(top);
+
     return (
       <main>
         <div className="wrap">
           <section className="pupular content-block">
-				    <h2><span>Latest Manga Release</span></h2>
+            <h2>
+              <span>Latest Manga Release</span>
+            </h2>
             <SliderLatest latestRelease={latestRelease}></SliderLatest>
           </section>
 
@@ -36,11 +39,25 @@ class Home extends React.Component {
                 <span>Latest Manga Updates</span>
               </h2>
               <div className="latest">
-                {popularUpdates.slice(0, 20).map(l => (
-                  <LatestBlock key={l.url} manga={l}></LatestBlock>
-                ))}
+                {popularUpdates.slice(0, 20).map(l => {
+                  let status = "";
+                  const findTop = top.find(t => t.url == l.url);
+                  if (findTop) {
+                    status = "Hot";
+                  }
+
+                  return (
+                    <LatestBlock
+                      key={l.url}
+                      manga={l}
+                      status={status}
+                    ></LatestBlock>
+                  );
+                })}
               </div>
-              <Link to="/latest-release" className="view-more">View More</Link>
+              <Link to="/latest-release" className="view-more">
+                View More
+              </Link>
             </div>
 
             <Sidebar list={list} chapters={chapters} top={top}></Sidebar>
@@ -48,10 +65,10 @@ class Home extends React.Component {
         </div>
 
         <ReactTooltip
-          className='tool-tip-parent'
-          place='right'
-          type={'dark'}
-          getContent={(url) => {
+          className="tool-tip-parent"
+          place="right"
+          type={"dark"}
+          getContent={url => {
             let data = {
               url: "",
               name: "",
@@ -63,10 +80,10 @@ class Home extends React.Component {
               artist: "",
               reading_direction: "",
               genre: [],
-              chapters:[]
-            }
+              chapters: []
+            };
             const find = list.find(l => l.url == url);
-            if(find){
+            if (find) {
               data = find;
             }
 
@@ -74,8 +91,14 @@ class Home extends React.Component {
               <div className="data-tip-container">
                 <div className="manga-details">
                   <div className="details-image">
-                    <p className="img-container" style={{ backgroundImage: "url(" + data.image + ")" }}>
-                      <img src={data.image} alt={'Read manga ' + data.alternative_name}/>
+                    <p
+                      className="img-container"
+                      style={{ backgroundImage: "url(" + data.image + ")" }}
+                    >
+                      <img
+                        src={data.image}
+                        alt={"Read manga " + data.alternative_name}
+                      />
                     </p>
                   </div>
                   <div className="details-block">
@@ -92,7 +115,7 @@ class Home extends React.Component {
                     </dl>
                     <dl>
                       <dt>Year of Release:</dt>
-                       <dd>{data.year_release}</dd>
+                      <dd>{data.year_release}</dd>
                     </dl>
                     <dl>
                       <dt>Status:</dt>
@@ -113,22 +136,27 @@ class Home extends React.Component {
                   </div>
                 </div>
               </div>
-            )
+            );
           }}
         />
       </main>
     );
   }
 
-  getLatestRelease = (list) => {
+  getLatestRelease = list => {
     const copied = [...list];
-    const latest = copied.filter(c => c.year_release != '').sort((a, b) => new Date(a.year_release) - new Date(b.year_release)).reverse();
+    const latest = copied
+      .filter(c => c.year_release != "")
+      .sort((a, b) => new Date(a.year_release) - new Date(b.year_release))
+      .reverse();
     return latest;
-  }
+  };
 
   getPopularUpdates = (list, chapters) => {
     const copied = [...chapters];
-    const lastest = copied.sort((a, b) => new Date(a.release_date) - new Date(b.release_date)).reverse();
+    const lastest = copied
+      .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
+      .reverse();
 
     //today and yesterday (not used yet)
     const today = this.getDateFormat(new Date());

@@ -13,7 +13,7 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 //packages
 import _ from "lodash";
-import axios from 'axios';
+import axios from "axios";
 
 //includes
 import Header from "./includes/header";
@@ -27,6 +27,7 @@ import MangaPage from "./pages/manga-page/mangaPage";
 import LatestManga from "./pages/latest-manga/latestManga";
 import TopManga from "./pages/top-manga/topManga";
 import Category from "./pages/category/category";
+import Disclamer from "./pages/disclamer/disclamer";
 import PageNotFound from "./shared/pages/pageNotFound";
 
 let m_list = require("../services/list.json");
@@ -38,45 +39,46 @@ class Index extends React.Component {
     list: this.cleanListUrl(m_list),
     chapters: this.cleanCaptersUrl(m_chapters),
     top: this.clearTopUrl(m_top, m_list),
-    bookmarks: localStorage.getItem('bookmarks') ? JSON.parse(localStorage.getItem('bookmarks')) : []
+    bookmarks: localStorage.getItem("bookmarks")
+      ? JSON.parse(localStorage.getItem("bookmarks"))
+      : []
   };
 
   componentDidMount() {
     const enableApi = false;
 
-    if(enableApi){
-      const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+    if (enableApi) {
+      const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
 
-      const usernamePasswordBuffer = Buffer.from('mangabay' + ':' + 'mangabay');
-      const base64data = usernamePasswordBuffer.toString('base64');
+      const usernamePasswordBuffer = Buffer.from("mangabay" + ":" + "mangabay");
+      const base64data = usernamePasswordBuffer.toString("base64");
 
-      axios.get(PROXY_URL + 'http://mangariot.com/php/get-list.php', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Basic ${base64data}`,
-        }
-      })
-      .then(res => {
-        const list = [...res.data];
-        console.log(list,'list from php')
-        //this.setState({ list });
-      });
+      axios
+        .get(PROXY_URL + "http://mangariot.com/php/get-list.php", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Basic ${base64data}`
+          }
+        })
+        .then(res => {
+          const list = [...res.data];
+          console.log(list, "list from php");
+          //this.setState({ list });
+        });
 
-      axios.get(PROXY_URL + 'http://mangariot.com/php/get-chapters.php', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Basic ${base64data}`,
-        }
-      })
-      .then(res => {
-        const chapters = res.data
-        console.log(chapters,'chapters from php')
-        //this.setState({ chapters });
-      });
-
+      axios
+        .get(PROXY_URL + "http://mangariot.com/php/get-chapters.php", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Basic ${base64data}`
+          }
+        })
+        .then(res => {
+          const chapters = res.data;
+          console.log(chapters, "chapters from php");
+          //this.setState({ chapters });
+        });
     }
-
-
   }
 
   render() {
@@ -94,40 +96,78 @@ class Index extends React.Component {
             <Route
               path="/"
               exact
-              render={props => <Home list={list} chapters={chapters} top={top} />}
+              render={props => (
+                <Home list={list} chapters={chapters} top={top} />
+              )}
             ></Route>
             <Route
               path="/manga-list"
-              render={props => <MangaList list={list} chapters={chapters} top={top} />}
+              render={props => (
+                <MangaList list={list} chapters={chapters} top={top} />
+              )}
             ></Route>
             <Route
               path="/latest-release"
-              render={props => <LatestManga list={list} chapters={chapters} top={top} />}
+              render={props => (
+                <LatestManga list={list} chapters={chapters} top={top} />
+              )}
             ></Route>
             <Route
               path="/top-manga"
-              render={props => <TopManga list={list} chapters={chapters} top={top} />}
+              render={props => (
+                <TopManga list={list} chapters={chapters} top={top} />
+              )}
+            ></Route>
+            <Route
+              path="/disclamer"
+              render={props => (
+                <Disclamer list={list} chapters={chapters} top={top} />
+              )}
             ></Route>
             <Route
               path="/popular/:category"
-              render={props => <Category list={list} chapters={chapters} top={top} {...props} />}
+              render={props => (
+                <Category
+                  list={list}
+                  chapters={chapters}
+                  top={top}
+                  {...props}
+                />
+              )}
             ></Route>
             <Route
               path="/:name/:chapter/:episode"
               render={props => (
-                <MangaPage list={list} chapters={chapters} top={top} {...props} />
+                <MangaPage
+                  list={list}
+                  chapters={chapters}
+                  top={top}
+                  {...props}
+                />
               )}
             ></Route>
             <Route
               path="/:name/:chapter"
               render={props => (
-                <MangaPage list={list} chapters={chapters} top={top} {...props} />
+                <MangaPage
+                  list={list}
+                  chapters={chapters}
+                  top={top}
+                  {...props}
+                />
               )}
             ></Route>
             <Route
               path="/:name"
               render={props => (
-                <Manga list={list} chapters={chapters} top={top} bookmarks={this.state.bookmarks} addBookmark={this.addBookmark} {...props} />
+                <Manga
+                  list={list}
+                  chapters={chapters}
+                  top={top}
+                  bookmarks={this.state.bookmarks}
+                  addBookmark={this.addBookmark}
+                  {...props}
+                />
               )}
             ></Route>
 
@@ -169,13 +209,13 @@ class Index extends React.Component {
     return holder;
   }
 
-  clearTopUrl(top, list){
+  clearTopUrl(top, list) {
     const holder = top.map((t, index) => {
       t.order_id = index;
       t.url = this.replaceUrl(t.url);
       t.details = list.find(l => l.url == t.url);
       return t;
-    })
+    });
     return holder;
   }
 
@@ -183,19 +223,18 @@ class Index extends React.Component {
     return url.replace("http://www.mangareader.net", "");
   }
 
-  addBookmark = (url) => {
+  addBookmark = url => {
     const find = this.state.bookmarks.find(b => b == url);
-    if(find){
+    if (find) {
       const bookmarks = this.state.bookmarks.filter(b => b != url);
-      localStorage.setItem('bookmarks',JSON.stringify(bookmarks));
-      this.setState({bookmarks})
-    }
-    else {
+      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      this.setState({ bookmarks });
+    } else {
       const bookmarks = [...this.state.bookmarks, url];
-      localStorage.setItem('bookmarks',JSON.stringify(bookmarks));
-      this.setState({bookmarks})
+      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      this.setState({ bookmarks });
     }
-  }
+  };
 }
 
 export default Index;

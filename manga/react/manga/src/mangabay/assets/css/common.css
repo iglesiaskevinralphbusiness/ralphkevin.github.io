@@ -62,13 +62,12 @@ header .header-block .colR a {
   display: inline-block;
 }
 header .header-block .colR a:after {
-  content: '|';
+  content: "|";
   padding: 0 3px;
 }
 header .header-block .colR a:last-child:after {
   display: none;
 }
-
 
 /* navigation */
 header .header-nav {
@@ -168,7 +167,14 @@ header .header-nav .header-nav-search .auto-search-result ul li a .artist {
 header .header-nav .header-nav-search .auto-search-result ul li a:hover .title {
   color: #fff;
 }
-header .header-nav .header-nav-search .auto-search-result ul li a:hover .artist {
+header
+  .header-nav
+  .header-nav-search
+  .auto-search-result
+  ul
+  li
+  a:hover
+  .artist {
   color: #fff;
 }
 
@@ -274,6 +280,26 @@ COMMON BODY
 /* ----------------------------------
 CUSTOM BODY
 ------------------------------------*/
+/* Home Status */
+.status-hot {
+  margin: 0 0 0 7px;
+  color: #fff;
+  background-color: #ff9800;
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 2px 4px;
+  font-weight: normal;
+}
+.status-new {
+  margin: 0 0 0 7px;
+  color: #fff;
+  background-color: #4caf50;
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 2px 4px;
+  font-weight: normal;
+}
+
 /* home popular */
 .pupular {
   margin-bottom: 20px;
@@ -443,52 +469,52 @@ TOOL TIP
   padding: 0px !important;
 }
 .data-tip-container {
-	width: 400px;
-	padding: 10px;
+  width: 400px;
+  padding: 10px;
 }
 .data-tip-container .manga-details {
-	display: table;
-	width: 100%;
+  display: table;
+  width: 100%;
 }
 .data-tip-container .manga-details .details-image {
-	display: table-cell;
-	width: 80px;
+  display: table-cell;
+  width: 80px;
   vertical-align: top;
   padding-right: 10px;
 }
 .data-tip-container .manga-details .details-image .img-container {
-	height: 100px;
-	background-color: #fff;
+  height: 100px;
+  background-color: #fff;
   padding: 3px;
   background-size: 100% auto;
 }
 .data-tip-container .manga-details .details-image img {
-	width: 0;
-	visibility: hidden;
+  width: 0;
+  visibility: hidden;
 }
 .data-tip-container .manga-details .details-block {
-	display: table-cell;
-	width: auto;
-	padding-left: 8px;
-	vertical-align: top;
+  display: table-cell;
+  width: auto;
+  padding-left: 8px;
+  vertical-align: top;
 }
 .data-tip-container .manga-details .details-block h2 {
-    font-size: 16px;
-	font-weight: bold;
-	font-size: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  font-size: 14px;
 }
 .data-tip-container .manga-details .details-block dl {
-	margin: 4px 2px;
-	font-size: 13px;
-	overflow: hidden;
+  margin: 4px 2px;
+  font-size: 13px;
+  overflow: hidden;
 }
 .data-tip-container .manga-details .details-block dl dt {
-	float: left;
-	width: 35%;
+  float: left;
+  width: 35%;
 }
 .data-tip-container .manga-details .details-block dl dd {
-	float: left;
-	width: 65%;
+  float: left;
+  width: 65%;
 }
 
 /* ----------------------------------

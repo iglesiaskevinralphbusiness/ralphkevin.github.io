@@ -11,13 +11,10 @@ class Footer extends React.Component {
             <div className="footer-links">
               <ul>
                 <li>
-                  <Link to="/sitemap">Sitemap</Link>
+                  <Link to="http://mangariot.com/sitemap.xml">Sitemap</Link>
                 </li>
                 <li>
-                  <Link to="/privacy">Privacy &amp; Policy</Link>
-                </li>
-                <li>
-                  <Link to="/term-of-use">Terms of Use</Link>
+                  <Link to="/disclamer">Disclamer</Link>
                 </li>
                 <li>
                   <Link to="/contact-us">Contact Us</Link>
