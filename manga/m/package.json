@@ -8,6 +8,7 @@
     "list": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-list.js",
     "chapters": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-chapters.js",
     "top": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-top.js",
+    "sitemap": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-sitemap.js",
 
     "update": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/update-list.js"
   },

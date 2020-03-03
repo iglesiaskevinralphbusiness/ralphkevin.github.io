@@ -14,7 +14,7 @@ import SliderLatest from "../../shared/components/sliderLatest";
 class Home extends React.Component {
 
   componentDidMount() {
-    document.title = 'MangaRiot';
+    document.title = 'MangaRiot - Read Manga Online';
   }
 
   render() {
