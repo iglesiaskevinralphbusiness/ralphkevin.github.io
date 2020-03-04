@@ -30,6 +30,14 @@ import Category from "./pages/category/category";
 import Disclamer from "./pages/disclamer/disclamer";
 import PageNotFound from "./shared/pages/pageNotFound";
 
+//GA
+//import UnauthorizedLayout from 'layouts/UnauthorizedLayout';
+//import ErrorLayout from 'layouts/ErrorLayout';
+//import AuthorizedLayout from 'layouts/AuthorizedLayout';
+//import AuthorizedRoute from 'custom-routes/AuthorizedRoute';
+import GA from './utils/googleAnalytics';
+
+
 let m_list = require("../services/list.json");
 let m_chapters = require("../services/chapters.json");
 let m_top = require("../services/top.json");
@@ -91,6 +99,7 @@ class Index extends React.Component {
     return (
       <React.Fragment>
         <BrowserRouter>
+          { GA.init() && <GA.RouteTracker /> }
           <Header list={list} bookmarks={this.state.bookmarks}></Header>
           <Switch>
             <Route
