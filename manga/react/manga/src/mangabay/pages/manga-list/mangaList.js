@@ -9,6 +9,10 @@ import Sidebar from "./../../includes/sidebar/sidebar";
 import FacebookComments from "../../shared/components/facebookComments";
 import Breadcrumbs from "../../shared/components/breadcrumbs";
 
+//adds
+import Ads468x60 from "../../shared/adsterra/ads468x60";
+import Ads729x90 from "../../shared/adsterra/ads729x90";
+
 class MangaList extends React.Component {
   componentDidMount() {
     document.title = "MangaRiot | Manga List";
@@ -32,6 +36,7 @@ class MangaList extends React.Component {
     return (
       <main>
         <div className="wrap">
+          <Ads729x90 />
           <section className="body-column">
             <div className="content-block">
               <Breadcrumbs data={breadcrumbs}></Breadcrumbs>
@@ -71,6 +76,7 @@ class MangaList extends React.Component {
                 })}
               </section>
               <FacebookComments url={fbCommentUrl}></FacebookComments>
+              <Ads468x60 />
             </div>
             <Sidebar list={list} chapters={chapters} top={top}></Sidebar>
           </section>

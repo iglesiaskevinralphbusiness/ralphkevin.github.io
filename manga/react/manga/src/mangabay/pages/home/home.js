@@ -10,6 +10,10 @@ import LatestBlock from "./components/latestBlock";
 import Sidebar from "./../../includes/sidebar/sidebar";
 import SliderLatest from "../../shared/components/sliderLatest";
 
+//adds
+import Ads468x60 from "../../shared/adsterra/ads468x60";
+import Ads729x90 from "../../shared/adsterra/ads729x90";
+
 class Home extends React.Component {
   componentDidMount() {
     document.title = "MangaRiot - Read Manga Online";
@@ -26,6 +30,7 @@ class Home extends React.Component {
     return (
       <main>
         <div className="wrap">
+          <Ads729x90 />
           <section className="pupular content-block">
             <h2>
               <span>Latest Manga Release</span>
@@ -58,6 +63,8 @@ class Home extends React.Component {
               <Link to="/latest-release" className="view-more">
                 View More
               </Link>
+
+              <Ads468x60 />
             </div>
 
             <Sidebar list={list} chapters={chapters} top={top}></Sidebar>

@@ -9,6 +9,10 @@ import _ from "lodash";
 //components
 import SidebarTopManga from "../../shared/components/sidebarTopManga";
 
+//ads
+import Ads250x300 from "../../shared/adsterra/ads250x300";
+import Ads320x50 from "../../shared/adsterra/ads320x50";
+
 class Sidebar extends React.Component {
   render() {
     const { list, chapters, top } = this.props;
@@ -18,6 +22,7 @@ class Sidebar extends React.Component {
     return (
       <div className="body-sidebar">
         <SidebarTopManga chapters={chapters} top={top} />
+        <Ads250x300 />
         <div className="content-block">
           <h2>
             <span>Categories</span>
@@ -47,6 +52,7 @@ class Sidebar extends React.Component {
             </ul>
           </div>
         </div>
+        <Ads320x50 />
       </div>
     );
   }

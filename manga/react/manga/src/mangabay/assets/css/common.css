@@ -36,6 +36,34 @@ a:visited {
 }
 
 /* ----------------------------------
+ADDS
+------------------------------------*/
+iframe {
+  display: block;
+  border: none;
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.ads468x60 {
+  width: 468px;
+  height: 60px;
+}
+.ads250x300 {
+  width: 300px;
+  height: 250px;
+}
+.ads729x90 {
+  width: 729px;
+  height: 90px;
+}
+.ads320x50 {
+  width: 320px;
+  height: 50px;
+}
+
+/* ----------------------------------
 HEADER
 ------------------------------------*/
 /* block */
@@ -620,4 +648,5 @@ CUSTOM SIDEBAR
 .fb-comments-holder {
   background-color: #fff;
   padding: 10px;
+  margin-bottom: 15px;
 }

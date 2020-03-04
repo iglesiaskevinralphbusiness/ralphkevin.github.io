@@ -11,6 +11,10 @@ import SliderLatest from "../../shared/components/sliderLatest";
 import FacebookComments from "../../shared/components/facebookComments";
 import Breadcrumbs from "../../shared/components/breadcrumbs";
 
+//adds
+import Ads468x60 from "../../shared/adsterra/ads468x60";
+import Ads729x90 from "../../shared/adsterra/ads729x90";
+
 class topManga extends React.Component {
   state = {
     maxItem: 16,
@@ -40,6 +44,7 @@ class topManga extends React.Component {
     return (
       <main>
         <div className="wrap">
+          <Ads729x90 />
           <section className="pupular content-block">
             <h2>
               <span>Latest Manga Release</span>
@@ -67,6 +72,7 @@ class topManga extends React.Component {
                 <p>View More</p>
               </div>
               <FacebookComments url={fbCommentUrl}></FacebookComments>
+              <Ads468x60 />
             </div>
 
             <Sidebar2 list={list} chapters={chapters} top={top}></Sidebar2>

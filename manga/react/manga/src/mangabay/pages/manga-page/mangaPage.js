@@ -9,6 +9,10 @@ import Options from './components/options';
 import FacebookComments from "../../shared/components/facebookComments";
 import FacebookLike from "../../shared/components/facebookLike";
 
+//adds
+import Ads468x60 from "../../shared/adsterra/ads468x60";
+import Ads729x90 from "../../shared/adsterra/ads729x90";
+
 class MangaPage extends React.Component {
 
   state = {
@@ -119,6 +123,7 @@ class MangaPage extends React.Component {
     return (
       <main>
         <div className="wrap">
+          <Ads729x90 />
           <Breadcrumbs data={breadcrumbs} />
           <div className="manga-page">
             <Options optionSettings={optionSettings}  history= {this.props.history}/>
@@ -131,6 +136,7 @@ class MangaPage extends React.Component {
             </div>
             <Options optionSettings={optionSettings}  history= {this.props.history}/>
           </div>
+          <Ads468x60 />
           <FacebookLike url={fbCommentUrl}></FacebookLike>
           <FacebookComments url={fbCommentUrl}></FacebookComments>
         </div>

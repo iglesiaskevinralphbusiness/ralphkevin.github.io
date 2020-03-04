@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 //packages
 import _ from "lodash";
 
+//ads
+import Ads250x300 from "../../shared/adsterra/ads250x300";
+
 class Sidebar2 extends React.Component {
   render() {
     const { list, top } = this.props;
@@ -43,6 +46,7 @@ class Sidebar2 extends React.Component {
             </ul>
           </div>
         </div>
+        <Ads250x300 />
       </div>
     );
   }

@@ -10,6 +10,10 @@ import ChapterList from "./components/chapterList";
 import Breadcrumbs from "../../shared/components/breadcrumbs";
 import FacebookComments from "../../shared/components/facebookComments";
 
+//adds
+import Ads468x60 from "../../shared/adsterra/ads468x60";
+import Ads729x90 from "../../shared/adsterra/ads729x90";
+
 class Manga extends React.Component {
 
   render() {
@@ -33,8 +37,10 @@ class Manga extends React.Component {
             <div className="body-content manga-info">
               <Breadcrumbs data={breadcrumbs}></Breadcrumbs>
               <MangaDetails manga={manga} bookmarks={bookmarks} addBookmark={addBookmark}></MangaDetails>
+              <Ads729x90 />
               <ChapterList manga={manga} ></ChapterList>
               <FacebookComments url={fbCommentUrl}></FacebookComments>
+              <Ads468x60 />
             </div>
             <Sidebar list={list} chapters={chapters} top={top}></Sidebar>
           </section>
