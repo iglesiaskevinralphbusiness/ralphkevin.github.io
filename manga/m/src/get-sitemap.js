@@ -41,6 +41,7 @@ describe('Handling Hooks', () => {
 		if (dd < 10) { dd = '0' + dd; }
 		if (mm < 10) { mm = '0' + mm; }
         
+        let jsonCompiled = [];
         const last_mod = yyyy + '-' + mm + '-' + dd;
         const defaultStart = `<?xml version="1.0" encoding="UTF-8"?>
         <urlset
@@ -78,6 +79,7 @@ describe('Handling Hooks', () => {
         m_list.map(l => {
             const url = l.url;
             const manga_url = 'http://mangariot.com' + url.replace("http://www.mangareader.net", "");
+            jsonCompiled.push(manga_url);
 
             defaultValue = defaultValue + `<url>
                 <loc>${manga_url}</loc>
@@ -89,6 +91,7 @@ describe('Handling Hooks', () => {
                 m_chapters.filter(mc => mc.url == c.link).map(mcc => {
                     const url = mcc.url;
                     const chapter_url = 'http://mangariot.com' + url.replace("http://www.mangareader.net", "");
+                    jsonCompiled.push(chapter_url);
 
                     defaultValue = defaultValue + `<url>
                         <loc>${chapter_url}</loc>
@@ -102,6 +105,7 @@ describe('Handling Hooks', () => {
         defaultValue
         let defaultCompiled = defaultStart + defaultValue + defaultEnd;
 
+        fs.writeFileSync(`src/xml/sitemap_index.json`, JSON.stringify(jsonCompiled));
         fs.writeFileSync(`src/xml/sitemap_index.xml`, defaultCompiled);
         fs.writeFileSync(`src/xml/_sitemap/sitemap_${last_mod}.xml`, defaultCompiled);
     });

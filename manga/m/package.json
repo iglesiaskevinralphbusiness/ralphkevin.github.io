@@ -10,6 +10,7 @@
     "top": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-top.js",
     "sitemap": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-sitemap.js",
 
+    "impress": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-impressions.js",
     "update": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/update-list.js"
   },
   "author": "",
