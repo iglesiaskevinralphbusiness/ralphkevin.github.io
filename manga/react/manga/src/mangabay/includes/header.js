@@ -21,7 +21,7 @@ class Header extends React.Component {
               <Link to="/">
                 <h1>
                   <img
-                    src="./images/logo-body.png"
+                    src="http://mangariot.com/images/logo-body.png"
                     alt="MangaRiot - Read Manga Online"
                   ></img>
                 </h1>

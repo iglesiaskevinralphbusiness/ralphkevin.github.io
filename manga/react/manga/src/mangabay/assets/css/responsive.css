@@ -1,0 +1,134 @@
+@media (max-width: 640px) {
+    header .header-block {
+        height: 55px;
+        background-color: #fff;
+        box-shadow: 0px 5px 7px #e2e2e2;
+    }
+    header .header-block .wrap {
+        display: block;
+    }
+    header .header-block .wrap .colR {
+        display: none;
+    }
+    header .header-block .colL a img {
+        max-width: 140px;
+        padding: 11px
+    }
+    .header-nav {
+        display: block;
+    }
+    header .header-nav .wrap {
+        display: block;
+    }
+    header .header-nav .header-nav-search {
+        width: 100%;
+        padding: 0 10px;
+    }
+    header .header-nav .header-nav-search input {
+        width: 94%;
+        box-sizing: border-box;
+    }
+    header .header-nav ul li {
+        float: none;
+    }
+    main .wrap {
+        padding: 0 10px;
+    }
+    .content-block h2 {
+        border: none;
+    }
+    .content-block h2 span {
+        width: auto;
+        padding: 7px 10px 7px 15px;
+    }
+    .body-column {
+        display: block;
+    }
+    .latest {
+        padding: 10px;
+    }
+    .latest .latest-block {
+        float: none;
+        display: block;
+        width: auto;
+    }
+    .latest .latest-block .cover {
+        display: block;
+        float: left;
+        max-width: unset;
+        min-width: unset;
+        width: 20%;
+        padding: 0;
+        margin: 0;
+    }
+    .latest .latest-block .desc {
+        display: block;
+        float: left;
+        width: 70%;
+        margin-left: 5%;
+    }
+    .latest .latest-block .desc p {
+        margin: 0;
+        padding: 0;
+    }
+    .latest .latest-block .desc ul {
+        margin: 0;
+        padding: 0;
+    }
+    .body-column .body-sidebar {
+        width: auto;
+        margin-left: 0;
+    }
+    .manga-info .manga-details {
+        display: block;
+    }
+    .manga-info .manga-details .details-image {
+        width: unset;
+    }
+    .manga-info .manga-details .details-image .img-container {
+        margin: auto;
+    }
+    .manga-info .manga-details .details-block {
+        padding: 20px 0 0;
+    }
+    .manga-page .page-options {
+        display: block;
+    }
+    .manga-page .page-options .chapters {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .manga-page .page-options .total {
+        width: 100%;
+        margin-bottom: 5px;
+        padding: 0;
+    }
+    .manga-page .page-options .buttons {
+        width: 100%;
+        min-width: unset;
+    }
+    .manga-page .page-options .buttons .btn button {
+        width: 70px;
+    }
+    .latest-block-all {
+        float: none;
+        width: 100%;
+        padding: 10px 0;
+    }
+    .latest-block-all .manga-details {
+        display: flex;
+        justify-content: space-between;
+    }
+    .latest-block-all .manga-details .details-image {
+        width: 20%;
+        min-width: 20%;
+    }
+    .latest-block-all .manga-details .details-image .img-container {
+        height: 28vw;
+    }
+    .latest-block-all .manga-details .details-block {
+        max-width: 80% !important;
+        min-width: 80% !important;
+        width: 80%;
+    }
+}
