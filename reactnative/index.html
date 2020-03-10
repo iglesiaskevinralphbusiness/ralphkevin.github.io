@@ -435,6 +435,33 @@ export default Inputs</code></pre>
 }</code></pre>
 </div>
 
+<h2>Navigator/Navigation</h2>
+<div class="divBlock">
+	<h3 id="h3-4">Main</h3>
+	<pre><code class="language-javascript">import HomeScreen from '...';
+import ListScreen from '...';
+		
+const navigator = createStackNavigator(
+	{
+		Home: HomeScreen,
+		List: ListScreen
+	},
+	{
+		initialRouteName: 'Home',
+		defaultNavigationOptions: {
+			title: 'App'
+		}
+	}
+)
+
+export default createAppContainer(navigator)</code></pre>
+
+	<h3 id="h3-4">To open/access</h3>
+	<pre><code class="language-javascript">&lt;TouchableOpacity onPress={() => props.navigation.navigate('List')}>
+	&lt;Text>Go to List&lt;/Text>
+&lt;/TouchableOpacity>}</code></pre>
+</div>
+
 <h2>Multiple Environments</h2>
 <div class="divBlock">
 	<a href="https://www.folio3.com/blog/how-to-manage-multiple-environments-in-a-react-native-app-for-android/" target="_blank">Click here</a>
