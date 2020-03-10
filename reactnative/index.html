@@ -210,6 +210,7 @@ export default PresentationalComponent</code></pre>
 
 <h2>Styling</h2>
 <div class="divBlock">
+	<h3>Within Js</h3>
 	<pre><code class="language-javascript">import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
@@ -233,6 +234,23 @@ const styles = StyleSheet.create ({
 		fontSize: 20
 	}
 })</code></pre>
+
+	<h3>Exported Js</h3>
+	<p>component1.js</p>
+	<pre><code class="language-javascript">import styles from '../../component1.style';
+
+&lt;Text style={styles.sectionHeadingStyle}>
+	Section 1
+&lt;/Text>
+</code></pre>
+	<br>
+	<p>assets/style/component1.style.js</p>
+	<pre><code class="language-javascript">export default {
+	sectionHeadingStyle: {
+		paddingVertical: 10,
+		paddingHorizontal: 5
+	}
+};</code></pre>
 </div>
 
 <h2>List</h2>
