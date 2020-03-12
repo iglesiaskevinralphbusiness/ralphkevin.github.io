@@ -251,6 +251,40 @@ const styles = StyleSheet.create ({
 		paddingHorizontal: 5
 	}
 };</code></pre>
+
+	<h3>Compiled Exported</h3>
+	<p>header.style.js</p>
+	<pre><code class="language-javascript">export default {
+	headerContainer: {
+		height: 48,
+		flexDirection: 'row',
+		backgroundColor: '#232e40'
+	}
+}</code></pre>
+
+	<p>footer.style.js</p>
+	<pre><code class="language-javascript">export default {
+	footerContainer: {
+		height: 60,
+		flexDirection: 'row',
+		backgroundColor: 'red'
+	}
+}</code></pre>
+
+	<p>app.style.js (compiled all into one)</p>
+	<pre><code class="language-javascript">import header from './includes/header.styles';
+import footer from './includes/footer.styles';
+
+export default {
+	...header,
+	...footer
+}</code></pre>
+
+
+	<p>component1.js</p>
+	<pre><code class="language-javascript">import styles from '../../assets/styles/app.styles';
+
+&lt;View style={styles.headerContainer}></code></pre>
 </div>
 
 <h2>List</h2>
@@ -453,8 +487,10 @@ export default Inputs</code></pre>
 }</code></pre>
 </div>
 
-<h2>Navigator/Navigation</h2>
+<h2>Stack Navigator</h2>
 <div class="divBlock">
+	<p>npm install react-navigation</p>
+
 	<h3 id="h3-4">Main</h3>
 	<pre><code class="language-javascript">import HomeScreen from '...';
 import ListScreen from '...';
@@ -478,6 +514,82 @@ export default createAppContainer(navigator)</code></pre>
 	<pre><code class="language-javascript">&lt;TouchableOpacity onPress={() => props.navigation.navigate('List')}>
 	&lt;Text>Go to List&lt;/Text>
 &lt;/TouchableOpacity>}</code></pre>
+</div>
+
+<h2>Switch Navigator</h2>
+<div class="divBlock">
+	<h3 id="h3-4">Main</h3>
+	<pre><code class="language-javascript">import { createAppContainer, createStackNavigator, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
+	
+import AccountScreen from '...';
+import SigninScreen from '...';
+import SingupScreen from '...';
+import TrackCreateScreen from '...';
+import TrackDetailScreen from '...';
+import TrackListScreen from '...';
+
+const switchNavigator = createSwitchNavigator({
+	loginFlow: createStackNavigator({
+		Signup: SignupScreen,
+		Signin: SigninScreen
+	}),
+	mainFlow: createBottomTabNavigator({
+		TrackCreate: TrackCreateScreen,
+		Account: AccountScreen
+	})
+});</code></pre>
+</div>
+
+<h2>Navigator/Sidebar</h2>
+<div class="divBlock">
+	<h3 id="h3-4">Main</h3>
+	<pre><code class="language-javascript">import { createDrawerNavigator } from 'react-navigation-drawer';
+import {createAppContainer,DrawerNavigator} from 'react-navigation';
+
+//navigation holds the whole layout of the sidebar
+import Navigation from './includes/navigation/Navigation';
+
+//components to display
+import HomeScreen from '...';
+import ListScreen from '...';
+
+const Navigator = createDrawerNavigator({
+	HomeScreen:{
+		screen: HomeScreen
+	},
+	ListScreen:{
+		screen: ListScreen
+	}
+},{
+	contentComponent: Navigation,
+	drawerWidth:310,
+	drawerType:'slide'
+});
+
+export default createAppContainer(Navigator);</code></pre>
+	
+	<h3 id="h3-4">Navigation.js</h3>
+	<pre><code class="language-javascript">import { SafeAreaView } from 'react-navigation';
+import { DrawerItems } from 'react-navigation-drawer';
+
+export default class Navigation extends Component {
+	render () {
+		return (
+			&lt;View style={{ flex: 1 }}>
+				&lt;ScrollView>
+					&lt;SafeAreaView>
+						...
+						&lt;DrawerItems {...this.props} />
+						...
+					&lt;/SafeAreaView>
+				&lt;/ScrollView>
+			&lt;/View>
+		)
+	}
+}</code></pre>
+
+
+
 </div>
 
 <h2>Multiple Environments</h2>
