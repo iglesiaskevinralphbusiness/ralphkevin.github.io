@@ -77,6 +77,10 @@ describe("Handling Hooks", () => {
 						fs.writeFileSync(`src/json/list_banned.json`, JSON.stringify(list_banned));
 						console.log(`DATABASE ERROR: ${rendered_list[i]}`);
 					}
+					else if (pageTitle == "Hata") {
+						fs.writeFileSync(`src/json/list_banned.json`, JSON.stringify(list_banned));
+						console.log(`DATABASE ERROR: ${rendered_list[i]}`);
+					}
 					else {
 
 						await page.waitForSelector(".content", {
