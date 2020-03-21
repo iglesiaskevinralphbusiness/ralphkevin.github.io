@@ -60,128 +60,89 @@ describe("Handling Hooks", () => {
 				console.log('DONE: ' + rendered_list[i])
 			}
 			else {
+
 				const pageResult = await page.goto(rendered_list[i], {
 					waitUntil: "load",
 					timeout: 0
 				});
+
 				if (pageResult._status == "404") {
+					list_banned.push(rendered_list[i]);
+					fs.writeFileSync(`src/json/list_banned.json`, JSON.stringify(list_banned));
 					console.log(`PAGE NOT FOUND: ${rendered_list[i]}`);
 				} else {
-					await page.waitForSelector(".content", {
-						waitUntil: "load",
-						timeout: 0
-					});
 
-
-					const filter_chapters = rendered_chapters.filter(r => r.url == rendered_list[i]);
-					if (filter_chapters.length <= 0) {
-
-						console.log("NEW MANGA: " + rendered_list[i]);
-						//NEW MANGA
-						const data = await page.evaluate((rendered_list) => {
-							const id = Date.now() + Math.floor(Math.random() * 9999999 + 1);
-							const name = document.querySelector("h1").textContent;
-							const alternative_name = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(2)").textContent;
-							const status = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(4)").textContent;
-							const type = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(8)").textContent;
-							const total_views = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(10)").textContent;
-							const category_list = Array.from(document.querySelectorAll("div.panel-body > div.col-md-9 > dl > dd:nth-child(6) > a"));
-							const categories = category_list.map(e => {
-								return {
-									name: e.textContent,
-									url: e.href
-								};
-							});
-							const author_list = Array.from(document.querySelectorAll("li.director > ul > li:nth-child(1) > a"));
-							const authors = author_list.map(a => {
-								const name = a.textContent;
-								const url = a.href;
-								return {
-									name: name.trim(),
-									url: url
-								};
-							});
-							const chapter_list = Array.from(document.querySelectorAll("div.panel-body > ul > li > a"));
-							const chapters = chapter_list.filter(e => {
-								const valid = e.querySelector(".val");
-								if (valid != null) {
-									return true;
-								}
-								return false;
-							}).reverse().map((e, index) => {
-								//generate date today
-								var today = new Date();
-								var dd = today.getDate();
-								var mm = today.getMonth() + 1;
-								var yyyy = today.getFullYear();
-								if (dd < 10) { dd = '0' + dd; }
-								if (mm < 10) { mm = '0' + mm; }
-								var today = yyyy + '/' + mm + '/' + dd;
-
-								const chapter_id = index + 1;
-								const name = e.querySelector(".val").textContent;
-								let date = e.querySelector(".dte").getAttribute("title");
-								date = date.replace("Published on ", "");
-
-								return {
-									id: id + '_' + chapter_id,
-									date: date,
-									date_crawled: today,
-									name: name.trim(),
-									url: e.href,
-								};
-							});
-
-							//generate date today
-							var today = new Date();
-							var dd = today.getDate();
-							var mm = today.getMonth() + 1;
-							var yyyy = today.getFullYear();
-							if (dd < 10) { dd = '0' + dd; }
-							if (mm < 10) { mm = '0' + mm; }
-							var today = yyyy + '/' + mm + '/' + dd;
-
-							return {
-								id: id,
-								name: name.trim(),
-								alternative_name: alternative_name.trim(),
-								url: rendered_list,
-								status: status.trim(),
-								type: type.trim(),
-								total_views: total_views,
-								date_crawled: today,
-								authors: authors,
-								categories: categories,
-								chapters: chapters
-							};
-						}, rendered_list[i]);
-
-						rendered_chapters.push(data);
-						list_updated.push(rendered_list[i]);
-						fs.writeFileSync(`src/json/chapters.json`, JSON.stringify(rendered_chapters));
-						fs.writeFileSync(`src/json/list_updated.json`, JSON.stringify(list_updated));
-						console.log("pushed.");
+					const pageTitle = await page.title();
+					if (pageTitle == "Database Error") {
+						fs.writeFileSync(`src/json/list_banned.json`, JSON.stringify(list_banned));
+						console.log(`DATABASE ERROR: ${rendered_list[i]}`);
 					}
 					else {
-						console.log("UPDATING MANGA: " + rendered_list[i]);
-						//UPDATE MANGA
-						const filter_id = filter_chapters[0].id;
-						const datas = [...rendered_chapters];
-						const item = datas.find(data => data.id == filter_id);
-						const index = datas.indexOf(item);
 
-						const dataEvaluated = await page.evaluate((existing_chapters) => {
-							const total_views = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(10)").textContent;
-							const status = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(4)").textContent;
+						await page.waitForSelector(".content", {
+							waitUntil: "load",
+							timeout: 0
+						});
 
-							const chapter_list = Array.from(document.querySelectorAll("div.panel-body > ul > li > a"));
-							const chapters = chapter_list.filter(e => {
-								const valid = e.querySelector(".val");
-								if (valid != null) {
-									return true;
-								}
-								return false;
-							}).reverse().map((e, index) => {
+						const filter_chapters = rendered_chapters.filter(r => r.url == rendered_list[i]);
+						if (filter_chapters.length <= 0) {
+
+							console.log("NEW MANGA: " + rendered_list[i]);
+							//NEW MANGA
+							const data = await page.evaluate((rendered_list) => {
+								const id = Date.now() + Math.floor(Math.random() * 9999999 + 1);
+								const name = document.querySelector("h1").textContent;
+								const alternative_name = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(2)").textContent;
+								const status = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(4)").textContent;
+								const type = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(8)").textContent;
+								const total_views = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(10)").textContent;
+								const category_list = Array.from(document.querySelectorAll("div.panel-body > div.col-md-9 > dl > dd:nth-child(6) > a"));
+								const categories = category_list.map(e => {
+									return {
+										name: e.textContent,
+										url: e.href
+									};
+								});
+								const author_list = Array.from(document.querySelectorAll("li.director > ul > li:nth-child(1) > a"));
+								const authors = author_list.map(a => {
+									const name = a.textContent;
+									const url = a.href;
+									return {
+										name: name.trim(),
+										url: url
+									};
+								});
+								const chapter_list = Array.from(document.querySelectorAll("div.panel-body > ul > li > a"));
+								const chapters = chapter_list.filter(e => {
+									const valid = e.querySelector(".val");
+									if (valid != null) {
+										return true;
+									}
+									return false;
+								}).reverse().map((e, index) => {
+									//generate date today
+									var today = new Date();
+									var dd = today.getDate();
+									var mm = today.getMonth() + 1;
+									var yyyy = today.getFullYear();
+									if (dd < 10) { dd = '0' + dd; }
+									if (mm < 10) { mm = '0' + mm; }
+									var today = yyyy + '/' + mm + '/' + dd;
+
+									const chapter_id = index + 1;
+									const name = e.querySelector(".val").textContent;
+									let date = e.querySelector(".dte").getAttribute("title");
+									date = date.replace("Published on ", "");
+
+									return {
+										id: id + '_' + chapter_id,
+										date: date,
+										date_crawled: today,
+										name: name.trim(),
+										url: e.href,
+									};
+								});
+
 								//generate date today
 								var today = new Date();
 								var dd = today.getDate();
@@ -191,42 +152,93 @@ describe("Handling Hooks", () => {
 								if (mm < 10) { mm = '0' + mm; }
 								var today = yyyy + '/' + mm + '/' + dd;
 
-								const chapter_id = index + 1;
-								const name = e.querySelector(".val").textContent;
-								let date = e.querySelector(".dte").getAttribute("title");
-								date = date.replace("Published on ", "");
+								return {
+									id: id,
+									name: name.trim(),
+									alternative_name: alternative_name.trim(),
+									url: rendered_list,
+									status: status.trim(),
+									type: type.trim(),
+									total_views: total_views,
+									date_crawled: today,
+									authors: authors,
+									categories: categories,
+									chapters: chapters
+								};
+							}, rendered_list[i]);
 
-								filter_item_chapter = existing_chapters.find(c => c.url == e.href);
-								if (filter_item_chapter) {
-									return filter_item_chapter;
-								}
+							rendered_chapters.push(data);
+							list_updated.push(rendered_list[i]);
+							fs.writeFileSync(`src/json/chapters.json`, JSON.stringify(rendered_chapters));
+							fs.writeFileSync(`src/json/list_updated.json`, JSON.stringify(list_updated));
+							console.log("pushed.");
+						}
+						else {
+							console.log("UPDATING MANGA: " + rendered_list[i]);
+							//UPDATE MANGA
+							const filter_id = filter_chapters[0].id;
+							const datas = [...rendered_chapters];
+							const item = datas.find(data => data.id == filter_id);
+							const index = datas.indexOf(item);
+
+							const dataEvaluated = await page.evaluate((existing_chapters) => {
+								const total_views = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(10)").textContent;
+								const status = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(4)").textContent;
+
+								const chapter_list = Array.from(document.querySelectorAll("div.panel-body > ul > li > a"));
+								const chapters = chapter_list.filter(e => {
+									const valid = e.querySelector(".val");
+									if (valid != null) {
+										return true;
+									}
+									return false;
+								}).reverse().map((e, index) => {
+									//generate date today
+									var today = new Date();
+									var dd = today.getDate();
+									var mm = today.getMonth() + 1;
+									var yyyy = today.getFullYear();
+									if (dd < 10) { dd = '0' + dd; }
+									if (mm < 10) { mm = '0' + mm; }
+									var today = yyyy + '/' + mm + '/' + dd;
+
+									const chapter_id = index + 1;
+									const name = e.querySelector(".val").textContent;
+									let date = e.querySelector(".dte").getAttribute("title");
+									date = date.replace("Published on ", "");
+
+									filter_item_chapter = existing_chapters.find(c => c.url == e.href);
+									if (filter_item_chapter) {
+										return filter_item_chapter;
+									}
+
+									return {
+										id: id + '_' + chapter_id,
+										date: date,
+										date_crawled: today,
+										name: name.trim(),
+										url: e.href,
+									};
+								});
+
 
 								return {
-									id: id + '_' + chapter_id,
-									date: date,
-									date_crawled: today,
-									name: name.trim(),
-									url: e.href,
-								};
-							});
+									total_views: total_views,
+									status: status,
+									chapters: chapters,
+								}
+							}, datas[index].chapters);
 
+							datas[index].total_views = dataEvaluated.total_views;
+							datas[index].status = dataEvaluated.status;
+							datas[index].chapters = dataEvaluated.chapters;
+							rendered_chapters = [...datas];
 
-							return {
-								total_views: total_views,
-								status: status,
-								chapters: chapters,
-							}
-						}, datas[index].chapters);
-
-						datas[index].total_views = dataEvaluated.total_views;
-						datas[index].status = dataEvaluated.status;
-						datas[index].chapters = dataEvaluated.chapters;
-						rendered_chapters = [...datas];
-
-						list_updated.push(rendered_list[i]);
-						fs.writeFileSync(`src/json/chapters.json`, JSON.stringify(rendered_chapters));
-						fs.writeFileSync(`src/json/list_updated.json`, JSON.stringify(list_updated));
-						console.log("pushed.");
+							list_updated.push(rendered_list[i]);
+							fs.writeFileSync(`src/json/chapters.json`, JSON.stringify(rendered_chapters));
+							fs.writeFileSync(`src/json/list_updated.json`, JSON.stringify(list_updated));
+							console.log("pushed.");
+						}
 					}
 				}
 			}
