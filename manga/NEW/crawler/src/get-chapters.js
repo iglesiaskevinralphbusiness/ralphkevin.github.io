@@ -62,7 +62,7 @@ describe("Handling Hooks", () => {
 			else {
 
 				const pageResult = await page.goto(rendered_list[i], {
-					waitUntil: "load",
+					waitUntil: "domcontentloaded",
 					timeout: 0
 				});
 
@@ -84,7 +84,7 @@ describe("Handling Hooks", () => {
 					else {
 
 						await page.waitForSelector(".content", {
-							waitUntil: "load",
+							waitUntil: "domcontentloaded",
 							timeout: 0
 						});
 
@@ -136,8 +136,30 @@ describe("Handling Hooks", () => {
 
 									const chapter_id = index + 1;
 									const name = e.querySelector(".val").textContent;
-									let date = e.querySelector(".dte").getAttribute("title");
-									date = date.replace("Published on ", "");
+
+									let date = e.querySelector(".dte").textContent;
+									date = date.trim();
+									const splitDate = date.split(" ");
+									const todayNew = new Date();
+									if (splitDate[1] == "Years" || splitDate[1] == "Year" || splitDate[1] == "years" || splitDate[1] == "year") {
+										todayNew.setFullYear(todayNew.getFullYear() - splitDate[0]);
+									}
+									if (splitDate[1] == "Months" || splitDate[1] == "Month" || splitDate[1] == "months" || splitDate[1] == "month") {
+										todayNew.setMonth(todayNew.getMonth() - splitDate[0]);
+									}
+									else if (splitDate[1] == "Weeks" || splitDate[1] == "Week" || splitDate[1] == "weeks" || splitDate[1] == "week") {
+										const total_weeks = 7 * splitDate[0];
+										todayNew.setDate(todayNew.getDate() - total_weeks);
+									}
+									else if (splitDate[1] == "Days" || splitDate[1] == "Day" || splitDate[1] == "days" || splitDate[1] == "day") {
+										todayNew.setDate(todayNew.getDate() - splitDate[0]);
+									}
+									var dd = todayNew.getDate();
+									var mm = todayNew.getMonth() + 1;
+									var yyyy = todayNew.getFullYear();
+									if (dd < 10) { dd = '0' + dd; }
+									if (mm < 10) { mm = '0' + mm; }
+									date = yyyy + '/' + mm + '/' + dd;
 
 									return {
 										id: id + '_' + chapter_id,
@@ -187,7 +209,8 @@ describe("Handling Hooks", () => {
 							const item = datas.find(data => data.id == filter_id);
 							const index = datas.indexOf(item);
 
-							const dataEvaluated = await page.evaluate((existing_chapters) => {
+							const dataEvaluated = await page.evaluate((existing_chapters, filter_id) => {
+								const photo = document.querySelector("div.row.movie-meta > div > div > div.panel-body > div.col-md-3 > img").src;
 								const total_views = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(10)").textContent;
 								const status = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(4)").textContent;
 
@@ -210,16 +233,44 @@ describe("Handling Hooks", () => {
 
 									const chapter_id = index + 1;
 									const name = e.querySelector(".val").textContent;
-									let date = e.querySelector(".dte").getAttribute("title");
-									date = date.replace("Published on ", "");
+									let date = e.querySelector(".dte").textContent;
+									date = date.trim();
+
+									//for temporary update
+									const splitDate = date.split(" ");
+									const todayNew = new Date();
+									console.log(splitDate[0], 'splitDate');
+									console.log(splitDate[1], 'splitDate');
+									if (splitDate[1] == "Years" || splitDate[1] == "Year" || splitDate[1] == "years" || splitDate[1] == "year") {
+										todayNew.setFullYear(todayNew.getFullYear() - splitDate[0]);
+									}
+									if (splitDate[1] == "Months" || splitDate[1] == "Month" || splitDate[1] == "months" || splitDate[1] == "month") {
+										todayNew.setMonth(todayNew.getMonth() - splitDate[0]);
+									}
+									else if (splitDate[1] == "Weeks" || splitDate[1] == "Week" || splitDate[1] == "weeks" || splitDate[1] == "week") {
+										const total_weeks = 7 * splitDate[0];
+										todayNew.setDate(todayNew.getDate() - total_weeks);
+									}
+									else if (splitDate[1] == "Days" || splitDate[1] == "Day" || splitDate[1] == "days" || splitDate[1] == "day") {
+										todayNew.setDate(todayNew.getDate() - splitDate[0]);
+									}
+									var dd = todayNew.getDate();
+									var mm = todayNew.getMonth() + 1;
+									var yyyy = todayNew.getFullYear();
+									if (dd < 10) { dd = '0' + dd; }
+									if (mm < 10) { mm = '0' + mm; }
+									date = yyyy + '/' + mm + '/' + dd;
+									console.log(date);
+									//for temporary update
 
 									filter_item_chapter = existing_chapters.find(c => c.url == e.href);
 									if (filter_item_chapter) {
+										filter_item_chapter.date = date;
 										return filter_item_chapter;
 									}
 
 									return {
-										id: id + '_' + chapter_id,
+										id: filter_id + '_' + chapter_id,
 										date: date,
 										date_crawled: today,
 										name: name.trim(),
@@ -231,13 +282,15 @@ describe("Handling Hooks", () => {
 								return {
 									total_views: total_views,
 									status: status,
+									photo: photo, //temporary
 									chapters: chapters,
 								}
-							}, datas[index].chapters);
+							}, datas[index].chapters, filter_id);
 
 							datas[index].total_views = dataEvaluated.total_views;
 							datas[index].status = dataEvaluated.status;
 							datas[index].chapters = dataEvaluated.chapters;
+							datas[index].photo = dataEvaluated.photo; //temporary
 							rendered_chapters = [...datas];
 
 							list_updated.push(rendered_list[i]);
