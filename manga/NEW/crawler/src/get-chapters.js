@@ -95,6 +95,7 @@ describe("Handling Hooks", () => {
 							//NEW MANGA
 							const data = await page.evaluate((rendered_list) => {
 								const id = Date.now() + Math.floor(Math.random() * 9999999 + 1);
+								const photo = document.querySelector("div.row.movie-meta > div > div > div.panel-body > div.col-md-3 > img").src;
 								const name = document.querySelector("h1").textContent;
 								const alternative_name = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(2)").textContent;
 								const status = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(4)").textContent;
@@ -161,6 +162,7 @@ describe("Handling Hooks", () => {
 									name: name.trim(),
 									alternative_name: alternative_name.trim(),
 									url: rendered_list,
+									photo: photo,
 									status: status.trim(),
 									type: type.trim(),
 									total_views: total_views,
