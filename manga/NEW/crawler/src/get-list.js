@@ -73,20 +73,26 @@ describe("Handling Hooks", () => {
 
     //get all list manga
     for (let i = 0; i < rootsURL.length; i++) {
-      await page.goto(rootsURL[i], { waitUntil: "load", timeout: 0 });
+      await page.goto(rootsURL[i], { waitUntil: "domcontentloaded", timeout: 0 });
       await page.waitForSelector(".style-list", {
-        waitUntil: "load",
+        waitUntil: "domcontentloaded",
         timeout: 0
       });
 
       const list_manga = await page.evaluate(() => {
-        const manga = Array.from(document.querySelectorAll(".manga-item a"));
+        const manga = Array.from(document.querySelectorAll(".manga-item"));
+
         return manga.map((e, index) => {
-          return e.href;
+          let url = e.querySelector("a").href;
+          if (e.querySelector(".completed")) {
+            url = null
+          }
+          return url;
         });
       });
+      const list_manga_clean = list_manga.filter(l => l != null);
 
-      rendered_list = [...rendered_list, ...list_manga];
+      rendered_list = [...rendered_list, ...list_manga_clean];
     }
 
     fs.writeFileSync(`src/json/list.json`, JSON.stringify(rendered_list));
