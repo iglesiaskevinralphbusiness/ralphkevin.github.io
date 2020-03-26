@@ -597,6 +597,131 @@ export default class Navigation extends Component {
 	<a href="https://www.folio3.com/blog/how-to-manage-multiple-environments-in-a-react-native-app-for-android/" target="_blank">Click here</a>
 </div>
 
+<h2>Redux</h2>
+<div class="divBlock">
+	<ul>
+		<li>/src/store/Store.js</li>
+		<li>/src/reducer/app.reducer.js</li>
+		<li>/src/reducer/Reducer1.reducer.js</li>
+		<li>/src/reducer/Reducer2.reducer.js</li>
+	</ul>
+	<h3 id="h3-4">Store</h3>
+	<p>App.js</p>
+	<pre><code class="language-javascript">import store from './store/Store';
+import { Provider } from 'react-redux';
+
+export default function Index() {
+	return (
+		&lt;Provider store={store}>
+			&lt;Component1 />
+		&lt;/Provider>
+	);
+}</code></pre>
+	<p>Store.js</p>
+	<pre><code class="language-javascript">import { createStore } from 'redux';
+import rootReducer from '../reducers/app.reducer';
+
+const store = createStore(rootReducer);
+
+export default store;</code></pre>
+
+
+	<h3 id="h3-4">Reducer</h3>
+	<p>Reducer1.reducer.js</p>
+	<pre><code class="language-javascript">const initialState = {
+	data: [{
+		id: 1,
+		description: 'sample data'
+	}]
+}
+const reducer1Reducer = (state = initialState, action) => {
+	switch (action.type){
+		case 'ADD_ITEM':
+			state.data = [...state.data, action.data]
+			return state;
+	}
+
+	return state;
+}
+
+export default reducer1Reducer;</code></pre>
+
+	<p>Reducer2.reducer.js</p>
+	<pre><code class="language-javascript">const initialState = {
+	loading: false
+}
+const reducer2Reducer = (state = initialState, action) => {
+	switch (action.type){
+		case 'CHANGE_LOADING':
+			state.loading = state.loading ? false : true;
+			return state;
+	}
+
+	return state;
+}
+
+export default reducer2Reducer;</code></pre>
+
+	<p>App.reducer.js ( combine 2 reducers )</p>
+	<pre><code class="language-javascript">import { combineReducers } from 'redux';
+
+import reducer1 from './Reducer1.reducer';
+import reducer2 from './Reducer2.reducer';
+
+export default combineReducers({
+	reducer1,
+	reducer2,
+})</code></pre>
+
+	<h3 id="h3-4">Components</h3>
+	<pre><code class="language-javascript">import { connect } from 'react-redux';
+
+class Component1 extends Component {
+	render () {
+		const { reducer1Reducer, reducer2Reducer } = this.props;
+
+		return (
+			&lt;TochableOpacity onPress={() => handleAddItem()}>
+				ADD ITEM
+			&lt;/TochableOpacity>
+
+			&lt;TochableOpacity onPress={() => handleChangeLoading()}>
+				CHANGE LOADING VALUE
+			&lt;/TochableOpacity>
+		)
+
+	}
+	handleAddItem = () => {
+		const data = {
+			id: 2,
+			description: 'another sample item'
+		}
+		this.props.addItem(data);
+	}
+	handleChangeLoading = () => {
+		this.props.changeLoading();
+	}
+}
+
+function mapStoreToProps(state){
+	return {
+		reducer1Reducer: state.reducer1Reducer,
+		reducer2Reducer: state.reducer2Reducer
+	}
+}
+
+function mapDispatchToProps(dispatch){
+	return {
+		addItem: (data) => dispatch({type: 'ADD_ITEM', data}),
+		changeLoading: () => dispatch({type: 'CHANGE_LOADING'}),
+	}
+}
+
+export default connect(mapStoreToProps,mapDispatchToProps)(Languages);</code></pre>
+
+
+</div>
+
 
 </div>
 <p class="goTop"><a href="#top">TOP</a></p>
