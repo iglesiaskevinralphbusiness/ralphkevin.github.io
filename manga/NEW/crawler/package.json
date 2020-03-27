@@ -6,7 +6,8 @@
   "scripts": {
     "list": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-list.js",
     "chapters": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-chapters.js",
-    "photos": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-photos.js"
+    "photos": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-photos.js",
+    "clean": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-chapters-remove-url.js"
   },
   "author": "",
   "license": "ISC",
