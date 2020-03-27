@@ -1,0 +1,56 @@
+.body-sidebar .categories ul li div.loader {
+  padding: 15px 0;
+  margin: 8px;
+  background-color: #e8e8e8;
+  /*
+  background-image: url('/assets/images/bg-loader.png');
+  background-position: 0px 0px;
+  background-repeat: repeat;
+  animation: animatedBackground 0.7s linear infinite alternate;
+  */
+}
+
+.body-sidebar .side-popular ul li div.loader {
+  margin: 3px;
+  height: 43px;
+  width: 100%;
+  background-color: #e8e8e8;
+}
+
+.latest .loader .cover {
+  padding: 5px;
+  background-color: #e8e8e8;
+}
+.latest .loader .desc p {
+  height: 24px;
+  margin: 0 18px;
+  background-color: #e8e8e8;
+}
+.latest .loader .desc ul li {
+  height: 0px;
+  margin: 13px 0;
+  background-color: #e8e8e8;
+}
+
+.alphabetical .loader h2 {
+  width: 25px;
+  height: 25px;
+  background-color: #e8e8e8;
+}
+.alphabetical .loader ul li {
+  background-color: #e8e8e8;
+  height: 20px;
+  max-width: 400px;
+  margin-bottom: 10px;
+}
+
+
+
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
