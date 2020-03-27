@@ -493,12 +493,29 @@ a.view-more:hover {
 /* ----------------------------------
 TOOL TIP
 ------------------------------------*/
-.tool-tip-parent {
-  padding: 0px !important;
-}
+
 .data-tip-container {
+  position: fixed;
   width: 400px;
   padding: 10px;
+  margin-left: 30px;
+  background-color: #3c3c3cd6;
+  color: #fff;
+  border-radius: 5px;
+}
+.data-tip-container:before {
+  position: absolute;
+  top: 8px;
+  left: -10px;
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #3c3c3cd6;
+}
+.data-tip-container h2 {
+  border: none;
 }
 .data-tip-container .manga-details {
   display: table;
@@ -650,3 +667,41 @@ CUSTOM SIDEBAR
   padding: 10px;
   margin-bottom: 15px;
 }
+
+
+
+/* ----------------------------------
+PAGINATION
+------------------------------------*/
+.pagination {
+  padding: 5px;
+  background-color: #fff;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+}
+.pagination-list {
+  display: block;
+  overflow: hidden;
+}
+.pagination-list a {
+  margin: 0 4px;
+  display: block;
+  color: black;
+  float: left;
+  padding: 10px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ebebeb;
+}
+.pagination-list a:first-child  {
+  margin-left: 0;
+}
+.pagination-list a:last-child  {
+  margin-right: 0;
+}
+.pagination-list a.active {
+  background-color: #ae2d2d;
+  color: white;
+  border: 1px solid #ae2d2d;
+}
+.pagination-list a:hover:not(.active) {background-color: #ddd;}

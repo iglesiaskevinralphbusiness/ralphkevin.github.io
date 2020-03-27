@@ -237,6 +237,10 @@ PAGE
 .latest-block-all:nth-child(1n) {
   border-left: 1px solid #f5f5f5;
 }
+.latest-block-all:nth-child(15),
+.latest-block-all:nth-child(16) {
+  border-bottom: none;
+}
 .latest-block-all .manga-details {
   display: table;
   width: 100%;
