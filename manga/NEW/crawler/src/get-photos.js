@@ -13,13 +13,11 @@ const download = (url, destination) => new Promise((resolve, reject) => {
 		file.on('finish', () => {
 			file.close(resolve(true));
 		});
-	})
+	}).on('error', error => {
+		fs.unlink(destination);
 
-		.on('error', error => {
-			fs.unlink(destination);
-
-			reject(error.message);
-		});
+		reject(error.message);
+	});
 });
 
 
