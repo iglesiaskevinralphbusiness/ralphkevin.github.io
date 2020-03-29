@@ -5,6 +5,10 @@ const components = [
         component: 'home'
     },
     {
+        path: '/404',
+        component: '404'
+    },
+    {
         path: '/manga-list',
         component: 'manga-list'
     },
@@ -20,7 +24,10 @@ const components = [
         path: '/category/:value?',
         component: 'category'
     },
-    ,
+    {
+        path: '/status/:value?',
+        component: 'status'
+    },
     {
         path: '/:value?',
         component: 'manga'
@@ -31,11 +38,15 @@ const components = [
     },
     {
         path: '/:value?/:value?/all_pages',
-        component: 'all-pages'
+        component: 'chapter-all'
+    },
+    {
+        path: '/:value?/:value?/waiting',
+        component: 'chapter-waiting'
     },
     {
         path: '/:value?/:value?/:value?',
-        component: 'pages'
+        component: 'chapter'
     }
 ];
 
@@ -47,6 +58,31 @@ function route() {
     let pathBuild = '';
     const pathSplit = path.split('/').filter(p => p != '');
     if (pathSplit.length > 0) {
+
+        let pathIndividual2 = '';
+        for (l = 0; l < pathSplit.length; l++) {
+            for (m = l; m < pathSplit.length - 1; m++) {
+                pathIndividual2 += '/:value?';
+            }
+            for (n = pathSplit.length - 1; n > l; n--) {
+                pathIndividual2 += '/' + pathSplit[n];
+                pathCombinations.push(pathIndividual2);
+            }
+        }
+
+        for (j = 0; j < pathSplit.length + 2; j++) {
+            let pathIndividual = '';
+            for (k = 0; k < pathSplit.length; k++) {
+                if (j == k) {
+                    pathIndividual += '/:value?';
+                }
+                else {
+                    pathIndividual += '/' + pathSplit[k];
+                }
+            }
+            pathCombinations.push(pathIndividual);
+        }
+
         pathSplit.map((p, index) => {
             const build_index = index + 1;
             let pathAdd = '';
@@ -59,21 +95,7 @@ function route() {
 
             pathCombinations.push(pathBuildPush);
         });
-
-        for (j = 0; j < pathSplit.length + 1; j++) {
-            let pathIndividual = '';
-            for (k = 0; k < pathSplit.length; k++) {
-                if (j == k) {
-                    pathIndividual += '/:value?';
-                }
-                else {
-                    pathIndividual += '/' + pathSplit[k];
-                }
-            }
-            pathCombinations.push(pathIndividual);
-        }
     }
-
     const component = components.map(c => {
         const find = pathCombinations.find(p => p == c.path);
         if (find) {

@@ -178,7 +178,7 @@ PAGE
 }
 .manga-page .page-options .buttons {
   width: 30%;
-  min-width: 327px;
+  min-width: 350px;
   display: flex;
   justify-content: space-between;
   text-align: right;
@@ -199,17 +199,21 @@ PAGE
   padding: 6px 10px;
 }
 .manga-page .page-options .buttons .btn {
-  width: 215px;
+  width: 225px;
 }
 .manga-page .page-options .buttons .btn button {
-  width: 100px;
+  width: 105px;
   margin-left: 5px;
   padding: 5px 10px;
   color: #fff;
-  background-color: #31a95b;
+  background-color: #c7c7c7;
   border: none;
   font-size: 14px;
   cursor: pointer;
+}
+.manga-page .page-options .buttons .btn button.btn_prev,
+.manga-page .page-options .buttons .btn button.btn_next {
+  background-color: #31a95b;
 }
 
 .manga-page .image-containers {
@@ -225,6 +229,14 @@ PAGE
 }
 .manga-page .image-containers img {
   width: 100%;
+}
+.manga-page .image-containers ul li {
+  min-height: 100px;
+  background-color: #e8e8e8;
+  background-image: url(/assets/images//icon-loading.gif);
+  background-repeat: no-repeat;
+  background-size: 50px;
+  background-position: center;
 }
 
 .latest-block-all {
@@ -258,6 +270,7 @@ PAGE
   background-color: #fff;
   padding: 3px;
   background-size: 100% auto;
+  background-repeat: no-repeat;
 }
 .latest-block-all .manga-details .details-image img {
   width: 0;
@@ -266,8 +279,6 @@ PAGE
 .latest-block-all .manga-details .details-block {
   display: table-cell;
   width: auto;
-  max-width: 300px !important;
-  min-width: 300px !important;
   padding-left: 8px;
   vertical-align: top;
 }

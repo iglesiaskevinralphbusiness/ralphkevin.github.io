@@ -6,12 +6,11 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   font-family: Calibri;
   font-size: 12px;
   color: #333;
   background-color: #eaeaea;
-  background-image: url(/images/bg-body.png);
+  background-image: url(/assets/images/bg-body.png);
   background-repeat: repeat;
 }
 
@@ -27,7 +26,8 @@ a:visited {
 }
 
 .wrap {
-  max-width: 1300px;
+  max-width: 1140px;
+  width: 1140px;
   margin: 0 auto;
 }
 
@@ -478,7 +478,7 @@ a.view-more {
   display: block;
   background-color: #fff;
   margin-bottom: 20px;
-  padding: 15px 30px;
+  padding: 11px 30px;
   font-size: 15px;
   text-align: center;
   color: #ae2d2d;
@@ -603,12 +603,16 @@ CUSTOM SIDEBAR
 .body-sidebar .side-popular ul li {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 7px;
+  border-bottom: 1px solid whitesmoke;
+  padding-top: 7px;
 }
-.body-sidebar .side-popular ul li {
-  margin-bottom: 15px;
+.body-sidebar .side-popular ul li:first-child {
+  padding-top: 0;
 }
 .body-sidebar .side-popular ul li:last-child {
-  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom:  none;
 }
 .body-sidebar .side-popular ul li .cover {
   width: 45px;
