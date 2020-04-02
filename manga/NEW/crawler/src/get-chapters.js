@@ -195,7 +195,8 @@ describe("Handling Hooks", () => {
 									date_crawled: today,
 									authors: authors,
 									categories: categories,
-									chapters: chapters
+									chapters: chapters,
+									date_last_crawled: new Date().getTime(),
 								};
 							}, rendered_list[i]);
 
@@ -286,15 +287,15 @@ describe("Handling Hooks", () => {
 								return {
 									total_views: total_views,
 									status: status,
-									photo: photo, //temporary
 									chapters: chapters,
+									date_last_crawled: new Date().getTime(),
 								}
 							}, datas[index].chapters, filter_id);
 
 							datas[index].total_views = dataEvaluated.total_views;
 							datas[index].status = dataEvaluated.status;
 							datas[index].chapters = dataEvaluated.chapters;
-							datas[index].photo = dataEvaluated.photo; //temporary
+							datas[index].date_last_crawled = dataEvaluated.date_last_crawled;
 							rendered_chapters = [...datas];
 
 							list_updated.push(rendered_list[i]);
