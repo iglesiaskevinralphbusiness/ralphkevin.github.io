@@ -49,16 +49,16 @@ describe("Handling Hooks", () => {
     const list_daily = JSON.parse(await fs.readFileSync(__dirname + "/json/list_daily.json", "utf8"));
 
     const rootsURL = [
-      "https://www.readmng.com/latest-releases/1",
-      "https://www.readmng.com/latest-releases/2",
-      "https://www.readmng.com/latest-releases/3",
-      "https://www.readmng.com/latest-releases/4",
-      "https://www.readmng.com/latest-releases/5",
-      "https://www.readmng.com/latest-releases/6",
-      "https://www.readmng.com/latest-releases/7",
-      "https://www.readmng.com/latest-releases/8",
-      "https://www.readmng.com/latest-releases/9",
       "https://www.readmng.com/latest-releases/10",
+      "https://www.readmng.com/latest-releases/9",
+      "https://www.readmng.com/latest-releases/8",
+      "https://www.readmng.com/latest-releases/7",
+      "https://www.readmng.com/latest-releases/6",
+      "https://www.readmng.com/latest-releases/5",
+      "https://www.readmng.com/latest-releases/4",
+      "https://www.readmng.com/latest-releases/3",
+      "https://www.readmng.com/latest-releases/2",
+      "https://www.readmng.com/latest-releases/1",
     ];
     let rendered_list = list_daily;
 
@@ -98,6 +98,7 @@ describe("Handling Hooks", () => {
       rendered_list = [...rendered_list, ...list_manga_clean];
     }
 
+    rendered_list = rendered_list.reverse();
     total_to_render = rendered_list.filter(r => r.crawled == false);
 
 
@@ -271,6 +272,7 @@ describe("Handling Hooks", () => {
                   const status = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(4)").textContent;
 
                   const chapter_list = Array.from(document.querySelectorAll("div.panel-body > ul > li > a"));
+                  let is_there_an_update = false;
                   const chapters = chapter_list.filter(e => {
                     const valid = e.querySelector(".val");
                     if (valid != null) {
@@ -324,6 +326,9 @@ describe("Handling Hooks", () => {
                       filter_item_chapter.date = date;
                       return filter_item_chapter;
                     }
+                    else {
+                      is_there_an_update = true;
+                    }
 
                     return {
                       id: filter_id + '_' + chapter_id,
@@ -340,13 +345,16 @@ describe("Handling Hooks", () => {
                     status: status,
                     chapters: chapters,
                     date_last_crawled: new Date().getTime(),
+                    is_there_an_update: is_there_an_update,
                   }
                 }, datas[index].chapters, filter_id);
 
                 datas[index].total_views = dataEvaluated.total_views;
                 datas[index].status = dataEvaluated.status;
                 datas[index].chapters = dataEvaluated.chapters;
-                datas[index].date_last_crawled = dataEvaluated.date_last_crawled;
+                if (dataEvaluated.is_there_an_update) {
+                  datas[index].date_last_crawled = dataEvaluated.date_last_crawled;
+                }
                 rendered_chapters = [...datas];
                 rendered_list[i].crawled = true;
 
