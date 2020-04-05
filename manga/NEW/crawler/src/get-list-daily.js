@@ -107,6 +107,8 @@ describe("Handling Hooks", () => {
     //////////////////////////////////////////////////////////
 
 
+    let to_upload = [];
+
     //get all chapters
     for (let i = 0; i < rendered_list.length; i++) {
 
@@ -254,6 +256,7 @@ describe("Handling Hooks", () => {
                 }, rendered_list[i].url);
 
                 rendered_chapters.push(data);
+                to_upload.push(data);
                 rendered_list[i].crawled = true;
                 fs.writeFileSync(`src/json/chapters.json`, JSON.stringify(rendered_chapters));
                 console.log("pushed.");
@@ -354,6 +357,7 @@ describe("Handling Hooks", () => {
                 datas[index].chapters = dataEvaluated.chapters;
                 if (dataEvaluated.is_there_an_update) {
                   datas[index].date_last_crawled = dataEvaluated.date_last_crawled;
+                  to_upload.push(datas);
                 }
                 rendered_chapters = [...datas];
                 rendered_list[i].crawled = true;
@@ -369,6 +373,18 @@ describe("Handling Hooks", () => {
 
     }
 
+    const to_upload_total = to_upload.length;
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    if (dd < 10) { dd = '0' + dd; }
+    if (mm < 10) { mm = '0' + mm; }
+    var hr = today.getHours();
 
+    var today_date = yyyy + '_' + mm + '_' + dd + '_' + hr;
+
+
+    fs.writeFileSync(`src/json/updates/${today_date}_update_${to_upload_total}_items.json`, JSON.stringify(to_upload));
   });
 });

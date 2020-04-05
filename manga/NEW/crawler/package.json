@@ -8,7 +8,8 @@
     "chapters": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-chapters.js",
     "photos": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-photos.js",
     "clean": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-chapters-remove-url.js",
-    "list-daily": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-list-daily.js"
+    "list-daily": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-list-daily.js",
+    "compress": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/compress.js"
   },
   "author": "",
   "license": "ISC",
