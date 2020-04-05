@@ -43,7 +43,9 @@ describe("Handling Hooks", () => {
 
     const list_banned = JSON.parse(await fs.readFileSync(__dirname + "/json/list_banned.json", "utf8"));
     const m_chapters = JSON.parse(await fs.readFileSync(__dirname + "/json/chapters.json", "utf8"));
+    const update_items = JSON.parse(await fs.readFileSync(__dirname + "/json/updates/update_items.json", "utf8"));
     let rendered_chapters = m_chapters;
+    let to_upload = update_items;
 
 
     const list_daily = JSON.parse(await fs.readFileSync(__dirname + "/json/list_daily.json", "utf8"));
@@ -106,8 +108,6 @@ describe("Handling Hooks", () => {
     console.log("TOTAL TO RENDER IS: " + total_to_render.length);
     //////////////////////////////////////////////////////////
 
-
-    let to_upload = [];
 
     //get all chapters
     for (let i = 0; i < rendered_list.length; i++) {
@@ -259,6 +259,7 @@ describe("Handling Hooks", () => {
                 to_upload.push(data);
                 rendered_list[i].crawled = true;
                 fs.writeFileSync(`src/json/chapters.json`, JSON.stringify(rendered_chapters));
+                fs.writeFileSync(`src/json/updates/update_items.json`, JSON.stringify(to_upload));
                 console.log("pushed.");
               }
               else {
@@ -357,7 +358,8 @@ describe("Handling Hooks", () => {
                 datas[index].chapters = dataEvaluated.chapters;
                 if (dataEvaluated.is_there_an_update) {
                   datas[index].date_last_crawled = dataEvaluated.date_last_crawled;
-                  to_upload.push(datas);
+                  to_upload.push(datas[index]);
+                  fs.writeFileSync(`src/json/updates/update_items.json`, JSON.stringify(to_upload));
                 }
                 rendered_chapters = [...datas];
                 rendered_list[i].crawled = true;
@@ -373,18 +375,6 @@ describe("Handling Hooks", () => {
 
     }
 
-    const to_upload_total = to_upload.length;
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
-    var yyyy = today.getFullYear();
-    if (dd < 10) { dd = '0' + dd; }
-    if (mm < 10) { mm = '0' + mm; }
-    var hr = today.getHours();
 
-    var today_date = yyyy + '_' + mm + '_' + dd + '_' + hr;
-
-
-    fs.writeFileSync(`src/json/updates/${today_date}_update_${to_upload_total}_items.json`, JSON.stringify(to_upload));
   });
 });
