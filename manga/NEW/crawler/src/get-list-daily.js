@@ -9,7 +9,7 @@ describe("Handling Hooks", () => {
   //hooks content here
   before(async function () {
     browser = await puppeteer.launch({
-      headless: false, //for debuging
+      headless: true, //for debuging
       slowMo: 0, //delay beetween puppeteer actions
       devtools: false, //opens developer tools to browser
       timeout: 15000, //max time of the browser to launch
@@ -374,6 +374,37 @@ describe("Handling Hooks", () => {
       }
 
     }
+
+
+    //clean url
+    console.log("CLEANING URL");
+    const clean_update_items = JSON.parse(await fs.readFileSync(__dirname + "/json/updates/update_items.json", "utf8"));
+
+
+    clean_update_items.map(l => {
+      const url = l.url;
+      const photo = l.photo ? l.photo : '';
+      l.url = url.replace('https://www.readmng.com', '');
+      l.photo = photo.replace('https://www.readmng.com', '');
+      l.authors.map(a => {
+        const aurl = a.url;
+        a.url = aurl.replace('https://www.readmng.com', '');
+      });
+      l.categories.map(ct => {
+        const cturl = ct.url;
+        ct.url = cturl.replace('https://www.readmng.com', '');
+      });
+      l.chapters.map(c => {
+        const curl = c.url;
+        c.url = curl.replace('https://www.readmng.com', '');
+      });
+
+      console.log('replaced ' + url);
+      return l;
+    });
+
+
+    fs.writeFileSync(`src/json/updates/update_items.json`, JSON.stringify(clean_update_items));
 
 
   });

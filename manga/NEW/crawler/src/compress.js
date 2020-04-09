@@ -46,7 +46,7 @@ describe("Handling Hooks", () => {
 		let chapters = [];
 
 		for (let i = 0; i < m_chapters.length; i++) {
-			const mod = (i + 1) % 500;
+			const mod = (i + 1) % 4000;
 			if (mod == 0) {
 				chapter_index++;
 				fs.writeFileSync(`src/json/compress/chapters_${chapter_index}.json`, JSON.stringify(chapters));
