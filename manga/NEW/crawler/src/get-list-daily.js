@@ -9,7 +9,7 @@ describe("Handling Hooks", () => {
   //hooks content here
   before(async function () {
     browser = await puppeteer.launch({
-      headless: true, //for debuging
+      headless: false, //for debuging
       slowMo: 0, //delay beetween puppeteer actions
       devtools: false, //opens developer tools to browser
       timeout: 15000, //max time of the browser to launch
@@ -66,6 +66,7 @@ describe("Handling Hooks", () => {
 
     //get all list manga
     for (let i = 0; i < rootsURL.length; i++) {
+      console.log('rendering ' + rootsURL[i]);
       await page.goto(rootsURL[i], { waitUntil: "domcontentloaded", timeout: 0 });
       await page.waitForSelector(".content-list", {
         waitUntil: "domcontentloaded",
