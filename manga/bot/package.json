@@ -1,0 +1,19 @@
+{
+  "name": "m",
+  "version": "1.0.0",
+  "description": "m pupet",
+  "main": "index.js",
+  "scripts": {
+    "open": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/open-bot.js",
+    "exo": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/open-bot-exoclick.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "https": "^1.0.0",
+    "mocha": "^7.1.1",
+    "path": "^0.12.7",
+    "puppeteer": "^2.1.1"
+  }
+}

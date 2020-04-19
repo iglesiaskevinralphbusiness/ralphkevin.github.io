@@ -43,6 +43,7 @@ Thumbs.db
 manga/NEW/crawler/node_modules/
 manga/m/node_modules
 manga/NEW/crawler/src/uploads
+manga/bot/node_modules/
 
 manga/NEW/crawler/src/ad
 manga/NEW/crawler/src/akaikoi_no_territory
