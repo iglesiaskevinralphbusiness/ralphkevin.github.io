@@ -7,14 +7,37 @@ const fs = require("fs");
 
 (async () => {
 
-	///let working_proxies = JSON.parse(await fs.readFileSync(__dirname + "/proxies_working.json", "utf8"));
+	for (let start = 0; start < 10000; start++) {
 
-	let total = 1000;
-	let done = 0;
-	for (let start = 0; start < total; start++) {
+		const browserHead = await puppeteer.launch({
+			headless: false, //for debuging
+			args: ["--no-sandbox", "--disable-setuid-sandbox"],
+		});
+		const pageHead = await browserHead.newPage();
+		await pageHead.goto('https://www.proxynova.com/proxy-server-list/', { waitUntil: "domcontentloaded", timeout: 0 });
+		await pageHead.waitForSelector("#tbl_proxy_list", {
+			waitUntil: "domcontentloaded",
+			timeout: 0
+		});
+		const proxies = await pageHead.evaluate(() => {
+			const trs = Array.from(document.querySelectorAll("#tbl_proxy_list > tbody:nth-child(2) > tr"));
+			return trs.slice(0,5).map(tr => {
+				const td = tr.querySelectorAll("td");
+				const address = td[0].textContent.trim();
+				const port = td[1].textContent.trim();
 
-		let working_proxies = JSON.parse(await fs.readFileSync(__dirname + "/proxies_working.json", "utf8"));
-		const proxies = JSON.parse(JSON.stringify(working_proxies));
+				const address_item = address.split(';')
+				const ip = address_item[1].trim();
+
+				return ip + ':' + port;
+			});
+		});
+		console.log(proxies);
+		await browserHead.close();
+
+
+
+
 
 		for (let i = 0; i < proxies.length; i++) {
 
@@ -25,7 +48,7 @@ const fs = require("fs");
 
 			const page = await browser.newPage();
 			try {
-				await page.goto('http://adfoc.us/50994974442794', { waitUntil: "domcontentloaded", timeout: 0 });
+				await page.goto('http://adfoc.us/5099491', { waitUntil: "domcontentloaded", timeout: 0 });
 
 				const elements_total = await page.evaluate(() => {
 					const elements = Array.from(document.querySelectorAll("div"));
@@ -87,29 +110,12 @@ const fs = require("fs");
 					await page.waitFor(35000);
 					console.log('done 12' + proxies[i]);
 
-					done++;
-					total = total - 1;
-					console.log(done + '/' + total + ' - ' + proxies[i]);
-
-					const working_find = working_proxies.find(proxy => proxy == proxies[i]);
-					if (!working_find) {
-						working_proxies.push(proxies[i]);
-						fs.writeFileSync(`src/proxies_working.json`, JSON.stringify(working_proxies));
-						console.log('saved ' + proxies[i]);
-					}
 				}
 				else {
-					const working_filter = working_proxies.filter(proxy => proxy != proxies[i]);
-					fs.writeFileSync(`src/proxies_working.json`, JSON.stringify(working_filter));
-					console.log('removed ' + proxies[i]);
+					console.log('failed ' + proxies[i]);
 				}
-
-
 			} catch (err) {
-				const working_filter = working_proxies.filter(proxy => proxy != proxies[i]);
-				fs.writeFileSync(`src/proxies_working.json`, JSON.stringify(working_filter));
-				console.log('removed ' + proxies[i]);
-				//console.log(err);
+				console.log('failed ' + proxies[i]);
 			}
 
 
@@ -117,9 +123,7 @@ const fs = require("fs");
 			await browser.close();
 
 		}
-
-
-
+		
 
 	}
 

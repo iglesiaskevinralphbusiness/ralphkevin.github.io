@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "open": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/open-bot.js",
+    "open2": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/open-bot2.js",
     "exo": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/open-bot-exoclick.js"
   },
   "author": "",
