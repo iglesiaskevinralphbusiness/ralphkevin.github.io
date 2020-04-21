@@ -21,7 +21,7 @@ const fs = require("fs");
 		});
 		const proxies = await pageHead.evaluate(() => {
 			const trs = Array.from(document.querySelectorAll("#tbl_proxy_list > tbody:nth-child(2) > tr"));
-			return trs.slice(0,5).map(tr => {
+			return trs.slice(0, 5).map(tr => {
 				const td = tr.querySelectorAll("td");
 				const address = td[0].textContent.trim();
 				const port = td[1].textContent.trim();
@@ -43,7 +43,16 @@ const fs = require("fs");
 
 			const browser = await puppeteer.launch({
 				headless: true, //for debuging
-				args: [`--proxy-server=http://${proxies[i]}`]
+				args: [`--proxy-server=http://${proxies[i]}`,
+
+					'--no-sandbox',
+					'--disable-setuid-sandbox',
+					'--disable-infobars',
+					'--window-position=0,0',
+					'--ignore-certifcate-errors',
+					'--ignore-certifcate-errors-spki-list',
+					'--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3312.0 Safari/537.36"'
+				]
 			});
 
 			const page = await browser.newPage();
@@ -55,7 +64,7 @@ const fs = require("fs");
 					return elements.length;
 				});
 
-				if(elements_total > 0){
+				if (elements_total > 0) {
 					await page.waitFor(35000);
 					console.log('done 0' + proxies[i]);
 
@@ -70,11 +79,11 @@ const fs = require("fs");
 					await page.goto('http://adfoc.us/50994974448509', { waitUntil: "domcontentloaded", timeout: 0 });
 					await page.waitFor(35000);
 					console.log('done 3' + proxies[i]);
-	
+
 					await page.goto('http://adfoc.us/50994974448510', { waitUntil: "domcontentloaded", timeout: 0 });
 					await page.waitFor(35000);
 					console.log('done 4' + proxies[i]);
-					
+
 					await page.goto('http://adfoc.us/50994974448511', { waitUntil: "domcontentloaded", timeout: 0 });
 					await page.waitFor(35000);
 					console.log('done 5' + proxies[i]);
@@ -123,7 +132,7 @@ const fs = require("fs");
 			await browser.close();
 
 		}
-		
+
 
 	}
 
