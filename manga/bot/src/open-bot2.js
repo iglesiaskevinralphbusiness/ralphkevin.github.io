@@ -10,7 +10,7 @@ const fs = require("fs");
 	for (let start = 0; start < 10000; start++) {
 
 		const browserHead = await puppeteer.launch({
-			headless: false, //for debuging
+			headless: true, //for debuging
 			args: ["--no-sandbox", "--disable-setuid-sandbox"],
 		});
 		const pageHead = await browserHead.newPage();
@@ -42,7 +42,7 @@ const fs = require("fs");
 		for (let i = 0; i < proxies.length; i++) {
 
 			const browser = await puppeteer.launch({
-				headless: true, //for debuging
+				headless: false, //for debuging
 				args: [`--proxy-server=http://${proxies[i]}`,
 
 					'--no-sandbox',
@@ -57,7 +57,8 @@ const fs = require("fs");
 
 			const page = await browser.newPage();
 			try {
-				await page.goto('http://adfoc.us/5099491', { waitUntil: "domcontentloaded", timeout: 0 });
+				//await page.goto('http://adfoc.us/5099491', { waitUntil: "domcontentloaded", timeout: 0 });
+				await page.goto('http://adfoc.us/50994974448511', { waitUntil: "domcontentloaded", timeout: 0 });
 
 				const elements_total = await page.evaluate(() => {
 					const elements = Array.from(document.querySelectorAll("div"));
@@ -67,6 +68,7 @@ const fs = require("fs");
 				if (elements_total > 0) {
 					await page.waitFor(35000);
 					console.log('done 0' + proxies[i]);
+					/*
 
 					await page.goto('http://adfoc.us/50994974441339', { waitUntil: "domcontentloaded", timeout: 0 });
 					await page.waitFor(35000);
@@ -118,7 +120,7 @@ const fs = require("fs");
 					await page.goto('http://adfoc.us/50994974455405', { waitUntil: "domcontentloaded", timeout: 0 });
 					await page.waitFor(35000);
 					console.log('done 12' + proxies[i]);
-
+					*/
 				}
 				else {
 					console.log('failed ' + proxies[i]);
