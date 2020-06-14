@@ -9,7 +9,8 @@
     "photos": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-photos.js",
     "clean": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-chapters-remove-url.js",
     "list-daily": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-list-daily.js",
-    "compress": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/compress.js"
+    "compress": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/compress.js",
+    "description": "node ./node_modules/mocha/bin/mocha --no-timeouts ./src/get-description.js"
   },
   "author": "",
   "license": "ISC",

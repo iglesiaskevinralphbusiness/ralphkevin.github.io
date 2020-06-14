@@ -239,6 +239,13 @@ describe("Handling Hooks", () => {
                   if (mm < 10) { mm = '0' + mm; }
                   var today = yyyy + '/' + mm + '/' + dd;
 
+                  //get description
+                  let description = '';
+                  if (document.querySelector(".movie-detail") != null) {
+                    description = document.querySelector(".movie-detail").innerText;
+                    description = description.trim();
+                  }
+
                   return {
                     id: id,
                     name: name.trim(),
@@ -253,6 +260,7 @@ describe("Handling Hooks", () => {
                     categories: categories,
                     chapters: chapters,
                     date_last_crawled: new Date().getTime(),
+                    description: description,
                   };
                 }, rendered_list[i].url);
 
@@ -275,6 +283,7 @@ describe("Handling Hooks", () => {
                   const photo = document.querySelector("div.row.movie-meta > div > div > div.panel-body > div.col-md-3 > img").src;
                   const total_views = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(10)").textContent;
                   const status = document.querySelector("div.panel-body > div.col-md-9 > dl > dd:nth-child(4)").textContent;
+
 
                   const chapter_list = Array.from(document.querySelectorAll("div.panel-body > ul > li > a"));
                   let is_there_an_update = false;
@@ -335,6 +344,7 @@ describe("Handling Hooks", () => {
                       is_there_an_update = true;
                     }
 
+
                     return {
                       id: filter_id + '_' + chapter_id,
                       date: date,
@@ -345,18 +355,28 @@ describe("Handling Hooks", () => {
                   });
 
 
+                  //get description
+                  let description = '';
+                  if (document.querySelector(".movie-detail") != null) {
+                    description = document.querySelector(".movie-detail").innerText;
+                    description = description.trim();
+                  }
+
+
                   return {
                     total_views: total_views,
                     status: status,
                     chapters: chapters,
                     date_last_crawled: new Date().getTime(),
                     is_there_an_update: is_there_an_update,
+                    description: description,
                   }
                 }, datas[index].chapters, filter_id);
 
                 datas[index].total_views = dataEvaluated.total_views;
                 datas[index].status = dataEvaluated.status;
                 datas[index].chapters = dataEvaluated.chapters;
+                datas[index].description = dataEvaluated.description;
                 if (dataEvaluated.is_there_an_update) {
                   datas[index].date_last_crawled = dataEvaluated.date_last_crawled;
                   to_upload.push(datas[index]);
