@@ -10,7 +10,7 @@ const fs = require("fs");
 	for (let start = 0; start < 10000; start++) {
 
 		const browserHead = await puppeteer.launch({
-			headless: false, //for debuging
+			headless: true, //for debuging
 			args: ["--no-sandbox", "--disable-setuid-sandbox"],
 		});
 		const pageHead = await browserHead.newPage();
@@ -21,7 +21,7 @@ const fs = require("fs");
 		});
 		const proxies = await pageHead.evaluate(() => {
 			const trs = Array.from(document.querySelectorAll("#tbl_proxy_list > tbody:nth-child(2) > tr"));
-			return trs.slice(0,5).map(tr => {
+			return trs.slice(0, 5).map(tr => {
 				const td = tr.querySelectorAll("td");
 				const address = td[0].textContent.trim();
 				const port = td[1].textContent.trim();
@@ -42,22 +42,33 @@ const fs = require("fs");
 		for (let i = 0; i < proxies.length; i++) {
 
 			const browser = await puppeteer.launch({
-				headless: true, //for debuging
-				args: [`--proxy-server=http://${proxies[i]}`]
+				headless: false, //for debuging
+				args: [`--proxy-server=http://${proxies[i]}`,
+
+					'--no-sandbox',
+					'--disable-setuid-sandbox',
+					'--disable-infobars',
+					'--window-position=0,0',
+					'--ignore-certifcate-errors',
+					'--ignore-certifcate-errors-spki-list',
+					'--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3312.0 Safari/537.36"'
+				]
 			});
 
 			const page = await browser.newPage();
 			try {
-				await page.goto('http://adfoc.us/5099491', { waitUntil: "domcontentloaded", timeout: 0 });
+				//await page.goto('http://adfoc.us/5099491', { waitUntil: "domcontentloaded", timeout: 0 });
+				await page.goto('http://adfoc.us/50994974448511', { waitUntil: "domcontentloaded", timeout: 0 });
 
 				const elements_total = await page.evaluate(() => {
 					const elements = Array.from(document.querySelectorAll("div"));
 					return elements.length;
 				});
 
-				if(elements_total > 0){
+				if (elements_total > 0) {
 					await page.waitFor(35000);
 					console.log('done 0' + proxies[i]);
+					/*
 
 					await page.goto('http://adfoc.us/50994974441339', { waitUntil: "domcontentloaded", timeout: 0 });
 					await page.waitFor(35000);
@@ -70,11 +81,11 @@ const fs = require("fs");
 					await page.goto('http://adfoc.us/50994974448509', { waitUntil: "domcontentloaded", timeout: 0 });
 					await page.waitFor(35000);
 					console.log('done 3' + proxies[i]);
-	
+
 					await page.goto('http://adfoc.us/50994974448510', { waitUntil: "domcontentloaded", timeout: 0 });
 					await page.waitFor(35000);
 					console.log('done 4' + proxies[i]);
-					
+
 					await page.goto('http://adfoc.us/50994974448511', { waitUntil: "domcontentloaded", timeout: 0 });
 					await page.waitFor(35000);
 					console.log('done 5' + proxies[i]);
@@ -109,7 +120,7 @@ const fs = require("fs");
 					await page.goto('http://adfoc.us/50994974455405', { waitUntil: "domcontentloaded", timeout: 0 });
 					await page.waitFor(35000);
 					console.log('done 12' + proxies[i]);
-
+					*/
 				}
 				else {
 					console.log('failed ' + proxies[i]);
@@ -123,7 +134,7 @@ const fs = require("fs");
 			await browser.close();
 
 		}
-		
+
 
 	}
 

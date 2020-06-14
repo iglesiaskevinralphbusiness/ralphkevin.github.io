@@ -261,7 +261,7 @@ describe("Handling Hooks", () => {
                 rendered_list[i].crawled = true;
                 fs.writeFileSync(`src/json/chapters.json`, JSON.stringify(rendered_chapters));
                 fs.writeFileSync(`src/json/updates/update_items.json`, JSON.stringify(to_upload));
-                console.log("pushed.");
+                console.log("pushed. " + i);
               }
               else {
                 console.log("UPDATING MANGA: " + rendered_list[i].url);
@@ -367,7 +367,7 @@ describe("Handling Hooks", () => {
 
                 fs.writeFileSync(`src/json/chapters.json`, JSON.stringify(rendered_chapters));
                 fs.writeFileSync(`src/json/list_daily.json`, JSON.stringify(rendered_list));
-                console.log("pushed.");
+                console.log("pushed." + i);
               }
             }
           }
