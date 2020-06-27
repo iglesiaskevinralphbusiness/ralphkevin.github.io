@@ -51,10 +51,10 @@ describe("Handling Hooks", () => {
     const list_daily = JSON.parse(await fs.readFileSync(__dirname + "/json/list_daily.json", "utf8"));
 
     const rootsURL = [
-      "https://www.readmng.com/latest-releases/10",
-      "https://www.readmng.com/latest-releases/9",
-      "https://www.readmng.com/latest-releases/8",
-      "https://www.readmng.com/latest-releases/7",
+      //"https://www.readmng.com/latest-releases/10",
+      //"https://www.readmng.com/latest-releases/9",
+      //"https://www.readmng.com/latest-releases/8",
+      //"https://www.readmng.com/latest-releases/7",
       "https://www.readmng.com/latest-releases/6",
       "https://www.readmng.com/latest-releases/5",
       "https://www.readmng.com/latest-releases/4",
