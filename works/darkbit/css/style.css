@@ -448,3 +448,90 @@ main {
 	padding: 8px;
 }
 
+
+/* project 4 */
+.project-4 {
+	background-color: #eee;
+}
+.project-4 .bg-liner {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+}
+.project-4 .bg-liner .liner1,
+.project-4 .bg-liner .liner2,
+.project-4 .bg-liner .liner3,
+.project-4 .bg-liner .liner4 {
+	position: absolute;
+	transition: all 2s ease;
+	-webkit-transition: all 2s ease;
+	-moz-transition: all 2s ease;
+	-o-transition: all 2s ease;
+}
+.project-4 .bg-liner .liner1 {
+	margin-top: -100%;
+    left: 45%;
+    width: 27px;
+    height: 100%;
+	background-color: #b4913f;
+}
+.project-4 .bg-liner .liner1.move {
+	margin-top: 0;
+}
+.project-4 .bg-liner .liner2 {
+	margin-top: 100%;
+    left: 55%;
+	width: 27px;
+	height: 100%;
+	background-color: #fff007;
+}
+.project-4 .bg-liner .liner2.move {
+	margin-top: 0;
+}
+.project-4 .bg-liner .liner3 {
+	top: 43%;
+	margin-left: -100%;
+	width: 100%;
+	height: 27px;
+	background-color: #ff729d;
+}
+.project-4 .bg-liner .liner3.move {
+	margin-left: 0;
+}
+.project-4 .bg-liner .liner4 {
+	top: 57%;
+	margin-left: 100%;
+	width: 100%;
+	height: 27px;
+	background-color: #f4a929;
+}
+.project-4 .bg-liner .liner4.move {
+	margin-left: 0;
+}
+
+/* project 5 */
+.project5 {
+	overflow: hidden;
+}
+.project5 .project5-colL {
+	float: left;
+	width: 45%;
+	height: 90vh;
+	overflow: hidden;
+}
+.project5 .project5-colR {
+	float: right;
+	width: 45%;
+	height: 90vh;
+	overflow: hidden;
+}
+.project5 .border {
+	height: 83%;
+	background-color: #fff;
+	overflow: hidden;
+}
+.project5 .border img {
+	width: 100%;
+}

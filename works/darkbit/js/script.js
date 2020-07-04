@@ -5,6 +5,7 @@ $(document).ready(function () {
         set_font_size($('body').width());
         set_project_1_mouse();
         set_project_3(1000);
+        
     }
 
 
@@ -49,6 +50,17 @@ $(document).ready(function () {
                 set_project_3(35);
             }
         }, 10000);
+    }
+
+    function set_project_4(scroll){
+        //$('.project-4-img').trigger('mouseenter');
+        var layer4_offset = $(".project-4-img").offset().top;
+        var layer4_offset_half = $(".project-4-img").height() / 2;
+        var layer4 = layer4_offset - layer4_offset_half;
+
+        if(scroll >= layer4){
+            $('.project-4 .bg-liner .liner1, .project-4 .bg-liner .liner2, .project-4 .bg-liner .liner3, .project-4 .bg-liner .liner4').addClass('move');
+        }
     }
 
 
@@ -108,9 +120,7 @@ $(document).ready(function () {
             });
         }
 
-        //layer 3
-        //project 2
-
+        set_project_4(scroll);
     });
 
     $(window).resize(function (event) {
