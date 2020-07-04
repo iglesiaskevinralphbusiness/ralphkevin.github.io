@@ -9,7 +9,7 @@ describe("Handling Hooks", () => {
   //hooks content here
   before(async function () {
     browser = await puppeteer.launch({
-      headless: false, //for debuging
+      headless: true, //for debuging
       slowMo: 0, //delay beetween puppeteer actions
       devtools: false, //opens developer tools to browser
       timeout: 15000, //max time of the browser to launch
