@@ -1,0 +1,190 @@
+body.dark {
+    background-color: #131313;
+    background-image: unset;
+}
+body.dark header {
+    background-color: #131313;
+}
+body.dark header .header-nav {
+    background-color: #3e4e69;
+}
+body.dark header .header-nav ul li a:hover {
+    background-color: #283752;
+}
+body.dark header .header-block .colR a.login {
+    background: #3e4e69;
+}
+body.dark header .header-login-signup li:first-child {
+    border-left: 1px solid #3e4e69;
+}
+body.dark .header-theme p {
+    color: #fff;
+}
+body.dark .content-block h2 span {
+    background-color: #3e4e69;
+}
+body.dark .content-block h2 {
+    border-bottom: 5px solid #3e4e69;
+}
+body.dark .latest {
+    background-color: #1e2229;
+}
+body.dark .latest .latest-block .desc p a {
+    color: #fff;
+}
+body.dark .latest .latest-block .desc ul li a {
+    color: #989898;
+}
+body.dark a.view-more {
+    background-color: #333c4c;
+    color: #ffffff;
+    border-top: 1px solid #615f5f;
+}
+body.dark .latest .latest-block .cover {
+    border: 1px solid #636363;
+    background-color: #34425a;
+}
+body.dark .body-sidebar .side-popular {
+    background-color: #1e2229;
+}
+body.dark .body-sidebar .side-popular ul li {
+    border-bottom: 1px solid #2f2f2f;
+}
+body.dark .body-sidebar .side-popular ul li .desc .title a {
+    color: #fff;
+}
+body.dark .body-sidebar .side-popular ul li .desc .chapter a {
+    color: #989898;
+}
+body.dark .body-sidebar .side-popular ul li .cover {
+    border: 1px solid #636363;
+    background: #34425a;
+}
+body.dark .body-sidebar .categories {
+    background-color: #1e2229;
+}
+body.dark .body-sidebar .categories ul li a {
+    color: #fff;
+}
+body.dark ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff;
+    opacity: 1; /* Firefox */
+}
+body.dark :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #fff;
+}
+body.dark ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #fff;
+}
+body.dark header .header-nav .header-nav-search input {
+    background: #5c6e8c;
+    color: #fff;
+}
+body.dark .comments-con {
+    background-color: #333c4c;
+}
+body.dark #comment-section h2 {
+    color: #fff;
+}
+body.dark .header-theme select {
+    background: #5c6e8c;
+    border: none;
+    color: #fff;
+}
+body.dark footer .footer-block {
+    background-color: #3e4e69;
+}
+body.dark footer {
+    background-color: #131313;
+}
+body.dark footer .copyright {
+    color: #fff;
+}
+body.dark footer .footer-gotop a {
+    background-color: #3e4e69;
+}
+body.dark .breadcrumbs {
+    background-color: #1e2229;
+    border-top: 2px solid #3e4d68;
+}
+body.dark .breadcrumbs ul li a {
+    color: #fff;
+}
+body.dark .breadcrumbs ul li:after {
+    color: #fff;
+}
+body.dark .breadcrumbs ul li {
+    color: #fff;
+}
+body.dark .manga-info .manga-details {
+    background-color: #1e2229;
+}
+body.dark .manga-info .manga-details .details-block {
+    color: #fff;
+}
+body.dark .manga-info .manga-chapters {
+    background-color: #1e2229;
+}
+body.dark .manga-info .manga-chapters .chapters-head {
+    border-bottom: 1px solid #3e4e69;
+}
+body.dark .manga-info .manga-chapters .chapters-head li {
+    color: #fff;
+}
+body.dark .manga-info .manga-chapters .chapters-list li a:hover {
+    background-color: #333d4e;
+}
+body.dark .manga-page {
+    background-color: #1e2229;
+}
+body.dark .manga-page .page-options .chapters select,
+body.dark .manga-page .page-options .total select,
+body.dark .manga-page .page-options .buttons .pageof select {
+    background: #5c6e8c;
+    color: #fff;
+}
+body.dark .manga-page .image-containers ul li {
+    background-color: #333c4c;
+}
+body.dark .alphabetical .alpha-container {
+    background-color: #1e2229;
+}
+body.dark .alphabetical .alpha-container h2 {
+    color: #fff;
+}
+body.dark .pagination {
+    background-color: #333c4c;
+    border-top: 1px solid #595f69;
+    border-bottom: 1px solid #595f69;
+}
+body.dark .pagination-list a {
+    color: #fff;
+    border: 1px solid #565c66;
+}
+body.dark .pagination-list a.active {
+    background-color: #1e2229;
+}
+body.dark .latest-block-all {
+    border-bottom: 1px solid #565c66;
+}
+body.dark .latest-block-all:nth-child(2n) {
+    border-left: 1px solid #565c66;
+}
+body.dark .latest-block-all .manga-details .details-image .img-container {
+    background-color: #1e2229;
+}
+body.dark .latest-block-all .manga-details .details-block {
+    color: #989898;
+}
+body.dark .latest-block-all .manga-details .details-block h2 a {
+    color: #ffffff;
+}
+body.dark header .header-nav-mobile {
+    background-color: #3e4e69;
+}
+body.dark header .header-nav-mobile .menus ul li a {
+    border-bottom: 1px solid #617290;
+}
+body.dark header .header-nav-mobile .colR input {
+    background: #5c6e8c;
+}
