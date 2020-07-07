@@ -1,0 +1,57 @@
+<header include-html="/src/includes/header.html">
+    <!--load header-->
+</header>
+<main>
+    <div class="wrap">
+
+
+        <section class="body-column">
+            <div class="body-content content-block">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Manga Online</a></li>
+                        <li>Contact Us</li>
+                    </ul>
+                </div>
+
+                <h2><span>Contact Us</span></h2>
+                <div class="contact-us">
+
+                    <div class="success hide" id="alert-success">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        Your message successfully sent!
+                    </div>
+
+                    <div class="alert hide" id="alert-failed">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        Somethings error on your message!
+                    </div>
+
+                    <form method="post" action="/api/data/post-contact.php">
+                        <label for="fname">First Name</label>
+                        <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
+
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="email" placeholder="Your email.." required>
+
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="Your subject.." required>
+
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Write something.." style="height:200px"
+                            required></textarea>
+
+                        <input type="submit" name="btnsubmit" value="Submit">
+                    </form>
+                </div>
+
+            </div>
+            <div include-html="/src/includes/sidebar.html" class="body-sidebar">
+                <!--load sidebar-->
+            </div>
+        </section>
+    </div>
+</main>
+<footer include-html="/src/includes/footer.html">
+    <!--load footer-->
+</footer>

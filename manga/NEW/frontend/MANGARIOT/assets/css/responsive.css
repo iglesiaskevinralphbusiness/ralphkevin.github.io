@@ -1,0 +1,193 @@
+@media screen and (max-width: 640px) {
+    .ads729x90,
+    .ads300x250,
+    .ads468x60 {
+        width: auto;
+    }
+    .wrap {
+        max-width: unset;
+        width: 100%;
+        min-width: 320px;
+        overflow: hidden;
+    }
+    .body-column {
+        display: block;
+    }
+    .body-column .body-sidebar {
+        width: auto;
+        margin-left: unset;
+    }
+    #popular-slider .slider {
+        width: auto;
+        max-width: unset;
+    }
+    .latest {
+        padding: 10px;
+    }
+    .latest .latest-block {
+        float: none;
+        width: 100%;
+    }
+    .latest-block-all {
+        float: none;
+        width: 100%;
+    }
+    .latest-block-all:nth-child(1n) {
+        border-left: unset;
+    }
+    .latest-block-all .manga-details .details-image {
+        width: 27%;
+        min-width: unset;
+        padding-right: 2%;
+    }
+    .latest-block-all .manga-details .details-block {
+        width: 69%;
+        padding-left: 2%;
+    }
+    .latest-block-all:nth-child(15) {
+        border-bottom: 1px solid #f5f5f5;
+    }
+    .pagination-list {
+        display: flex;
+        justify-content: space-between;
+    }
+    .pagination-list a {
+        width: 10%;
+        padding: 2% 0;
+        text-align: center;
+    }
+    .latest-block-all .manga-details .details-image .img-container {
+        height: 160px;
+    }
+    .manga-info .manga-details {
+        display: block;
+    }
+    .manga-info .manga-details .details-image {
+        margin: auto;
+    }
+    .manga-info .manga-details .details-block {
+        width: unset;
+        padding: 15px 15px 0 15px;
+    }
+    .latest .latest-block .cover {
+        width: 20%;
+        max-width: unset;
+        box-sizing: border-box;
+    }
+    .latest .latest-block .desc {
+        width: 76%;
+        box-sizing: border-box;
+    }
+    .manga-page {
+        padding: 10px;
+    }
+    .manga-page .page-options {
+        display: block;
+    }
+    .manga-page .page-options .chapters {
+        width: 100%;
+        min-width: unset;
+        margin-bottom: 5px;
+    }
+    .manga-page .page-options .total {
+        max-width: unset;
+        padding-left: 0;
+        margin-bottom: 5px;
+    }
+    .manga-page .page-options .total select {
+        width: 100px;
+        margin: 0;
+    }
+    .manga-page .page-options .buttons {
+        width: 100%;
+        min-width: unset;
+    }
+    .manga-page .page-options .buttons .btn {
+        width: 212px;
+    }
+    .manga-page .page-options .buttons .btn button {
+        width: 86px;
+        font-size: 12px;
+        padding: 5px 5px;
+    }
+    .manga-page .page-options .buttons .pageof span {
+        padding: 6px 0px 6px 3px;
+    }
+    .manga-page .image-containers ul li.advert {
+        padding: 24px 0px;
+    }
+    header .header-block {
+        height: 65px;
+    }
+    header .header-block .wrap {
+        display: block;
+    }
+    header .header-block .colR{
+        display: none;
+    }
+    header .header-block .colL {
+        text-align: center;
+    }
+    header .header-block .colL a img {
+        width: 190px;
+    }
+    header .header-nav {
+        display: none;
+    }
+    header .header-nav-mobile {
+        display: block;
+    }
+    .manga-page .page-options .chapters select {
+        margin: 0;
+    }
+
+    footer .footer-gotop {
+        right: 15px;
+        bottom: 15px;
+        width: 40px;
+        height: 40px;
+    }
+    footer .footer-gotop a {
+        width: 40px;
+        height: 40px;
+    }
+    footer .footer-gotop a i {
+        font-size: 12px;
+    }
+}
+
+@media screen and (min-width: 641px) and (max-width: 768px) {
+    .wrap {
+        max-width: unset;
+        width: unset;
+    }
+    .body-column {
+        display: block;
+        justify-content: unset;
+        overflow: hidden;
+    }
+    .body-column .body-content {
+        width: auto;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .body-column .body-sidebar {
+        width: unset;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    header .header-block {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    #popular-slider .slider {
+        max-width: unset;
+        width: unset;
+    }
+    .latest .latest-block .desc {
+        width: 70%;
+    }
+    header .header-nav ul li a {
+        padding: 12px 9px;
+    }
+}

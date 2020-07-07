@@ -1,0 +1,161 @@
+<div class="header-block">
+    <div class="wrap">
+        <div class="colL">
+            <a href="/">
+                <h1><img src="/assets/images/logo-body.png" alt="MangaRiot - Read Manga Online"></h1>
+            </a>
+        </div>
+        <div class="colR">
+            <div class="header-theme">
+                <p>Theme: </p>
+                <select class="theme-selection">
+                    <option value='default'>Default</option>
+                    <option value='dark'>Night Mode</option>
+                </select>
+            </div>
+            <ul class="header-login-signup">
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="header-nav">
+    <div class="wrap">
+        <ul>
+            <li id="menu-1"><a href="/">HOME</a></li>
+            <li id="menu-2"><a href="/manga-list">MANGA LIST</a></li>
+            <li id="menu-3"><a href="/latest-release">LATEST RELEASE</a></li>
+            <li id="menu-4"><a href="/top-manga">TOP MANGA</a></li>
+        </ul>
+        <div class="header-nav-search">
+            <form action="/search" id="form-search">
+                <input id="search-input" type="text" name="" value="" placeholder="Search manga title">
+                <div class="auto-search-result hide">
+                    <ul>
+                        <li>
+                            <a href="/boruto-naruto-next-generations">
+                                <div class="colL"><span
+                                        style="background-image: url(&quot;https://s2.mangareader.net/cover/boruto-naruto-next-generations/boruto-naruto-next-generations-l0.jpg&quot;);"></span>
+                                </div>
+                                <div class="colR"><span class="title">Boruto: Naruto Next Generations</span><span
+                                        class="artist">KODACHI Ukyo</span></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/naruto">
+                                <div class="colL"><span
+                                        style="background-image: url(&quot;https://s3.mangareader.net/cover/naruto/naruto-l0.jpg&quot;);"></span>
+                                </div>
+                                <div class="colR"><span class="title">Naruto</span><span class="artist">Kishimoto
+                                        Masashi</span></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/naruto-gaiden-the-seventh-hokage">
+                                <div class="colL"><span
+                                        style="background-image: url(&quot;https://s5.mangareader.net/cover/naruto-gaiden-the-seventh-hokage/naruto-gaiden-the-seventh-hokage-l0.jpg&quot;);"></span>
+                                </div>
+                                <div class="colR"><span class="title">Naruto Gaiden: The Seventh Hokage</span><span
+                                        class="artist">Kishimoto Masashi</span></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/road-to-naruto-the-movie">
+                                <div class="colL"><span
+                                        style="background-image: url(&quot;https://s3.mangareader.net/cover/road-to-naruto-the-movie/road-to-naruto-the-movie-l0.jpg&quot;);"></span>
+                                </div>
+                                <div class="colR"><span class="title">Road To Naruto The Movie</span><span
+                                        class="artist">KISHIMOTO Masashi</span></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="header-nav-mobile">
+    <div class="column">
+        <div class="colL">
+            <div class="container">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </div>
+        <div class="colR">
+            <form action="/search" id="form-search-mobile">
+                <input id="search-input-mobile" type="text" name="" value="" placeholder="Search manga title">
+            </form>
+        </div>
+    </div>
+    <div class="menus">
+        <ul>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/manga-list">MANGA LIST</a></li>
+            <li><a href="/latest-release">LATEST RELEASE</a></li>
+            <li><a href="/top-manga">TOP MANGA</a></li>
+        </ul>
+        <br>
+        <ul class="mobile-account">
+
+        </ul>
+        <select class="theme-selection-mobile">
+            <option value='default'>Default</option>
+            <option value='dark'>Night Mode</option>
+        </select>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade loginModalCenter" id="loginModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="container">
+                    <form action="/" id="signInForm">
+                        <div class="row">
+                            <!--<div class="vl"></div>-->
+
+                            <div class="col">
+                                <h2 style="text-align:center">Sign In</h2>
+                                <div id="signInFormWarnings"></div>
+                                <input type="text" name="log-email" placeholder="Email" required="required">
+                                <input type="password" name="log-password" placeholder="Password" required="required">
+                                <div id="signInFormButton">
+                                    <input type="submit" value="Login">
+                                </div>
+                            </div>
+
+                            <!--<div class="col">
+                                <h2 style="text-align:center">Sign In with Social Media</h2>
+
+                                <a href="#" class="fb btn"><i class="fa fa-facebook fa-fw"></i> Login with Facebook</a>
+                                <a href="#" class="twitter btn"><i class="fa fa-twitter fa-fw"></i> Login with Twitter</a>
+                                <a href="#" class="google btn"><i class="fa fa-google fa-fw"></i> Login with Google+</a>
+                        </div>-->
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bottom-container">
+                <div class="row">
+                    <div class="col">
+                        <a href="/sign-up" style="color:white" class="btn">Sign up</a>
+                    </div>
+                    <div class="col">
+                        <a href="#" style="color:white" class="btn">Forgot password?</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

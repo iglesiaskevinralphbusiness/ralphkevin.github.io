@@ -1,0 +1,14 @@
+Options +FollowSymLinks -MultiViews
+
+RewriteEngine On
+RewriteBase /
+
+#if folder is exist pass it through
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L,QSA]
+
+#else open index
+RewriteRule ^(.*)/?$ index.php?manga_name=$1 [L,QSA,NC]
+
+
