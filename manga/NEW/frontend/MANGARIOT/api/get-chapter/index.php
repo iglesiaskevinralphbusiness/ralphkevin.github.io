@@ -4,8 +4,6 @@
         $dom = new DOMDocument('1.0');
         @$dom->loadHTMLFile($url);
 
-        echo $dom->saveHTML();
-
         $images = $dom->getElementsByTagName('img');
         foreach ($images as $element) {
             $src = $element->getAttribute('src');
@@ -19,9 +17,8 @@
         echo json_encode($list);
     }
 
-    if(isset($_POST['path'])){
-        $path = 'http://codenative.epizy.com/get-chapter/?path='.$_POST['path'];
-        echo $path ;
+    if(isset($_GET['path'])){
+        $path = 'https://www.funmanga.com'.$_GET['path'].'/all-pages';
         
         crawl_page($path);
     }
