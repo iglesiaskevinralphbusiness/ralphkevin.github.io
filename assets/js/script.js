@@ -255,7 +255,7 @@ $(document).ready(function () {
 
             $('.layer-lines .door .door1').css('left','0px');
             $('.layer-lines .door .door2').css('right','0px');
-		}, 2000);
+		}, 1000);
 	});
 
 
