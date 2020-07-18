@@ -1,6 +1,28 @@
 
 /* MOBILE */
 @media screen and (max-width: 640px) {
+    /* font */
+    .layer-1 .label2,
+    .layer-2 p,
+    .layer-about .layer-intro-contents p,
+    .layer-about .info p,
+    .layer-about .info p,
+    .layer-about .info ul li h4,
+    .layer-project-intro .layer-intro-contents p,
+    .layer-3 .project-details .desc p,
+    .layer-timeline .layer-intro-contents p,
+    .timeline .timeline-item-desc p.desc,
+    .layer-end .block-content2 ul li a {
+        font-size: 195%;
+    }
+    .layer-about .info h3 {
+        font-size: 270%;
+    }
+    .layer-3 .project-details .title .slogan {
+        font-size: 160%;
+    }
+
+    /* divs */
     .layer-1,
     .layer-2,
     .layer-project-intro,
@@ -8,6 +30,12 @@
     .layer-3,
     .layer-end {
         padding: 15px;
+    }`
+    .layer-1 .touch {
+        margin-top: 19vh;
+    }
+    .layer-1 .logo {
+        margin-bottom: 16vh;
     }
     .layer-timeline {
         padding: 5px 15px 30px;
@@ -37,9 +65,13 @@
         right: 15px;
     }
     .layer-about .layer-intro-contents {
-        padding-left: 90px;
+        padding-left: 60px;
         padding-right: 0;
         margin-bottom: 45px;
+    }
+    .layer-about .layer-intro-contents:before {
+        top: 8px;
+        width: 50px;
     }
     .layer-about .info {
         display: unset;
@@ -67,18 +99,24 @@
         justify-content: space-between;
     }
     .layer-project-intro .layer-intro-contents {
-        padding-left: 90px;
+        padding-left: 60px;
         padding-right: 0;
+    }
+    .layer-project-intro .layer-intro-contents:before {
+        top: 8px;
+        width: 50px;
     }
     .layer-project-intro .layer-intro-contents p {
         margin-bottom: 15px;
     }
     .layer-3 .project-details {
+        display: block;
         margin-bottom: 35px;
     }
     .layer-3 .project-details .desc {
-        max-width: 46%;
-        padding-left: 10px;
+        max-width: 100%;
+        padding-top: 10px;
+        padding-left: 0;
     }
     .btn-rect {
         width: 120px;
@@ -92,11 +130,14 @@
     }
     .project5 .project5-colL,
     .project5 .project5-colR {
-        height: 46vh;
+        height: 50vh;
     }
     .layer-timeline .layer-intro-contents {
-        padding-left: 90px;
+        padding-left: 60px;
         padding-right: 0;
+    }
+    .layer-timeline .layer-intro-contents:before {
+        width: 50px;
     }
     .layer-timeline .layer-intro-contents p {
         margin-bottom: 10px;
@@ -138,9 +179,7 @@
         width: 27px;
     }
     header .loader .layer-1 .wait {
-        right: unset;
-        left: 0;
-        top: 33vh;
+        display: none;
     }
 }
 
