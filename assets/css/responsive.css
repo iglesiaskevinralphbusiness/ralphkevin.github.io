@@ -177,6 +177,7 @@
     }
     header .menu-block {
         width: 27px;
+        margin-top: 8px;
     }
     header .loader .layer-1 .wait {
         display: none;
