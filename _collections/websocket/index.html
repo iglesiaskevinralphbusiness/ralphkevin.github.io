@@ -1,0 +1,196 @@
+<html>
+
+<head>
+	<title>Web Socket Document</title>
+	<link href="common/css/reset.css" rel="stylesheet" />
+	<link href="common/css/style.css" rel="stylesheet" />
+	<link href="common/css/media.css" rel="stylesheet" />
+	
+	<link rel="stylesheet" href="libs/tinymace/prism.css">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+</head>
+
+<body>
+<div class="content" id="top">
+<!--Write your content here-->
+<h1>Web Socket</h1>
+
+	
+<h2>Installation</h2>
+<div class="divBlock">
+	<p><b>Step 1:</b> install nodejs</p>
+	<p><b>Step 2:</b> npm init</p>
+	<p><b>Step 3:</b> npm install express –save</p>
+	<p><b>Step 4:</b> npm install nodemon --save-dev</p>
+	
+	<p><b>To run the app: </b>node index</p>
+</div>
+	
+	
+<h2>Express Server</h2>
+<div class="divBlock">
+	<h3>Setup</h3>
+	<p>To be added in index.js, this will declare the server for localhost:4000</p>
+	<pre>
+	<code class="language-javascript">//Requires
+	var express = require("express");
+
+	//App Setup
+	var app = express();
+	var server = app.listen(4000, function() {
+		console.log("listening to request on port 4000");
+	});</code>
+	</pre>
+	
+	<h3>Middleware</h3>
+	<p>Search as view page. The code below will look for the folder public in root, and declare index.html as the view page for home.</p>
+	
+	<pre>
+	<code class="language-javascript">app.use(express.static("public"));</code>
+	</pre>
+	
+	<h3>Index.js</h3>
+	<p>Create <span class="highlight">/public/index.html</span> and <span class="highlight">/public/style.css</span></p>
+</div>
+
+	
+<h2>Socket.Io Server</h2>
+<div class="divBlock">
+	<h3>Install</h3>
+	<p>npm install socket.io –save</p>
+	
+	<h3>Setup</h3>
+	<ul>
+		<li>• Add the require to upper code</li>
+		<li>• Pass the value of server to socket.io server</li>
+	</ul>
+	
+	<pre>
+	<code class="language-javascript">//Requires
+	var socket = require("socket.io");
+
+	//Socket setup
+	var io = socket(server);</code>
+	</pre>
+
+	<h3>Create browser connection</h3>
+	<p>Add this library to <span class="highlight">index.html</span> to enable socket io connection</p>
+	<pre>
+	<code class="language-js">< script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script></code>
+	</pre>
+	
+	<br><br>
+	
+	<p>Add this code to <span class="highlight">index.js</span> to create connection from browser to socket server. <span class="highlight">Socket variable</span> from function is default code for unique browser information.</p>
+	<pre>
+	<code class="language-js">io.on("connection", function(socket) {
+		console.log("connected", socket.id);
+	});</code>
+	</pre>
+	
+	<br><br>
+	
+	<p>Create <span class="highlight">/public/chat.js</span> for script that work on front end side and call the script to <span class="highlight">index.html</span></p>
+	<pre>
+	<code class="language-js">< script src="/chat.js"></script></code>
+	</pre>
+	
+	<br><br>
+	
+	<p>Add this code to <span class="highlight">/public/chat.js</span> to make a connection in front end</p>
+	<pre>
+	<code class="language-js">//Make connection
+	var socket = io.connect("http://localhost");</code>
+	</pre>
+</div>
+	
+	
+	
+<h2>Emit / Save</h2>
+<div class="divBlock">
+	<div class="imgBlock">
+		<img src="images/03.png" alt="">
+	</div>
+	
+	<h3>Front end Emit</h3>
+	<p><span class="highlight">/public/chat.js</span></p>
+	<p>Socket.emit(parameter_indentifier, parameter_object);</p>
+	<p>For now we will use <span class="highlight">“chat”</span> as out parameter identifier.</p>
+	<pre>
+	<code class="language-js">//Emit events
+	btn.addEventListener("click", function() {
+		socket.emit("chat", {
+			message: message.value,
+			handle: handle.value
+		});
+	});</code>
+	</pre>
+	
+	<h3>Back end Socket On</h3>
+	<p><span class="highlight">/index.js</span></p>
+	
+	<pre>
+	<code class="language-js">io.on("connection", function(socket) {
+		//console.log("connected", socket.id);
+
+		socket.on("chat", function(data) {
+			io.sockets.emit("chat", data);
+		});
+	});</code>
+	</pre>
+
+	
+	<h3>Back end Socket On</h3>
+	<p><span class="highlight">/index.js</span></p>
+	<pre>
+	<code class="language-js">io.on("connection", function(socket) {
+		//console.log("connected", socket.id);
+
+		socket.on("chat", function(data) {
+			io.sockets.emit("chat", data);
+		});
+	});</code>
+	</pre>
+</div>
+	
+<h2>Broadcast</h2>
+<div class="divBlock">
+	<p>This is same with emit that save data, but the data you save will now show to you instead on other members or browsers.</p>
+	<p>The process also same with emit for <span class="highlight">front end emit</span> and <span class="highlight">front end socket on</span></p>
+	<p>While back end socket on uses <span class="highlight">socket.broadcast.emit</span></p>
+
+	<h3>Back end Socket On</h3>
+	<p><span class="highlight">/index.js</span></p>
+	
+	<pre>
+	<code class="language-js">io.on("connection", function(socket) {
+		//console.log("connected", socket.id);
+
+		socket.on("typing", function(data) {
+			socket.broadcast.emit("typing", data);
+		});
+	});</code>
+	</pre>
+</div>
+	
+
+<h2>Download</h2>
+<div class="divBlock">
+	<p>Visit for a copy of code</p>
+	<p><a href="https://github.com/iamshaunjp/websockets-playlist">https://github.com/iamshaunjp/websockets-playlist</a></p>
+</div>
+	
+	
+	
+	
+<p class="goTop"><a href="#top">TOP</a></p>
+</body>
+
+<script type="text/javascript" src="common/js/jquery.js"></script>
+<script type="text/javascript" src="common/js/script.js"></script>
+<script type="text/javascript" src="common/js/smooth_scrolling.js"></script>
+
+<script src="libs/tinymace/prism.js"></script>
+
+</html>

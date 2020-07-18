@@ -1,0 +1,509 @@
+<html>
+  <head>
+    <title>Template</title>
+    <link href="common/css/reset.css" rel="stylesheet" />
+    <link href="common/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="content">
+      <!--Write your content here-->
+      <h1>React</h1>
+
+      <!--Installation-->
+      <h2>Installation</h2>
+      <div class="divBlock">
+        <h3>Creat React Project</h3>
+        <p>
+          npm install -g create-react-app<br>
+          create-react-app my-app
+        </p>
+
+        <h3>Import Loddash</h3>
+        <p>additional js functions  ex: .range .slice .take .orderBy .get</p>
+        <p> npm i lodash@4.17.10</p>
+        <xmp class="codeBlock">
+          import _ from 'lodash';
+        </xmp>
+
+        <h3>Import Bootstrap</h3>
+        <p>npm install bootstrap</p>
+        <xmp class="codeBlock">
+          import 'bootstrap/dist/css/bootstrap.min.css';
+        </xmp>
+
+        <p>npm install jquery popper.js</p>
+        <xmp class="codeBlock">
+          import 'bootstrap/dist/js/bootstrap.bundle.min';
+        </xmp>
+
+        <h3>Import JQuery</h3>
+        <p>npm install jquery</p>
+        <xmp class="codeBlock">
+          import $ from 'jquery';
+        </xmp>
+
+        <h3>Import FontAwesome</h3>
+        <p>npm i font-awesome@4.7.0</p>
+        <xmp class="codeBlock">
+          import "font-awesome/css/font-awesome.css";
+        </xmp>
+
+        <h3>Import Prop Types</h3>
+        <p>used to declare the props as number, string, bool, array, object, symbol, function</p>
+        <p>npm i  prop-types@15.6.2</p>
+        <xmp class="codeBlock">
+          import PropTypes from 'prop-types';
+        </xmp>
+      </div>
+      <!--/ Installation-->
+
+      <h2>File Structure</h2>
+      <div class="divBlock">
+        <pre>
+|-- app
+  |-- includes
+    |-- [+] footer
+    |-- [+] header
+    |-- [+] sidebar
+  |-- modules
+    |-- home
+      |-- [+] components
+      |-- [+] pages
+      |-- home.jsx
+      |-- home.scss
+    |-- products
+      |-- [+] components
+      |-- pages
+          |-- productDetails.jsx
+          |-- productDetails.scss
+      |-- products.jxs
+      |-- products.scss
+  |-- shared
+    |-- components
+      |-- [+] forms
+      |-- [+] alerts
+      |-- buttons
+        |-- buttonLight.jsx
+        |-- buttonLight.scss
+        |-- buttonDark.jsx
+        |-- buttonDark.scss
+        </pre>
+
+      </div>
+
+      <!--First Content-->
+      <h2>First Content</h2>
+      <div class="divBlock">
+        <div class="imgBlock">
+            <img src="images/02.png" alt="">
+        </div>
+        <div class="imgBlock">
+            <img src="images/01.png" alt="">
+        </div>
+      </div>
+      <!--/ First Content-->
+      
+      <!-- Class-->
+      <h2>Class</h2>
+      <div class="divBlock">
+        <xmp class="codeBlock">
+          class App extends React.Component {
+            render() {
+              variables here
+
+              return (
+                html codes here
+              );
+            }
+          }
+        </xmp>
+      </div>
+      <!--/ Class-->
+
+      <!-- Function-->
+      <h2>Functions</h2>
+      <div class="divBlock">
+        <h3>Arrow Function</h3>
+        <p>clearner and also automatic bind the state value to function</p>
+        <xmp class="codeBlock">
+          const functionName = () => {
+
+          }
+        </xmp>
+
+        <h3>Function Event</h3>
+        <xmp class="codeBlock">
+          handleClick = () => {
+            console.log('Clicked!')
+          }
+
+          render(){
+            return (
+              <button onClick={this.handleClick}>Click</button>
+            )
+          }
+        </xmp>
+
+        <h3>Function Event With Parameters</h3>
+        <xmp class="codeBlock">
+          handleClick = product => {
+            console.log(product)
+          }
+
+          render(){
+            const product = "Clicked!";
+            return (
+              <button onClick={() => this.handleClick(product)}>Click</button>
+            )
+          }
+        </xmp>
+      </div>
+      <!--/ Function-->
+
+      <!--Arrays-->
+      <h2>Arrays</h2>
+      <div class="divBlock">
+        <h3>Object</h3>
+        <p>Save file as data.js</p>
+        <xmp class="codeBlock">
+          const products = [
+          {
+            _id: "1",
+            brand: "MANGO Man",
+            title: "Contrast Panel T-Shirt",
+            price: "1495.00",
+            type: ["Long Sleeves", "Striped"],
+            size: ["XS", "S", "M", "L"],
+            color: ["Blue", "Red"],
+            img: "/img/mango-man-8270-6951411-1.jpg",
+            description: [
+              "Solid tone tee with brand logo embroidery",
+              "Sizing runs one size larger",
+              "V-neckline",
+              "Regular fit",
+              "Cotton",
+              "Model wears an M and is 186cm tall"
+            ],
+            stock: 6,
+            ratings: 5,
+            arrivalDate: "5b21ca3eeb7f6fbccd471816",
+            discount: 20
+          }
+          ];
+
+          export default products;
+        </xmp>
+        <xmp class="codeBlock">
+          import Data from "./component/data";
+        </xmp>
+
+        <h3>Single Display Array</h3>
+        <xmp class="codeBlock">
+          &lt;p className="brand">{Data.brand}&lt;/p>
+        </xmp>
+
+        <h3>Array Map /  Loop Array</h3>
+        <p>Loop the array</p>
+        <xmp class="codeBlock">
+          state = {
+            tags: ["tag1","tag2","tag3"];
+          }
+
+          render(){
+            return(
+              <ul>
+                {this.state.tags.map(tag = >(
+                  <li key={tag}>{tag}</li>
+                ))}
+              </ul>
+            )
+          }
+        </xmp>
+
+        <h3>Concat Array</h3>
+        <xmp class="codeBlock">
+          const first = [1, 2, 3];
+          const second = [4, 5, 6];
+          const combined = [...first, ...second];
+
+          const first = { name: kevin };
+          const second = { location: manila };
+          const combined = [...first, ...second, gender: male]
+        </xmp>
+      </div>
+      <!--/ Arrays-->
+
+      <!-- State-->
+      <h2>State</h2>
+      <div class="divBlock">
+          <h3>Setup State</h3>
+          <xmp class="codeBlock">
+            import products from "./data/products";
+            import sortList from "./data/sortList";
+
+            state = {
+              products: products,
+              sortList: sortList,
+              name: "Kevin",
+              age: "27",
+              address: {
+                brgy: "Telbang",
+                province:  "Bayambang"
+              }
+            }
+          </xmp>
+        
+          <h3>Add State</h3>
+          <xmp class="codeBlock">
+            handleAdd = () => {
+              const data = {
+                id: id,
+                value: "Kevin"
+              };
+            
+              const datas = [...this.state.datas, data];
+              this.setState({ datas });
+            }
+          </xmp>
+        
+          <h3>Update State</h3>
+          <p>Update single state value</p>
+          <xmp class="codeBlock">
+            <button onClick={() => this.handleUpdate(id, value)}>
+
+            handleUpdate = (id) => {
+              const datas = [...this.state.datas];
+              const item = datas.find(data => data.id == id);
+              const index = datas.indexOf(item);
+              datas[index].value = value;
+
+              this.setState({ datas });
+            };
+          </xmp>
+
+          <h3>Call the state inside the html</h3>
+          <xmp class="codeBlock">
+            {this.state.address.province}
+          </xmp>
+
+          <h3>Object Destructuring</h3>
+          <p>name = this.state.name</p>
+          <xmp class="codeBlock">
+            const {name} = this.state;
+            return (
+              <div>{name}</div>
+            )
+          </xmp>
+          <p>count = this.state.products.lenght</p>
+          <xmp class="codeBlock">
+            const {lenght: count} = this.state.products.lenght;
+
+            return (
+              <div>{count}</div>
+            )
+          </xmp>
+
+
+          <h3>Find in State</h3>
+          <xmp class="codeBlock">
+              this.state.products.find(p => p._id === id);
+          </xmp>
+
+          <h3>Filter in State</h3>
+          <p>Filter all depends on statement that declared.</p>
+          <p>Ex. (Filter all except - use this on deleting row items in array)</p>
+          <xmp class="codeBlock">
+              handleDelete = product => {
+                const products = this.state.products.filter(p => p._id !== id);                     //<--this part is the filter
+                this.setState({products: products});
+              }
+
+              render(){
+                return (
+                  <table>
+                    {this.state.products.map(product => (
+                      <tr key={product._id}>
+                        <td>{product.name}</td>
+                        <td>
+                          <button onClick={() => this.handleDelete(product)}>delete</button>
+                        </td>
+                      </tr>
+                    ))}
+                  </table>
+                )
+              }
+          </xmp>
+
+      </div>
+      <!--/ State-->
+      
+      <!-- Props-->
+      <h2>Props</h2>
+      <div class="divBlock">
+        <h3>Passing Props</h3>
+        <xmp class="codeBlock">
+          render() {
+            return (
+            <div>
+              <Product products = {this.state.products}/>
+            </div>
+            );
+          }
+          
+          
+          
+          class Product extends React.Component {
+            render() {
+              const products = this.props.products
+             
+              return (
+                
+              );
+            }
+          }
+          
+        </xmp>
+        
+        <h3>Props Validation</h3>
+        <xmp class="codeBlock">
+          import React from 'react';
+
+          class App extends React.Component {
+            render() {
+              return (
+                <div>
+                  <h3>Array: {this.props.propArray}</h3>
+                  <h3>Bool: {this.props.propBool ? "True..." : "False..."}</h3>
+                  <h3>Func: {this.props.propFunc(3)}</h3>
+                  <h3>Number: {this.props.propNumber}</h3>
+                  <h3>String: {this.props.propString}</h3>
+                  <h3>Object: {this.props.propObject.objectName1}</h3>
+                  <h3>Object: {this.props.propObject.objectName2}</h3>
+                  <h3>Object: {this.props.propObject.objectName3}</h3>
+                </div>
+              );
+            }
+          }
+
+          App.propTypes = {
+            propArray: React.PropTypes.array.isRequired,
+            propBool: React.PropTypes.bool.isRequired,
+            propFunc: React.PropTypes.func,
+            propNumber: React.PropTypes.number,
+            propString: React.PropTypes.string,
+            propObject: React.PropTypes.object
+          }
+
+          App.defaultProps = {
+            propArray: [1,2,3,4,5],
+            propBool: true,
+            propFunc: function(e){return e},
+            propNumber: 1,
+            propString: "String value...",
+
+            propObject: {
+              objectName1:"objectValue1",
+              objectName2: "objectValue2",
+              objectName3: "objectValue3"
+            }
+          }
+          export default App;
+        </xmp>
+      </div>
+
+      <!-- If Statement-->
+      <h2>If Statement</h2>
+      <div class="divBlock">
+        <xmp class="codeBlock">
+          let temp = this.state.count === 0 ? 'Zero' : 'Not zero';
+        </xmp>
+        <xmp class="codeBlock">
+          if(temp === 0) return <p>Zero</p>
+        </xmp>
+      </div>
+      <!--/ If Statement-->
+
+      <!-- Routing-->
+      <h2>Routing</h2>
+      <div class="divBlock">
+        <xmp class="codeBlock">
+          import React, { Component } from "react";
+          import { Switch, Route, Redirect } from "react-router-dom";
+
+          import NavBar from "./components/navbar";
+          import Products from "./components/products";
+          import Posts from "./components/posts";
+          import Home from "./components/home";
+          import Dashboard from "./components/admin/dashboard";
+          import ProductDetails from "./components/productDetails";
+          import NotFound from "./components/notFound";
+          import "./App.css";
+
+          class App extends Component {
+            render() {
+              return (
+                <div>
+                  <NavBar />
+                  <div className="content">
+                    <Switch>
+                      <Route path="/products/:id" component={ProductDetails} />
+                      <Route
+                        path="/products"
+                        render={props => <Products sortBy="newest" {...props} />}
+                      />
+                      <Route path="/posts/:year?/:month?" component={Posts} />
+                      <Route path="/admin" component={Dashboard} />
+
+                      <Route path="/not-found" component={NotFound} />
+                      <Redirect from="/messages" to="/posts" />
+                      <Route path="/" exact component={Home} />
+                      <Redirect to="/not-found" />
+                    </Switch>
+                  </div>
+                </div>
+              );
+            }
+          }
+
+          export default App;
+        </xmp>
+      </div>
+      <!--/ Routing-->
+      
+      <!-- Find Dom Node-->
+      <h2>Find Dom Node</h2>
+      <div class="divBlock">
+        <xmp class="codeBlock">
+          class App extends React.Component {
+            findDomNodeHandler() {
+              var myDiv = document.getElementById('myDiv');
+              ReactDOM.findDOMNode(myDiv).style.color = 'green';
+            }
+            render() {
+              return (
+                <div>
+                  <button onClick = {this.findDomNodeHandler}>FIND DOME NODE</button>
+                  <div id = "myDiv">NODE</div>
+                </div>
+              );
+            }
+          }
+          export default App;
+        </xmp>
+      </div>
+      <!--/ Find Dom Node-->
+
+      <h2>Multiple environments</h2>
+      <div class="divBlock">
+        <a target="_blank" href="https://blog.usejournal.com/my-awesome-custom-react-environment-variables-setup-8ebb0797d8ac">click here</a>
+      </div>
+
+
+      <!--/Write your content here-->
+    </div>
+  </body>
+
+  <script type="text/javascript" src="common/js/jquery.js"></script>
+  <script type="text/javascript" src="common/js/script.js"></script>
+  <script type="text/javascript" src="common/js/smooth_scrolling.js"></script>
+</html>

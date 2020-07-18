@@ -1,0 +1,552 @@
+<html>
+
+<head>
+	<title>Pupeteer</title>
+	<link href="common/css/reset.css" rel="stylesheet" />
+	<link href="common/css/style.css" rel="stylesheet" />
+	<link href="common/css/media.css" rel="stylesheet" />
+	
+	<link rel="stylesheet" href="libs/tinymace/prism.css">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+</head>
+
+<body>
+<div class="content" id="top">
+<!--Write your content here-->
+<h1>Pupeteer</h1>
+
+	
+<h2>Installation</h2>
+<div class="divBlock">
+	<p><b>Step 1:</b> install nodejs</p>
+	<p><b>Step 2:</b> npm init</p>
+	<p><b>Step 3:</b> npm i puppeteer mocha chai --save</p>
+	<br>
+	<br>
+	<p><b>To run the app:</b></p>
+	
+	<p>set the package.json</p>
+	<pre><code class="language-javascript">"scripts": {
+	"test": "node ./node_modules/mocha/bin/mocha --timeout=30000 ./tests/example.js"
+},</code></pre>
+	<br>
+	<p><b>run in CLI</b></p>
+	<p>npm test</p>
+</div>
+
+
+
+<h2>First Content</h2>
+<div class="divBlock">
+	<pre><code class="language-javascript">const puppeteer = require('puppeteer');
+const expect = require('chai').expect;
+
+
+describe('My first puppeteer', () => {
+    let browser;
+    let page;
+
+	//hooks content here
+});</code></pre>
+</div>
+	
+
+<h2>Hooks</h2>
+<div class="divBlock">
+	<p>Blocks of code which runs before and after test or start and finished.</p>
+	<h3>Before</h3>
+	<p>Setup everything</p>
+	<pre><code class="language-javascript">before(async function(){
+	browser = await puppeteer.launch({          //creating new browser
+		headless: false,       //for debuging
+		slowMo: 0,             //delay beetween puppeteer actions
+		devtools: false,       //opens developer tools to browser
+		timeout: 10000         //max time of the browser to launch
+	});
+	page = await browser.newPage();             //creating new page
+	await page.setViewport({
+		width: 800,
+		height: 600
+	});
+});</code></pre>
+
+	<h3>After</h3>
+    <pre><code class="language-javascript">after(async function(){
+	await browser.close();      //close the browser when test are done
+});</code></pre>
+
+	<h3>It</h3>
+	<pre><code class="language-javascript">it('My first test step', async () => {
+	//Browser Context here / Interacting Page here
+});
+	</code></pre>
+	<p>Note: you can create multiple <span class="highlight">it</span> declaration.</p>
+</div>
+
+<h2>Browser Context</h2>
+<div class="divBlock">
+	<h3>Use Browser Info</h3>
+	<pre><code class="language-javascript">console.info(browser);</code></pre>
+
+	<h3>Use Incognito</h3>
+	<pre><code class="language-javascript">// A reference for the default browser context
+const defaultContext = browser.defaultBrowserContext();
+console.info(defaultContext.isIncognito()); // Is the browser incognito? - False
+
+// Creates a new browser context
+const newContext = await browser.createIncognitoBrowserContext();
+console.info(newContext.isIncognito());     // Is the browser incognito? - True
+
+// Closes the created browser context
+await newContext.close();</code></pre>
+</div>
+	
+<h2>Interacting Page</h2>
+<div class="divBlock">
+	<h3>Navigate to URL</h3>
+	<pre><code class="language-javascript">await page.goto('https://dev.to/');</code></pre>
+
+	<h3>Reload the page</h3>
+	<pre><code class="language-javascript">await page.reload();</code></pre>
+
+	<h3>Wait Until Component is Rendered</h3>
+	<pre><code class="language-javascript">await page.waitForSelector('.sidebar');</code></pre>
+
+	<h3>Get page title</h3>
+	<pre><code class="language-javascript">await page.waitForSelector('title'); // wait until page title is fully rendered
+const title = await page.title();</code></pre>
+
+	<h3>Get page element values / Scrapping</h3>
+	<div class="divBlock">
+		<h4>Get single element value</h4>
+		<pre><code class="language-javascript">const element = await page.$(".scrape");
+const text = await page.evaluate(element => element.textContent, element);</code></pre>
+		<br>
+
+		<h4>Loop element values</h4>
+		<pre><code class="language-javascript">await page.goto('https://techcrunch.com/');
+
+await page.waitForSelector('#tc-main-content > div:nth-child(2) > div > div > div > article:nth-child(1)')
+const news = await page.evaluate(() => {
+	const results = Array.from(document.querySelectorAll('#tc-main-content > div:nth-child(2) > div > div > div > article'));
+	return results.map(result => {
+		return {
+			link: result.querySelector('a.post-block__title__link').href,
+			title: result.querySelector('.post-block__title a').textContent,
+			author: result.querySelector('.river-byline__authors a').textContent,
+			datetime: result.querySelector('.river-byline__time').getAttribute('datetime'),
+			shortcontent: result.querySelector('.post-block__content p').textContent
+		}
+	});
+	return results
+});
+
+console.log(news)</code></pre>
+	</div>
+
+	<h3>Expect Contains</h3>
+	<div class="divBlock">
+		<pre><code class="language-javascript">const expect = require('chai').expect;
+...
+
+const url = await page.url()
+const title = await page.title()
+
+expect(url).to.contain('dev') //check if the text contain dev
+expect(title).to.contains('Community') //check if the text contain Community</code></pre>
+</div>
+
+	<h3>Emulate an Iphone X</h3>
+	<pre><code class="language-javascript">const devices = require('puppeteer/DeviceDescriptors');
+...
+await page.emulate(devices['iPhone X']);
+await page.goto('https://dev.to/');</code></pre>
+
+	<h3>Handling Events</h3>
+	<pre><code class="language-javascript">// Emitted when the DOM is parsed and ready (without waiting for resources)
+page.once('domcontentloaded', () => console.info('✅ DOM is ready'));
+
+// Emitted when the page is fully loaded
+page.once('load', () => console.info('✅ Page is loaded'));
+
+// Emitted when the page attaches a frame
+page.on('frameattached', () => console.info('✅ Frame is attached'));
+
+// Emitted when a frame within the page is navigated to a new URL
+page.on('framenavigated', () => console.info('👉 Frame is navigated'));
+
+// Emitted when a script within the page uses `console.timeStamp`
+page.on('metrics', data => console.info(`👉 Timestamp added at ${data.metrics.Timestamp}`));
+
+// Emitted when a script within the page uses `console`
+page.on('console', message => console[message.type()](`👉 ${message.text()}`));
+
+// Emitted when the page emits an error event (for example, the page crashes)
+page.on('error', error => console.error(`❌ ${error}`));
+
+// Emitted when a script within the page has uncaught exception
+page.on('pageerror', error => console.error(`❌ ${error}`));
+
+// Emitted when a script within the page uses `alert`, `prompt`, `confirm` or `beforeunload`
+page.on('dialog', async dialog => {
+	console.info(`👉 ${dialog.message()}`);
+	await dialog.dismiss();
+});
+
+// Emitted when a new page, that belongs to the browser context, is opened
+page.on('popup', () => console.info('👉 New page is opened'));
+
+// Emitted when the page produces a request
+page.on('request', request => console.info(`👉 Request: ${request.url()}`));
+
+// Emitted when a request, which is produced by the page, fails
+page.on('requestfailed', request => console.info(`❌ Failed request: ${request.url()}`));
+
+// Emitted when a request, which is produced by the page, finishes successfully
+page.on('requestfinished', request => console.info(`👉 Finished request: ${request.url()}`));
+
+// Emitted when a response is received
+page.on('response', response => console.info(`👉 Response: ${response.url()}`));
+
+// Emitted when the page creates a dedicated WebWorker
+page.on('workercreated', worker => console.info(`👉 Worker: ${worker.url()}`));
+
+// Emitted when the page destroys a dedicated WebWorker
+page.on('workerdestroyed', worker => console.info(`👉 Destroyed worker: ${worker.url()}`));
+
+// Emitted when the page detaches a frame
+page.on('framedetached', () => console.info('✅ Frame is detached'));
+
+// Emitted after the page is closed
+page.once('close', () => console.info('✅ Page is closed'));
+
+await page.goto('https://pptr.dev');
+	</code></pre>
+
+	<h3>Operating Mouse</h3>
+	<div class="divBlock">
+		<h4>Mouse move and hover</h4>
+		<pre><code class="language-javascript">await page.goto('https://pptr.dev');
+await page.mouse.move(40, 150);</code></pre>
+		<br>
+		<h4>Mouse click by position</h4>
+		<pre><code class="language-javascript">await page.goto('https://pptr.dev');
+await page.mouse.click(40, 150);</code></pre>
+		<br>
+		<h4>Mouse click by class or ID</h4>
+		<pre><code class="language-javascript">await page.click('#wpcf7-f97-p311-o1 > form > p:nth-child(5) > input')</code></pre>
+		<pre><code class="language-javascript">await page.click('#wpcf7-f97-p311-o1 > form > p:nth-child(5) > input', {
+			clickCount: 5,
+			delay: 100
+})</code></pre>
+		<br>
+		<h4>Drag and Drop</h4>
+		<pre><code class="language-javascript">await page.goto('https://pptr.dev');
+
+// Drags the mouse from a point
+await page.mouse.move(0, 0);
+await page.mouse.down();
+
+// Drops the mouse to another point
+await page.mouse.move(100, 100);
+await page.mouse.up();
+		</code></pre>
+	</div>
+
+	<h3>Operating Keyboard</h3>
+	<div class="divBlock">
+		<h4>Type a Text</h4>
+		<pre><code class="language-javascript">await page.goto('https://pptr.dev');
+	  
+// Focuses the search input
+await page.focus('[type="search"]');
+
+// Types the text into the focused element
+await page.keyboard.type('This is the text to be typed', { delay: 100 });</code></pre>
+<br>
+		<h4>Press a button</h4>
+		<pre><code class="language-javascript">await page.goto('https://pptr.dev');
+
+// Focuses the search input
+await page.focus('[type="search"]');
+
+//Press button
+await page.keyboard.press('ArrowDown', { delay: 200 });
+await page.keyboard.press('ArrowDown', { delay: 200 });
+await page.keyboard.press('Enter');
+		</code></pre>
+	</div>
+
+	<h3>Taking a Screenshot</h3>
+	<div class="divBlock">
+		<h4>Full page screenshot</h4>
+		<pre><code class="language-javascript">await page.screenshot({ 
+	path: 'form.png',
+	fullPage: true
+});</code></pre>
+<br>
+		<h4>With size screenshot</h4>
+		<pre><code class="language-javascript">await page.goto('https://pptr.dev');
+await page.waitForSelector('title');
+
+// Takes a screenshot of an area within the page
+await page.screenshot({
+	path: 'screenshot.jpg',
+	type: 'jpeg',
+	quality: 80,
+	clip: { x: 220, y: 0, width: 630, height: 360 }
+});</code></pre>
+	</div>
+
+	<h3>Generating PDF</h3>
+	<pre><code class="language-javascript">await page.goto('https://github.com/GoogleChrome/puppeteer/blob/master/README.md');
+		
+// Generates a PDF from the page content
+await page.pdf({ path: 'overview.pdf' });</code></pre>
+
+	<h3>Faking Geolocation</h3>
+	<pre><code class="language-javascript">await page.goto('https://pptr.dev');
+
+// Changes to the north pole's location
+await page.setGeolocation({ latitude: 90, longitude: 0 });
+	</code></pre>
+
+	<h3>Code Coverage</h3>
+	<div class="divBlock">
+	<p>Get all css and js</p>
+	<div class="imgBlock">
+		<img src="images/img01.png"style="max-width: 700px; width: 100%;" alt="">
+	</div>
+	<h4>This is the code</h4>
+	<pre><code class="language-javascript">// Starts to gather coverage information for JS and CSS files
+await Promise.all([page.coverage.startJSCoverage(), page.coverage.startCSSCoverage()]);
+
+await page.goto('https://pptr.dev');
+await page.waitForSelector('title');
+
+// Stops the coverage gathering
+const [jsCoverage, cssCoverage] = await Promise.all([
+	page.coverage.stopJSCoverage(),
+	page.coverage.stopCSSCoverage()
+]);
+
+// Calculates how many bytes are being used based on the coverage
+const calculateUsedBytes = (type, coverage) =>
+	coverage.map(({ url, ranges, text }) => {
+	let usedBytes = 0;
+
+	ranges.forEach(range => (usedBytes += range.end - range.start - 1));
+
+	return {
+		url,
+		type,
+		usedBytes,
+		totalBytes: text.length
+	};
+	});
+
+console.info([
+	...calculateUsedBytes('js', jsCoverage),
+	...calculateUsedBytes('css', cssCoverage)
+]);
+	</code></pre>
+	<br>
+	<h4>This is the Output</h4>
+	<pre><code class="language-javascript">[
+   {
+      url: 'https://pptr.dev/',
+      type: 'js',
+      usedBytes: 149,
+      totalBytes: 150
+   },
+   {
+      url: 'https://www.googletagmanager.com/gtag/js?id=UA-106086244-2',
+      type: 'js',
+      usedBytes: 21018,
+      totalBytes: 66959
+   },
+   {
+      url: 'https://pptr.dev/index.js',
+      type: 'js',
+      usedBytes: 108922,
+      totalBytes: 141703
+   },
+   {
+      url: 'https://www.google-analytics.com/analytics.js',
+      type: 'js',
+      usedBytes: 19665,
+      totalBytes: 44287
+   },
+   {
+      url: 'https://pptr.dev/style.css',
+      type: 'css',
+      usedBytes: 5135,
+      totalBytes: 14326
+   }
+]</code></pre>
+</div>
+
+	<h3>Measuring Performance</h3>
+	<div class="divBlock">
+		<h4>This is the code</h4>
+		<pre><code class="language-javascript">await page.goto('https://pptr.dev');
+await page.waitForSelector('title');
+
+// Executes Navigation API within the page context
+const metrics = await page.evaluate(() => JSON.stringify(window.performance));
+
+// Parses the result to JSON
+console.info(JSON.parse(metrics));
+		</code></pre>
+		<br>
+		<h4>This is the output</h4>
+		<pre><code class="language-javascript">{
+timeOrigin: 1562785571340.2559,
+timing: {
+	navigationStart: 1562785571340,
+	unloadEventStart: 0,
+	unloadEventEnd: 0,
+	redirectStart: 0,
+	redirectEnd: 0,
+	fetchStart: 1562785571340,
+	domainLookupStart: 1562785571347,
+	domainLookupEnd: 1562785571348,
+	connectStart: 1562785571348,
+	connectEnd: 1562785571528,
+	secureConnectionStart: 1562785571425,
+	requestStart: 1562785571529,
+	responseStart: 1562785571607,
+	responseEnd: 1562785571608,
+	domLoading: 1562785571615,
+	domInteractive: 1562785571621,
+	domContentLoadedEventStart: 1562785571918,
+	domContentLoadedEventEnd: 1562785571926,
+	domComplete: 1562785572538,
+	loadEventStart: 1562785572538,
+	loadEventEnd: 1562785572538
+},
+navigation: {
+	type: 0,
+	redirectCount: 0
+}
+}</code></pre>
+	</div>
+
+	<h3>Analyzing runtime through metrics</h3>
+	<div class="divBlock">
+		<h4>This is the code</h4>
+		<pre><code class="language-javascript">await page.goto('https://pptr.dev');
+await page.waitForSelector('title');
+
+// Returns runtime metrics of the page
+const metrics = await page.metrics();
+console.info(metrics);</code></pre>
+<br>
+		<h4>This is the output</h4>
+		<pre><code class="language-javascript">{
+	Timestamp: 6400.768827, // When the metrics were taken
+	Documents: 13, // Number of documents
+	Frames: 7, // Number of frames
+	JSEventListeners: 33, // Number of events
+	Nodes: 51926, // Number of DOM elements
+	LayoutCount: 6, // Number of page layouts
+	RecalcStyleCount: 13, // Number of page style recalculations
+	LayoutDuration: 0.545877, // Total duration of all page layouts
+	RecalcStyleDuration: 0.011856, // Total duration of all page style recalculations
+	ScriptDuration: 0.064591, // Total duration of JavaScript executions
+	TaskDuration: 1.244381, // Total duration of all performed tasks by the browser
+	JSHeapUsedSize: 17158776, // Actual memory usage by JavaScript
+	JSHeapTotalSize: 33492992 // Total memory usage, including free allocated space, by JavaScript
+}</code></pre>
+	</div>
+
+	<h3>Get page source code</h3>
+	<pre><code class="language-javascript">await page.goto('https://www.youtube.com', {waitUntil: 'networkidle0'});
+const html = await page.content();
+		  
+//save our html in a file
+fs.writeFile('page.html', html, _ => console.log('HTML saved'));
+	</code></pre>
+
+</div>
+
+<h2>Using Config.js</h2>
+<div class="divBlock">
+	<p>Create <span class="highlight">/lib/config.js</span></p>
+	<pre><code class="language-javascript">module.exports = {
+	baseUrl: 'https://dev.to/',
+	isHeadless: true,
+	slowMo: 0,
+	isDevTools: false,
+	launchTimeout: 10000,
+	waitingTimeout: 10000,
+	viewportWidth: 800,
+	viewportHeight: 600,
+}</code></pre>
+
+<p>To apply in your JS.</p>
+<pre><code class="language-javascript">const config = require('../lib/config');
+...
+await page.goto(config.baseUrl);</code></pre>
+</div>
+
+
+<h2>Using Helpers.js</h2>
+<div class="divBlock">
+	<p>Create <span class="highlight">/lib/helpers.js</span></p>
+		<pre><code class="language-javascript">module.exports = {
+	click: async function(page, selector) {
+		try {
+			await page.waitForSelector(selector)
+			await page.click(selector)
+		}
+		catch (error) {
+			throw new Error(`Could not click on selector ${selector}`)
+		}
+	},
+}</code></pre>
+	
+	<p>To apply in your JS.</p>
+	<pre><code class="language-javascript">const config = require('../lib/helpers');
+...
+await helpers.click(page,'#write-link');</code></pre>
+</div>
+
+
+
+
+<h2>Jes Snapshot</h2>
+<div class="divBlock">
+	<h3>Installation</h3>
+	<p><b>Step 1:</b> install nodejs</p>
+	<p><b>Step 2:</b> npm i jest jest-image-snapshot --save</p>
+	<br>
+	<br>
+	<p><b>To run the app:</b></p>
+	
+	<p>set the package.json</p>
+	<pre><code class="language-javascript">
+
+
+	</code></pre>
+	<br>
+	<p><b>run in CLI</b></p>
+	<p>npm test</p>
+</div>
+
+
+
+
+
+</div>
+<p class="goTop"><a href="#top">TOP</a></p>
+</body>
+
+<script type="text/javascript" src="common/js/jquery.js"></script>
+<script type="text/javascript" src="common/js/script.js"></script>
+<script type="text/javascript" src="common/js/smooth_scrolling.js"></script>
+
+<script src="libs/tinymace/prism.js"></script>
+
+</html>

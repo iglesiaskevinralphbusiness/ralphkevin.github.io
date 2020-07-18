@@ -1,0 +1,46 @@
+ul,
+ul li {
+  margin: 0;
+  padding: 0;
+}
+
+.shop {
+  overflow: hidden;
+}
+.productsBlock {
+  float: left;
+  width: 70%;
+}
+.cartBlock {
+  float: right;
+  width: 30%;
+}
+
+.productsBlock .productList {
+  overflow: hidden;
+}
+.productsBlock .productList li {
+  float: left;
+  margin: 10px;
+  padding: 10px;
+  list-style: none;
+  border: 1px solid #00000012;
+}
+.productsBlock .productList li p.imgBlock {
+  width: 200px;
+  margin: auto;
+}
+.productsBlock .productList li p.imgBlock img {
+  width: 100%;
+}
+.productsBlock .productList li p.ttlBlock {
+  text-align: center;
+}
+.productsBlock .productList li p.ttlBlock span {
+  padding-left: 20px;
+  color: red;
+}
+.productsBlock .productList li button {
+  width: 100%;
+  padding: 5px;
+}

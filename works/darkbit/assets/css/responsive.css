@@ -1,0 +1,164 @@
+
+/* MOBILE */
+@media screen and (max-width: 640px) {
+    .layer-1,
+    .layer-2,
+    .layer-project-intro,
+    .layer-about,
+    .layer-3,
+    .layer-end {
+        padding: 15px;
+    }
+    .layer-timeline {
+        padding: 5px 15px 30px;
+    }
+    .layer-lines .msg {
+        display: none;
+    }
+    .layer-lines .door {
+        width: 75vw;
+    }
+    .layer-lines .avatar {
+        width: 85vw;
+    }
+    .layer-2 p {
+        max-width: 56%;
+        background-color: #060607d9;
+    }
+    .layer-1 .logo img {
+        width: 11vh;
+        height: auto;
+    }
+    .layer-1 .label2 {
+        width: 60%;
+    }
+    header .menu-block {
+        top: 15px;
+        right: 15px;
+    }
+    .layer-about .layer-intro-contents {
+        padding-left: 90px;
+        padding-right: 0;
+        margin-bottom: 45px;
+    }
+    .layer-about .info {
+        display: unset;
+        justify-content: unset;
+    }
+    .layer-about .info .info-colL,
+    .layer-about .info .info-colR {
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .layer-about .info .img-cover {
+        width: 64%;
+        margin: 0 auto 20px;
+    }
+    .layer-about .info h3 {
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+    .layer-about .info p {
+        margin-bottom: 7px;
+    }
+    .layer-about .info ul li .info {
+        display: flex;
+        justify-content: space-between;
+    }
+    .layer-project-intro .layer-intro-contents {
+        padding-left: 90px;
+        padding-right: 0;
+    }
+    .layer-project-intro .layer-intro-contents p {
+        margin-bottom: 15px;
+    }
+    .layer-3 .project-details {
+        margin-bottom: 35px;
+    }
+    .layer-3 .project-details .desc {
+        max-width: 46%;
+        padding-left: 10px;
+    }
+    .btn-rect {
+        width: 120px;
+        height: 34px;
+    }
+    .btn-rect a {
+        padding: 8px;
+    }
+    .project5 .border {
+        height: 26vh;
+    }
+    .project5 .project5-colL,
+    .project5 .project5-colR {
+        height: 46vh;
+    }
+    .layer-timeline .layer-intro-contents {
+        padding-left: 90px;
+        padding-right: 0;
+    }
+    .layer-timeline .layer-intro-contents p {
+        margin-bottom: 10px;
+    }
+    .layer-timeline .layer-intro-contents {
+        margin-bottom: 0;
+    }
+    .layer-end .door {
+        width: 75vw;
+    }
+    .layer-end .label2 {
+        display: none;
+    }
+    .layer-end .block-content2 {
+        right: 15px;
+    }
+    .timeline .timeline-item li {
+        margin: 0 8px 0;
+    }
+    .timeline .timeline-item {
+        padding-left: 15vw;
+    }
+    .timeline .timeline-item li.active .timeline-item-desc {
+        background-color: #fff;
+    }
+    .timeline .timeline-years ul li {
+        width: 35px;
+        margin-left: 35px;
+    }
+    header a.menu {
+        width: 27px;
+        height: 22px;
+    }
+    header a.menu:before {
+        top: 12px;
+        width: 27px;
+    }
+    header .menu-block {
+        width: 27px;
+    }
+    header .loader .layer-1 .wait {
+        right: unset;
+        left: 0;
+        top: 33vh;
+    }
+}
+
+/* IPAD */
+@media screen and (min-width: 641px) and (max-width: 768px) {
+    .layer-1,
+    .layer-2,
+    .layer-project-intro,
+    .layer-about,
+    .layer-3 {
+        padding: 40px;
+    }
+    .layer-timeline {
+        padding: 70px 40px 30px;
+    }
+    .timeline .timeline-item li {
+        margin: 0 30px 0;
+    }
+    
+
+}

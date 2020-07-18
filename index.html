@@ -1,147 +1,512 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>RK Portfolio</title>
-    <style>
-        body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-    <!--<meta http-equiv="refresh" content="10" />-->
+	<title>Ralph Kevin - Web Developer Designer</title>
+
+	<meta charset="utf-8">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta property="og:title" content="Ralph Kevin - Web Developer Designer">
+	<meta property="og:image" content="https://rkportfolio.github.io/img/layer-1/logo.png">
+	<meta property="og:description" content="">
+	<meta property="og:url" content="https://rkportfolio.github.io">
+	<meta name="twitter:card" content="summary_large_image">
+
+	<link rel="stylesheet" href="./assets/markets/wow-master/css/libs/animate.css">
+	<link rel="stylesheet" href="./assets/markets/wow-master/css/site.css">
+
+	<link href="./assets/css/reset.css" rel="stylesheet" type="text/css" media="all">
+	<link href="./assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+	<link href="./assets/css/responsive.css" rel="stylesheet" type="text/css" media="all">
+
+	<style>
+		.wow:first-child {
+			visibility: hidden;
+		}
+	</style>
 </head>
 
 <body>
+	<header>
+		<p class="menu-block"><a href="#" class="menu">Menu</a></p>
 
-    <script>
+		<div class="menu-item-block">
+			<p class="menu-block"><a href="#" class="menu minimize">Menu</a></p>
+			<ul>
+				<li><a href="#layer-about" class="link-scroll">About</a></li>
+				<li><a href="#layer-project-intro" class="link-scroll">Projects</a></li>
+				<li><a href="#layer-timeline" class="link-scroll">Timeline</a></li>
+			</ul>
+		</div>
 
-        var pageCurrent = 0;
-        setInterval(function () {
-            var pageHeight = document.body.scrollHeight;
-            pageCurrent = pageCurrent + 100;
-            if (pageCurrent <= pageHeight) {
-                window.scrollTo(0, pageCurrent);
-            }
-        }, 1000);
+		<div class="loader active">
+			<div class="layer-lines">
+				<div class="bg"></div>
+				<div class="bg"></div>
+				<div class="bg"></div>
+				<div class="bg"></div>
+				<div class="bg"></div>
+				<div class="bg"></div>
+				<div class="bg"></div>
+			</div>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(function () {
-                const rand = Math.floor((Math.random() * 1) + 0);
-                const ads = [
-                    document.getElementById("add1"),
-                    document.getElementById("add4"),
-                ];
+			<section class="layer-1">
+				<h1 class="logo"><img src="./assets/img/layer-1/logo.png" width="81" height="55" alt="Ralph Kevin"></h1>
+				<div class="block">
+					<p class="name"><span>WEB</span>&nbsp;</p>
+					<p class="name">BY KEVIN</p>
+					<p class="wait">Please wait..</p>
+				</div>
+			</section>
+		</div>
 
-                ads[rand].querySelector('a').click();
+	</header>
+	<main>
+		<!--POSITIONAL LAYERS-->
+		<div class="layer-lines">
+			<div class="bg"></div>
+			<div class="bg"></div>
+			<div class="bg"></div>
+			<div class="bg"></div>
+			<div class="bg"></div>
+			<div class="bg"></div>
+			<div class="bg"></div>
 
-            }, 5500);
+			<div class="door">
+				<div class="block">
+					<div class="door1">
+						<img src="./assets/img/layer-1/door-1.png">
+					</div>
+					<div class="door2">
+						<img src="./assets/img/layer-1/door-2.png">
+					</div>
+				</div>
+			</div>
 
-            setTimeout(function () {
-                const rand = Math.floor((Math.random() * 3) + 0);
-                const ads = [
-                    //document.getElementById("add1"),
-                    document.querySelector('#add2 iframe'),
-                    document.querySelector('#add3 iframe'),
-                    //document.getElementById("add4"),
-                    document.querySelector('#add5 iframe'),
-                    document.querySelector('#add6 iframe'),
-                ];
+			<div class="avatar">
+				<img src="./assets/img/layer-1/kevin-pic.png">
+			</div>
 
-                ads[rand].contentWindow.document.querySelector('a').click();
+			<div class="msg">
+				<p>My door will always be open to those who <span>seek my help.</span></p>
+			</div>
+		</div>
 
-                //$('body > div:last-child')[0]
-            }, 5000);
-        });
-    </script>
+		<!--LAYER 1-->
+		<section class="layer-1">
+			<h1 class="logo"><img src="./assets/img/layer-1/logo.png" width="81" height="55" alt="Ralph Kevin"></h1>
+			<div class="block">
+				<h1 class="name">RALPH<br>KEVIN</h1>
+				<p class="label1">Web Developer and Web Designer</p>
+				<p class="label2">I strive to push the world forward by creating a bridge between people and technology.
+				</p>
+			</div>
+			<p class="touch"><a href="mailto:iglesiaskevinralph.business@gmail.com">Get in Touch</a></p>
+		</section>
 
-    <div style="text-align:center; margin-bottom: 10px;">
-        <p>This website is collections of scripting language and tutorials for begineers.</p>
-        <p>SEE ALL COLLECTIONS?</p>
-        <a href="/index2.html">ENTER HERE</a>
-    </div>
-    <div style="width: 100%; overflow: hidden;">
+		<!--LAYER 2-->
+		<section class="layer-2">
+			<h2 class="name">I’m Ralph Kevin, a Web<br>Designer & Developer based<br>in Philippines.</h2>
+			<p>My goal is to help people build better and more meaningful products.</p>
+			<p>I led web development at companies of various stage, from taking a seed-stage projects from production to
+				releasing best-in-class commercial websites and web applications.</p>
+		</section>
 
-        <div style="float: left; width: 49%; border: 1px solid red">
-            <p style="display: inline-block; padding: 5px; color: #fff; background-color: red; margin: 0;">IG</p>
+		<!--LAYER ABOUT-->
+		<section class="layer-about">
+			<div class="layer-about-block">
 
-            <!--Native Banner-->
-            <div id="add1">
-                <script async="async" data-cfasync="false"
-                    src="//pl15548169.passtechusa.com/12f698d6e5a53ecd4928810bbe8ef787/invoke.js"></script>
-                <div id="container-12f698d6e5a53ecd4928810bbe8ef787"></div>
-            </div>
+				<h2>PERSONALITY.<br>UNIQUENESS.</h2>
+				<div class="layer-intro-contents">
+					<p>The source of my passion is the unique skills I have. At the age of 16, I already love web development. Back at that time, computers are not highly advance and even websites are not fully developed as we have before. But that doesn't stop me to on learning, because I believe someday I will reach the dreams of success.</p>
+				</div>
+				
+				<div class="info">
+					<div class="info-colL">
+						<div class="img-cover">
+							<div class="img-cover-block1">
+								<div class="blocker1"></div>
+								<div class="blocker2"></div>
+							</div>
+							<img src="./assets/img/layer-about/img1.jpg" alt="kevin" class="fadeInDown" >
+						</div>
+					</div>
+					<div class="info-colR info-text">
+						<h3>Known as Kevin</h3>
+						<p>Kevin is actually my first name, and Ralph was my second name. It's just fun to rearange your name in your own unique way. I studied Bachelor of Science in Infromation Technology in University of Pangasinan because I already love creating website back in my high school life.</p>
+						<p>I love playing games, doing artworks, watching anime and reading manga, and of course playing some web script and codes. Im pushing my self to have this both balance life while pursuing my dreams.</p>
+					</div>
+				</div>
+				<div class="info">
+					<div class="info-colL info-text">
+						<h3>Not just a Simply Front-End</h3>
+						<p>Not just static and design, I can do projects form scratch design to actual fully automated web applications. I always pursue my dreams on learning new things in a various techniques until the solution is achieved.</p>
+						<p>I believe that perseverance, long with focus and discipline are the keys to success.</p>
+					</div>
+					<div class="info-colR">
+						<div class="img-cover">
+							<div class="img-cover-block2">
+								<div class="blocker1"></div>
+								<div class="blocker2"></div>
+							</div>
+							<img src="./assets/img/layer-about/img2.jpg" alt="kevin" class="fadeInDown" >
+						</div>
+					</div>
+				</div>
+				<div class="info experience">
+					<div class="info-colL">
+						<h3>Experience</h3>
+						<ul>
+							<li>
+								<h4>R4pid Inc</h4>
+								<div class="info">
+									<div class="info-colL">
+										<p>Front-End Web Developer</p>
+									</div>
+									<div class="info-colR txtRight">
+										<p>2019 - Current</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<h4>Transcosmos Asia Philippines</h4>
+								<div class="info">
+									<div class="info-colL">
+										<p>Team Leader: Front-End Web Developer</p>
+									</div>
+									<div class="info-colR txtRight">
+										<p>2017 - 2019</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<h4>ShogunShips Co., Inc.</h4>
+								<div class="info">
+									<div class="info-colL">
+										<p>Web Developer</p>
+									</div>
+									<div class="info-colR txtRight">
+										<p>2016 - 2017</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<h4>Zperia Technologies Co., Inc.</h4>
+								<div class="info">
+									<div class="info-colL">
+										<p>Web Developer</p>
+									</div>
+									<div class="info-colR txtRight">
+										<p>2015 - 2016</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="info-colR">
+						<h3>Owned Website</h3>
+						<ul>
+							<li>
+								<h4>Codes Native</h4>
+								<div class="info">
+									<div class="info-colL">
+										<p><a href="http://codesnative.com" target="_blank">codesnative.com</a></p>
+									</div>
+									<div class="info-colR txtRight">
+										<p>Blog/Articles</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<h4>Manga Riot</h4>
+								<div class="info">
+									<div class="info-colL">
+										<p><a href="http://mangariot.com" target="_blank">mangariot.com</a></p>
+									</div>
+									<div class="info-colR txtRight">
+										<p>Magazines</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
 
-            <!--728x90_1-->
-            <div id="add2">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key': '0cb8cb705219c20f76788f88495ba838',
-                        'format': 'iframe',
-                        'height': 90,
-                        'width': 728,
-                        'params': {}
-                    };
-                    document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.bestdisplayformats.com/0cb8cb705219c20f76788f88495ba838/invoke.js"></scr' + 'ipt>');
-                </script>
-            </div>
+		<!--LAYER PROJECT INTRO-->
+		<div class="layer-project-intro">
+			<div class="layer-intro-block">
+				<h2>PASSION.<br>DEDICATION.</h2>
+				<div class="layer-intro-contents">
+					<p>Passion is the energy that keeps us going, that keeps us filled with meaning, and happiness, and excitement, and anticipation.
+						At first thought, passion wasn't actually exist on me until progamming got my attenting and found my passion that is aligned in my skills,
+						while at some point that makes me commit my full pasion and dedication in every projects.</p>
 
-            <!--300x250_1-->
-            <div id="add3">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key': 'fbadc0da70eb4e661d311d4177e0e697',
-                        'format': 'iframe',
-                        'height': 250,
-                        'width': 300,
-                        'params': {}
-                    };
-                    document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.bestdisplayformats.com/fbadc0da70eb4e661d311d4177e0e697/invoke.js"></scr' + 'ipt>');
-                </script>
-            </div>
-        </div>
+					<p>Im the typically kind of a guy that is competitive and want to dominate something in a good way.
+						I always compete with something that gets my attention specially when it is related in learning new programmings.
+						It's hard to explain, but the good way is that every information and learnings that I gain is I help others by giving them better results.
+						It's kind a thing of gaining but sharing. haha</p>
+					<h3>The fruit of your own hard work<br>
+						<span>is the sweetest</span></h3>
+					<p>Passion is the driving force behind success and happiness that allows us all to live better lives. And this is where I dedicate my life.<br>Please my latest projects below:</p>
+
+					</div>
+
+			</div>
+		</div>
+		<!--LAYER PROJECT INTRO-->
+
+		<!--LAYER 3-->
+		<section class="layer-3">
+
+			<!--PROJECT 1-->
+			<div class="wow fadeInDown">
+				<div class="project-1">
+					<img src="./assets/img/layer-3/project-1/bg.png" class="scale" />
+					<div class="border">
+						<img src="./assets/img/layer-3/project-1/img.jpg" class="wow fadeInDown" />
+					</div>
+					<img src="./assets/img/layer-3/project-1/mobile.png" class="sp-view" />
+				</div>
+				<div class="project-details">
+					<div class="title">
+						<h3>Esports Game Client Web App</h3>
+						<p class="slogan">Asia’s Leading Sports Platform</p>
+						<p class="text-04 btn-rect"><a href="https://gc-26.diaoq.com/launch.html?auth=c4b789e82ce341ac985e44b6b4da5042&token=testdemo82" target="_blank">VISIT DEMO</a></p>
+					</div>
+					<div class="desc">
+						<p>I was part of the dedicated Esports developers that primarily focus on developing and
+							maintaining
+							the web application that offer a Unique and Convenient Esports Platform for All, covering
+							Major
+							and Minor Esports events in the World.</p>
+					</div>
+				</div>
+			</div>
+
+			<!--PROJECT 2-->
+			<div class="wow fadeInDown" id="project-2">
+				<div class="project-2">
+					<img src="./assets/img/layer-3/project-2/bg1.png" class="bg1" />
+					<ul>
+						<li class="wow slideInLeft"><img src="./assets/img/layer-3/project-2/item1.png" class="item1" />
+						</li>
+						<li class="wow pulse"><img src="./assets/img/layer-3/project-2/item2.png" class="item1" /></li>
+						<li class="wow slideInRight"><img src="./assets/img/layer-3/project-2/item3.png" class="item1" />
+						</li>
+					</ul>
+				</div>
+				<div class="project-details">
+					<div class="title">
+						<h3>Esports Game Client Mobile App</h3>
+						<p class="slogan">Asia’s Leading Sports Platform Developed using React Native Framework</p>
+						<p class="text-04 btn-rect"><a href="#" target="_blank">DOWNLOAD APK</a></p>
+					</div>
+					<div class="desc">
+						<p>Using the framework react native and main developer, we developed an mobile application of Esports Game Client for out TFGaming clients.</p>
+					</div>
+				</div>
+			</div>
+
+			<!--PROJECT 3-->
+			<div class="wow fadeInDown">
+				<div class="project-1">
+					<img src="./assets/img/layer-3/project-3/bg.jpg" class="scale" />
+					<div class="border" style="background-image: unset">
+						<img src="./assets/img/layer-3/project-3/img.jpg" class="wow fadeInDown" />
+					</div>
+					<img src="./assets/img/layer-3/project-3/bg-others.png"
+						class="project-1-porcelain-custom_1 wow slideInLeft" />
+					<img src="./assets/img/layer-3/project-3/bg-others.png" class="project-1-porcelain-custom_2" />
+				</div>
+				<div class="project-details">
+					<div class="title">
+						<h3>Porcelain Core Dashboard</h3>
+						<p class="slogan">Angular 6 tool that does it all.</p>
+					</div>
+					<div class="desc">
+						<p>An web application made in Angular framework (Im solo developer here) that helps the porcelain(Singapore) employees and customer for there online and fast transaction.</p>
+					</div>
+				</div>
+			</div>
+
+			<!--PROJECT 4-->
+			<div class="wow fadeInDown">
+				<div class="project-1 project-4">
+					<img src="./assets/img/layer-3/project-3/bg.jpg" class="scale" style="opacity: 0;" />
+					<div class="border" style="background-image: unset;">
+						<img src="./assets/img/layer-3/project-4/img.jpg" class="wow fadeInDown project-4-img" style="box-shadow: unset;" />
+					</div>
+
+					<div class="bg-liner">
+						<div class="liner1"></div>
+						<div class="liner2"></div>
+						<div class="liner3"></div>
+						<div class="liner4"></div>
+					</div>
+				</div>
+				<div class="project-details">
+					<div class="title">
+						<h3>Kamoi Commercial Website</h3>
+						<p class="slogan">Angular 6 tool that does it all.</p>
+						<p class="text-04 btn-rect"><a href="http://kamoi-net.co.jp/" target="_blank">VISIT WEBSITE</a></p>
+					</div>
+					<div class="desc">
+						<p>An japanese (Internation) static website made using native javascript and jquery.</p>
+					</div>
+				</div>
+			</div>
+
+			<!--PROJECT 5 -->
+			<div class="wow fadeInDown project5">
+				<div class="project5-colL">
+					<div class="border">
+						<img src="./assets/img/layer-3/project-5/img1.jpg">
+					</div>
+					<div class="project-details">
+						<div class="title">
+							<h3>Travel Agency Website</h3>
+							<p class="slogan">Personalize Design</p>
+							<p class="text-04 btn-rect"><a href="https://rkportfolio.github.io/works/kevinstravel/index.html" target="_blank">VISIT WEBSITE</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="project5-colR">
+					<div class="border">
+						<img src="./assets/img/layer-3/project-5/img2.jpg">
+					</div>
+					<div class="project-details">
+						<div class="title">
+							<h3>Wine Story Website Design</h3>
+							<p class="slogan">Personalize Design</p>
+							<p class="text-04 btn-rect"><a href="./img/layer-3/project-5/img2.jpg" target="_blank">VISIT DESIGN</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section>
+		<!--LAYER 3-->
+
+		<!--LAYER TIMELINE-->
+		<section class="layer-timeline">
+			<div class="layer-timeline-block">
+				<h2>HARDWORK.<br><span>TIMELINE.</span></h2>
+				<div class="layer-intro-contents">
+					<p>It’s actually a great idea to create portfolio. It is how will you market yourself to industry.
+						Another reason why I’ve pushed myself to create my portfolio is to look back on the lessons, documented new projects, and applyed new skills.
+						This is the way I see my portfolio project as a practical recap of my own improvement.</p>
+					<p> This is what I call fruit of your own hard work is the sweetest when are proud of what you have reach in your life.</p>
+				</div>
+			</div>
+		</section>
+		<div class="timeline">
+			<div class="timeline-years wow fadeInDown">
+				<ul>
+					<li class="active"><span>2018</span></li>
+					<li><span>2020</span></li>
+				</ul>
+			</div>
+			<div class="timeline-item wow fadeInDown">
+				<ul>
+					<li class="active">
+						<img src="./assets/img/layer-timeline/img1.jpg" />
+						<div class="timeline-item-desc">
+							<h3>March 2018</h3>
+							<p class="title">"Triangular"</p>
+							<p class="desc">My first ever portfolio features of horizontal scrolling with the use of parallax on the floating triangle shapes. It contains most of my projects about static pages and wordpress.</p>
+						</div>
+					</li>
+					<li>
+						<img src="./assets/img/layer-timeline/img2.jpg" />
+						<div class="timeline-item-desc">
+							<h3>August 2020</h3>
+							<p class="title">"Door Of Success"</p>
+							<p class="desc">I used the concept of opening a door of success. It's symbolize like dedicating my sucess in reaching out and helping who are in need. In this portfolio, it describes the project I made in using different JS Framerworks.</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--LAYER TIMELINE-->
+
+		<!--LAYER END-->
+		<section class="layer-end">
+
+			<div class="block-content">
+				<h1 class="name">RALPH<br>KEVIN</h1>
+				<p class="label2">I strive to push the world forward by creating a bridge between people and technology.</p>
+				<p class="touch"><a href="mailto:iglesiaskevinralph.business@gmail.com">Get in Touch</a></p>
+			</div>
+
+			<div class="block-content2">
+				<ul>
+					<li><a href="#layer-about" class="link-scroll">About</a></li>
+					<li><a href="#layer-project-intro" class="link-scroll">Projects</a></li>
+					<li><a href="#layer-timeline" class="link-scroll">Timeline</a></li>
+				</ul>
+				<ul>
+					<li><a href="http://codesnative.com" target="_blank">CodesNative</a></li>
+					<li><a href="http://mangariot.com" target="_blank">Mangariot</a></li>
+				</ul>
+				<ul>
+					<li><a href="https://www.linkedin.com/in/ralph-kevin-iglesias-89333a12b/" target="_blank">LinkedIn</a></li>
+					<li><a href="https://www.facebook.com/emocore07/" target="_blank">Facebook</a></li>
+				</ul>
+			</div>
+
+			<div class="door">
+				<div class="block">
+					<div class="door1">
+						<img src="./assets/img/layer-1/door-1.png">
+					</div>
+					<div class="door2">
+						<img src="./assets/img/layer-1/door-2.png">
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+	</main>
+
+	<footer>
+
+	</footer>
+
+	<script type="text/javascript" src="./assets/js/jquery.js"></script>
+	<script type="text/javascript" src="./assets/js/smooth_scrolling.js"></script>
+	<script>
+		//jQuery.scrollSpeed(100, 1500);
+	</script>
+
+	<script src="./assets/js/script.js"></script>
+
+	<script src="./assets/js/jquery.paroller.js"></script>
+	<script>
+
+		$(document).ready(function () {
 
 
-        <div style="float: left; width: 49%; border: 1px solid red">
-            <p style="display: inline-block; padding: 5px; color: #fff; background-color: red; margin: 0;">RK</p>
+		});
+	</script>
 
-            <!--Native Banner-->
-            <div id="add4">
-                <script async="async" data-cfasync="false"
-                    src="//pl15547158.passtechusa.com/68622b80a661c5b8b870a97c981bc24f/invoke.js"></script>
-                <div id="container-68622b80a661c5b8b870a97c981bc24f"></div>
-            </div>
-            <!--728x90_1-->
-            <div id="add5">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key': '1d8dfe94d0595920c5e436e51a435853',
-                        'format': 'iframe',
-                        'height': 90,
-                        'width': 728,
-                        'params': {}
-                    };
-                    document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.bestdisplayformats.com/1d8dfe94d0595920c5e436e51a435853/invoke.js"></scr' + 'ipt>');
-                </script>
-            </div>
-            <!--300x250_1-->
-            <div id="add6">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key': '432527befc66367b81d4aa85b8da9e0f',
-                        'format': 'iframe',
-                        'height': 250,
-                        'width': 300,
-                        'params': {}
-                    };
-                    document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.bestdisplayformats.com/432527befc66367b81d4aa85b8da9e0f/invoke.js"></scr' + 'ipt>');
-                </script>
-            </div>
-        </div>
-    </div>
+
+	<script src="./assets/markets/wow-master/dist/wow.js"></script>
+	<script>
+		wow = new WOW({
+			animateClass: 'animated',
+			offset: 100,
+			callback: function (box) {
+
+			}
+		});
+		wow.init();
+	</script>
 
 
 </body>

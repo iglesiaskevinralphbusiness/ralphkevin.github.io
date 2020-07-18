@@ -1,0 +1,322 @@
+<html>
+
+<head>
+	<title>Sass</title>
+	<link href="common/css/reset.css" rel="stylesheet" />
+	<link href="common/css/style.css" rel="stylesheet" />
+	<link href="common/css/media.css" rel="stylesheet" />
+	
+	<link rel="stylesheet" href="libs/tinymace/prism.css">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+</head>
+
+<body>
+<div class="content" id="top">
+<!--Write your content here-->
+<h1>Sass</h1>
+
+	
+<h2>Installation</h2>
+<div class="divBlock">
+	<p>Download <a href="https://prepros.io/" target="_blank">prepros</a></p>
+</div>
+	
+	
+<h2>Variables</h2>
+<div class="divBlock">
+	<pre>
+	<code class="language-css">$deepBlue: #032f3e;
+	
+	.header-sec p {
+		color: $deepBlue;
+	}
+	.footer-sec p {
+		color: $deepBlue;
+		font-size: 12px;
+	}</code>
+	</pre>
+</div>
+
+<h2>Nesting</h2>
+<div class="divBlock">
+	<pre>
+	<code class="language-css">.header-sec {
+		h1 {
+			font-size: 20px;
+		}
+		ul {
+			margin: 0;
+			padding: 0;
+			
+			li {
+				color: #000;
+				list-style: none;
+			}
+		}
+	}</code>
+	</pre>
+</div>
+
+<h2>Class Concatenation</h2>
+<div class="divBlock">
+	<p>Syntax</p>
+	<pre>
+	<code class="language-css">.add-some {
+		font-size: 12px;
+		
+		&-red {
+			color: red;
+		}
+	}</code>
+	</pre>
+	
+	<p>Results</p>
+	<pre>
+	<code class="language-css">.add-some {
+		font-size: 12px;
+	}
+	.add-some .add-some-red {
+		color: red;
+	}</code>
+	</pre>
+</div>
+	
+<h2>Psuedo</h2>
+<div class="divBlock">
+	<pre>
+	<code class="language-css">ul {
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		li {
+			&:hover {
+				background: red;
+			}
+		}
+	}</code>
+	</pre>
+</div>
+	
+<h2>Mixin</h2>
+<div class="divBlock">
+	<pre>
+	<code class="language-css">@mixin banner {
+		width: 100%;
+		
+		.blk {
+			display: block;
+			padding: 10px;
+		}
+		h2 {
+			font-size: 18px;
+		}
+		p {
+			color: #000;
+		}
+		img {
+			width: 100%;
+		}
+	}
+	
+	
+	.users-banner {
+		@include banner;
+	}
+	.customer-banner {
+		@include banner;
+	}
+	</code>
+	</pre>
+</div>
+	
+<h2>Mathematical</h2>
+<div class="divBlock">
+	<div class="imgBlock">
+		<img src="images/01.jpg" alt="">
+	</div>
+	<pre>
+	<code class="language-css">li {
+		float: left;
+		width: (100% / 6);
+	}</code>
+	</pre>
+</div>
+	
+<h2>Function / Creatin</h2>
+<div class="divBlock">
+	<div class="imgBlock">
+		<img src="images/02.jpg" alt="">
+	</div>
+	
+	<pre>
+	<code class="language-css">@mixin grid($cols, $mgn){
+		float: left;
+		margin-right: $mgn;
+		margin-bottom: &mgn;
+		width: ((100% - (($cols - 1) * $mgn)) / $cols);
+		&:nth-child(#{cols}n){
+			margin-right: 0;
+		}
+	}
+	
+	.project li {
+		@include grid(4, 2%);
+		img {
+			width: 100%;
+		}
+	}</code>
+	</pre>
+</div>
+	
+	
+<h2>Colour</h2>
+<div class="divBlock">
+	<p>Built in functions of sass, <br>example: <span class="highlight">lighten(color,opacity)</span></p>
+	<pre>
+	<code class="language-css">a {
+		background: #032f3e;
+		&:hover {
+			background: lighten(#032f3e, 6)
+		}
+	}</code>
+	</pre>
+	<p>List of built-in functions <a href="https://sass-lang.com/documentation/functions#darken-instance_method" target="_blank">here</a></p>
+</div>
+
+<h2>Media Queries</h2>
+<div class="divBlock">
+	<h3>Multi-purpose</h3>
+	<pre>
+	<code class="language-css">@mixin mQ($arg...){
+		@if length($arg) == 1{
+			@media only screen and (min-width: nth($arg, 1)){
+				@content;
+			}
+		}
+		@if length($arg) == 2{
+			@media only screen and (min-width: nth($arg, 1)) and (max-width: nth($arg, 2)){
+				@content;
+			}
+		}
+	}</code>
+	</pre>
+	
+	<pre>
+	<code class="language-css">li {
+		float: left;
+		@include mQ(768px,991px){   /* @media screen and (min-width: 768px) and (max-width: 991px) */
+			float: none;
+		}
+		@include mQ(992px){          /* @media screen and (min-width: 992px) */
+			float: none;
+		}
+	}</code>
+	</pre>
+
+	<h3>Fixed</h3>
+	<pre>
+	<code class="language-css">@mixin bp($point) {
+		$bp-mobile: "(max-width: 580px)";
+		$bp-small: "(max-width: 767px)";
+		$bp-large: "(max-width: 1024px)";
+		$bp-screen: "(max-width: 1439px)";
+		$bp-wide: "(max-width: 1600px)";
+		
+		@if $point == wide {
+			@media #{$bp-wide} { @content; }
+		}
+			@else if $point ==  large {
+			@media #{$bp-large} { @content; }
+		}
+		@else if $point ==  small {
+			@media #{$bp-small} { @content; }
+		}
+		@else if $point ==  screen {
+			@media #{$bp-screen} { @content; }
+		}
+		@else if $point == mobile {
+			@media #{$bp-mobile}  { @content; }
+		}
+	}</code></pre>
+	<pre>
+	<code class="language-css">.tab-pane {
+		display: block;
+		@include bp(large){
+			height: 20px;
+		}
+		@include bp(small){
+			height: 30px;
+		}
+	}</code></pre>
+</div>
+	
+<h2>Media Breakpoints</h2>
+<div class="divBlock">
+	<pre>
+	<code class="language-css">@media only screen and (min-width: 320px) and (max-width: 479px){ ... }
+
+	@media only screen and (min-width: 480px) and (max-width: 767px){ ... }
+
+	@media only screen and (min-width: 768px) and (max-width: 991px){ ... }
+
+	@media only screen and (min-width: 992px){ ... }</code>
+	</pre>
+</div>
+
+
+
+<h2>Templating</h2>
+<div class="divBlock">
+	<p><span class='highlight'>white</span> and <span class='highlight'>black</span> are reserved word so it needs to add qoute.</p>
+	<pre>
+	<code class="language-css">
+	$themes: (
+		_default: (
+			'white': #fff,
+			'black': #1b273e,
+		),
+		jxf: (
+			'white': #fff,
+			'black': #1b273e,
+			blue-980: #020f24,
+			blue-950: #131313,
+			news-icon: url(../../images/themes/jxf/icon-announcement.png)
+		)
+	);
+
+	@function themify($color, $tone: 'base') {
+		@return map-get(map-get($themes, $color), $tone);
+	}
+	</code>
+	</pre>
+
+	<pre>
+	<code class="language-css">
+	span {
+		color: themify(_default, 'white');
+	}
+	p {
+		color: themify(jxf, blue-980);
+	}
+	.news-icon {
+		background-color: themify(jxf, news-icon);
+	}
+	</code>
+	</pre>
+</div>
+	
+	
+	
+<p class="goTop"><a href="#top">TOP</a></p>
+</body>
+
+<script type="text/javascript" src="common/js/jquery.js"></script>
+<script type="text/javascript" src="common/js/script.js"></script>
+<script type="text/javascript" src="common/js/smooth_scrolling.js"></script>
+
+<script src="libs/tinymace/prism.js"></script>
+
+</html>
