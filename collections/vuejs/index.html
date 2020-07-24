@@ -1,0 +1,435 @@
+<html>
+
+<head>
+	<title>VueJS</title>
+	<link href="common/css/reset.css" rel="stylesheet" />
+	<link href="common/css/style.css" rel="stylesheet" />
+	<link href="common/css/media.css" rel="stylesheet" />
+	
+	<link rel="stylesheet" href="libs/tinymace/prism.css">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+</head>
+
+<body>
+<div class="content" id="top">
+<!--Write your content here-->
+<h1>VueJS</h1>
+
+<h2>Set Up</h2>
+<div class="divBlock">
+	<p>Add to your head HTML:</p>
+	<pre><code class="language-javascript">< script src="https://unpkg.com/vue@2.0.5/dist/vue.js"></script></code></pre>
+	<p>or download and import locally (https://vuejs.org/v2/guide/installation.html)</p>
+</div>
+
+	
+<h2>Data Rendering</h2>
+<div class="divBlock">
+	<pre><code class="language-html">&lt;div id="app">
+	&lt;p>{{ title }}&lt;/p>
+&lt;/div></code></pre>
+	<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	data: {
+		title: 'Hello Wordl!'
+	}
+});</code></pre>
+</div>
+
+<h2>Call Data Inside Function</h2>
+<div class="divBlock">
+	<pre><code class="language-html">&lt;div id="app">
+	&lt;input type="text" v-on:input="changeTitle">
+	&lt;p>{{ sayHello() }}&lt;/p>
+&lt;/div></code></pre>
+	<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	data: {
+		title: 'Hello World!'
+	},
+	methods:  {
+		sayHello: function(){
+			return 'Say,' + this.title;
+		}
+	}
+});</code></pre>
+</div>
+
+<h2>Directives</h2>
+<div class="divBlock">
+	<h3>Binding Attribue</h3>
+	<div class="divBlock">
+		<p>you should use v-bind tag to avoid data hash</p>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;p>Link - &lt;a v-bind:href="link">Google&lt;/a>&lt;/p>
+&lt;/div></code></pre>
+		<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	data: {
+		link: 'http://google.com'
+	}
+});</code></pre>
+	</div>
+
+	<h3>Render Once</h3>
+	<div class="divBlock">
+		<p>using this means that variable from data will render once, even if you change the value of variable, nothing will rerender in page.</p>
+		<pre><code class="language-html">&lt;p v-once>{{ title }}&lt;/p></code></pre>
+	</div>
+
+	<h3>Output Raw of Code</h3>
+	<div class="divBlock">
+		<p>data variable normaly output string, if you want to output as an html element</p>
+		<pre><code class="language-html">&lt;p v-html="htmlLink">&lt;/p></code></pre>
+		<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	data: {
+		link: '<a href="http://google.com">google</a>'
+	}
+});</code></pre>
+	</div>
+
+	<h3>Mouse Events</h3>
+	<div class="divBlock">
+
+		<h4>Click Event</h4>
+		<div class="divBlock">
+			<pre><code class="language-html">&lt;div id="app">
+	&lt;button v-on:click="increase">Increase&lt;/button>
+	&lt;p>{{ counter }}&lt;/p>
+&lt;/div></code></pre>
+			<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	data: {
+		counter: 0
+	},
+	methods: {
+			increase: function(){
+				this.counter++;
+			}
+	}
+});</code></pre>
+		</div>
+
+		<h4>Mousemove Event</h4>
+		<div class="divBlock">
+			<pre><code class="language-html">&lt;div id="app">
+	&lt;p v-on:mousemove="updateCoordinates">Coordinates: {{ x }}/{{ y }}&lt;/p>
+&lt;/div></code></pre>
+			<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	data: {
+		x: 0,
+		y: 0,
+	},
+	methods: {
+			updateCoordinates: function(event){
+				this.x = event.clientX;
+				this.y = event.clientY;
+			}
+	}
+});</code></pre>
+		</div>
+
+		<h4>Mousemove Event with Modified Event in Child</h4>
+		<div class="divBlock">
+			<p>This means that child element with not affected by the mouse move event.</p>
+			<pre><code class="language-html">&lt;div id="app">
+	&lt;p v-on:mousemove="updateCoordinates">Coordinates: {{ x }}/{{ y }} &lt;span v-on:mousemove.stop="">Stop Event&lt;span/>&lt;/p>
+&lt;/div></code></pre>
+		</div>
+	
+	</div>
+
+
+	<h3>Input Binding</h3>
+	<div class="divBlock">
+		<p>Ref in react, ng-model in angular</p>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;input type="text" v-model="name">
+	&lt;p>{{ name }}&lt;/p>
+&lt;/div></code></pre>
+		<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	data: {
+		name: ''
+	}
+});</code></pre>
+	</div>
+
+</div>
+
+<h2>Properties</h2>
+<div class="divBlock">
+	<h3>Computed Properties Vs Methods Properties</h3>
+	<div class="divBlock">
+		<p><b>If you declared a rendering function in the page:</b></p>
+		<p>Computed will execute the function only if value of related data variable whithin that function is changed.</p>
+		<p>Method will always run every time data variable are changed. (Disadvantage if your functions code is too long script which is executed but not related on changes, it only interupt the speed performance of app)</p>
+		<hr>
+		<p><b>Calling function:</b></p>
+		<p>Computed called without parenthesis</p>
+		<p>Method called with parenthesis</p>
+
+		<pre><code class="language-html">&lt;div id="app">
+		&lt;button v-on:click="counter1++">Increase&lt;/button>
+		&lt;button v-on:click="counter1--">Decrease&lt;/button>
+		&lt;button v-on:click="counter2++">Increase Counter 2&lt;/button>
+		&lt;p>Counter 1: {{ counter1 }}&lt;/p>
+		&lt;p>Counter 2: {{ counter2 }}&lt;/p>
+		&lt;p>Result: {{ renderFlag }} | {{ renderCounter() }}&lt;/p>
+	&lt;/div></code></pre>
+		<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	data: {
+			counter1: 0,
+			counter2: 0,
+			flag: ''
+	},
+	computed: {
+			renderFlag: function(){
+				console.log('Computed Triggered'); // will not triggere if you click the Increase Counter 2 button
+				return this.counter1 > 5 ? 'Greater than 5' : 'Less than 5';
+			}
+	},
+	methods: {
+			renderCounter: function(){
+				console.log('Method Triggered');
+				return this.counter1;
+			}
+	}
+});</code></pre>
+	</div>
+
+	<h3>Watch Properties</h3>
+	<div class="divBlock">
+		<p>Will be executed when a specific data variable is changed.</p>
+		<pre><code class="language-javascript">new Vue({
+			el: '#app',
+			data: {
+				counter: 0,
+			},
+			watch: {
+				counter: function(){
+					console.log('Watch Triggered');
+				}
+			},
+		});</code></pre>
+	</div>
+</div>
+
+<h2>Short Hands</h2>
+<div class="divBlock">
+	<div class="flex">
+		<pre><code class="language-html">&lt;button v-on:click="changeLink">Click to Change&lt;/button></code></pre>
+		<pre><code class="language-html">&lt;button @:click="changeLink">Click to Change&lt;/button></code></pre>
+	</div>
+	<div class="flex">
+		<pre><code class="language-html">&lt;a v-bind:href="link">Link&lt;/button></code></pre>
+		<pre><code class="language-html">&lt;a :href="link">Link&lt;/button></code></pre>
+	</div>
+</div>
+
+<h2>Dynamic Styling with CSS Classes</h2>
+<div class="divBlock">
+	<h3>Basic / Active & Innactive</h3>
+	<div class="divBlock">
+		<p>A box that when you click, it change it state to active and inactive.</p>
+		<pre><code class="language-css">.box {
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+	background-color: gray;
+}
+.red {
+	background-color: red;
+}</code></pre>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;div
+		class="box"
+		@click="active = !active"
+		:class="{'red': active}"
+	>&lt;/div>
+&lt;/div></code></pre>
+		<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	data: {
+			active: false
+	},
+});</code></pre>
+	</div>
+
+	<h3>Multiple Class as Object</h3>
+	<div class="divBlock">
+		<pre><code class="language-css">.box {
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+	background-color: gray;
+}
+.red {
+	background-color: red;
+}
+.red-border {
+	border: 5px solid pink;
+}</code></pre>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;div
+		class="box"
+		@click="active = !active"
+		:class="{'red': active, 'red-border': active}"
+	>&lt;/div>
+&lt;/div></code></pre>
+	</div>
+
+	<h3>Variable as Class Names</h3>
+	<div class="divBlock">
+		<pre><code class="language-css">.box {
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+	background-color: gray;
+}
+.pending {
+	background-color: red;
+}
+.cancelled {
+	background-color: orange;
+}
+.done {
+	background-color: green;
+}</code></pre>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;button @click="status = 'pending'" :disabled="status == 'pending'">Pending&lt;/button>
+	&lt;button @click="status = 'cancelled'" :disabled="status == 'cancelled'">Cancel&lt;/button>
+	&lt;button @click="status = 'done'" :disabled="status == 'done'">Done&lt;/button>
+	&lt;div
+		class="box"
+		:class="status"
+	>&lt;/div>
+&lt;/div></code></pre>
+		<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	data: {
+			status: ''
+	},
+});</code></pre>
+	<div class="imgBlock"><img src="./images/1.png"></div>
+	</div>
+
+	<h3></h3>
+	<div class="divBlock">
+		<pre><code class="language-html"></code></pre>
+		<pre><code class="language-javascript"></code></pre>
+	</div>
+
+	<h3></h3>
+	<div class="divBlock">
+		<pre><code class="language-html"></code></pre>
+		<pre><code class="language-javascript"></code></pre>
+	</div>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+<h2></h2>
+<div class="divBlock">
+	<pre><code class="language-html"></code></pre>
+	<pre><code class="language-javascript"></code></pre>
+</div>
+
+
+</div>
+<p class="goTop"><a href="#top">TOP</a></p>
+</body>
+
+<script type="text/javascript" src="common/js/jquery.js"></script>
+<script type="text/javascript" src="common/js/script.js"></script>
+<script type="text/javascript" src="common/js/smooth_scrolling.js"></script>
+
+<script src="libs/tinymace/prism.js"></script>
+
+</html>

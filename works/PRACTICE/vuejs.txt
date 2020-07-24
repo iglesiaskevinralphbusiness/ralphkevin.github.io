@@ -1,0 +1,129 @@
+size
+runtine performance
+
+#SETUP
+Add to your HTML:
+<srcipt src="https://unpkg.com/vue@2.0.5/dist/vue.js"></script>
+or download and import localy (https://vuejs.org/v2/guide/installation.html)
+
+#DATA RENDERING
+IN HTML
+<div id="app">
+    <p>{{ title }}</p>
+</div>
+
+IN JS
+new Vue({
+    el: '#app',
+    data: {
+        title: 'Hello Wordl!'
+    }
+});
+
+#INPUT EVENTS
+IN HTML
+<div id="app">
+    <input type="text" v-on:input="changeTitle">
+    <p>{{ title }}</p>
+</div>
+
+IN JS
+new Vue({
+    el: '#app',
+    data: {
+        title: 'Hello Wordl!'
+    },
+    methods:  {
+        changeTitle: function(event){
+            this.title = event.target.value;
+        }
+    }
+});
+
+
+#DATA AND FUNCTION
+IN HTML
+<div id="app">
+    <input type="text" v-on:input="changeTitle">
+    <p>{{ sayHello() }}</p>
+</div>
+
+IN JS
+new Vue({
+    el: '#app',
+    data: {
+        title: 'Hello World!'
+    },
+    methods:  {
+        sayHello: function(){
+            return 'Say,' + this.title;
+        }
+    }
+});
+
+#BINDING ATTRIBUTE
+you should use v-bind tag to avoid data hash
+IN HTML
+<div id="app">
+    <p>Link - <a v-bind:href="link">Google</a></p>
+</div>
+
+IN JS
+new Vue({
+    el: '#app',
+    data: {
+        link: 'http://google.com'
+    }
+});
+
+#RENDERING ONCE
+using this means that variable from data will render once, even if you change the value of variable, nothing will rerender in page.
+<p v-once>{{ title }}</p>
+
+#OUTPUT RAW OF CODE
+data variable normaly output string, if you want to output as an html element
+
+IN HTML
+<p v-html="htmlLink"></p>
+
+IN JS
+new Vue({
+    el: '#app',
+    data: {
+        link: '<a href="http://google.com">google</a>'
+    }
+});
+
+#CLICK EVENT
+IN HTML
+<div id="app">
+    <button v-on:click="increase">Increase</button>
+    <p>{{ counter }}</p>
+</div>
+
+IN JS
+new Vue({
+     el: '#app',
+     data: {
+         counter: 0
+     },
+     methods: {
+          increase: function(){
+               this.counter++;
+          }
+     }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+

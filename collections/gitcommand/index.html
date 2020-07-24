@@ -1,0 +1,245 @@
+<html>
+
+<head>
+	<title>Git</title>
+	<link href="common/css/reset.css" rel="stylesheet" />
+	<link href="common/css/style.css" rel="stylesheet" />
+	<link href="common/css/media.css" rel="stylesheet" />
+	
+	<link rel="stylesheet" href="libs/tinymace/prism.css">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+</head>
+
+<body>
+<div class="content" id="top">
+<!--Write your content here-->
+<h1>Git Command</h1>
+
+	
+<h2>Installation</h2>
+<div class="divBlock">
+	<p>Download <a href="https://git-scm.com/downloads" target="_blank">git</a></p>
+	<p>Download <a href="https://cmder.net" target="_blank">cmder tool</a></p>
+</div>
+	
+<h2>Commands</h2>
+<div class="divBlock">
+	<p>Up 1 folder</p>
+	<pre><code class="language-css">cd ..</code></pre>
+	
+	<p>Open folder</p>
+	<pre><code class="language-css">cd myfolder</code></pre>
+	
+	<p>Show list of all folders and files</p>
+	<pre><code class="language-css">ls</code></pre>
+	
+	<p>Create new folder</p>
+	<pre><code class="language-css">mkdir myfolder</code></pre>
+	
+	<p>Remove / Delete</p>
+	<pre><code class="language-css">rm myfolder</code></pre>
+</div>
+	
+<h2>Setup</h2>
+<div class="divBlock">
+	<h3>Check Version</h3>
+	<pre><code class="language-css">git --version</code></pre>
+	
+	<h3>Config User</h3>
+	<pre><code class="language-css">git config --global user.name myusername</code></pre>
+	<pre><code class="language-css">git config --global user.email myemail</code></pre>
+	
+	<h3>Check User Config</h3>
+	<pre><code class="language-css">git config user.name</code></pre>
+	<pre><code class="language-css">git config user.email</code></pre>
+	
+	<h3>Exit on error</h3>
+	<p>Type Shift + : + wp and hit enter</p>
+	<pre><code class="language-css">:wq</code></pre>
+	
+	<h3>Create repository</h3>
+	<pre><code class="language-css">git init</code></pre>
+</div>
+	
+<h2>Staging Files</h2>
+<div class="divBlock">
+	<h3>Show files in staging area</h3>
+	<pre><code class="language-css">git status</code></pre>
+	
+	<h3>Add files in staging area</h3>
+	<pre><code class="language-css">git add .</code></pre>
+	
+	<h3>Remove files in staging area</h3>
+	<pre><code class="language-css">git rm --cached index.html</code></pre>
+</div>
+	
+<h2>Commit</h2>
+<div class="divBlock">
+	<h3>Commit files from staging area</h3>
+	<pre><code class="language-css">git commit -m "your message here"</code></pre>
+	
+	<h3>Show all commit</h3>
+	<pre><code class="language-css">git log --oneline</code></pre>
+	
+	<h3>Show all commit with descriptions</h3>
+	<pre><code class="language-css">git log</code></pre>
+	
+	<h3>Revert</h3>
+	<p>Go or load to particular commit</p>
+	<pre><code class="language-css">git checkout commit_id</code></pre>
+	
+	<p>Go or load the lastest commit</p>
+	<pre><code class="language-css">git checkout master</code></pre>
+</div>
+	
+<h2>Branch</h2>
+<div class="divBlock">
+	<h3>Create new branch</h3>
+	<pre><code class="language-css">git branch branch_name</code></pre>
+	
+	<h3>Show all created branches</h3>
+	<pre><code class="language-css">git branch -a</code></pre>
+	
+	<h3>Open branch</h3>
+	<pre><code class="language-css">git checkout 'branch_name'</code></pre>
+	
+	<h3>Delete branch</h3>
+	<p>Make sure that the branch you want to delete should not be opened in your terminal.</p>
+	<pre><code class="language-css">git branch -D branch_name</code></pre>
+	
+	<h3>Merge branch</h3>
+	<p>Make sure you are in master branch</p>
+	<pre><code class="language-css">git merge branch_name</code></pre>
+</div>
+	
+<h2>Clone</h2>
+<div class="divBlock">
+	<pre><code class="language-css">git clone https://github.com/iamshaunjp/git-one.git</code></pre>
+</div>
+	
+<h2>Push</h2>
+<div class="divBlock">
+	<h3>Push no remote</h3>
+	<p>This use when you don't have remote setup.</p>
+	<pre><code class="language-css">git push https://github.com/iamshaunjp/git-one.git master</code></pre>
+	
+	<h3>Push with remote</h3>
+	<p>You need to set up the remote</p>
+	<pre><code class="language-css">git remote add origin https://github.com/iamshaunjp/git-one.git</code></pre>
+	<pre><code class="language-css">git push origin master</code></pre>
+	
+	<h3>Push to custom branch</h3>
+	<p>First, pull the repository, create new branch, do the edits, and commit and push the branch to git server.</p>
+	<pre><code class="language-css">git push origin branch_name</code></pre>
+</div>
+	
+
+<h2>Others</h2>
+<div class="divBlock">
+	<h3>Remove staging files</h3>
+	<pre><code class="language-css">git reset HEAD</code></pre>
+
+	<h3>Remove staging file and checkout</h3>
+	<pre><code class="language-css">git reset --hard
+git merge branch_name  --no-ff</code></pre>
+
+	<h3>Stash</h3>
+	<pre><code class="language-css">git stash
+git stash show
+git stash pop
+git stash clear
+git stash drop</code></pre>
+
+	<h3>Rename last unpushed commit message</h3>
+	<pre><code class="language-css">git commit --amend -m "New commit message"</code></pre>
+
+	<h3>Remove last commit local</h3>
+	<pre><code class="language-css">git reset --hard HEAD^</code></pre>
+
+	<h3>Remove all commit local</h3>
+	<pre><code class="language-css">git reset --hard HEAD^2</code></pre>
+
+	<h3>Show difference before commit</h3>
+	<pre><code class="language-css">git diff
+	git diff --staged</code></pre>
+
+	<h3>Abort merging</h3>
+	<pre><code class="language-css">git merge --abort</code></pre>
+
+	<h3>Rename branch</h3>
+	<pre><code class="language-css">git branch -m new-name</code></pre>
+
+	<h3>Show all branch hidden</h3>
+	<pre><code class="language-css">git branch -a</code></pre>
+
+	<h3>Squash all commit into one commit</h3>
+	<pre><code class="language-css">git log --oneline
+git reset --soft &lt;#sha#>
+git status
+git commit --amend</code></pre>
+
+	<h3>Pull all branch from repo</h3>
+	<pre><code class="language-css">git pull --all</code></pre>
+
+	<h3>Cherry pick</h3>
+	<pre><code class="language-css">git cherry-pick &lt;commit-hash></code></pre>
+
+	<h3>Rebase</h3>
+	<pre><code class="language-css">git rebase branch_name</code></pre>
+
+	<h3>Reverting rebase</h3>
+	<pre><code class="language-css">git reflog
+git log "HEAD@{5}"
+git reset --hard "HEAD@{5}"</code></pre>
+
+	<h3>Remove branches no longer exist in remote</h3>
+	<pre><code class="language-css">git fetch --prune</code></pre>
+
+	<h3>Rename branch local and repo</h3>
+	<pre><code class="language-css"># Rename the local branch to the new name
+git branch -m &lt;old_name> &lt;new_name>
+	
+# Delete the old branch on remote - where &lt;remote> is, for example, origin
+git push &lt;remote> --delete old_name
+
+# Push the new branch to remote
+git push &lt;remote> new_name
+
+# Reset the upstream branch for the new_name local branch
+git push &lt;remote> -u new-name</code></pre>
+		
+</div>
+	
+	
+<h2>Summary</h2>
+<div class="divBlock">
+	<pre><code class="language-css">git init
+git config --global user.name myusername
+git config --global user.email myemail
+
+git remote add origin https://github.com/iamshaunjp/git-one.git
+
+git clone https://github.com/iamshaunjp/git-one.git
+
+git status
+git add .
+git status
+git commit -m "your message here"
+git push origin master</code></pre>
+</div>
+	
+	
+	
+	
+</div>
+<p class="goTop"><a href="#top">TOP</a></p>
+</body>
+
+<script type="text/javascript" src="common/js/jquery.js"></script>
+<script type="text/javascript" src="common/js/script.js"></script>
+<script type="text/javascript" src="common/js/smooth_scrolling.js"></script>
+
+<script src="libs/tinymace/prism.js"></script>
+
+</html>

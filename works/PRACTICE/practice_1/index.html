@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <link href="./styles.css" rel="stylesheet">
+    <script src="./vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <button @click="status = 'pending'" :disabled="status == 'pending'">Pending</button>
+        <button @click="status = 'cancelled'" :disabled="status == 'cancelled'">Cancel</button>
+        <button @click="status = 'done'" :disabled="status == 'done'">Done</button>
+        <div
+            class="box"
+            :class="status"
+        ></div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>

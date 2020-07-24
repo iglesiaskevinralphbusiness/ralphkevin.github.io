@@ -1,0 +1,289 @@
+<html>
+
+<head>
+	<title>VanillaJS</title>
+	<link href="common/css/reset.css" rel="stylesheet" />
+	<link href="common/css/style.css" rel="stylesheet" />
+	<link href="common/css/media.css" rel="stylesheet" />
+	
+	<link rel="stylesheet" href="libs/tinymace/prism.css">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+</head>
+
+<body>
+<div class="content" id="top">
+<!--Write your content here-->
+<h1>VanillaJS</h1>
+
+<h2>Usefull</h2>
+<div class="divBlock">
+	<a href="http://youmightnotneedjquery.com/" target="_black">http://youmightnotneedjquery.com/</a>
+</div>
+
+	
+<h2>Events</h2>
+<div class="divBlock">
+	<div class="flex">
+		<pre><code class="language-javascript">$(document).ready(function() {
+	
+})</code></pre>
+		<pre><code class="language-javascript">document.addEventListener('DOMContentLoaded', function() {
+	
+})</code></pre>
+	</div>
+
+	<div class="flex">
+		<pre><code class="language-javascript">element.on('click', function (e) {
+	e.preventDefault();
+	       
+});</code></pre>
+		<pre><code class="language-javascript">element.addEventListener('click', (event) => {
+	event.preventDefault();
+				       
+});</code></pre>
+	</div>
+
+
+
+	<div class="flex">
+		<pre><code class="language-javascript">$('a').click(function() {
+	
+})</code></pre>
+		<pre><code class="language-javascript">[].forEach.call(document.querySelectorAll('a'), function(el) {
+	el.addEventListener('click', function() {
+		
+	})
+})</code></pre>
+	</div>
+</div>
+
+<h2>Selectors</h2>
+<div class="divBlock">
+	<div class="flex">
+		<pre><code class="language-javascript">$('#some-id');
+$('.some-class');</code></pre>
+		<pre><code class="language-javascript">document.getElementById('some-id');
+document.getElementByClass('some-id');</code></pre>
+	</div>
+	
+	<div class="flex">
+		<pre><code class="language-javascript">$('#nav-list>li');</code></pre>
+		<pre><code class="language-javascript">let elements = document.querySelectorAll('#nav-list>li');
+for (let element of elements) {}</code></pre>
+	</div>
+	
+	<div class="flex">
+		<pre><code class="language-javascript">someElement.parent();
+someElement.children.eq(0);</code></pre>
+		<pre><code class="language-javascript">someElement.parentNode;
+someElement.children[0];</code></pre>
+	</div>
+
+	<div class="flex">
+		<pre><code class="language-javascript">var nextElement = $('#wrap').next()</code></pre>
+		<pre><code class="language-javascript">var nextElement = document.getElementById('wrap').nextSibling</code></pre>
+	</div>
+</div>
+	
+<h2>Attributes</h2>
+<div class="divBlock">
+	<div class="flex">
+		<pre><code class="language-javascript">.attr('alt', 'My image');</code></pre>
+		<pre><code class="language-javascript">.setAttribute('alt', 'My image')</code></pre>
+	</div>
+</div>
+
+<h2>Classes/Css Manipulation</h2>
+<div class="divBlock">
+	<div class="flex">
+		<pre><code class="language-javascript">element.addClass('foo');
+element.removeClass('foo');
+element.toggleClass('foo');
+element.hasClass('foo');</code></pre>
+		<pre><code class="language-javascript">element.classList.add('foo');
+element.classList.remove('foo');
+element.classList.toggle('foo');
+element.classList.contains('foo');</code></pre>
+	</div>
+
+	<div class="flex">
+		<pre><code class="language-javascript">someElement.css('margin-left', 100);</code></pre>
+		<pre><code class="language-javascript">someElement.style.marginLeft = '100px';</code></pre>
+	</div>
+</div>
+
+<h2>Animations</h2>
+<div class="divBlock">
+	<div class="flex">
+		<pre><code class="language-javascript">element.animate({marginLeft: 100}, 
+2000, function () {
+	// When animation is finished
+});</code></pre>
+		<pre><code class="language-javascript">element.style.transition = 'margin-left 2s';
+element.addEventListener('transitionend', 
+	(event) => { // When animation is finished });
+element.style.marginLeft = '100px';</code></pre>
+	</div>
+</div>
+
+
+<h2>Content Manipulation</h2>
+<div class="divBlock">
+	<p>Elements</p>
+	<div class="flex">
+		<pre><code class="language-javascript">someElement.text();
+someElement.text("New content");
+
+someElement.html();
+someElement.html("New content");</code></pre>
+		<pre><code class="language-javascript">someElement.textContent; //read
+someElement.textContent = "New content"; //write
+
+someElement.innerHTML; //read
+someElement.innerHTML = "New content"; //write</code></pre>
+	</div>
+
+	<p>Forms</p>
+	<div class="flex">
+		<pre><code class="language-javascript">someInputElement.val();
+someInputElement.val("New value");
+		</code></pre>
+		<pre><code class="language-javascript">someInputElement.value; //read
+someInputElement.value = "New value"; //write
+		</code></pre>
+	</div>
+
+	<p>Custom properties / Data attributes</p>
+	<div class="flex">
+			<pre><code class="language-javascript">element.data('customName');
+element.data('customName', "New value");</code></pre>
+			<pre><code class="language-javascript">element.dataset.customName;
+element.dataset.customName = "New value";</code></pre>
+		</div>
+</div>
+
+<h2>HTML Manipulation</h2>
+<div class="divBlock">
+	<div class="flex">
+		<pre><code class="language-javascript">$('body').append($('&lt;p/>'))</code></pre>
+		<pre><code class="language-javascript">document.body.appendChild(document.createElement('p'))</code></pre>
+	</div>
+
+	<div class="flex">
+		<pre><code class="language-javascript">var clonedElement = $('#about').clone()</code></pre>
+		<pre><code class="language-javascript">var clonedElement = document.getElementById('about').cloneNode(true)</code></pre>
+	</div>
+
+	<div class="flex">
+		<pre><code class="language-javascript">$('#wrap').empty()</code></pre>
+		<pre><code class="language-javascript">var wrap = document.getElementById('wrap')
+while(wrap.firstChild) wrap.removeChild(wrap.firstChild)</code></pre>
+	</div>
+</div>
+
+
+<h2>AJAX</h2>
+<div class="divBlock">
+	<h3>GET</h3>
+	<div class="flex">
+		<pre><code class="language-javascript">$.get('//example.com', function (data) {
+				
+})</code></pre>
+		<pre><code class="language-javascript">var httpRequest = new XMLHttpRequest()
+httpRequest.onreadystatechange = function (data) {
+
+}
+httpRequest.open('GET', url)
+httpRequest.send()</code></pre>
+	</div>
+
+	<h3>POST</h3>
+	<div class="flex">
+		<pre><code class="language-javascript">$.post('//example.com', { username: username }, function (data) {
+
+})</code></pre>
+		<pre><code class="language-javascript">var httpRequest = new XMLHttpRequest()
+httpRequest.onreadystatechange = function (data) {
+
+}
+httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+httpRequest.open('POST', url)
+httpRequest.send('username=' + encodeURIComponent(username))</code></pre>
+	</div>
+
+	<h3>JSONP</h3>
+	<div class="flex">
+		<pre><code class="language-javascript">$.getJSON('//openexchangerates.org/latest.json?callback=?', function (data) {
+	
+})</code></pre>
+		<pre><code class="language-javascript">function success(data) {
+		
+}
+var scr = document.createElement('script')
+scr.src = '//openexchangerates.org/latest.json?callback=formatCurrency'
+document.body.appendChild(scr)</code></pre>
+	</div>
+</div>
+
+<h2>Classes / OOP</h2>
+<pre><code class="language-javascript">
+class Bracket {
+	constructor(){
+		this.object = [];
+		this.button = [];
+		this.container = document.createElement('div');
+		this.keys = [{ value: "&#8592;", key: 37 },{ value: "&#8593;", key: 38 },{ value: "&#8595;", key: 40 }, { value: "&#8594;", key: 39 }];
+		this.keys.forEach((key,index) => {
+			this.button[index] = document.createElement('span');
+		});
+		this.init();
+	}
+	init(){
+		this.applyContainers();
+
+	}
+	applyStyle(){
+		this.container.style.cssText = `position: fixed;
+		position: fixed;
+		top: 0px;
+		right: 0px;
+		bottom: 0px;
+		left: 0px;
+		width: 300px;
+		height: 500px;
+		margin: auto;
+		background: #ffffff0a;
+		z-index: 999;
+		overflow: hidden;`;
+	}
+}
+
+</code></pre>
+
+
+<h2>Object Iteration</h2>
+<pre><code class="language-javascript">
+	const dictionary = {
+		"f7bae886-9c68-4c94-a88a-c30b5bf11eaf ": "Adeline Rapol",
+		"9b3cc337-9491-4567-a121-a1cb2a0f7fb3": "Porcelain Test"
+	}
+
+	for (var key in dictionary) {
+		if (dictionary.hasOwnProperty(key)) {           
+			console.log(key, dictionary[key]); //will print format f7bae886-9c68-4c94-a88a-c30b5bf11eaf Adeline Rapol
+		}
+	}
+</code></pre>
+
+</div>
+<p class="goTop"><a href="#top">TOP</a></p>
+</body>
+
+<script type="text/javascript" src="common/js/jquery.js"></script>
+<script type="text/javascript" src="common/js/script.js"></script>
+<script type="text/javascript" src="common/js/smooth_scrolling.js"></script>
+
+<script src="libs/tinymace/prism.js"></script>
+
+</html>

@@ -1,0 +1,15 @@
+.box {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background-color: gray;
+}
+.pending {
+    background-color: red;
+}
+.cancelled {
+    background-color: orange;
+}
+.done {
+    background-color: green;
+}
