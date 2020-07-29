@@ -14,7 +14,7 @@
 <body>
 <div class="content" id="top">
 <!--Write your content here-->
-<h1>VueJS</h1>
+<h1>VueJS Basic</h1>
 
 <h2>Set Up</h2>
 <div class="divBlock">
@@ -206,16 +206,16 @@
 	<div class="divBlock">
 		<p>Will be executed when a specific data variable is changed.</p>
 		<pre><code class="language-javascript">new Vue({
-			el: '#app',
-			data: {
-				counter: 0,
-			},
-			watch: {
-				counter: function(){
-					console.log('Watch Triggered');
-				}
-			},
-		});</code></pre>
+	el: '#app',
+	data: {
+		counter: 0,
+	},
+	watch: {
+		counter: function(){
+			console.log('Watch Triggered');
+		}
+	},
+});</code></pre>
 	</div>
 </div>
 
@@ -223,7 +223,7 @@
 <div class="divBlock">
 	<div class="flex">
 		<pre><code class="language-html">&lt;button v-on:click="changeLink">Click to Change&lt;/button></code></pre>
-		<pre><code class="language-html">&lt;button @:click="changeLink">Click to Change&lt;/button></code></pre>
+		<pre><code class="language-html">&lt;button @click="changeLink">Click to Change&lt;/button></code></pre>
 	</div>
 	<div class="flex">
 		<pre><code class="language-html">&lt;a v-bind:href="link">Link&lt;/button></code></pre>
@@ -317,48 +317,395 @@
 });</code></pre>
 	<div class="imgBlock"><img src="./images/1.png"></div>
 	</div>
+</div>
 
-	<h3></h3>
+<h2>Conditional</h2>
+<div class="divBlock">
+	<h3>v-if</h3>
 	<div class="divBlock">
-		<pre><code class="language-html"></code></pre>
-		<pre><code class="language-javascript"></code></pre>
+		<pre><code class="language-html">&lt;div id="app">
+&lt;div v-if="type === 'A'">
+	A
+&lt;/div>
+&lt;div v-else-if="type === 'B'">
+	B
+&lt;/div>
+&lt;div v-else-if="type === 'C'">
+	C
+&lt;/div>
+&lt;div v-else>
+	Not A/B/C
+&lt;/div>
+&lt;/div></code></pre>
 	</div>
 
-	<h3></h3>
+	<h3>v-if in Template</h3>
 	<div class="divBlock">
-		<pre><code class="language-html"></code></pre>
-		<pre><code class="language-javascript"></code></pre>
+		<p>&lt;template> tag will not show in DOM but can use for conditional</p>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;template v-if="active">
+		&lt;p>Active&lt;/p>
+	&lt;/template>
+&lt;/div></code></pre>
+	</div>
+
+	<h3>v-show</h3>
+	<div class="divBlock">
+		<p>v-show will not detach the element instead will add style of display none</p>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;template v-show="active">
+		&lt;p>Active&lt;/p>
+	&lt;/template>
+&lt;/div></code></pre>
 	</div>
 </div>
 
-<h2></h2>
+<h2>Rendering List / For Loop</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+	<p>Let's assume that you have this arrays.</p>
+	<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	data: {
+			ingredients: ['meat','fruit', 'cookies'],
+			persons: [
+				{ name: 'Max', age: 27, color: 'red' },
+				{ name: 'Anna', age: 'unknown', color: 'blue' }
+			]
+	},
+});</code></pre>
+
+	<h3>Simple for loop</h3>
+	<div class="divBlock">
+		<pre><code class="language-html">&lt;div id="app">
+	>&lt;ul>
+		>&lt;li v-for="ingredient in ingredients" :key="ingredient">{{ ingredient }}>&lt;/li>
+	>&lt;/ul>
+>&lt;/div></code></pre>
+	</div>
+
+	<h3>Loop with index</h3>
+	<div class="divBlock">
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;ul>
+		&lt;li v-for="(ingredient, index) in ingredients" :key="index">{{ index }}. {{ ingredient }}&lt;/li>
+	&lt;/ul>
+&lt;/div></code></pre>
+	</div>
+
+	<h3>Loop with array of object</h3>
+	<div class="divBlock">
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;ul>
+		&lt;li v-for="person in persons" :key="person.name">{{ person.name }}&lt;/li>
+	&lt;/ul>
+&lt;/div></code></pre>
+	</div>
+
+	<h3>Loop of objects of array loop</h3>
+	<div class="divBlock">
+		<p>will also loop the keys</p>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;ul>
+		&lt;li v-for="person in persons" :key="person.name">
+			&lt;p v-for="(value, key, index) in person" :key="index">{{ index }}.) {{ key }}: {{ value }}&lt;/p>
+		&lt;/li>
+	&lt;/ul>
+&lt;/div></code></pre>
+	</div>
+
 </div>
 
-<h2></h2>
+<h2>Instance</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+	<h3>Multiple Instance with accessing outside</h3>
+	<div class="divBlock">
+<pre><code class="language-html">&lt;div id="app1">
+	&lt;p>{{ title }}&lt;/p>
+	&lt;button @click="handleClick">Change First Instance Value&lt;/button>
+&lt;/div>
+
+&lt;hr />
+
+&lt;div id="app2">
+	&lt;p>{{ title }}&lt;/p>
+	&lt;button @click="handleClick">Change First Instance Value using Second Instance&lt;/button>
+&lt;/div></code></pre>
+		<pre><code class="language-javascript">var vm1 = new Vue({
+	el: '#app1',
+	data: {
+			title: 'First Instance'
+	},
+	methods: {
+			handleClick: function(){
+				this.title = "Changed First Instance";
+			}
+	},
+});
+
+var vm2 = new Vue({
+	el: '#app2',
+	data: {
+			title: 'Second Instance'
+	},
+	methods: {
+			handleClick: function(){
+				vm1.title = "Changed First Instance to Second Instance";
+			}
+	},
+});</code></pre>
+	</div>
+
+	<h3>Refs</h3>
+	<div class="divBlock">
+		<p>Ref is the name identifier to use javascript selector and get the object element</p>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;p ref="refTitle">This is element&lt;/p>
+	&lt;button @click="handleClick">Button&lt;/button>
+&lt;/div></code></pre>
+		<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	methods: {
+			handleClick: function(){
+				console.log(this.$refs, this.$refs.refTitle);
+				this.$refs.refTitle.innerText = "Test";
+			}
+	},
+});</code></pre>
+	</div>
+
+	<h3>Mount</h3>
+	<div class="divBlock">
+		<h4>Mount</h4>
+		<p>Use this if the element in the page is not yet exist, and you want to mount the vuejs instance when the element is exist.</p>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;p>{{ title }}&lt;/p>
+	&lt;button @click="handleClick">Button&lt;/button>
+&lt;/div></code></pre>
+		<pre><code class="language-javascript">var vm = new Vue({
+	data: {
+			title: 'Test title'
+	},
+	methods: {
+			handleClick: function(){
+				alert(1);
+			}
+	},
+});
+
+vm.$mount('#app');</code></pre>
+	</div>
+	<div class="divBlock">
+		<h4>Mount as html template</h4>
+		<pre><code class="language-html">&lt;div id="app">
+        
+&lt;/div></code></pre>
+		<pre><code class="language-javascript">var vm = new Vue({
+	template: '<h1>Hello World!</h1>'
+});
+
+vm.$mount('#app');</code></pre>
+	</div>
+
+
+	<h3>Components</h3>
+	<div class="divBlock">
+		<h4>Sample Basic</h4>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;p>{{ title }}&lt;/p>
+	&lt;hello>&lt;/hello>
+	&lt;hello>&lt;/hello>
+&lt;/div></code></pre>
+		<pre><code class="language-javascript">Vue.component('hello', {
+	template: '<h1>Hello</h1>'
+});
+
+new Vue({
+	el: '#app',
+	data: {
+			title: 'test'
+	}
+})</code></pre>
+	</div>
+
+	<h3>Lifecycle Method</h3>
+	<div class="divBlock">
+		<ul class="list">
+			<li>beforeCreate()</li>
+			<li>created()</li>
+			<li>beforeMount()</li>
+			<li>beforeUpdate()</li>
+			<li>updated()</li>
+			<li>beforeDestroy()</li>
+			<li>destroy()</li>
+		</ul>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;p>{{ title }}&lt;/p>
+	&lt;button @click="handleUpdate">Change Title&lt;/button>
+	&lt;button @click="handleDestroy">Destroy&lt;/button>
+&lt;/div></code></pre>
+		<pre><code class="language-javascript">new Vue({
+	el: '#app',
+	data: {
+			title: 'test'
+	},
+	methods: {
+			handleUpdate: function(){
+				this.title = "changed title";
+			},
+			handleDestroy: function(){
+				this.$destroy();
+			}
+	},
+	beforeCreate: function(){
+			console.log('beforeCreate')
+	},
+	created: function(){
+			console.log('created')
+	},
+	beforeMount: function(){
+			console.log('beforeMount')
+	},
+	beforeUpdate: function(){
+			console.log('beforeUpdate')
+	},
+	updated: function(){
+			console.log('updated')
+	},
+	beforeDestroy: function(){
+			console.log('beforeDestroy')
+	},
+	destroy: function(){
+			console.log('destroy')
+	}
+})</code></pre>
+	</div>
 </div>
 
-<h2></h2>
+<h1>VueJS Advance</h1>
+
+<h2>Installation</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+	<pre><code class="language-html">npm install -g vue-cli
+vue init webpack-simple project-name
+cd project-name
+npm install</code></pre>
+	<pre><code class="language-html">npm run dev</code></pre>
+	<pre><code class="language-html">npm run build</code></pre>
 </div>
 
-<h2></h2>
+<h2>Components</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
-</div>
+	<h3>Component Globally</h3>
+	<div class="divBlock">
+		<p>Component can be called in anywhere of the page</p>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;my-cmp>&lt;/my-cmp>
+	&lt;hr>
+	&lt;my-cmp>&lt;/my-cmp>
+&lt;/div>
+&lt;div id="app2">
+	&lt;my-cmp>&lt;/my-cmp>
+&lt;/div></code></pre>
+		<pre><code class="language-javascript">Vue.component('my-cmp', {
+	data: function(){
+			return {
+				status: 'loaded'
+			}
+	},
+	template: '<p>Status: {{ status }}</p>'
+});
 
-<h2></h2>
-<div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+new Vue({
+	el: '#app',
+});
+
+new Vue({
+	el: '#app2',
+});</code></pre>
+	</div>
+
+	<h3>Component Locally</h3>
+	<div class="divBlock">
+		<p>Component can only be called in parent</p>
+		<pre><code class="language-html">&lt;div id="app">
+	&lt;my-cmp>&lt;/my-cmp>
+	&lt;hr>
+	&lt;my-cmp>&lt;/my-cmp>
+&lt;/div>
+&lt;div id="app2">
+
+&lt;/div></code></pre>
+		<pre><code class="language-javascript">var cmp = {
+	data: function(){
+			return {
+				status: 'loaded'
+			}
+	},
+	template: '<p>Status: {{ status }}</p>'
+}
+
+new Vue({
+	el: '#app',
+	components: {
+			'my-cmp': cmp
+	}
+});
+
+new Vue({
+	el: '#app2',
+});</code></pre>
+
+	</div>
+
+	<h3>Creating Component</h3>
+	<div class="divBlock">
+		<p>Home.vue</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;p>Status: {{ status }}&lt;/p>
+		&lt;button @click="changeStatus">Change Status&lt;/button>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	export default {
+		data: function(){
+			return {
+				status: 'loaded'
+			}
+		},
+		methods: {
+			changeStatus(){
+				this.status = 'changed';
+			}
+		}
+	}
+&lt;/script></code></pre>
+
+		<p>App.vue</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;Home>&lt;/Home>
+&lt;/template>
+
+&lt;script>
+&lt;/script>
+
+&lt;style lang="scss">
+&lt;/style></code></pre>
+
+		<p>Main.js</p>
+		<pre><code class="language-javascript">import Vue from 'vue'
+import App from './App.vue'
+import Home from './Home.vue'
+
+Vue.component('Home', Home);
+
+new Vue({
+	el: '#app',
+	render: h => h(App)
+})</code></pre>
+	</div>
+
 </div>
 
 <h2></h2>

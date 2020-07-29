@@ -8,13 +8,12 @@
 <body>
     
     <div id="app">
-        <button @click="status = 'pending'" :disabled="status == 'pending'">Pending</button>
-        <button @click="status = 'cancelled'" :disabled="status == 'cancelled'">Cancel</button>
-        <button @click="status = 'done'" :disabled="status == 'done'">Done</button>
-        <div
-            class="box"
-            :class="status"
-        ></div>
+        <my-cmp></my-cmp>
+        <hr>
+        <my-cmp></my-cmp>
+    </div>
+    <div id="app2">
+        <my-cmp></my-cmp>
     </div>
 
     <script src="./script.js"></script>

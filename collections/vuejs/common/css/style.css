@@ -264,7 +264,7 @@ p {
 	font-size: 14px;
 }
 .list li:before {
-	content: '• ';
+	content: '\2022 ';
 }
 .tBold {
 	font-weight: bold;
