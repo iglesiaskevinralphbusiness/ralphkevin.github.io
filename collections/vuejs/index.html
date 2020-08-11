@@ -657,7 +657,7 @@ new Vue({
 
 	</div>
 
-	<h3>Creating Component</h3>
+	<h3>Creating Global Component</h3>
 	<div class="divBlock">
 		<p>Home.vue</p>
 		<pre><code class="language-html">&lt;template>
@@ -706,66 +706,1360 @@ new Vue({
 })</code></pre>
 	</div>
 
+	<h3>Creating Local Component</h3>
+	<div class="divBlock">
+		<p>Status.vue</p>
+<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;p>Status: {{ status }}&lt;/p>
+		&lt;button @click="changeStatus">Change Status&lt;/button>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	export default {
+		data: function(){
+			return {
+				status: 'loaded'
+			}
+		},
+		methods: {
+			changeStatus(){
+				this.status = 'changed';
+			}
+		}
+	}
+&lt;/script></code></pre>
+
+		<p>Home.vue</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;Status>&lt;/Status>
+		&lt;Status>&lt;/Status>
+		&lt;Status>&lt;/Status>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	import Status from './Status.vue';
+
+	export default {
+		components: {
+			'Status': Status
+		}
+	}
+&lt;/script>&</code></pre>
+
+		<p>App.vue</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;Home>&lt;/Home>
+&lt;/template>
+
+&lt;script>
+
+&lt;/script>
+
+&lt;style lang="scss">
+
+&lt;/style></code></pre>
+
+		<p>Main.js</p>
+		<pre><code class="language-javascript">import Vue from 'vue'
+import App from './App.vue'
+import Home from './Home.vue'
+
+Vue.component('Home', Home);
+
+new Vue({
+el: '#app',
+render: h => h(App)
+})</code></pre>
+	</div>
 </div>
 
-<h2></h2>
+<h2>CSS Scope</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+	<p>Normal declaration of style will apply css Globally once that component is rendered in page</p>
+	<pre><code class="language-html">&lt;style>
+
+&lt;/style></code></pre>
+
+	<p>Adding scoped of style will only apply in that component</p>
+	<pre><code class="language-html">&lt;style scoped>
+
+&lt;/style></code></pre>
+
+	<p>For sass style</p>
+	<pre><code class="language-html">&lt;style lang="scss">
+
+&lt;/style></code></pre>
 </div>
 
-<h2></h2>
+<h2>Props</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+	<h3>Passing Props Value</h3>
+	<div class="divBlock">
+		<p>Parent Component</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;Status name="kevin" v-bind:status="status">&lt;/Status> &lt;!--or for shorter code &lt;Status :status="status">-->
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	import Status from './Status.vue';
+
+	export default {
+		components: {
+			'Status': Status
+		},
+		data: function (){
+			return {
+				status: 'loaded'
+			}
+		}
+	}
+&lt;/script></code></pre>
+
+		<p>Child Component</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;p>String Name: {{ name }}
+		&lt;p>Status: {{ status }}&lt;/p>
+		&lt;p>Access in functions: {{ accessStatus() }}&lt;/p>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	export default {
+		props: ['name', 'status'],
+		methods: {
+			accessStatus(){
+				return this.name + ' and ' + this.status +  ' <- this is how props can also use in functions'
+			}
+		}
+	}
+&lt;/script></code></pre>
+
+	<h3>Validating Props</h3>
+		<pre><code class="language-html">&lt;script>
+	export default {
+		props: {
+			firstName: String,
+			age: Number,
+			lastName: {
+				type: String,
+				required: true,
+				default: 'iglesias'
+			},
+			address: {
+				type: Object,
+				default: function(){
+					return {
+						street: 'telbang',
+						city: 'bayambang'
+					}
+				}
+			},
+			list: {
+				type: Array,
+				default: function(){
+					return [];
+				}
+			}
+		}
+	}
+&lt;/script></code></pre>
+
+	<h3>Passing Function Props</h3>
+	<p>Parent Component</p>
+	<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;Status :status="status" @changeParentStatus="changeStatus">&lt;/Status>      &lt;!--calling function inside script-->
+		&lt;Status2 :resetStatus="resetStatus" >&lt;/Status2>                            &lt;!--calling function directly to html-->
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	import Status from './Status.vue';
+
+	export default {
+		components: {
+			'Status': Status
+		},
+		data: function (){
+			return {
+				status: 'loaded'
+			}
+		},
+		methods: {
+			changeStatus($event){
+				this.status = $event;
+			}
+			resetStatus(){
+				this.status = 'loaded';
+			}
+		}
+	}
+&lt;/script></code></pre>
+
+		<p>Child Component (calling function inside script)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;p>Status: {{ status }}&lt;/p>
+		&lt;button @click="changeStatus()">Change Status&lt;/button>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	export default {
+		props: ['status'],
+		methods: {
+			changeStatus(){
+				this.$emit('changeParentStatus', 'reloaded'); //(function-name, value)
+			}
+		}
+	}
+&lt;/script></code></pre>
+
+		<p>Child Component (calling function directly to html)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;button @click="resetStatus()">Reset Status&lt;/button>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	export default {
+		props: {
+			status: {
+				type: String
+			},
+			resetStatus: function
+		}
+	}
+&lt;/script></code></pre>
+
+	</div>
+
+	<h3>Using Event Bus</h3>
+	<div class="divBlock">
+		<p>Event Bus is communicating between 2 childs without using parent props.</p>
+		<p>It is also like a event listener</p>
+		<br>
+		<p>main.js</p>
+		<pre><code class="language-javascript">import Vue from 'vue'
+	import App from './App.vue'
+	import Home from './Home.vue'
+
+	Vue.component('Home', Home);
+
+	export const eventBus = new Vue(); //<--create an event bus constant
+
+	new Vue({
+		el: '#app',
+		render: h => h(App)
+	})</code></pre>
+
+		<p>Home.vue</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;p>Parent Status: {{ status }}&lt;/p>
+		&lt;Status :status="status">&lt;/Status>
+		&lt;StatusEdit :status="status">&lt;/StatusEdit>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	import Status from './Status.vue';
+	import StatusEdit from './StatusEdit.vue';
+
+	export default {
+		components: {
+			'Status': Status,
+			'StatusEdit': StatusEdit
+		},
+		data: function (){
+			return {
+				status: 'loaded'
+			}
+		},
+	}
+&lt;/script></code></pre>
+
+
+		<p>Status.vue (create a eventBus listener)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;p>Child Status: {{ status }}&lt;/p>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	import { eventBus } from './main.js';
+
+	export default {
+		props: {
+			status: {
+				type: String
+			},
+		},
+		created(){
+			eventBus.$on('handleBusStatus', (status) => {
+				this.status = status;
+			});
+		}
+	}
+&lt;/script></code></pre>
+
+		<p>StatusEdit.vue (access the eventBus listener)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;p>Child Status: {{ status }}&lt;/p>
+		&lt;button @click="editStatus">Edit&lt;/button>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	import { eventBus } from './main.js';
+
+	export default {
+		props: {
+			status: {
+				type: String
+			},
+		},
+		methods: {
+			editStatus(){
+				this.status = 'Bus emitted';
+				eventBus.$emit('handleBusStatus', this.status);
+			}
+		}
+	}
+&lt;/script></code></pre>
+
+	</div>
+
+	<h3>Using Slots</h3>
+	<div class="divBlock">
+		<h4>Slot</h4>
+		<p>Parent Component</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;appStatus>
+			&lt;h1>{{ title }}&lt;/h1>
+			&lt;p>This is a sample text description&lt;/p>
+		&lt;/appStatus>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	import Status from './Status';
+
+	export default {
+		data: function (){
+			return {
+				title: 'This is Title'
+			}
+		},
+		components: {
+			appStatus: Status
+		}
+	}
+&lt;/script></code></pre>
+		<p>Child Component</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;slot>&lt;/slot>
+	&lt;/div>
+&lt;/template>
+
+&lt;style scoped>
+	h1 {
+		color: red;
+	}
+&lt;/style></code></pre>
+
+		<h4>Multiple Slot with Names</h4>
+		<p>Parent Component</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;appStatus>
+			&lt;h1 slot="title">{{ title }}&lt;/h1>
+			&lt;p slot="desc">This is a sample text description&lt;/p>
+		&lt;/appStatus>
+	&lt;/div>
+&lt;/template></code></pre>
+
+		<p>Child Component</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;slot name="title">&lt;/slot>
+		&lt;hr>
+		&lt;slot name="desc">&lt;/slot>
+	&lt;/div>
+&lt;/template></code></pre>
+	</div>
+
+	<h3>Using Dynamic Component with Slot</h3>
+	<div class="divBlock">
+		<p>It's like tab rendering</p>
+		<br>
+		<p>Parent Component</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;button @click="selectedComponent = 'appStatus'">Status&lt;/button>
+		&lt;button @click="selectedComponent = 'appStatusEdit'">Status Edit&lt;/button>
+
+		&lt;keep-alive> &lt;!--keep-alive tag is used if you want the component not to unmount-->
+			&lt;component :is="selectedComponent">
+				&lt;div slot="status">Slot for Status&lt;/div>
+				&lt;div slot="statusEdit">Slot for Status Edit&lt;/div>
+			&lt;/component>
+		&lt;/keep-alive>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	import Status from './Status';
+	import StatusEdit from './StatusEdit';
+
+	export default {
+		data: function (){
+			return {
+				selectedComponent: 'appStatus'
+			}
+		},
+		components: {
+			appStatus: Status,
+			appStatusEdit: StatusEdit,
+		}
+	}
+&lt;/script></code></pre>
+
+		<p>Child Component (Status)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;slot name="status">&lt;/slot>
+	&lt;/div>
+&lt;/template></code></pre>
+
+		<p>Child Component (Status)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;slot name="statusEdit">&lt;/slot>
+	&lt;/div>
+&lt;/template></code></pre>
+		<p>additional life cycle hooks for this are activated() and deactivated()</p>
+	</div>
+	
 </div>
 
-<h2></h2>
+<h2>FORMS</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+	<h3>Basic Input</h3>
+	<ul>
+		<li>v-model.lazy</li>
+		<li>v-model.trim</li>
+		<li>v-model.number</li>
+	</ul>
+	<div class="divBlock">
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;input type="text" name="fname" v-model="fname">
+		&lt;input type="text" name="fname" v-model.lazy="lname"> &lt;!-- lazy is like blur, will only update data when unfocus, best use for validation after unfocus -->
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	export default {
+		data (){
+			return {
+				fname: '',
+				lname: ''
+			}
+		}
+	}
+&lt;/script></code></pre>
+	</div>
 </div>
 
-<h2></h2>
+<h2>Directives</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+
+	<h3>Global Custom Directive</h3>
+	<div class="divBlock">
+		<p>Main.js - declare the directive to make it global</p>
+		<pre><code class="language-javascript">import Vue from 'vue'
+	import App from './App.vue'
+	import Home from './Home.vue'
+	
+	Vue.component('Home', Home);
+	
+	Vue.directive('highlight', {
+		bind(el, binding, vnode){
+		//el.style.backgroundColor = 'green'
+		//el.style.backgroundColor = binding.value
+		var delay = 0;
+		if(binding.modifiers['delayed']){
+			delay  =  2000;
+		}
+		setTimeout(() => {
+			if(binding.arg == 'background'){
+			el.style.backgroundColor = binding.value;
+			} else {
+			el.style.color = binding.value;
+			}
+		}, delay)
+		}
+	})
+	
+	export const eventBus = new Vue();
+	
+	new Vue({
+		el: '#app',
+		render: h => h(App)
+	})</code></pre>
+	<p>Home.vue</p>
+<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;p v-highlight:background.delayed="'red'">color this&lt;/p>
+	&lt;/div>
+&lt;/template></code></pre>
 </div>
 
-<h2></h2>
-<div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+	<h3>Local Custom Directive</h3>
+	<div class="divBlock">
+		<p>Home.vue - only and not global</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;p v-highlight:background.delayed="'red'">color this&lt;/p>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	export default {
+		directives: {
+			'highlight': {
+					bind(el, binding, vnode){
+					//el.style.backgroundColor = 'green'
+					//el.style.backgroundColor = binding.value
+					var delay = 0;
+					if(binding.modifiers['delayed']){
+					delay  =  2000;
+					}
+					setTimeout(() => {
+					if(binding.arg == 'background'){
+						el.style.backgroundColor = binding.value;
+					} else {
+						el.style.color = binding.value;
+					}
+					}, delay)
+				}
+			}
+		}
+	}
+&lt;/script></code></pre>
+	</div>
+
 </div>
 
-<h2></h2>
+<h2>Filters and Mixins</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+	<h3>Global Filters</h3>
+	<pre><code class="language-javascript">Vue.directive('highlight', {
+
+});</code></pre>
+
+	<h3>Local Filters</h3>
+	<p>Its like pips in angular</p>
+	<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;p>{{ text | toUppercase }}&lt;/p>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	export default {
+		data(){
+			return {
+				text: 'Hello World'
+			}
+		},
+		filters: {
+			toUppercase(value){
+				return value.toUpperCase()
+			}
+		}
+	}
+&lt;/script></code></pre>
+
+
+
+	<h3>Local Mixins</h3>
+	<p>Create a new copy of vue instance and merge to another vue instance</p>
+	<br>
+	<p>Main.js</p>
+	<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;p>{{ text }}&lt;/p>
+		&lt;ul>
+			&lt;li v-for="fruit in fruits">{{ fruit }}&lt;/li>
+		&lt;/ul>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	import { fruitMixins }  from './fruitMixins';
+
+	export default {
+		mixins: [fruitMixins],
+		data(){
+			return {
+				text: 'Hello World'
+			}
+		},
+	}
+&lt;/script></code></pre>
+
+	<p>fruitMixins.js</p>
+	<pre><code class="language-javascript">export const fruitMixins = {
+	data(){
+		return {
+			fruits: ['Apple','Banana','Mango','Melon'],
+		}
+	}
+}</code></pre>
+
+	<h3>Global Mixins (Special Case)</h3>
+	<p>Only will use if this instance will apply in all of the instances in application</p>
+	<pre><code class="language-javascript">Vue.mixin({
+	created(){
+		console.log('Global mixins created');
+	},
+	data(){
+		return {
+			fruits: ['Apple','Banana','Mango','Melon'],
+		}
+	}
+})</code></pre>
 </div>
 
-<h2></h2>
+<h2>Animations and Transitions</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+
+	<h3>Fade In / Fade Out</h3>
+	<div class="divBlock">
+		<pre><code class="language-html">&lt;template>
+	&lt;div class="container">
+		&lt;div class="row">
+			&lt;div class="col-md-6">
+				&lt;button class="btn btn-primary" @click="show = !show">Show Alert&lt;/button>
+				&lt;br>&lt;br>
+				&lt;transition name="fade">
+					&lt;div class="alert alert-info" v-if="show">Showing element&lt;/div>
+				&lt;/transition>
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	export default {
+		data(){
+			return {
+				show: false
+			}
+		},
+	}
+&lt;/script>
+&lt;style scoped>
+	.fade-enter {
+		opacity: 0;
+	}
+	.fade-enter-active {
+		transition: opacity 1s;
+	}
+	.fade-leave {
+		opacity: 1;
+	}
+	.fade-leave-active {
+		transition: opacity 1s;
+		opacity: 0;
+	}
+&lt;/style></code></pre>
+	</div>
+
+	<h3>Slide</h3>
+	<div class="divBlock">
+		<pre><code class="language-html">&lt;template>
+	&lt;div class="container">
+		&lt;div class="row">
+			&lt;div class="col-md-6">
+				&lt;button class="btn btn-primary" @click="show = !show">Show Alert&lt;/button>
+				&lt;br>&lt;br>
+				&lt;transition name="slide">
+					&lt;div class="alert alert-info" v-if="show">Showing element&lt;/div>
+				&lt;/transition>
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	export default {
+		data(){
+			return {
+				show: false
+			}
+		},
+	}
+&lt;/script>
+&lt;style scoped>
+	.slide-enter {
+		
+	}
+	.slide-enter-active {
+		animation: slide-in 1s ease-out forwards;
+	}
+	.slide-leave {
+		
+	}
+	.slide-leave-active {
+		animation: slide-out 1s ease-out forwards;
+	}
+	@key-frames slide-in {
+		from {
+			transform: translateY(20px);
+		}
+		to {
+			transform: translateY(0);
+		}
+	}
+	@key-frames slide-out {
+		from {
+			transform: translateY(0);
+		}
+		to {
+			transform: translateY(20px);
+		}
+	}
+&lt;/style></code></pre>
+	</div>
+
 </div>
 
-<h2></h2>
+<h2>HTTP Request</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+	<h3>Installation</h3>
+	<div class="divBlock">
+		<pre><code class="language-html">npm install --save vue-resource</code></pre>
+		<p>Main.js</p>
+		<pre><code class="language-javascript">import VueResource from 'vue-resource';
+
+Vue.use(VueResource);</code></pre>
+	</div>
+
+	<h3>Root Environment</h3>
+	<div class="divBlock">
+		<p>All the request will concatinate this root automaticaly. No need to declare in http POST and GET</p><br>
+		<p>Main.js</p>
+		<pre><code class="language-javascript">Vue.use(VueResource);
+Vue.http.options.root = 'http://your-url-api.com';</code></pre>
+	</div>
+	
+	<h3>POST</h3>
+	<div class="divBlock">
+		<pre><code class="language-javascript">export default {
+	data(){
+		return {
+			account: {
+				fname: '',
+				lname: ''
+			}
+		}
+	},
+	method: {
+		submit(){
+			this.$http.post('/account', this.account)
+				.then(response => {
+					console.log(response);
+				}, error => {
+					console.log(error);
+				});
+		}
+	}
+}</code></pre>
+	</div>
+
+	<h3>GET</h3>
+	<div class="divBlock">
+		<pre><code class="language-javascript">export default {
+	data(){
+		return {
+			list: []
+		}
+	},
+	method: {
+		submit(){
+			this.$http.get('/account')
+				.then(response => {
+					this.list = response.body;
+				}, error => {
+					console.log(error);
+				});
+		}
+	}
+}</code></pre>
+	</div>
+
+	<h3>Interceptors</h3>
+	<div class="divBlock">
+		<p><span class="highlight">Intercepting Request</span> - is appliend before the request will be made.</p>
+		<p><span class="highlight">Intercepting Response</span> - is appliend after the request. You can change the response value or make an if statement on it.</p>
+		<br>
+		<p>Main.js</p>
+		<pre><code class="language-javascript">Vue.http.interceptors.push((request, next) => {
+	//intercepting request
+	//example change method request of PUT if method is POST
+	if(request.method == 'POST'){
+		request.metho = 'PUT';
+	}
+
+	//intercepting response
+	next(response => {
+		console.log(response); //add your code here
+	});
+});</code></pre>
+	</div>
+
+	<h3>Custom Resouce (Shorten the request)</h3>
+	<div class="divBlock">
+		<!--<ul class="list">
+			<li>get: {method: GET}</li>
+			<li>save: {method: POST}</li>
+			<li>query: {method: GET}</li>
+			<li>update: {method: PUT}</li>
+			<li>remove: {method: DELETE}</li>
+			<li>get: {method: DELETE}</li>
+		</ul>-->
+		<pre><code class="language-javascript">    export default {
+	data(){
+		return {
+			account: {
+				fname: '',
+				lname: '',
+			},
+			resource: {} //call an resource variable
+		}
+	},
+	created() {
+			//create all actions and url api
+		const actions = {
+			saveAccount: { method: 'POST', url: '/account' },
+			getAccount: { method: 'GET' },
+		}
+		//set the variable as resource
+		this.resource = this.$resource('{node}', {}, actions);
+	},
+	method: {
+		//use get and post resource
+		saveAccount(){
+			this.resource.saveAccount(this.account); //to use a request
+		},
+		getAccount(){
+			this.resource.getAccount({node: '/account'})
+				.then(response => {
+					console.log(response);
+				}, error => {
+					console.log(error);
+				})
+		}
+	}
+}</code></pre>
+	</div>
+
 </div>
 
-<h2></h2>
+
+
+<h2>Routing</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+	<h3>Installation</h3>
+	<div class="divBlock">
+		<pre><code class="language-html">npm install --save vue-router</code></pre>
+		<p>Add to main.js</p>
+		<pre><code class="language-javascript">import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);</code></pre>
+	</div>
+
+	<h3>Implementing Router</h3>
+	<div class="divBlock">
+		<p>Main.js</p>
+		<pre><code class="language-javascript">import Vue from 'vue';
+import App from './App.vue';
+import VueRouter from 'vue-router';
+import { routes } from './routes';    //added here
+
+Vue.use(VueRouter);
+
+const router = new VueRouter({    //added here
+	routes:  routes,
+	mode: 'history'
+});
+
+new Vue({
+	el: '#app',
+	router: router,      //added here
+	render: h => h(App)
+})</code></pre>
+
+		<p>Routes.js</p>
+		<pre><code class="language-javascript">import Home from  './components/Home.vue';
+import User from  './components/user/User.vue';
+
+export const routes = [
+	{ path: '', component: Home },
+	{ path: '/user', component: User }
+]</code></pre>
+
+		<p>App.vue (display the router)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;h1>Application Name&lt;/h1>
+		&lt;hr>
+		&lt;appHeader>&lt;/appHeader>
+		&lt;router-view>&lt;/router-view>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	import Header from './components/Header.vue';
+
+	export default {
+		components: {
+			appHeader: Header
+		}
+	}
+&lt;/script></code></pre>
+
+		<p>Header.vue (link in navigation)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;ul>
+		&lt;li>
+			&lt;router-link to="/" active-class="active" exact>Home&lt;/router-link>
+		&lt;/li>
+		&lt;li>
+			&lt;router-link to="/user" active-class="active">User&lt;/router-link>
+		&lt;/li>
+	&lt;/ul>
+&lt;/template></code></pre>
+	</div>
+
+	<h3>Navigating Routes inside Script</h3>
+	<div class="divBlock">
+		<pre><code class="language-javascript">this.$router.push('/');</code></pre>
+	</div>
+
+	<h3>Displaying Parameters to Page</h3>
+	<div class="divBlock">
+		<p>Routes.js</p>
+		<pre><code class="language-javascript">import Home from  './components/Home.vue';
+import User from  './components/user/User.vue';
+import UserDetail from  './components/user/UserDetail.vue';
+
+export const routes = [
+	{ path: '', component: Home },
+	{ path: '/user', component: User },
+	{ path: '/user/:id', component: UserDetail }, //here to use parameters
+]</code></pre>
+
+	<p>UserDetails.vue (to access the parameter inside vue script)</p>
+	<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;h3>Some User Details&lt;/h3>
+		&lt;p>{{ id }}&lt;/p>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	export default {
+		data(){
+			return {
+				id: this.$route.params.id //access and set parameter
+			}
+		},
+		watch: {
+			'$route'(to, from){
+				this.id = to.params.id //important: watch everytime params is change to update the data
+			}
+		}
+	}
+&lt;/script></code></pre>
+
+	</div>
+
+	<h3>Child Routes</h3>
+	<div class="divBlock">
+		<p>Routes.js</p>
+		<pre><code class="language-javascript">import Home from  './components/Home.vue';
+import User from  './components/user/User.vue';
+import UserStart from './components/user/UserStart.vue';
+import UserDetail from  './components/user/UserDetail.vue';
+import UserEdit from  './components/user/UserEdit.vue';
+
+export const routes = [
+	{ path: '', component: Home },
+	{ path: '/user', component: User, children: [   //note add new &lt;router-view>&lt;/router-view> tag to  this parent component to show the children
+		{ path: '', component: UserStart },
+		{ path: ':id', component: UserDetail },
+		{ path: ':id/edit', component: UserEdit },
+	]},
+]</code></pre>
+
+		<p>App.vue (Parent router)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;h1>Application Name&lt;/h1>
+		&lt;router-view>&lt;/router-view>
+	&lt;/div>
+&lt;/template></code></pre>
+
+		<p>User.vue (Child router)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;h1>The User Page&lt;/h1>
+		&lt;router-view>&lt;/router-view>
+	&lt;/div>
+&lt;/template></code></pre>
+	</div>
+
+	<h3>Passing Parameters to Router Link</h3>
+	<div class="divBlock">
+		<h4>Basic Way</h4>
+		<div class="divBlock">
+			<p>If you want to use dynamic &lt;router-link>, use v-bind:to or :to in tag to use variables</p>
+			<pre><code class="language-html">&lt;router-link tag="button" :to="'/user' + $route.params.id + '/edit'">Edit&lt;/router-link></code></pre>
+		</div>
+
+		<h4>Better Way / Advance</h4>
+		<div class="divBlock">
+			<p>Routes.js (add a name to your router)</p>
+			<pre><code class="language-javascript">{ path: ':id/edit', component: UserEdit, name: 'userEdit' },</code></pre>
+
+			<p>To use inside Html</p>
+			<pre><code class="language-html">&lt;router-link tag="button" :to="{ name: 'userEdit', params: { id: $route.params.id } }">Edit&lt;/router-link></code></pre>
+
+			<p>To use inside Script</p>
+			<pre><code class="language-javascript">this.$route.push({ name: 'userEdit', params: { id: $route.params.id })</code></pre>
+		</div>
+	</div>
+
+	<h3>Using Query Parameters</h3>
+	<div class="divBlock">
+		<p>a sample output link is <span class="highlight">/user/1/edit?username=kevin&password=ralph</span></p><br>
+
+		<p>To set/pass using router link, add query</p>
+		<pre><code class="language-html">&lt;router-link
+	tag="button"
+	:to="{
+		name: 'userEdit',
+		params: { id: $route.params.id },
+		query: { username: 'kevin', password: 'ralph'}
+	}"
+>Edit&lt;/router-link></code></pre>
+
+		<p>To get in HTML</p>
+		<pre><code class="language-javascript">$route.query.username</code></pre>
+
+		<p>To get in Script</p>
+		<pre><code class="language-javascript">this.$route.query.username</code></pre>
+	</div>
+
+	<h3>Multiple Router / Header Footer</h3>
+	<div class="divBlock">
+		<p>App.vue</p>
+		<pre><code class="language-html">&lt;router-view name="header-top">&lt;/router-view> &lt;!-- header-top value component-->
+			&lt;router-view>&lt;/router-view> &lt;!--default value component here-->
+			&lt;router-view name="header-bottom">&lt;/router-view> &lt;!-- header-bottom value component--></code></pre>
+
+		<p>Route.js</p>
+		<pre><code class="language-javascript">import Home from  './components/Home.vue';
+import User from  './components/user/User.vue';
+import UserStart from './components/user/UserStart.vue';
+import UserDetail from  './components/user/UserDetail.vue';
+import UserEdit from  './components/user/UserEdit.vue';
+import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
+
+export const routes = [
+	{ 
+		path: '',
+		component: {
+			default: Home,
+			'header-top': Header,
+			'header-bottom': Footer
+		}
+	},
+	{
+		path: '/user',
+		component: {
+			default: User,
+			'header-bottom': Footer
+		},
+		children: [
+			{ path: '', component: UserStart },
+			{ path: ':id', component: UserDetail },
+			{ path: ':id/edit', component: UserEdit, name: 'userEdit' },
+		]
+	},
+]</code></pre>
+	</div>
+
+	<h3>Redirect</h3>
+	<div class="divBlock">
+		<p>Routes.js</p>
+		<pre><code class="language-javascript">{ path: '/redirect-page', redirect: '/user'},</code></pre>
+	</div>
+	
+	<h3>Catch All / 404</h3>
+	<div class="divBlock">
+		<pre><code class="language-javascript">{ path: '*', redirect: '/' } //redirect to homepage</code></pre>
+	</div>
+
+	<h3>Routes Animation</h3>
+	<div class="divBlock">
+		<pre><code class="language-html">&lt;transition name="slide" mode="out-in">
+	&lt;router-view>&lt;/router-view>
+&lt;/transition></code></pre>
+		<p>Then create a css transition for animations, same as this <a href="#h2-18">Animations</a></p>
+	</div>
+
+	<h3>Import as Lazy Load</h3>
+	<div class="divBlock">
+		<p>The component will load only if it was being called or will be use.</p>
+		<br>
+		<p>Routes.js</p>
+		<p>From</p>
+		<pre><code class="language-javascript">import Home from  './components/Home.vue';
+import Header from './components/Header.vue';
+import User from  './components/user/User.vue';</code></pre>
+
+		<p>Change To</p>
+		<pre><code class="language-javascript">//initial import
+import Home from  './components/Home.vue';
+import Header from './components/Header.vue';
+
+//lazyload import
+const User = resolve => {
+	require.ensure(['./components/user/User.vue'], ()=> {
+		resolve(require('./components/user/User.vue'));
+	});
+}</code></pre>
+	</div>
+
 </div>
 
-<h2></h2>
+<h2>VueX</h2>
 <div class="divBlock">
-	<pre><code class="language-html"></code></pre>
-	<pre><code class="language-javascript"></code></pre>
+	<h3>Store</h3>
+	<div class="divBlock">
+		<p>Install</p>
+		<pre><code class="language-html">npm install --save vuex</code></pre>
+
+		<p>/store/store.js</p>
+		<pre><code class="language-javascript">import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+	state: {
+		counter: 0, //declare any variable name here
+	}
+})</code></pre>
+
+		<p>main.js</p>
+		<pre><code class="language-javascript">import Vue from 'vue';
+import App from './App.vue';
+import store from './store/store'; //call store
+
+new Vue({
+	el: '#app',
+	store: store, //set store
+	render: h => h(App)
+})</code></pre>
+	</div>
+
+	<h3>Accessing Store</h3>
+	<div class="divBlock">
+		<p>Counter.vue (Update Store)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;button class="btn btn-primary" @click="increment">Increment&lt;/button>
+		&lt;button class="btn btn-primary" @click="decrement">Decrement&lt;/button>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	export default {
+		methods: {
+			increment() {
+				this.$store.state.counter++; //use this
+			},
+			decrement() {
+				this.$store.state.counter--; //use this
+			}
+		}
+	}
+&lt;/script></code></pre>
+
+		<p>Results.vue (Get Store)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;p>Counter is: {{ counter }}&lt;/p>
+&lt;/template>
+
+&lt;script>
+	export default {
+		computed: {  //important to use computed for store
+			counter(){
+				return this.$store.state.counter;
+			}
+		}
+	}
+&lt;/script></code></pre>
+	</div>
+
+	<h3>Getters</h3>
+	<div class="divBlock">
+		<p>Performs any calculations and then will access from different component. This is usefull for global task that need to work with multiple components.</p>
+		<br>
+		<p>/store/store.js (Create getters)</p>
+		<pre><code class="language-javascript">import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+	state: {
+		counter: 0,
+	},
+	getters: {  //create getters here
+		doubleCounter: state => {
+			return state.counter * 2;
+		},
+        stringCounter: state => {
+            return state.counter + ' Clicks';
+        }
+	}
+})</code></pre>
+
+		<h4>Basic Retreiving</h4>
+		<p>Results.vue(Get store)</p>
+		<pre><code class="language-html">&lt;script>
+export default {
+	computed: {  //important to use computed for store
+		counter(){
+			return this.$store.getters.doubleCounter;
+		}
+	}
+}&lt;/script></code></pre>
+
+		<h4>Advance Retreiving - mapGetters</h4>
+		<p>Results.vue(Get store)</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;p>Counter is: {{ doubleCounter }}&lt;/p>
+		&lt;p>Total: {{ stringCounter }}&lt;/p>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	import { mapGetters } from 'vuex'; //add this
+
+	export default {
+		computed: {
+            ...mapGetters([  //use this
+            'doubleCounter',
+             'stringCounter',
+            ]),
+            otherProperty(){
+                
+            }
+        }
+	}
+&lt;/script></code></pre>
+	</div>
+
+	<h3>Mutations</h3>
+	<div class="divBlock">
+		<p>Centralize or common updating state. This is usefull for global task that need to work with multiple components.</p>
+		<br>
+		<p>/store/store.js</p>
+		<pre><code class="language-javascript">import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+	state: {
+		counter: 0,
+	},
+	mutations: {   //create mutations here
+		increment: (state, payload) => {
+			state.counter = state.counter + payload; //payload is a parameters you passed
+		},
+		decrement: state => {
+			state.counter--;
+		}
+	}
+})</code></pre>
+
+		<h4>Basic Updating</h4>
+		<p>Counter.vue</p>
+		<pre><code class="language-html">&lt;script>
+	export default {
+		methods: {
+			increment() {
+				this.$store.commit('increment', 100); //use this //100 is passing payload value
+			},
+			decrement() {
+				this.$store.commit('decrement'); //use this
+			}
+		}
+	}
+&lt;/script></code></pre>
+		
+		<h4>Advance Updating - mapMutations</h4>
+		<p>Counter.vue</p>
+		<pre><code class="language-html">&lt;template>
+	&lt;div>
+		&lt;button class="btn btn-primary" @click="increment(100)">Increment&lt;/button> &lt;!--100 is passing payload value-->
+		&lt;button class="btn btn-primary" @click="decrement">Decrement&lt;/button>
+	&lt;/div>
+&lt;/template>
+
+&lt;script>
+	import { mapMutations } from 'vuex';
+
+	export default {
+		methods: {
+			...mapMutations([
+				'increment',
+				'decrement'
+			])
+		}
+	}
+&lt;/script></code></pre>
+		
+	</div>
+
+	<h3>Actions</h3>
+	<div class="divBlock">
+		<pre><code class="language-html"></code></pre>
+		<pre><code class="language-javascript"></code></pre>
+	</div>
 </div>
 
 
