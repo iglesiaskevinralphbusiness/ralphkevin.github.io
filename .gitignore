@@ -40,6 +40,9 @@ testem.log
 Thumbs.db
 
 #others
+/node_modules
+node_modules/
+node_modules
 works/PRACTICE/practice_3 - components-practice/node_modules/yargs/node_modules/
 
 manga/NEW/crawler/node_modules/
