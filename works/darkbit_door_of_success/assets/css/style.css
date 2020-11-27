@@ -490,6 +490,10 @@ main {
 .layer-project-intro .layer-intro-contents p:last-child {
 	margin-bottom: 0;
 }
+.layer-project-intro .layer-intro-contents p:last-child strong {
+	font-weight: bold;
+	color: #fff;
+}
 
 
 
@@ -501,6 +505,23 @@ main {
     box-sizing: border-box;
 	z-index: 1;
 	background: #141618;
+}
+.layer-3 .project-details .title .platform {
+	display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+	padding: 7px;
+	border-bottom-left-radius: 20px;
+    background-image: linear-gradient(to right, #4c4c4c, rgba(255,0,0,0));
+}
+.layer-3 .project-details .title .platform img {
+	height: 55px;
+}
+.layer-3 .project-details .title .platform span {
+    color: #fff;
+    font-size: 200%;
+    padding-left: 10px;
 }
 .layer-3 .project-details .title h3 {
 	color: #fff;

@@ -1,6 +1,9 @@
 
 /* MOBILE */
 @media screen and (max-width: 640px) {
+    main {
+        overflow: hidden;
+    }
     /* font */
     .layer-1 .label2,
     .layer-2 p,
@@ -186,6 +189,9 @@
 
 /* IPAD */
 @media screen and (min-width: 641px) and (max-width: 768px) {
+    main {
+        overflow: hidden;
+    }
     .layer-1,
     .layer-2,
     .layer-project-intro,

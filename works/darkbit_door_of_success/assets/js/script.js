@@ -29,7 +29,7 @@ $(document).ready(function () {
     }
 
     function set_loader_animation(index){
-        var list = ["DEVELOPMENT","GAMES","CODENATIVE","FRAMEWORK","DESIGN"];
+        var list = ["CREATIVITY", "DESIGN","DEVELOPMENT","CODESNATIVE","FRAMEWORK"];
         var loader = $('.loader');
         if(index > list.length - 1){
             index = 0;
