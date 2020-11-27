@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset=utf-8>
+    <title>DIVIDER DATA</title>
+    <script type="text/javascript" src="http://mangariot.com/assets/js/jquery2.js"></script>
+</head>
+<body>
+    <textarea id="full" style="width: 100%; height: 40vh;"></textarea>
+    <button id="full_btn" style="width: 100%; margin-bottom: 10px; height: 40px;">Half</button>
+
+    <textarea id="result1" style="width: 100%; height: 25vh;"></textarea>
+
+    <textarea id="result2" style="width: 100%; height: 25vh;"></textarea>
+
+    <script>
+        $(document).ready(function() {
+            $('#full_btn').click(function(){
+                var data = JSON.parse($('#full').val());
+                var total = data.length;
+                var each_total = Math.floor(total / 2);
+                console.log(each_total);
+
+                //parts
+                var part1 = JSON.stringify(data.slice(0, each_total));
+                var part2 = JSON.stringify(data.slice((each_total + 1), total));
+
+                $('#result1').val(part1);
+                $('#result2').val(part2);
+            });
+        });
+    </script>
+</body>
