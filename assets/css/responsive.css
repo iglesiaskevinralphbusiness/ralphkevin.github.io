@@ -185,6 +185,10 @@
     header .loader .layer-1 .wait {
         display: none;
     }
+
+    .layer-project-intro .layer-intro-contents p:last-child strong {
+        margin-left: 0;
+    }
 }
 
 /* IPAD */

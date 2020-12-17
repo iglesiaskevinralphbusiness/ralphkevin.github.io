@@ -492,7 +492,11 @@ main {
 }
 .layer-project-intro .layer-intro-contents p:last-child strong {
 	font-weight: bold;
-	color: #fff;
+    color: #fff;
+    font-family: FormulaCondensed;
+    letter-spacing: 3px;
+    margin-left: -123px;
+    font-size: 21px;
 }
 
 
@@ -992,7 +996,12 @@ main {
 	color: #747f8d;
     font-size: 145%;
 }
-
+.timeline .timeline-item-desc a.link {
+	display: block;
+    margin-top: 20px;
+    font-size: 19px;
+    color: #060607;
+}
 
 
 
