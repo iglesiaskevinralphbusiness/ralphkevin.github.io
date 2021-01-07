@@ -415,7 +415,7 @@ main {
     height: 100vh;
     padding: 70px;
     box-sizing: border-box;
-    z-index: 1;
+	z-index: 1;
 }
 .layer-2 .name {
 	margin-top: 20vh;
@@ -440,7 +440,6 @@ main {
 .layer-project-intro {
 	position: relative;
     padding: 70px;
-	background: #141618;
 }
 .layer-project-intro .layer-intro-block {
     width: 100%;
@@ -508,7 +507,6 @@ main {
     padding: 70px;
     box-sizing: border-box;
 	z-index: 1;
-	background: #141618;
 }
 .layer-3 .project-details .title .platform {
 	display: flex;
@@ -1009,6 +1007,7 @@ main {
 /* LAYER ABOUT */
 .layer-about {
 	padding: 70px;
+	background: #1d2125;
 }
 .layer-about .layer-about-block {
 	width: 100%;
